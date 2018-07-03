@@ -7,8 +7,14 @@
 
 #### 软件架构
 软件架构说明
-
-
+src
+--main
+  --java 所有源文件的所在地
+  --resource 源文件所需资源
+  --webapp 包含webapp所需的资源
+    --WEB-INF
+      --web.xml
+      
 #### 安装教程
 
 1. xxxx
