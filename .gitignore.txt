@@ -1,0 +1,6 @@
+# Java:
+*.class
+
+# My configurations:
+*.ini
+/out
