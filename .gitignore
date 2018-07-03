@@ -1,4 +1,4 @@
 # My configurations:
 *.ini
-out/
-.idea/
+/out/
+/.idea/
