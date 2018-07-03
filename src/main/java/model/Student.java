@@ -10,6 +10,7 @@ public class Student {
     private String Email;
     private String Sex;
     private String self_introduce;
+    private String pz;
 
     public int getStuNo() {
         return StuNo;
