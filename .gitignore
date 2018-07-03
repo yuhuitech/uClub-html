@@ -1,3 +1,4 @@
 # My configurations:
 *.ini
 /out
+/.idea
