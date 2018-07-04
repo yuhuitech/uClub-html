@@ -6,6 +6,15 @@ public class Club {
     private String Type;
     private String ClubInfo;
     private String Res_url;
+    private int status;
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
 
     public int getClubNo() {
         return ClubNo;
