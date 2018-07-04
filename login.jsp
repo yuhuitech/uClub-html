@@ -52,27 +52,4 @@
 </form>
 </body>
 
-<script>
-
-    function ajax() {
-        var url ="/login";
-        var password = document.getElementById('password');
-        var userId = document.getElementById('userId');
-        var status=document.getElementById('status');
-
-        $.ajax({
-            type:'POST',
-            url:url,
-            data: {
-                "password":password,
-                "userId":userId,
-                "status":status
-            },
-            success:function(data) {
-                alert("成功");
-            }
-        });
-    }
-
-</script>
 </html>
