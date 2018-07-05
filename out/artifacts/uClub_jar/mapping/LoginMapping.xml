@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="LoginDao">
+
+    <resultMap id="loginResultMap" type="model.Student">
+        <result property="StuNo" column="StuNo"/>
+        <result property="password" column="password"/>
+        <result property="TeacherNo" column="TeacherNo"/>
+        <result property="teacher_password" column="teacher_password"/>
+    </resultMap>
+
+    <select id="getStudentPasswd" resultType="String">
+        SELECT password FROM Student
+        <where>
+            StuNo = '${StuNo}'
+        </where>
+    </select>
+
+    <select id="getTeacherPasswd" resultType="String">
+        SELECT teacher_password FROM Teacher
+        <where>
+            TeacherNo = '${TeacherNo}'
+        </where>
+    </select>
+
+
+</mapper>

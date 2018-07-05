@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="applyClubDao">
+
+    <resultMap id="getApplyStuInfoMap" type="model.Student">
+        <result property="StuNo" column="StuNo"/>
+        <result property="StuName" column="StuName"/>
+        <result property="college" column="college"/>
+    </resultMap>
+
+    <resultMap id="applySummaryMap" type="model.Student">
+        <result property="ApplyNo" column="ApplyNo"/>
+        <result property="ClubName" column="ClubName"/>
+        <result property="ClubType" column="ClubType"/>
+        <result property="ClubInfo" column="ClubInfo"/>
+        <result property="StuNo" column="StuNo"/>
+        <result property="ClubSize" column="ClubSize"/>
+        <result property="ApplyTime" column="ApplyTime"/>
+    </resultMap>
+
+
+    <resultMap id="CreateClubMap" type="model.Student">
+        <result property="ClubNo" column="ClubNo"/>
+        <result property="ClubName" column="ClubName"/>
+        <result property="ClubType" column="ClubType"/>
+        <result property="ClubInfo" column="ClubInfo"/>
+        <result property="Res_url" column="Res_url"/>
+        <result property="status" column="status"/>
+        <result property="CreateTime" column="CreateTime"/>
+    </resultMap>
+
+    <select id="getStudentName" resultType="String">
+        SELECT StuName FROM Student
+        <where>
+            StuNo = '${StuNo}'
+        </where>
+    </select>
+
+    <select id="getCollege" resultType="String">
+        SELECT college FROM Student
+        <where>
+            StuNo = '${StuNo}'
+        </where>
+    </select>
+
+    <insert id="addClubApply">
+        insert into uclub.Create_apply(ApplyNo, ClubName, ClubType, ClubInfo, StuNo, ClubSize, ApplyTime)
+        values(#{ApplyNo}, #{ClubName}, #{ClubType}, #{ClubInfo}, #{StuNo},#{ClubSize},#{ApplyTime, jdbcType=TIMESTAMP})
+    </insert>
+
+    <insert id="addClub">
+    insert into uclub.Create_apply(ClubNo, ClubName, ClubType, ClubInfo, Res_url,status, CreateTime)
+    values(#{ClubNo}, #{ClubName}, #{ClubType}, #{ClubInfo}, #{Res_url},#{status},#{CreateTime, jdbcType=TIMESTAMP})
+</insert>
+
+
+</mapper>

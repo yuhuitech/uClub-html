@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.IOException;
 import java.io.InputStream;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -32,6 +33,8 @@ public class Login extends HttpServlet {
             System.out.println("密码正确");
 
             //页面跳转
+//            RequestDispatcher view = req.getRequestDispatcher("applyClub.jspServlet.java");
+//            view.forward(req, resp);
             /* RequestDispatcher view = req.getRequestDispatcher("jsp/index.jsp");
             view.forward(req, resp);*/
         }
