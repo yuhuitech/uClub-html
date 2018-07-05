@@ -19,6 +19,10 @@ public interface DaoInterface {
 
      void setClubInfo(@Param("ClubNo") int clubNo,@Param("ClubInfo") String Info);
 
+     void AddActivity(@Param("active_name") String name,@Param("active_info") String info,
+                      @Param("ClubNo") int ClubNo,@Param("active_time") String time,
+                      @Param("status") String status);
+
 
 }
 
