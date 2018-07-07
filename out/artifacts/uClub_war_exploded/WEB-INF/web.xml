@@ -18,6 +18,7 @@
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
 
+<<<<<<< Updated upstream
     <servlet>
         <servlet-name>applyClubServlet</servlet-name>
         <servlet-class>applyClubServlet</servlet-class>
@@ -27,4 +28,6 @@
         <url-pattern>/applyClubServlet</url-pattern>
     </servlet-mapping>
 
+=======
+>>>>>>> Stashed changes
 </web-app>

@@ -11,7 +11,11 @@
     <title>Login for Uclub</title>
 </head>
 <body>
+<<<<<<< Updated upstream
 <form action="/applyClubServlet" method="post" class="white-pink">
+=======
+<form action="/login" method="post" class="white-pink">
+>>>>>>> Stashed changes
     <h1>
         Login
     </h1>

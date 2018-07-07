@@ -16,7 +16,11 @@
 
     <mappers>
         <mapper resource="/mapping/LoginMapping.xml"/>
+<<<<<<< Updated upstream
         <mapper resource="/mapping/applyClubMapping.xml"/>
 
+=======
+        <mapper resource="/mapping/ClubMapping.xml"/>
+>>>>>>> Stashed changes
     </mappers>
 </configuration>

@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.RequestDispatcher;
 
 
 public class Login extends HttpServlet {
@@ -33,10 +34,15 @@ public class Login extends HttpServlet {
             System.out.println("密码正确");
 
             //页面跳转
+<<<<<<< Updated upstream
 //            RequestDispatcher view = req.getRequestDispatcher("applyClub.jspServlet.java");
 //            view.forward(req, resp);
             /* RequestDispatcher view = req.getRequestDispatcher("jsp/index.jsp");
             view.forward(req, resp);*/
+=======
+            RequestDispatcher view = req.getRequestDispatcher("jsp/TuserHome.jsp");
+            view.forward(req, resp);
+>>>>>>> Stashed changes
         }
         else System.out.println("输入密码错误,正确:"+selectPasswd+"   输入:"+userPasswd);
     }

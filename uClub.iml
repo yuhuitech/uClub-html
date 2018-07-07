@@ -30,6 +30,19 @@
         </webroots>
       </configuration>
     </facet>
+<<<<<<< Updated upstream
+=======
+    <facet type="web" name="Web2">
+      <configuration>
+        <descriptors>
+          <deploymentDescriptor name="web.xml" url="file://$MODULE_DIR$/out/artifacts/uClub_war_exploded/WEB-INF/web.xml" />
+        </descriptors>
+        <webroots>
+          <root url="file://$MODULE_DIR$/out/artifacts/uClub_war_exploded" relative="/" />
+        </webroots>
+      </configuration>
+    </facet>
+>>>>>>> Stashed changes
   </component>
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
     <output url="file://$MODULE_DIR$/target/classes" />
@@ -41,7 +54,10 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+<<<<<<< Updated upstream
     <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
+=======
+>>>>>>> Stashed changes
     <orderEntry type="library" name="Maven: org.mybatis:mybatis:3.4.6" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.springframework:spring-context:3.2.8.RELEASE" level="project" />
     <orderEntry type="library" scope="RUNTIME" name="Maven: org.springframework:spring-aop:3.2.8.RELEASE" level="project" />
@@ -64,5 +80,9 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.jetbrains.kotlin:kotlin-test-common:1.2.50" level="project" />
     <orderEntry type="library" name="Maven: com.esotericsoftware.reflectasm:reflectasm:1.09" level="project" />
     <orderEntry type="library" name="Maven: org.ow2.asm:asm:4.0" level="project" />
+<<<<<<< Updated upstream
+=======
+    <orderEntry type="library" scope="PROVIDED" name="Tomcat 9.0.0.M13" level="application_server_libraries" />
+>>>>>>> Stashed changes
   </component>
 </module>
