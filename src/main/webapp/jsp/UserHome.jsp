@@ -10,10 +10,11 @@
 <%
     String resource = "mybatis.xml";
 
+    Integer UserId = (Integer)request.getSession().getAttribute("UserNo");
     InputStream is = Test.class.getClassLoader().getResourceAsStream(resource);
     SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
-    List<Club> adminClubs = DAO.getStudentClubs(sqlSessionFactory,580148,"社长");
-    List<Club> joinClubs = DAO.getStudentClubs(sqlSessionFactory,580148,"成员");
+    List<Club> adminClubs = DAO.getStudentClubs(sqlSessionFactory,UserId,"社长");
+    List<Club> joinClubs = DAO.getStudentClubs(sqlSessionFactory,UserId,"成员");
 
 %>
 <html>
@@ -54,7 +55,7 @@
 
     %>
 </h2>
-<form method = "post" action = "/ClubInfo">
+
 <ul>
     <%
         if(member_status == 0)
@@ -63,7 +64,9 @@
     %>
     <li>
             <% out.println(club.getClubName());%>
+                <form method = "post" action = "/clubDetail">
              <button name ="Club_id" type = "submit" value = <%= club.getClubNo()%>> 查看 </button>
+                </form>
         <%}
         }
         else
@@ -72,7 +75,9 @@
     %>
     <li>
             <% out.println(club.getClubName());%>
+                <form method = "post" action = "/ClubInfo">
         <button name ="Club_id" type = "submit" value = <%= club.getClubNo()%>> 管理 </button>
+                </form>
             <%}
         }
 
@@ -80,7 +85,12 @@
 
 %>
 
+
 </ul>
-</form>
+    <form method = "post" action = "/ClubCreate">
+        <button name ="userNo" type = "submit" value = <%= UserId %>> 创建社团 </button>
+    </form>
+
+
 </body>
 </html>

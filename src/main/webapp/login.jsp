@@ -38,6 +38,13 @@
             <input type="submit" class="button" value="Login" />
         </div>
     </label>
+    <%
+        String userNo=request.getParameter("userNo");
+        String status= request.getParameter("status");
+        //<用户帐号,类型>
+        session.setAttribute("UserNo",userNo);
+        session.setAttribute("Status",status);
+    %>
 </form>
 </body>
 

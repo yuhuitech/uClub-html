@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="operations.ClubDAO">
+    <resultMap id="ClubResultMap" type="model.Club">
+        <result property="ClubNo" column="ClubNo"/>
+        <result property="ClubName" column="ClubName"/>
+        <result property="Type" column="Type"/>
+        <result property="ClubInfo" column="ClubInfo"/>
+        <result property="Res_url" column="Res_url"/>
+        <result property="status" column="status"/>
+    </resultMap>
+
+    <select id="getClubName" resultType="string">
+        SELECT ClubName FROM Club
+        <where>
+            ClubNo = '${ClubNo}'
+        </where>
+    </select>
+    <select id="getType" resultType="string">
+        SELECT Type FROM Club
+        <where>
+            ClubNo = '${ClubNo}'
+        </where>
+    </select>
+    <select id="getClubInfo" resultType="string">
+        SELECT ClubInfo FROM Club
+        <where>
+            ClubNo = '${ClubNo}'
+        </where>
+    </select>
+    <select id="getstatus" resultType="int">
+        SELECT status FROM Club
+        <where>
+            ClubNo = '${ClubNo}'
+        </where>
+    </select>
+
+    <select id ="getClub" resultMap="ClubResultMap">
+        SELECT * from  Club
+        <where>
+            ClubNo='${ClubNo}'
+        </where>
+    </select>
+
+    <select id="getClubsAll" resultMap="ClubResultMap">
+        SELECT * FROM Club WHERE  status = '1'
+    </select>
+    <select id="getClubs" resultMap="ClubResultMap">
+        SELECT DISTINCT * FROM Club
+        <where>
+            <if test="ClubNo!=&quot;&quot;">
+                AND ClubNo = '${ClubNo}'
+            </if>
+            <if test="ClubName!=&quot;&quot;">
+                AND ClubName = '${ClubName}'
+            </if>
+            <if test="Type!=&quot;&quot;">
+                AND Type = '${Type}'
+            </if>
+            <if test="ClubInfo!=&quot;&quot;">
+                AND ClubInfo = '${ClubInfo}'
+            </if>
+        </where>
+    </select>
+
+    <update id="updateClub">
+        UPDATE Club
+        <trim prefix="set" suffixOverrides=",">
+            <if test="ClubName!=&quot;&quot;">ClubName = '${ClubName}',</if>
+            <if test="Type!=&quot;&quot;">Type = '${Type}',</if>
+            <if test="ClubInfo!=&quot;&quot;">ClubInfo = '${ClubInfo}',</if>
+        </trim>
+        WHERE ClubNo = '${ClubNo}'
+    </update>
+
+    <update id="deleteClub">
+       UPDATE Club
+       SET  status = '0'
+       WHERE ClubNo = '${ClubNo}'
+    </update>
+
+    <insert id="addClub">
+        insert into Club(ClubNo, ClubName, Type, ClubInfo)
+        values(#{ClubNo}, #{ClubName}, #{Type}, #{ClubInfo})
+    </insert>
+</mapper>

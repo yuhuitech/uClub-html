@@ -4,6 +4,8 @@ import model.Club;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class DAO {
@@ -125,5 +127,87 @@ public class DAO {
 
     }
 
+    //下面是刚刚加的
+    public static String getStudentName(SqlSessionFactory sqlSessionFactory, int userID){
+        String selectStuName="";
+        try {
+            // 获取Session连接
+            SqlSession session = sqlSessionFactory.openSession();
+            // 获取Mapper
+            DaoInterface selectInterface = session.getMapper(DaoInterface.class);
+            selectStuName = selectInterface.getStudentName(userID);
+            session.commit();
+            session.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return selectStuName;
+    }
+
+    //获取学院
+    public static String getCollege(SqlSessionFactory sqlSessionFactory, int userID){
+        String selectCollege="";
+        try {
+            // 获取Session连接
+            SqlSession session = sqlSessionFactory.openSession();
+            // 获取Mapper
+            DaoInterface selectInterface = session.getMapper(DaoInterface.class);
+            selectCollege = selectInterface.getCollege(userID);
+            session.commit();
+            session.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return selectCollege;
+    }
+
+    //插入Create_apply表
+    public static int addClubApply(SqlSessionFactory sqlSessionFactory, int ApplyNo, String ClubName,
+                                   String ClubType, String ClubInfo, int StuNo,
+                                   String ClubSize, Date ApplyTime)
+    {
+        try {
+            // 获取Session连接
+            SqlSession session = sqlSessionFactory.openSession();
+            // 获取Mapper
+            DaoInterface DAO = session.getMapper(DaoInterface.class);
+            int Apply = DAO.addClubApply(ApplyNo, ClubName, ClubType, ClubInfo, StuNo, ClubSize, ApplyTime);
+            session.commit();
+            session.close();
+            // 显示插入之后Apply信息
+            return Apply;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
+    //获得一个8位随机数字
+    public static int getUUID(){
+        int applyNum=0;
+        String orderNo = "" ;
+        String trandNo = String.valueOf((Math.random() * 9 + 1) * 1000000);
+        String sdf = new SimpleDateFormat("yyyyMMddHHMMSS").format(new Date());
+        orderNo = trandNo.toString().substring(0, 4);
+        orderNo = orderNo + sdf ;
+        orderNo.replace(".", "");
+        orderNo = orderNo.substring(0,8);
+        applyNum = Integer.parseInt(orderNo);
+
+        return  applyNum;
+    }
+
+
+
+    //获取当前时间
+    public static Date getDateTime(){
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+        System.out.println(df.format(new Date()));// new Date()为获取当前系统时间
+        return new Date();
+    }
 
 }
+
+
+

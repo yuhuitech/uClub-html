@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import java.util.Date;
 import java.util.List;
 
 public interface DaoInterface {
@@ -22,6 +23,19 @@ public interface DaoInterface {
      void AddActivity(@Param("active_name") String name,@Param("active_info") String info,
                       @Param("ClubNo") int ClubNo,@Param("active_time") String time,
                       @Param("status") String status);
+
+     String getStudentName(@Param("StuNo") int userID);
+
+     String getCollege(@Param("StuNo") int userID);
+
+
+     int addClubApply(@Param("ApplyNo") int applyNo,
+                      @Param("ClubName") String clubName,
+                      @Param("ClubType") String clubType,
+                      @Param("ClubInfo") String clubInfo,
+                      @Param("StuNo") int stuNo,
+                      @Param("ClubSize") String clubSize,
+                      @Param("ApplyTime") Date applyTime);
 
 
 }

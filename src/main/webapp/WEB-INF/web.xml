@@ -54,5 +54,52 @@
         <url-pattern>/ActCreateApply</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>ClubCreate</servlet-name>
+        <servlet-class>servlet.ClubCreate</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ClubCreate</servlet-name>
+        <url-pattern>/ClubCreate</url-pattern>
+    </servlet-mapping>
+
+
+    <!--QLY的部分mapping -->
+    <servlet>
+        <servlet-name>clubDetail</servlet-name>
+        <servlet-class>servlet.ClubDetail</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>clubDetail</servlet-name>
+        <url-pattern>/clubDetail</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>activeDetail</servlet-name>
+        <servlet-class>servlet.ActiveDetail</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>activeDetail</servlet-name>
+        <url-pattern>/activeDetail</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>joinClubApply</servlet-name>
+        <servlet-class>servlet.JoinClubApply</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>joinClubApply</servlet-name>
+        <url-pattern>/joinClubApply</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>joinApply</servlet-name>
+        <servlet-class>servlet.JoinApply</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>joinApply</servlet-name>
+        <url-pattern>/joinApply</url-pattern>
+    </servlet-mapping>
+
 
 </web-app>

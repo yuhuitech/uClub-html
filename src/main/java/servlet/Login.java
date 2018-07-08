@@ -28,13 +28,7 @@ public class Login extends HttpServlet {
         String status = req.getParameter("status");
         String selectPasswd=null;
         String resource = "mybatis.xml";
-        /*
-         *为每位用户建立会话，并设置属性
-         */
-            List<Integer> ClubNo = new ArrayList();
-            HttpSession session = req.getSession();
-            if (session.isNew())
-                session.setAttribute("bookID",ClubNo);
+
 
         InputStream is = Test.class.getClassLoader().getResourceAsStream(resource);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
@@ -43,9 +37,21 @@ public class Login extends HttpServlet {
 
         if(userPasswd.equals(selectPasswd)){
             System.out.println("密码正确");
+            if (status.equals("student") )
+            {
+                //建立会话并设置学号和账号类型的属性
+                HttpSession session = req.getSession();
+                session.setAttribute("UserNo", userID);
+                session.setAttribute("Status",status);
+                //页面跳转
+                RequestDispatcher view = req.getRequestDispatcher("jsp/index.jsp");
+                view.forward(req, resp);
+            }
+            else {
+                RequestDispatcher view = req.getRequestDispatcher("jsp/TuserHome.jsp");
+                view.forward(req, resp);
+            }
 
-             RequestDispatcher view = req.getRequestDispatcher("jsp/UserHome.jsp");
-            view.forward(req, resp);
         }
         else System.out.println("输入密码错误,回去好好看表哟");
     }
