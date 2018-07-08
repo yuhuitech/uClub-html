@@ -31,6 +31,12 @@ public class Login extends HttpServlet {
 
         if(userPasswd.equals(selectPasswd)){
             System.out.println("密码正确");
+            if (status.equals("student") ){}
+            else {
+                RequestDispatcher view = req.getRequestDispatcher("jsp/TuserHome.jsp");
+            view.forward(req, resp);
+            }
+
 
             //页面跳转
 //            RequestDispatcher view = req.getRequestDispatcher("applyClub.jspServlet.java");

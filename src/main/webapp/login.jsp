@@ -11,7 +11,7 @@
     <title>Login for Uclub</title>
 </head>
 <body>
-<form action="/applyClubServlet" method="post" class="white-pink">
+<form action="/login" method="post" class="white-pink">
     <h1>
         Login
     </h1>

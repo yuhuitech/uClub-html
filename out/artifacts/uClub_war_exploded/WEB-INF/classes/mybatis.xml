@@ -17,6 +17,7 @@
     <mappers>
         <mapper resource="/mapping/LoginMapping.xml"/>
         <mapper resource="/mapping/applyClubMapping.xml"/>
+        <mapper resource="/mapping/ClubMapping.xml"/>
 
     </mappers>
 </configuration>
