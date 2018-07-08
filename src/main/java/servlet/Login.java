@@ -1,4 +1,4 @@
-package controller;
+package servlet;
 
 import Test.*;
 import com.mysql.cj.xdevapi.JsonString;
