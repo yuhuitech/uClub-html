@@ -14,7 +14,7 @@ import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
+//点击创建社团按钮跳转到这个applyClubServlet，本servlet会分派到applyClub.jsp
 public class applyClubServlet extends HttpServlet {
 
     @Override
