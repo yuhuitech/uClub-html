@@ -11,7 +11,7 @@
     <title>Apply For Club</title>
 </head>
 <body>
-
+<!--本jsp表单的action会指向applyClubServlet -->
 <form action="/applyClubServlet" method="post" id="applyClubForm" >
     <h1 style="align-content: center">
         创建社团申请
