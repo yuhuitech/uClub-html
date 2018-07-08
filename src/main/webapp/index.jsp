@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>index</title>
 </head>
 <body>
 
@@ -19,7 +19,6 @@
 
 <form action="/clubDetail" method="post">
 <input type="submit" value="点击"  />
-
 </form>
 
 </body>
