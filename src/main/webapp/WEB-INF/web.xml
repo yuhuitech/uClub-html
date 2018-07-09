@@ -9,9 +9,13 @@
         <welcome-file>login.jsp</welcome-file>
     </welcome-file-list>
 
+    <listener>
+        <listener-class>controller.SQLConnectListner</listener-class>
+    </listener>
+
     <servlet>
         <servlet-name>login</servlet-name>
-        <servlet-class>Login</servlet-class>
+        <servlet-class>controller.Login</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>login</servlet-name>
@@ -19,12 +23,86 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>applyClubServlet</servlet-name>
-        <servlet-class>applyClubServlet</servlet-class>
+        <servlet-name>ClubInfo</servlet-name>
+        <servlet-class>controller.ClubInfo</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>applyClubServlet</servlet-name>
-        <url-pattern>/applyClubServlet</url-pattern>
+        <servlet-name>ClubInfo</servlet-name>
+        <url-pattern>/ClubInfo</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ClubInfoChange</servlet-name>
+        <servlet-class>controller.ClubInfoChange</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ClubInfoChange</servlet-name>
+        <url-pattern>/ClubInfoChange</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ActCreate</servlet-name>
+        <servlet-class>controller.ActCreate</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ActCreate</servlet-name>
+        <url-pattern>/ActCreate</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ActCreateApply</servlet-name>
+        <servlet-class>controller.ActCreateApply</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ActCreateApply</servlet-name>
+        <url-pattern>/ActCreateApply</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ClubCreate</servlet-name>
+        <servlet-class>controller.ClubCreate</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ClubCreate</servlet-name>
+        <url-pattern>/ClubCreate</url-pattern>
+    </servlet-mapping>
+
+
+    <!--QLY的部分mapping -->
+    <servlet>
+        <servlet-name>clubDetail</servlet-name>
+        <servlet-class>controller.ClubDetail</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>clubDetail</servlet-name>
+        <url-pattern>/clubDetail</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>activeDetail</servlet-name>
+        <servlet-class>controller.ActiveDetail</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>activeDetail</servlet-name>
+        <url-pattern>/activeDetail</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>joinClubApply</servlet-name>
+        <servlet-class>controller.JoinClubApply</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>joinClubApply</servlet-name>
+        <url-pattern>/joinClubApply</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>joinApply</servlet-name>
+        <servlet-class>controller.JoinApply</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>joinApply</servlet-name>
+        <url-pattern>/joinApply</url-pattern>
     </servlet-mapping>
 
 </web-app>

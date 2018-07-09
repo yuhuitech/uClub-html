@@ -1,21 +1,13 @@
 package operations;
+
+
+import model.Club;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.io.IOException;
-import java.io.InputStream;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
-import model.Club;
-
-import javax.servlet.http.HttpServlet;
+import DAO.ClubDAO;
 
 
 public class ClubOperations  {
@@ -110,7 +102,8 @@ public class ClubOperations  {
         return Clubs;
     }
 
-    public static int upadteClub(SqlSessionFactory sqlSessionFactory, int ClubNo, String ClubName, String Type, String ClubInfo) {
+
+    public static int updateClub(SqlSessionFactory sqlSessionFactory, int ClubNo, String ClubName, String Type, String ClubInfo) {
         try {
             // 获取Session连接
             SqlSession session = sqlSessionFactory.openSession();
@@ -161,8 +154,6 @@ public class ClubOperations  {
         }
         return club;
     }
-
-
 
     public static int deleteClub(SqlSessionFactory sqlSessionFactory, int ClubNo) {
         try {

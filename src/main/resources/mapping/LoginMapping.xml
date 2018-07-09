@@ -2,7 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
+<<<<<<< HEAD
 <mapper namespace="LoginDao">
+=======
+<mapper namespace="DAO.DaoInterface">
+>>>>>>> Pz
 
     <resultMap id="loginResultMap" type="model.Student">
         <result property="StuNo" column="StuNo"/>
@@ -11,6 +15,18 @@
         <result property="teacher_password" column="teacher_password"/>
     </resultMap>
 
+<<<<<<< HEAD
+=======
+    <resultMap id="Club" type="model.Club">
+        <result property="ClubNo" column="ClubNo"/>
+        <result property="ClubName" column="ClubName"/>
+        <result property="Type" column="Type"/>
+        <result property="ClubInfo" column="ClubInfo"/>
+        <result property="Res_url" column="Res_url"/>
+        <result property="status" column="status"/>
+    </resultMap>
+
+>>>>>>> Pz
     <select id="getStudentPasswd" resultType="String">
         SELECT password FROM Student
         <where>
@@ -25,5 +41,37 @@
         </where>
     </select>
 
+<<<<<<< HEAD
+=======
+    <select id="getClubs" resultType="String" resultMap="Club">
+        SELECT * FROM Club
+        WHERE
+            ClubNo IN
+            (
+               SELECT ClubNo FROM Member WHERE StuNo = '${StuNo}' AND  Job = '${Job}'
+            )
+
+    </select>
+
+    <select id="getClubById" resultType="String" resultMap="Club">
+        SELECT * FROM Club
+        WHERE
+        ClubNo = '${ClubNo}'
+
+    </select>
+
+    <update id="setClubInfo" >
+        UPDATE Club SET  ClubInfo = '${ClubInfo}'
+        WHERE
+        ClubNo = '${ClubNo}'
+
+    </update>
+
+    <insert id = "AddActivity">
+        INSERT INTO Activity (active_name,active_info,ClubNo,active_time,status)
+        VALUES ('${active_name}','${active_info}','${ClubNo}','${active_time}','${status}')
+    </insert>
+
+>>>>>>> Pz
 
 </mapper>

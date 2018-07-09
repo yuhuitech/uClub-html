@@ -10,13 +10,54 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dcf238ff-3840-4f84-86a4-0f3ceceffba3" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/uClub_war_exploded/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/uClub_war_exploded/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Login.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/DAO/ApplyClubDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/DAO/ClubDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/DAO/ClubDetailDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/DAO/DaoInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/DAO/JoinClubDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/DAO/LoginDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/ActCreate.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/ActCreateApply.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/ActiveDetail.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/ApplyClubServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/ClubCreate.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/ClubDetail.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/ClubInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/ClubInfoChange.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/JoinApply.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/JoinClubApply.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/Login.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/Activity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/operations/ClubDetailOperation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/operations/DAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/operations/JoinApplyOperation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/operations/JoinClubOperation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/operations/LoginOperation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/servlet/SQLConnectListner.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mapping/ClubDetailMapping.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mapping/JoinClubMapping.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/jsp/ActInfo.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/jsp/ClubInfo.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/jsp/UserHome.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/jsp/activeDetail.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/jsp/applyClub.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/jsp/clubDetail.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/jsp/index.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/jsp/joinClubApply.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/jsp/media_gallery.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/login.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/Club.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Club.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Student.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/operations/ClubOperations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/operations/ClubOperations.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapping/ClubMapping.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapping/ClubMapping.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapping/LoginMapping.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapping/LoginMapping.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mapping/applyClubMapping.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapping/applyClubMapping.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mybatis.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mybatis.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/TuserHome.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/TuserHome.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/jsp/manageClub.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/jsp/manageClub.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/login.jsp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -29,21 +70,21 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Login.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Login.java">
+    <leaf>
+      <file leaf-file-name="JoinApplyOperation.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/operations/JoinApplyOperation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="29" column="71" lean-forward="true" selection-start-line="29" selection-start-column="71" selection-end-line="29" selection-end-column="71" />
+            <state relative-caret-position="255">
+              <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="Club.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../新建文件夹/uClub/src/main/java/model/Club.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/model/Club.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="864">
-              <caret line="56" column="5" selection-start-line="50" selection-start-column="4" selection-end-line="56" selection-end-column="5" />
+            <state relative-caret-position="192">
+              <caret line="49" selection-start-line="49" selection-end-line="49" />
             </state>
           </provider>
         </entry>
@@ -51,54 +92,47 @@
       <file leaf-file-name="ClubOperations.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/operations/ClubOperations.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-783">
-              <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+            <state relative-caret-position="253">
+              <caret line="195" column="5" selection-start-line="195" selection-start-column="5" selection-end-line="195" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ClubMapping.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/mapping/ClubMapping.xml">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="TuserHome.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/TuserHome.jsp">
+      <file leaf-file-name="login.jsp" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/login.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="233">
-              <caret line="36" column="87" lean-forward="true" selection-start-line="36" selection-start-column="87" selection-end-line="36" selection-end-column="87" />
+            <state relative-caret-position="825">
+              <caret line="55" column="7" selection-start-line="55" selection-start-column="7" selection-end-line="55" selection-end-column="7" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="applyClubMapping.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/mapping/applyClubMapping.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="43" column="30" selection-start-line="43" selection-start-column="30" selection-end-line="43" selection-end-column="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="manageApply.jsp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/manageApply.jsp">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file leaf-file-name="manageClub.jsp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="manageClub.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/manageClub.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3348">
-              <caret line="196" column="166" lean-forward="true" selection-start-line="196" selection-start-column="166" selection-end-line="196" selection-end-column="166" />
+            <state relative-caret-position="-962">
+              <caret line="134" column="39" selection-start-line="134" selection-start-column="39" selection-end-line="134" selection-end-column="39" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ClubDAO.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/operations/ClubDAO.java">
+      <file leaf-file-name="TuserHome.jsp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/TuserHome.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+            <state relative-caret-position="150">
+              <caret line="10" column="32" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="web.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="282">
+              <caret line="106" selection-start-line="106" selection-end-line="106" />
             </state>
           </provider>
         </entry>
@@ -106,8 +140,29 @@
       <file leaf-file-name="login.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/login.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-145">
-              <caret column="4" selection-start-column="4" selection-end-column="4" />
+            <state relative-caret-position="268">
+              <caret line="155" column="7" selection-start-line="155" selection-start-column="7" selection-end-line="155" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="62">
+                <caret line="16" column="6" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Student.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/model/Student.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-273">
+              <caret line="19" selection-start-line="19" selection-end-line="19" />
             </state>
           </provider>
         </entry>
@@ -134,16 +189,21 @@
         <option value="$PROJECT_DIR$/src/main/java/Test/applyClubServlet.java" />
         <option value="$PROJECT_DIR$/src/main/java/controller/applyClubDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/controller/applyClubServlet.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/src/main/java/applyClubDao.java" />
         <option value="$PROJECT_DIR$/src/main/resources/mapping/applyClubMapping.xml" />
         <option value="$PROJECT_DIR$/src/main/webapp/applyClub.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/applyClubServlet.java" />
-        <option value="$PROJECT_DIR$/src/main/java/model/Club.java" />
         <option value="$PROJECT_DIR$/src/main/resources/mybatis.xml" />
-        <option value="$PROJECT_DIR$/src/main/webapp/login.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/Login.java" />
+        <option value="$PROJECT_DIR$/src/main/java/model/Club.java" />
+        <option value="$PROJECT_DIR$/src/main/java/model/Student.java" />
+        <option value="$PROJECT_DIR$/src/main/java/operations/ClubOperations.java" />
+        <option value="$PROJECT_DIR$/login.jsp" />
+        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/main/webapp/jsp/manageClub.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/jsp/TuserHome.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
+        <option value="$PROJECT_DIR$/src/main/webapp/login.jsp" />
       </list>
     </option>
   </component>
@@ -176,20 +236,24 @@
     <option name="width" value="1400" />
     <option name="height" value="1000" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="1" id="Add" />
-  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="uClub" type="b2602c69:ProjectViewProjectNode" />
               <item name="uClub" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="uClub" type="b2602c69:ProjectViewProjectNode" />
+              <item name="uClub" type="462c0819:PsiDirectoryNode" />
+              <item name="classes" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="uClub" type="b2602c69:ProjectViewProjectNode" />
@@ -223,6 +287,14 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="DAO" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="uClub" type="b2602c69:ProjectViewProjectNode" />
+              <item name="uClub" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="model" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -238,21 +310,6 @@
               <item name="uClub" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="uClub" type="b2602c69:ProjectViewProjectNode" />
-              <item name="uClub" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="mapping" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="uClub" type="b2602c69:ProjectViewProjectNode" />
-              <item name="uClub" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -261,15 +318,19 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="jsp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="uClub" type="b2602c69:ProjectViewProjectNode" />
+              <item name="uClub" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -433,44 +494,70 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46260000" />
+    <option name="totallyTimeSpent" value="46517000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="0" y="0" width="1280" height="800" extended-state="0" />
     <layout>
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Application Servers" order="7" weight="0.45555556" />
-      <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
-      <window_info id="Capture Tool" order="2" />
-      <window_info id="Designer" order="2" />
-      <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="right" id="Palette" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Application Servers" weight="0.32911393" />
+      <window_info anchor="right" id="Maven Projects" />
+      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
+      <window_info id="Capture Tool" />
+      <window_info id="Designer" />
+      <window_info anchor="right" id="Database" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info id="UI Designer" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.24042553" />
+      <window_info id="UI Designer" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39873418" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.1984127" />
-      <window_info anchor="right" id="Palette&#9;" order="3" />
-      <window_info id="Image Layers" order="2" />
-      <window_info anchor="bottom" id="Java Enterprise" order="7" />
-      <window_info anchor="right" id="Capture Analysis" order="3" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Messages" weight="0.32905984" />
+      <window_info anchor="right" id="Palette&#9;" />
+      <window_info id="Image Layers" />
+      <window_info anchor="bottom" id="Java Enterprise" />
+      <window_info anchor="right" id="Capture Analysis" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.37749287" />
+      <window_info anchor="bottom" id="Version Control" weight="0.32905984" />
+      <window_info anchor="bottom" id="Spring" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.36752826" />
+      <window_info id="Web" side_tool="true" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32905984" />
+      <window_info anchor="right" id="Theme Preview" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info anchor="bottom" id="Application Servers" order="7" weight="0.45555556" />
+      <window_info id="Designer" order="2" />
+      <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.35425532" />
       <window_info anchor="bottom" id="Spring" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13645834" />
-      <window_info id="Web" order="2" side_tool="true" />
-      <window_info anchor="right" id="Theme Preview" order="3" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info id="UI Designer" order="2" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info id="Capture Tool" order="2" />
+      <window_info anchor="right" id="Capture Analysis" order="3" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.1984127" />
+      <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Java Enterprise" order="7" />
+      <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.1920635" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13645834" />
+      <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info id="Web" order="2" side_tool="true" />
+      <window_info anchor="right" id="Palette&#9;" order="3" />
+      <window_info anchor="right" id="Theme Preview" order="3" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.24042553" />
     </layout>
     <layout-to-restore>
       <window_info anchor="bottom" id="Application Servers" order="7" weight="0.32978722" />
@@ -539,30 +626,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/model/Club.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="648">
-          <caret line="39" column="23" selection-start-line="39" selection-start-column="23" selection-end-line="39" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/login.jsp">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/mapping/LoginMapping.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="81">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/controller/ClubManagement.java" />
     <entry file="file://$PROJECT_DIR$/.idea/misc.xml">
       <provider selected="true" editor-type-id="text-editor">
@@ -726,13 +789,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="550">
-          <caret line="22" column="23" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/mapping/LoginMapping.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
@@ -761,13 +817,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/model/Student.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="8" column="23" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/mybatis.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="513">
@@ -775,28 +824,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/model/Club.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="836">
-          <caret line="56" column="5" selection-start-line="56" selection-start-column="5" selection-end-line="56" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../新建文件夹/uClub/src/main/java/model/Club.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="864">
-          <caret line="56" column="5" selection-start-line="50" selection-start-column="4" selection-end-line="56" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../新建文件夹/uClub/login.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1053" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../新建文件夹/uClub/src/main/webapp/login.jsp">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/../新建文件夹/uClub/src/main/java/model/Club.java" />
+    <entry file="file://$PROJECT_DIR$/../新建文件夹/uClub/login.jsp" />
+    <entry file="file://$PROJECT_DIR$/../新建文件夹/uClub/src/main/webapp/login.jsp" />
     <entry file="file://$PROJECT_DIR$/src/main/java/operations/ClubDAO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
@@ -804,24 +834,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/login.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-145">
-          <caret column="4" selection-start-column="4" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Login.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
           <caret line="29" column="71" lean-forward="true" selection-start-line="29" selection-start-column="71" selection-end-line="29" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/TuserHome.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="36" column="87" lean-forward="true" selection-start-line="36" selection-start-column="87" selection-end-line="36" selection-end-column="87" />
         </state>
       </provider>
     </entry>
@@ -835,20 +851,89 @@
     <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/manageApply.jsp">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/operations/ClubOperations.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-783">
-          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/mapping/ClubMapping.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="5" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/operations/JoinApplyOperation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/model/Student.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-273">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/model/Club.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="49" selection-start-line="49" selection-end-line="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/operations/ClubOperations.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="195" column="5" selection-start-line="195" selection-start-column="5" selection-end-line="195" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="62">
+            <caret line="16" column="6" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/login.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="825">
+          <caret line="55" column="7" selection-start-line="55" selection-start-column="7" selection-end-line="55" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/manageClub.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3348">
-          <caret line="196" column="166" lean-forward="true" selection-start-line="196" selection-start-column="166" selection-end-line="196" selection-end-column="166" />
+        <state relative-caret-position="-962">
+          <caret line="134" column="39" selection-start-line="134" selection-start-column="39" selection-end-line="134" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="282">
+          <caret line="106" selection-start-line="106" selection-end-line="106" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/login.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="268">
+          <caret line="155" column="7" selection-start-line="155" selection-start-column="7" selection-end-line="155" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/jsp/TuserHome.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="32" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
         </state>
       </provider>
     </entry>

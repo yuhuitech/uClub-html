@@ -48,6 +48,7 @@ public class Club {
         Res_url = res_url;
     }
 
+
     public int getStatus() {
         return status;
     }
@@ -55,4 +56,5 @@ public class Club {
     public void setStatus(int status) {
         this.status = status;
     }
+
 }

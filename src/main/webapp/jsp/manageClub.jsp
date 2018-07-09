@@ -8,7 +8,7 @@
 <%@ page import="model.Club" %>
 <%@ page import="java.util.List" %>
 <%@ page import="operations.ClubOperations" %>
-<%@ page import="operations.ClubDAO" %>
+<%@ page import="DAO.ClubDAO" %>
 <%@ page import="org.apache.ibatis.session.SqlSessionFactory" %>
 <%@ page import="java.util.EnumMap" %>
 <%@ page import="java.io.InputStream" %>
@@ -40,7 +40,7 @@
                     Clubs = ClubOperations.getClubsALL(sqlSessionFactory);
                     break;
                 case "1":
-                    statuscode = ClubOperations.upadteClub(sqlSessionFactory,id,name,tag,info);
+                    statuscode = ClubOperations.updateClub(sqlSessionFactory,id,name,tag,info);
                     Clubs = ClubOperations.getClubsALL(sqlSessionFactory);
                     break;
 
@@ -125,11 +125,14 @@
                     },
                     method:'POST',
                     success:function (data) {
-                        winclose();
+                        alert('attention');
+                        self.location.reload();
+
+                        //winclose();
                     }
                 }
             );
-            window.location.reload();
+           // window.location.reload();
         }
     </script>
 </head>
