@@ -1,15 +1,15 @@
-package controller;
+package servlet;
 
-import DAO.DaoInterface;
 import Test.*;
 import operations.DAO;
-import operations.LoginOperation;
+import operations.DaoInterface;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.IOException;
 import java.io.InputStream;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -31,9 +31,9 @@ public class Login extends HttpServlet {
 
         InputStream is = Test.class.getClassLoader().getResourceAsStream(resource);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
-        //  String userName=getStudentName(sqlSessionFactory,userID);
+      //  String userName=getStudentName(sqlSessionFactory,userID);
         if(status.equals("student") )selectPasswd = DAO.getStudentPasswd(sqlSessionFactory,userID);
-        else selectPasswd = DAO.getTeacherPasswd(sqlSessionFactory,userID);
+        else selectPasswd = getTeacherPasswd(sqlSessionFactory,userID);
 
         if(userPasswd.equals(selectPasswd)){
             System.out.println("密码正确");
@@ -42,7 +42,9 @@ public class Login extends HttpServlet {
             session.setAttribute("Status",status);
             resp.getWriter().print("{'success':'true'}");
             resp.getWriter().flush();
-            //已经写回了响应，不可重新分派，到此为止
+            //页面跳转
+             RequestDispatcher view = req.getRequestDispatcher("index.jsp");
+            view.forward(req, resp);
         }
         else {
             resp.getWriter().print("{'success':'false'}");
@@ -51,5 +53,47 @@ public class Login extends HttpServlet {
         }
 
     }
+
+    String getStudentPasswd(SqlSessionFactory sqlSessionFactory, int userID){
+        String selectPasswd="";
+        try {
+            // 获取Session连接
+            SqlSession session = sqlSessionFactory.openSession();
+            // 获取Mapper
+            DaoInterface selectInterface = session.getMapper(DaoInterface.class);
+            selectPasswd = selectInterface.getStudentPasswd(userID);
+            session.commit();
+            session.close();
+            // 显示插入之后User信息
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return selectPasswd;
+    }
+
+    String getTeacherPasswd(SqlSessionFactory sqlSessionFactory, int userID){
+        String selectPasswd="";
+        try {
+            // 获取Session连接
+            SqlSession session = sqlSessionFactory.openSession();
+            // 获取Mapper
+            DaoInterface selectInterface = session.getMapper(DaoInterface.class);
+            //区分学生和管理员
+            selectPasswd = selectInterface.getTeacherPasswd(userID);
+            session.commit();
+            session.close();
+            // 显示插入之后User信息
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return selectPasswd;
+    }
+
+
+
+
+
+
+
 }
 

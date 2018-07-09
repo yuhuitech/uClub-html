@@ -1,8 +1,8 @@
-package controller;
+package servlet;
 
 import Test.Test;
-import operations.JoinApplyOperation;
-import operations.JoinClubOperation;
+import operations.JoinClubDao;
+import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
@@ -27,12 +27,25 @@ public class JoinApply extends HttpServlet {
 
         InputStream is = Test.class.getClassLoader().getResourceAsStream(resource);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
-        int i=JoinApplyOperation.joinClubApply(sqlSessionFactory,StuNo,ClubNo,JoinReason);
+        int i=joinClubApply(sqlSessionFactory,StuNo,ClubNo,JoinReason);
         //跳转
         req.getRequestDispatcher("jsp/index.jsp").forward(req,resp);
 
     }
 
 
-
+    int joinClubApply(SqlSessionFactory sqlSessionFactory, int StuNo,int ClubNo,String JoinReason){
+        int i=0;
+        try {
+            SqlSession session = sqlSessionFactory.openSession();
+            JoinClubDao selectInterface = session.getMapper(JoinClubDao.class);
+            i=selectInterface.joinClubApply(StuNo,ClubNo,JoinReason);
+            System.out.println("成功插入数据");
+            session.commit();
+            session.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return i;
+    };
 }

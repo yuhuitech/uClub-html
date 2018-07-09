@@ -6,7 +6,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import java.util.ArrayList;
 import java.util.List;
-import DAO.ClubDAO;
+
 
 public class ClubOperations  {
    // @Override
@@ -100,7 +100,7 @@ public class ClubOperations  {
         return Clubs;
     }
 
-    public static int updateClub(SqlSessionFactory sqlSessionFactory, int ClubNo, String ClubName, String Type, String ClubInfo) {
+    public static int upadteClub(SqlSessionFactory sqlSessionFactory, int ClubNo, String ClubName, String Type, String ClubInfo) {
         try {
             // 获取Session连接
             SqlSession session = sqlSessionFactory.openSession();
@@ -145,11 +145,14 @@ public class ClubOperations  {
             session.commit();
             session.close();
             //return club;
+
         } catch (Exception e) {
             e.printStackTrace();
         }
         return club;
     }
+
+
 
     public static int deleteClub(SqlSessionFactory sqlSessionFactory, int ClubNo) {
         try {
@@ -190,8 +193,4 @@ public class ClubOperations  {
         }
         return result;
     }
-
-
-
-
 }

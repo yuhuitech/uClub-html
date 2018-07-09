@@ -1,6 +1,5 @@
-package DAO;
+package operations;
 
-import operations.DAO;
 import org.apache.ibatis.annotations.Param;
 
 public interface LoginDao {

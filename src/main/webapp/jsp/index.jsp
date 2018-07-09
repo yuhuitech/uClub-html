@@ -23,5 +23,10 @@
 
 <input type = "button" value = "个人中心" onclick = "window.location.href = '/jsp/UserHome.jsp'">
 
+
+<form action ="/Recommend" method="post">
+    <input type = "submit" value="生成推荐"  />
+</form>
+
 </body>
 </html>

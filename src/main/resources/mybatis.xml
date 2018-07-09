@@ -16,10 +16,11 @@
 
     <mappers>
         <mapper resource="/mapping/LoginMapping.xml"/>
-        <mapper resource="/mapping/ApplyClubMapping.xml"/>
+        <mapper resource="/mapping/applyClubMapping.xml"/>
         <mapper resource="/mapping/ClubMapping.xml"/>
         <mapper resource="/mapping/JoinClubMapping.xml"/>
         <mapper resource="/mapping/ClubDetailMapping.xml"/>
+        <mapper resource="/mapping/RecordMapping.xml"/>
 
     </mappers>
 </configuration>

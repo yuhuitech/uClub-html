@@ -1,4 +1,4 @@
-package controller;
+package servlet;
 
 import Test.Test;
 import org.apache.ibatis.session.SqlSessionFactory;

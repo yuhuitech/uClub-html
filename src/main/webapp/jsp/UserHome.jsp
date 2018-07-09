@@ -6,6 +6,7 @@
 <%@ page import="java.io.InputStream" %>
 <%@ page import="Test.Test" %>
 <%@ page import="org.apache.ibatis.session.SqlSessionFactoryBuilder" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String resource = "mybatis.xml";
@@ -15,7 +16,9 @@
     SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
     List<Club> adminClubs = DAO.getStudentClubs(sqlSessionFactory,UserId,"社长");
     List<Club> joinClubs = DAO.getStudentClubs(sqlSessionFactory,UserId,"成员");
-
+    List<Club> AllClubs = new ArrayList<>();
+    AllClubs.addAll(adminClubs);
+    AllClubs.addAll(joinClubs);
 %>
 <html>
 <head>
@@ -60,11 +63,11 @@
     <%
         if(member_status == 0)
         {
-        for ( Club club:joinClubs){
+        for ( Club club:AllClubs){
     %>
     <li>
             <% out.println(club.getClubName());%>
-                <form method = "post" action = "clubDetail">
+                <form method = "post" action = "/clubDetail">
              <button name ="Club_id" type = "submit" value = <%= club.getClubNo()%>> 查看 </button>
                 </form>
         <%}
@@ -75,7 +78,7 @@
     %>
     <li>
             <% out.println(club.getClubName());%>
-                <form method = "post" action = "ClubInfo">
+                <form method = "post" action = "/ClubInfo">
         <button name ="Club_id" type = "submit" value = <%= club.getClubNo()%>> 管理 </button>
                 </form>
             <%}
@@ -87,7 +90,7 @@
 
 
 </ul>
-    <form method = "post" action = "ClubCreate">
+    <form method = "post" action = "/ClubCreate">
         <button name ="userNo" type = "submit" value = <%= UserId %>> 创建社团 </button>
     </form>
 

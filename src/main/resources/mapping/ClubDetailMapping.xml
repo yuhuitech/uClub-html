@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="DAO.ClubDetailDao">
+<mapper namespace="operations.ClubDetailDao">
 
     <resultMap id="ClubDetailResult" type="model.Club">
         <result property="ClubNo" column="ClubNo"/>
@@ -42,8 +42,5 @@
         </where>
     </select>
 
-    <select id="getAllClubs" resultMap="ClubDetailResult">
-        SELECT * FROM Club
-    </select>
 
 </mapper>

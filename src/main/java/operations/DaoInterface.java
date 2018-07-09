@@ -1,7 +1,6 @@
-package DAO;
+package operations;
 
 import model.Club;
-import operations.DAO;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -10,6 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 public interface DaoInterface {
+
      String getStudentPasswd(@Param("StuNo") int userID);
 
      String getTeacherPasswd(@Param("TeacherNo") int userID);

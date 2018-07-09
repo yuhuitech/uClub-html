@@ -1,22 +1,26 @@
 package operations;
 
 import model.Club;
+import model.Record;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import DAO.DaoInterface;
+
 public class DAO {
+
+    //获取学生的密码
     public static String getStudentPasswd(SqlSessionFactory sqlSessionFactory, int userID){
         String selectPasswd="";
         try {
             // 获取Session连接
             SqlSession session = sqlSessionFactory.openSession();
             // 获取Mapper
-            DaoInterface loginDao = session.getMapper(DaoInterface.class);
-            selectPasswd = loginDao.getStudentPasswd(userID);
+            DaoInterface selectInterface = session.getMapper(DaoInterface.class);
+            selectPasswd = selectInterface.getStudentPasswd(userID);
             session.commit();
             session.close();
             // 显示插入之后User信息
@@ -26,15 +30,16 @@ public class DAO {
         return selectPasswd;
     }
 
+    //通过老师号获取老师的ID
     public static String getTeacherPasswd(SqlSessionFactory sqlSessionFactory, int userID){
         String selectPasswd="";
         try {
             // 获取Session连接
             SqlSession session = sqlSessionFactory.openSession();
             // 获取Mapper
-            DaoInterface loginDao = session.getMapper(DaoInterface.class);
+            DaoInterface selectInterface = session.getMapper(DaoInterface.class);
             //区分学生和管理员
-            selectPasswd = loginDao.getTeacherPasswd(userID);
+            selectPasswd = selectInterface.getTeacherPasswd(userID);
             session.commit();
             session.close();
             // 显示插入之后User信息
@@ -180,6 +185,92 @@ public class DAO {
         return -1;
     }
 
+    //插入Request_club_record表
+    public static void AddClubRecord(SqlSessionFactory sqlSessionFactory, int StuNo,int ClubNo)
+    {
+
+        try {
+            //获取当前系统时间等下进行插入
+            Date time = getDateTime();
+            // 获取Session连接
+            SqlSession session = sqlSessionFactory.openSession();
+            // 获取Mapper
+            RecordDao selectInterface = session.getMapper(RecordDao.class);
+            //获取该学生所有的社团
+            selectInterface.AddClubRecord(StuNo,ClubNo,time);
+            session.commit();
+            session.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    //插入Request_Active_record表
+    public static void AddActiveRecord(SqlSessionFactory sqlSessionFactory, int StuNo,int ClubNo)
+    {
+
+        try {
+            //获取当前系统时间等下进行插入
+            Date time = getDateTime();
+            // 获取Session连接
+            SqlSession session = sqlSessionFactory.openSession();
+            // 获取Mapper
+            RecordDao selectInterface = session.getMapper(RecordDao.class);
+            //获取该学生所有的社团
+            selectInterface.AddActiveRecord(StuNo,ClubNo,time);
+            session.commit();
+            session.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    //获取各学生的社团访问情况
+    public static List<Record> getActiveTimes(SqlSessionFactory sqlSessionFactory)
+    {
+        List<Record> record = new ArrayList<>();
+        try {
+
+            // 获取Session连接
+            SqlSession session = sqlSessionFactory.openSession();
+            // 获取Mapper
+            RecordDao selectInterface = session.getMapper(RecordDao.class);
+            record = selectInterface.getActiveTimes();
+            session.commit();
+            session.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+       return record;
+    }
+
+    public static List<Record> getClubTimes(SqlSessionFactory sqlSessionFactory)
+    {
+
+        List<Record> record = new ArrayList<>();
+        try {
+
+            // 获取Session连接
+            SqlSession session = sqlSessionFactory.openSession();
+            // 获取Mapper
+            RecordDao selectInterface = session.getMapper(RecordDao.class);
+            record = selectInterface.getClubTimes();
+            session.commit();
+            session.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return record;
+    }
+
+    //获取各学生的活动访问情况
+
     //获得一个8位随机数字
     public static int getUUID(){
         int applyNum=0;
@@ -191,6 +282,7 @@ public class DAO {
         orderNo.replace(".", "");
         orderNo = orderNo.substring(0,8);
         applyNum = Integer.parseInt(orderNo);
+
         return  applyNum;
     }
 

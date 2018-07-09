@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="operations.RecordDao">
+
+    <insert id = "AddClubRecord">
+        INSERT INTO Request_club_record (StuNo,ClubNo,ReqTime)
+        VALUES ('${StuNo}','${ClubNo}',#{ReqTime, jdbcType=TIMESTAMP})
+    </insert>
+
+    <insert id ="AddActiveRecord">
+          INSERT INTO Request_active_record (StuNo,ActiveNo,ReqTime)
+        VALUES ('${StuNo}','${ActiveNo}',#{ReqTime, jdbcType=TIMESTAMP})
+    </insert>
+
+    <resultMap id="RecordNumber" type="model.Record">
+        <result property="StuNo" column="StuNo"/>
+        <result property="AcNo" column="AcNo"/>
+        <result property="times" column="times"/>
+    </resultMap>
+
+    <select id="getActiveTimes" resultType="String" resultMap="RecordNumber">
+        SELECT StuNo ,ActiveNo as AcNo,count(*) as 'times'
+         FROM uclub.Request_active_record
+         group by StuNo,ActiveNo;
+    </select>
+
+    <select id="getClubTimes" resultType="String" resultMap="RecordNumber">
+        SELECT StuNo ,ClubNo as AcNo,count(*) as 'times'
+        FROM uclub.Request_club_record
+        group by StuNo,ClubNo;
+    </select>
+
+</mapper>

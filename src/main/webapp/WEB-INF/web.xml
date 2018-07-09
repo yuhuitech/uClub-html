@@ -9,13 +9,9 @@
         <welcome-file>login.jsp</welcome-file>
     </welcome-file-list>
 
-    <listener>
-        <listener-class>controller.SQLConnectListner</listener-class>
-    </listener>
-
     <servlet>
         <servlet-name>login</servlet-name>
-        <servlet-class>controller.Login</servlet-class>
+        <servlet-class>servlet.Login</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>login</servlet-name>
@@ -24,7 +20,7 @@
 
     <servlet>
         <servlet-name>ClubInfo</servlet-name>
-        <servlet-class>controller.ClubInfo</servlet-class>
+        <servlet-class>servlet.ClubInfo</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ClubInfo</servlet-name>
@@ -33,7 +29,7 @@
 
     <servlet>
         <servlet-name>ClubInfoChange</servlet-name>
-        <servlet-class>controller.ClubInfoChange</servlet-class>
+        <servlet-class>servlet.ClubInfoChange</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ClubInfoChange</servlet-name>
@@ -42,7 +38,7 @@
 
     <servlet>
         <servlet-name>ActCreate</servlet-name>
-        <servlet-class>controller.ActCreate</servlet-class>
+        <servlet-class>servlet.ActCreate</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ActCreate</servlet-name>
@@ -51,7 +47,7 @@
 
     <servlet>
         <servlet-name>ActCreateApply</servlet-name>
-        <servlet-class>controller.ActCreateApply</servlet-class>
+        <servlet-class>servlet.ActCreateApply</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ActCreateApply</servlet-name>
@@ -60,7 +56,7 @@
 
     <servlet>
         <servlet-name>ClubCreate</servlet-name>
-        <servlet-class>controller.ClubCreate</servlet-class>
+        <servlet-class>servlet.ClubCreate</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ClubCreate</servlet-name>
@@ -71,7 +67,7 @@
     <!--QLY的部分mapping -->
     <servlet>
         <servlet-name>clubDetail</servlet-name>
-        <servlet-class>controller.ClubDetail</servlet-class>
+        <servlet-class>servlet.ClubDetail</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>clubDetail</servlet-name>
@@ -80,7 +76,7 @@
 
     <servlet>
         <servlet-name>activeDetail</servlet-name>
-        <servlet-class>controller.ActiveDetail</servlet-class>
+        <servlet-class>servlet.ActiveDetail</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>activeDetail</servlet-name>
@@ -89,7 +85,7 @@
 
     <servlet>
         <servlet-name>joinClubApply</servlet-name>
-        <servlet-class>controller.JoinClubApply</servlet-class>
+        <servlet-class>servlet.JoinClubApply</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>joinClubApply</servlet-name>
@@ -98,12 +94,21 @@
 
     <servlet>
         <servlet-name>joinApply</servlet-name>
-        <servlet-class>controller.JoinApply</servlet-class>
+        <servlet-class>servlet.JoinApply</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>joinApply</servlet-name>
         <url-pattern>/joinApply</url-pattern>
     </servlet-mapping>
 
+    <!--推荐部分的mapping-->
+    <servlet>
+        <servlet-name>Recommend</servlet-name>
+        <servlet-class>servlet.Recommend</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Recommend</servlet-name>
+        <url-pattern>/Recommend</url-pattern>
+    </servlet-mapping>
 
 </web-app>

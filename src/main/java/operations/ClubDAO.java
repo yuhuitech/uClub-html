@@ -1,11 +1,9 @@
-package DAO;
+package operations;
 
 import model.Club;
-import operations.DAO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-
 
 public interface ClubDAO {
     String getClubName(@Param("ClubNo") int ClubNo);

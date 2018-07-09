@@ -1,9 +1,9 @@
-package controller;
+package servlet;
 
 import Test.Test;
 import model.Activity;
-import DAO.ClubDetailDao;
-import operations.ClubDetailOperation;
+import operations.ClubDetailDao;
+import operations.DAO;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
@@ -29,7 +29,11 @@ public class ActiveDetail extends HttpServlet {
         InputStream is = Test.class.getClassLoader().getResourceAsStream(resource);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
 
-        Activity act=ClubDetailOperation.getActiveDetail(sqlSessionFactory,ActiveNo);
+        //将访问记录插入数据库内
+        DAO.AddActiveRecord(sqlSessionFactory,(Integer)req.getSession().getAttribute("UserNo"),ActiveNo);
+
+        //获取活动详情信息并写入属性
+        Activity act=getActiveDetail(sqlSessionFactory,ActiveNo);
         HttpSession session=req.getSession();
         req.setAttribute("ActiveName",act.getActive_name());
         req.setAttribute("ActiveClubNo",act.getClubNo());
@@ -42,6 +46,19 @@ public class ActiveDetail extends HttpServlet {
 
     }
 
+    Activity getActiveDetail(SqlSessionFactory sqlSessionFactory, int ActiveNo){
 
+        Activity act= new Activity();
+        try {
+            SqlSession session = sqlSessionFactory.openSession();
+            ClubDetailDao selectInterface = session.getMapper(ClubDetailDao.class);
+            act = selectInterface.getActiveDetail(ActiveNo);
+            session.commit();
+            session.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return act;
+    };
 
 }

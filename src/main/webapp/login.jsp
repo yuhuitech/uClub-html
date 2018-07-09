@@ -39,7 +39,6 @@
     <script>
         function login(userNo,passwd,status) {
             $.ajax({
-
                 type:'POST',
                 url:"/login",
                 data:{
@@ -49,16 +48,11 @@
                 },
                 success:function(data) {
                     var objs=eval("("+data+")");
-                    if(objs.success=="true") {
-                        if(status=="student") {
-                            window.location.href = "jsp/index.jsp";
-                        }
-                        else if(status=="admin"){
-                            window.location.href = "jsp/TuserHome.jsp";
-                        }
+                    if(objs.success==="true") {
+                        window.location.href = "jsp/index.jsp";
                     }
                     else {
-                        document.getElementById("reminder").innerText = "密码错误/帐号不存在";
+                        document.getElementById("remind").innerText = "密码错误/帐号不存在";
                     }
                 },
                     async:false});
@@ -78,11 +72,19 @@
                         <input type="password" class="form-control" id="Spasswd" placeholder="密码" required="" />
                     </div>
                     <div>
-                        <span id="reminder"></span>
+                        <span id="remind"></span>
                     </div>
                     <br />
                     <div>
+                    <!--    <span>选择登录模式 :</span>
+                        <select id="status" name="status"  value="${Status}">
+                            <option value="student" >学生模式</option>
+                            <option value="admin">管理员模式</option>
+                        </select>   -->
+                        <!--     <a class="btn btn-default submit" href="index2.html">Log in</a>  -->
+                       <!-- <input type="submit"  class="btn btn-default submit" value="登录" />  -->
                         <input type="button" class="btn btn-default submit" value="登录"  onclick="login($('#Sno').val(),$('#Spasswd').val(),'student')" />
+                        <!--      <a class="reset_pass" href="#">Lost your password?</a>  -->
                     </div>
 
                     <div class="clearfix"></div>
@@ -115,7 +117,7 @@
                         <input type="password" class="form-control" id="Apasswd" placeholder="Password" required="" />
                     </div>
                     <div>
-                        <span id="reminder"></span>
+                        <span id="remind"></span>
                     </div>
                     <br />
                     <div>
