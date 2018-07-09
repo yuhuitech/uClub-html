@@ -8,6 +8,14 @@ public class Club {
     private String Res_url;
     private int status;
 
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
+
     public int getClubNo() {
         return ClubNo;
     }
@@ -47,14 +55,4 @@ public class Club {
     public void setRes_url(String res_url) {
         Res_url = res_url;
     }
-
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
 }

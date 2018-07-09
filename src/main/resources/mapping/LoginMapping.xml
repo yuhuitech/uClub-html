@@ -2,11 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<<<<<<< HEAD
-<mapper namespace="LoginDao">
-=======
 <mapper namespace="DAO.DaoInterface">
->>>>>>> Pz
 
     <resultMap id="loginResultMap" type="model.Student">
         <result property="StuNo" column="StuNo"/>
@@ -15,8 +11,6 @@
         <result property="teacher_password" column="teacher_password"/>
     </resultMap>
 
-<<<<<<< HEAD
-=======
     <resultMap id="Club" type="model.Club">
         <result property="ClubNo" column="ClubNo"/>
         <result property="ClubName" column="ClubName"/>
@@ -26,7 +20,6 @@
         <result property="status" column="status"/>
     </resultMap>
 
->>>>>>> Pz
     <select id="getStudentPasswd" resultType="String">
         SELECT password FROM Student
         <where>
@@ -41,8 +34,6 @@
         </where>
     </select>
 
-<<<<<<< HEAD
-=======
     <select id="getClubs" resultType="String" resultMap="Club">
         SELECT * FROM Club
         WHERE
@@ -72,6 +63,5 @@
         VALUES ('${active_name}','${active_info}','${ClubNo}','${active_time}','${status}')
     </insert>
 
->>>>>>> Pz
 
 </mapper>

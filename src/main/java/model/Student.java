@@ -1,8 +1,6 @@
 package model;
 
-
 import java.util.List;
-
 
 public class Student {
     private int StuNo;
@@ -15,9 +13,7 @@ public class Student {
     private String Sex;
     private String self_introduce;
     private String pz;
-
     private List<Integer> Clubs;
-
 
     public int getStuNo() {
         return StuNo;

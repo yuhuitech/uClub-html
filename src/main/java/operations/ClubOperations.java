@@ -1,6 +1,5 @@
 package operations;
 
-
 import model.Club;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -8,7 +7,6 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import java.util.ArrayList;
 import java.util.List;
 import DAO.ClubDAO;
-
 
 public class ClubOperations  {
    // @Override
@@ -102,7 +100,6 @@ public class ClubOperations  {
         return Clubs;
     }
 
-
     public static int updateClub(SqlSessionFactory sqlSessionFactory, int ClubNo, String ClubName, String Type, String ClubInfo) {
         try {
             // 获取Session连接
@@ -148,7 +145,6 @@ public class ClubOperations  {
             session.commit();
             session.close();
             //return club;
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -194,4 +190,8 @@ public class ClubOperations  {
         }
         return result;
     }
+
+
+
+
 }
