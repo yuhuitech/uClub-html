@@ -1,4 +1,4 @@
-package servlet;
+package operations;
 
 import model.Club;
 import org.apache.ibatis.session.SqlSession;
@@ -7,18 +7,16 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-
+import DAO.DaoInterface;
 public class DAO {
-
-    //获取学生的密码
     public static String getStudentPasswd(SqlSessionFactory sqlSessionFactory, int userID){
         String selectPasswd="";
         try {
             // 获取Session连接
             SqlSession session = sqlSessionFactory.openSession();
             // 获取Mapper
-            DaoInterface selectInterface = session.getMapper(DaoInterface.class);
-            selectPasswd = selectInterface.getStudentPasswd(userID);
+            DaoInterface loginDao = session.getMapper(DaoInterface.class);
+            selectPasswd = loginDao.getStudentPasswd(userID);
             session.commit();
             session.close();
             // 显示插入之后User信息
@@ -28,16 +26,15 @@ public class DAO {
         return selectPasswd;
     }
 
-    //通过老师号获取老师的ID
     public static String getTeacherPasswd(SqlSessionFactory sqlSessionFactory, int userID){
         String selectPasswd="";
         try {
             // 获取Session连接
             SqlSession session = sqlSessionFactory.openSession();
             // 获取Mapper
-            DaoInterface selectInterface = session.getMapper(DaoInterface.class);
+            DaoInterface loginDao = session.getMapper(DaoInterface.class);
             //区分学生和管理员
-            selectPasswd = selectInterface.getTeacherPasswd(userID);
+            selectPasswd = loginDao.getTeacherPasswd(userID);
             session.commit();
             session.close();
             // 显示插入之后User信息
@@ -194,7 +191,6 @@ public class DAO {
         orderNo.replace(".", "");
         orderNo = orderNo.substring(0,8);
         applyNum = Integer.parseInt(orderNo);
-
         return  applyNum;
     }
 

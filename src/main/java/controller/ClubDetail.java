@@ -1,10 +1,9 @@
-package servlet;
+package controller;
 
 import Test.Test;
 import model.Activity;
 import model.Club;
-import operations.ClubDetailDao;
-import org.apache.ibatis.session.SqlSession;
+import operations.ClubDetailOperation;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
@@ -15,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ClubDetail extends HttpServlet {
@@ -38,13 +36,13 @@ public class ClubDetail extends HttpServlet {
         InputStream is = Test.class.getClassLoader().getResourceAsStream(resource);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
 
-        Club club=getClubDetail(sqlSessionFactory,ClubNo);
+        Club club=ClubDetailOperation.getClubDetail(sqlSessionFactory,ClubNo);
         req.setAttribute("ClubNo",ClubNo);
         req.setAttribute("ClubName",club.getClubName());
         req.setAttribute("ClubType",club.getType());
         req.setAttribute("ClubInfo",club.getClubInfo());
 
-        List<Activity> activities=getClubActivities(sqlSessionFactory,ClubNo);
+        List<Activity> activities=ClubDetailOperation.getClubActivities(sqlSessionFactory,ClubNo);
         req.setAttribute("activities",activities);
         //跳转
 
@@ -53,35 +51,7 @@ public class ClubDetail extends HttpServlet {
 
     }
 
-    Club getClubDetail(SqlSessionFactory sqlSessionFactory, int ClubNo){
 
-        Club club=new Club();
-        try {
-            SqlSession session = sqlSessionFactory.openSession();
-            ClubDetailDao selectInterface = session.getMapper(ClubDetailDao.class);
-            club = selectInterface.getClubDetail(ClubNo);
-            session.commit();
-            session.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return club;
-    };
-
-    List<Activity> getClubActivities(SqlSessionFactory sqlSessionFactory, int ClubNo){
-
-        List<Activity> list=new ArrayList<>();
-        try {
-            SqlSession session = sqlSessionFactory.openSession();
-            ClubDetailDao selectInterface = session.getMapper(ClubDetailDao.class);
-            list=selectInterface.getClubActivities(ClubNo);
-            session.commit();
-            session.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return list;
-    };
 
 
 

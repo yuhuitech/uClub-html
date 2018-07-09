@@ -1,6 +1,6 @@
 <%@ page import="model.Club" %>
 <%@ page import="java.util.List" %>
-<%@ page import="servlet.DAO" %>
+<%@ page import="operations.DAO" %>
 <%@ page import="org.apache.ibatis.session.SqlSessionFactory" %>
 <%@ page import="java.util.EnumMap" %>
 <%@ page import="java.io.InputStream" %>
@@ -64,7 +64,7 @@
     %>
     <li>
             <% out.println(club.getClubName());%>
-                <form method = "post" action = "/clubDetail">
+                <form method = "post" action = "clubDetail">
              <button name ="Club_id" type = "submit" value = <%= club.getClubNo()%>> 查看 </button>
                 </form>
         <%}
@@ -75,7 +75,7 @@
     %>
     <li>
             <% out.println(club.getClubName());%>
-                <form method = "post" action = "/ClubInfo">
+                <form method = "post" action = "ClubInfo">
         <button name ="Club_id" type = "submit" value = <%= club.getClubNo()%>> 管理 </button>
                 </form>
             <%}
@@ -87,7 +87,7 @@
 
 
 </ul>
-    <form method = "post" action = "/ClubCreate">
+    <form method = "post" action = "ClubCreate">
         <button name ="userNo" type = "submit" value = <%= UserId %>> 创建社团 </button>
     </form>
 

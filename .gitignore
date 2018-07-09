@@ -2,3 +2,11 @@
 *.ini
 /out/
 /.idea/
+/target/
+/classes/
+/src/main/webapp/jsp/build/
+/src/main/webapp/jsp/css/
+/src/main/webapp/jsp/image/
+/src/main/webapp/jsp/js/
+/src/main/webapp/jsp/vendors/
+/src/main/webapp/WEB-INF/classes/

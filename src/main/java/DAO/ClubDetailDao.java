@@ -1,7 +1,8 @@
-package operations;
+package DAO;
 
 import model.Activity;
 import model.Club;
+import operations.DAO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -13,5 +14,7 @@ public interface ClubDetailDao {
     List<Activity> getClubActivities(@Param("ClubNo") int ClubNo);
 
     Activity getActiveDetail(@Param("ActiveNo") int ActiveNo);
+
+    List<Club> getAllClubs();
 
 }

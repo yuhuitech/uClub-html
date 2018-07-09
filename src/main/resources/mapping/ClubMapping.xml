@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="operations.ClubDAO">
+<mapper namespace="DAO.ClubDAO">
     <resultMap id="ClubResultMap" type="model.Club">
         <result property="ClubNo" column="ClubNo"/>
         <result property="ClubName" column="ClubName"/>
@@ -84,4 +84,6 @@
         insert into Club(ClubNo, ClubName, Type, ClubInfo)
         values(#{ClubNo}, #{ClubName}, #{Type}, #{ClubInfo})
     </insert>
+
+
 </mapper>

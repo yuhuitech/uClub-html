@@ -1,4 +1,4 @@
-<%@ page import="servlet.DAO" %>
+<%@ page import="operations.DAO" %>
 <%@ page import="java.io.InputStream" %>
 <%@ page import="org.apache.ibatis.session.SqlSessionFactory" %>
 <%@ page import="org.apache.ibatis.session.SqlSessionFactoryBuilder" %>
