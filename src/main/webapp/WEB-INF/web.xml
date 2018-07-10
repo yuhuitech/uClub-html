@@ -5,13 +5,17 @@
           http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0">
 
+    <listener>
+        <listener-class>controller.SQLConnectListner</listener-class>
+    </listener>
+
     <welcome-file-list>
         <welcome-file>login.jsp</welcome-file>
     </welcome-file-list>
 
     <servlet>
         <servlet-name>login</servlet-name>
-        <servlet-class>controller.Login</servlet-class>
+        <servlet-class>servlet.Login</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>login</servlet-name>
@@ -19,8 +23,55 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>ClubInfo</servlet-name>
+        <servlet-class>servlet.ClubInfo</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ClubInfo</servlet-name>
+        <url-pattern>/ClubInfo</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ClubInfoChange</servlet-name>
+        <servlet-class>servlet.ClubInfoChange</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ClubInfoChange</servlet-name>
+        <url-pattern>/ClubInfoChange</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ActCreate</servlet-name>
+        <servlet-class>servlet.ActCreate</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ActCreate</servlet-name>
+        <url-pattern>/ActCreate</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ActCreateApply</servlet-name>
+        <servlet-class>servlet.ActCreateApply</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ActCreateApply</servlet-name>
+        <url-pattern>/ActCreateApply</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ClubCreate</servlet-name>
+        <servlet-class>servlet.ClubCreate</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ClubCreate</servlet-name>
+        <url-pattern>/ClubCreate</url-pattern>
+    </servlet-mapping>
+
+
+    <!--QLY的部分mapping -->
+    <servlet>
         <servlet-name>clubDetail</servlet-name>
-        <servlet-class>controller.ClubDetail</servlet-class>
+        <servlet-class>servlet.ClubDetail</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>clubDetail</servlet-name>
@@ -29,7 +80,7 @@
 
     <servlet>
         <servlet-name>activeDetail</servlet-name>
-        <servlet-class>controller.ActiveDetail</servlet-class>
+        <servlet-class>servlet.ActiveDetail</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>activeDetail</servlet-name>
@@ -38,7 +89,7 @@
 
     <servlet>
         <servlet-name>joinClubApply</servlet-name>
-        <servlet-class>controller.JoinClubApply</servlet-class>
+        <servlet-class>servlet.JoinClubApply</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>joinClubApply</servlet-name>
@@ -47,11 +98,110 @@
 
     <servlet>
         <servlet-name>joinApply</servlet-name>
-        <servlet-class>controller.JoinApply</servlet-class>
+        <servlet-class>servlet.JoinApply</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>joinApply</servlet-name>
         <url-pattern>/joinApply</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>joinActivity</servlet-name>
+        <servlet-class>servlet.JoinActivity</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>joinActivity</servlet-name>
+        <url-pattern>/joinActivity</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>exitActivity</servlet-name>
+        <servlet-class>servlet.ExitActivity</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>exitActivity</servlet-name>
+        <url-pattern>/exitActivity</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>changeActiveStatus</servlet-name>
+        <servlet-class>servlet.ChangeActiveStatus</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>changeActiveStatus</servlet-name>
+        <url-pattern>/changeActiveStatus</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>passJoinApply</servlet-name>
+        <servlet-class>servlet.PassJoinApply</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>passJoinApply</servlet-name>
+        <url-pattern>/passJoinApply</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>memberManage</servlet-name>
+        <servlet-class>servlet.MemberManage</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>memberManage</servlet-name>
+        <url-pattern>/memberManage</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>leaveApply</servlet-name>
+        <servlet-class>servlet.LeaveApply</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>leaveApply</servlet-name>
+        <url-pattern>/leaveApply</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>passLeaveApply</servlet-name>
+        <servlet-class>servlet.PassLeaveApply</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>passLeaveApply</servlet-name>
+        <url-pattern>/passLeaveApply</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>priceApply</servlet-name>
+        <servlet-class>servlet.PriceApply</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>priceApply</servlet-name>
+        <url-pattern>/priceApply</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>dissolveClub</servlet-name>
+        <servlet-class>servlet.DissolveClub</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>dissolveClub</servlet-name>
+        <url-pattern>/dissolveClub</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>sendNotice</servlet-name>
+        <servlet-class>servlet.SendNotice</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>sendNotice</servlet-name>
+        <url-pattern>/sendNotice</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>sendRecruit</servlet-name>
+        <servlet-class>servlet.SendRecruit</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>sendRecruit</servlet-name>
+        <url-pattern>/sendRecruit</url-pattern>
     </servlet-mapping>
 
 
