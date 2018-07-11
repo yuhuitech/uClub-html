@@ -225,7 +225,7 @@
 
     <!-- 回复 -->
     <insert id="reply" >
-        insert into reply values (#{ApplyNo},null ,#{reason},null );
+        insert into reply values (#{ApplyNo},#{ReplyNo} ,#{reason} );
     </insert>
 
 

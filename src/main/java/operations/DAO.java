@@ -540,13 +540,13 @@ public class DAO {
     }
 
     //发送回复
-    public static void reply(SqlSessionFactory sqlSessionFactory, int ApplyNo, String reason){
+    public static void reply(SqlSessionFactory sqlSessionFactory, int ApplyNo,int ReplyNo, String reason){
         try {
             // 获取Session连接
             SqlSession session = sqlSessionFactory.openSession();
             // 获取Mapper
             DaoInterface DAO = session.getMapper(DaoInterface.class);
-            DAO.reply(ApplyNo,reason);
+            DAO.reply(ApplyNo,ReplyNo,reason);
             session.commit();
             session.close();
             // 显示插入之后Apply信息

@@ -21,6 +21,7 @@ public class PassLeaveApply extends HttpServlet {
 
         req.setCharacterEncoding("UTF-8");
         int ApplyNo= Integer.parseInt(req.getParameter("ApplyNo"));
+        int ReplyNo=DAO.getUUID();
         int StuNo= Integer.parseInt(req.getParameter("StuNo"));
         int ClubNo= Integer.parseInt(req.getParameter("ClubNo"));
         String Action=req.getParameter("Action");
@@ -33,13 +34,13 @@ public class PassLeaveApply extends HttpServlet {
         if(Action.equals("del")) {
             DAO.leaveClubTime(sqlSessionFactory,StuNo,ClubNo,date);
             DAO.delFromLeaveClub(sqlSessionFactory, StuNo);
-            DAO.reply(sqlSessionFactory, ApplyNo, "退出社团的申请已经通过!");
+            DAO.reply(sqlSessionFactory, ApplyNo, ReplyNo,"退出社团的申请已经通过!");
             System.out.println("退出社团成功");
             req.getRequestDispatcher("/jsp/ClubInfo.jsp?ClubNo=" + ClubNo).forward(req, resp);
         }
         else {
             DAO.delFromLeaveClub(sqlSessionFactory, StuNo);
-            DAO.reply(sqlSessionFactory, ApplyNo, "很遗憾，你退出社团的申请没有通过。");
+            DAO.reply(sqlSessionFactory, ApplyNo, ReplyNo,"很遗憾，你退出社团的申请没有通过。");
             System.out.println("从申请表单中移除");
         }
 

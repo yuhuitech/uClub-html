@@ -121,6 +121,7 @@ public interface DaoInterface {
                  @Param("ClubNo") int ClubNo);
 
     void reply(@Param("ApplyNo") int ApplyNo,
+                 @Param("ReplyNo") int ReplyNo,
                  @Param("reason") String reason);
 }
 
