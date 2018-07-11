@@ -224,7 +224,7 @@ public class Record
     }
 
     //返回活动的相似性矩阵
-    public Map<Integer, Map<Integer, Double>> getActiveSimilarList(List<Record> joinAcitiveRecord)
+    public Map<Integer, Map<Integer, Double>> getSimilarList(List<Record> joinAcitiveRecord)
     {
         //创建结果矩阵
         Map<Integer, Map<Integer, Integer>> result = new HashMap<>();
@@ -332,7 +332,7 @@ public class Record
 
 
     //获取各个活动对当前用户的推荐度
-    public Map<Integer, Double> getRecommendNum(List<Record> activeRecord, List<Record> join_activeRecord, Map<Integer, Map<Integer, Double>> SimliarMatrix, int UserNo)
+    public Map<Integer, Double> getActiveRecommendNum(List<Record> activeRecord, List<Record> join_activeRecord, Map<Integer, Map<Integer, Double>> SimliarMatrix, int UserNo)
     {
         //结果map表
         Map<Integer, Double> result;
@@ -375,4 +375,7 @@ public class Record
         }
         return sortResult;
     }
+
+
+
 }
