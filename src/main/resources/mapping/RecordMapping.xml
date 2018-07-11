@@ -20,6 +20,8 @@
         <result property="times" column="times"/>
     </resultMap>
 
+
+
     <select id="getActiveTimes" resultType="String" resultMap="RecordNumber">
         SELECT StuNo ,ActiveNo as AcNo,count(*) as 'times'
          FROM uclub.Request_active_record
@@ -31,5 +33,19 @@
         FROM uclub.Request_club_record
         group by StuNo,ClubNo;
     </select>
+
+    <select id="getAllStudentActive" resultType="String" resultMap="RecordNumber">
+        SELECT StuNo ,ActiveNo as AcNo,count(*) as 'times'
+        FROM join_activity
+        group by StuNo,ActiveNo;
+    </select>
+
+    <select id="getAllStudentClub" resultType="String" resultMap="RecordNumber">
+        SELECT StuNo ,ClubNo as AcNo,count(*) as 'times'
+        FROM Member
+        WHERE Job = '${Job}'
+        group by StuNo,ClubNo;
+    </select>
+
 
 </mapper>

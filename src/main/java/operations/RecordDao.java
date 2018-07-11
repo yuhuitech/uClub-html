@@ -15,6 +15,10 @@ public interface RecordDao {
 
     List<Record> getClubTimes();
 
+    List<Record> getAllStudentActive();
+
+    List<Record> getAllStudentClub(@Param("Job") String job);
+
 
 
 

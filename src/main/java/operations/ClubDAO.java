@@ -16,7 +16,7 @@ public interface ClubDAO {
 
     int  addClub(@Param("ClubNo") int ClubNo, @Param("ClubName") String ClubName, @Param("Type") String Type, @Param("ClubInfo") String ClubInfo);
 
-    Club getClub(@Param("ClubNo") int ClubNo);
+    Club getClub(@Param("ClubNo") String ClubNo);
 
     int deleteClub(@Param("ClubNo") int ClubNo);
 

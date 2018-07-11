@@ -229,7 +229,7 @@ public class DAO {
 
     }
 
-    //获取各学生的社团访问情况
+    //获取各学生的活动访问情况
     public static List<Record> getActiveTimes(SqlSessionFactory sqlSessionFactory)
     {
         List<Record> record = new ArrayList<>();
@@ -249,6 +249,7 @@ public class DAO {
        return record;
     }
 
+    //获取各学生的活动访问情况
     public static List<Record> getClubTimes(SqlSessionFactory sqlSessionFactory)
     {
 
@@ -269,7 +270,47 @@ public class DAO {
         return record;
     }
 
-    //获取各学生的活动访问情况
+    //获取所有学生的活动参与情况
+    public static List<Record> getAllStudentActive(SqlSessionFactory sqlSessionFactory)
+    {
+
+        List<Record> activeRecord = new ArrayList<>();
+        try {
+
+            // 获取Session连接
+            SqlSession session = sqlSessionFactory.openSession();
+            // 获取Mapper
+            RecordDao selectInterface = session.getMapper(RecordDao.class);
+            activeRecord = selectInterface.getAllStudentActive();
+            session.commit();
+            session.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return activeRecord;
+    }
+
+    //获得所有学生的社团参与情况（以职位进行分割）
+    public static List<Record> getAllStudentClub(SqlSessionFactory sqlSessionFactory,String job)
+    {
+
+        List<Record> clubRecord = new ArrayList<>();
+        try {
+
+            // 获取Session连接
+            SqlSession session = sqlSessionFactory.openSession();
+            // 获取Mapper
+            RecordDao selectInterface = session.getMapper(RecordDao.class);
+            clubRecord = selectInterface.getAllStudentClub(job);
+            session.commit();
+            session.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return clubRecord;
+    }
 
     //获得一个8位随机数字
     public static int getUUID(){

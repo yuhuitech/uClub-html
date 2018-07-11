@@ -9,14 +9,15 @@
         <compilerSettings />
         <compilerArguments>
           <option name="jvmTarget" value="1.8" />
-          <option name="languageVersion" value="1.2" />
-          <option name="apiVersion" value="1.1" />
+          <option name="languageVersion" value="1.0" />
+          <option name="apiVersion" value="1.0" />
           <option name="pluginOptions">
             <array />
           </option>
           <option name="pluginClasspaths">
             <array />
           </option>
+          <option name="version" value="true" />
         </compilerArguments>
       </configuration>
     </facet>
@@ -64,5 +65,6 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.jetbrains.kotlin:kotlin-test-common:1.2.50" level="project" />
     <orderEntry type="library" name="Maven: com.esotericsoftware.reflectasm:reflectasm:1.09" level="project" />
     <orderEntry type="library" name="Maven: org.ow2.asm:asm:4.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Tomcat 8.5.8" level="application_server_libraries" />
   </component>
 </module>

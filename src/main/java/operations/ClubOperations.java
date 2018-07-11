@@ -134,7 +134,7 @@ public class ClubOperations  {
         //返回值状态-3，表示增加一个社团的操作
     }
 
-    public static Club getClub(SqlSessionFactory sqlSessionFactory, int ClubNo, String ClubName, String Type, String ClubInfo) {
+    public static Club getClub(SqlSessionFactory sqlSessionFactory, String ClubNo) {
         Club club = new Club();
         try {
             // 获取Session连接
