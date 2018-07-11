@@ -90,7 +90,7 @@
         SELECT * FROM Club
         WHERE ClubNo IN (
                 SELECT ClubNo FROM Member
-                WHERE StuNo=#{StuNo}
+                WHERE StuNo=#{StuNo} and leave_time is null
         ) ;
     </select>
 </mapper>
