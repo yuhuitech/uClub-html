@@ -19,6 +19,7 @@ public class Record
     private int times;
     private int type;
     public static double Pi = 3.14;
+    private List<Integer> my_join_activity;
 
     public int getTimes()
     {
@@ -334,11 +335,12 @@ public class Record
     public Map<Integer, Double> getRecommendNum(List<Record> activeRecord, List<Record> join_activeRecord, Map<Integer, Map<Integer, Double>> SimliarMatrix, int UserNo)
     {
         //结果map表
-        Map<Integer, Double> result = new HashMap<>();
+        Map<Integer, Double> result;
         //提取出的浏览次数
         Map<Integer, Integer> skin_time = getMySkinActive(UserNo, activeRecord);
         //提取出参加的活动
         List<Integer> my_join_active = getMyActive(UserNo, join_activeRecord);
+        this.my_join_activity = my_join_active;
         //获取最终推荐度
         result = getRecommendByJoin_Skin(skin_time, my_join_active, SimliarMatrix);
         return result;
@@ -347,6 +349,7 @@ public class Record
     //获取最终的排序
     public List<Integer> getSort(Map<Integer, Double> recommendNum, int UserNo)
     {
+
         List<Integer> sortResult = new ArrayList<>();
         int size = recommendNum.size();
         for (int i = 0; i <size; i++)
@@ -367,7 +370,7 @@ public class Record
                     max_value = val;
                 }
             }
-            sortResult.add(max_key);
+            if(!this.my_join_activity.contains(max_key))   sortResult.add(max_key);
             recommendNum.remove(max_key);
         }
         return sortResult;
