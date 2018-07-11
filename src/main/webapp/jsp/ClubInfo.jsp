@@ -36,11 +36,12 @@
 
 <script>
     var temp=0;
-    function getInfo(StuNo,ClubNo,Action) {
+    function getInfo(ApplyNo,StuNo,ClubNo,Action) {
         $.ajax({
             type:'POST',
             url:"/passJoinApply",
             data:{
+                "ApplyNo":ApplyNo,
                 "StuNo":StuNo,
                 "ClubNo":ClubNo,
                 "Action":Action,
@@ -50,11 +51,12 @@
             }});
     }
 
-    function getLeaveInfo(StuNo,ClubNo,Action) {
+    function getLeaveInfo(ApplyNo,StuNo,ClubNo,Action) {
         $.ajax({
             type:'POST',
             url:"/passLeaveApply",
             data:{
+                "ApplyNo":ApplyNo,
                 "StuNo":StuNo,
                 "ClubNo":ClubNo,
                 "Action":Action,
@@ -263,8 +265,8 @@
             out.print("<td>"+map.get("Email")+"</td>");
             out.print("<td>"+map.get("self_introduce")+"</td>");
             out.print("<td>"+map.get("JoinReason")+"</td>");
-            out.print("<td><input type=\"button\" value=\"通过\" onclick=\"getInfo("+map.get("StuNo")+","+ClubNo+",\'pass\')\"></button></td>");
-            out.print("<td><input type=\"button\" value=\"移除\" onclick=\"getInfo("+map.get("StuNo")+","+ClubNo+",\'remove\')\"></button></td>");
+            out.print("<td><input type=\"button\" value=\"通过\" onclick=\"getInfo("+map.get("ApplyNo")+","+map.get("StuNo")+","+ClubNo+",\'pass\')\"></button></td>");
+            out.print("<td><input type=\"button\" value=\"移除\" onclick=\"getInfo("+map.get("ApplyNo")+","+map.get("StuNo")+","+ClubNo+",\'remove\')\"></button></td>");
             out.print("</tr>");
 
         }
@@ -300,8 +302,8 @@
             out.print("<td>"+map.get("Email")+"</td>");
             out.print("<td>"+map.get("self_introduce")+"</td>");
             out.print("<td>"+map.get("Reason")+"</td>");
-            out.print("<td><input type=\"button\" value=\"通过\" onclick=\"getLeaveInfo("+map.get("StuNo")+","+ClubNo+",\'del\')\"></button></td>");
-            out.print("<td><input type=\"button\" value=\"移除\" onclick=\"getLeaveInfo("+map.get("StuNo")+","+ClubNo+",\'remove\')\"></button></td>");
+            out.print("<td><input type=\"button\" value=\"通过\" onclick=\"getLeaveInfo("+map.get("ApplyNo")+","+map.get("StuNo")+","+ClubNo+",\'del\')\"></button></td>");
+            out.print("<td><input type=\"button\" value=\"移除\" onclick=\"getLeaveInfo("+map.get("ApplyNo")+","+map.get("StuNo")+","+ClubNo+",\'remove\')\"></button></td>");
             out.print("</tr>");
         }
     %>

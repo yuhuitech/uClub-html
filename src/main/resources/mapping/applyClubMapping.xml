@@ -96,7 +96,7 @@
 
     <!-- 查看申请加入社团的列表  -->
     <select id="getJoinClubApply" resultType="HashMap">
-        select Student.StuNo,Student.StuName,Student.college,Student.grade,Student.Tel,Student.Email,Student.Sex,Student.self_introduce,join_apply.JoinReason
+        select Student.StuNo,Student.StuName,Student.college,Student.grade,Student.Tel,Student.Email,Student.Sex,Student.self_introduce,join_apply.JoinReason,join_apply.ApplyNo
         from uclub.Student,uclub.join_apply
         <where>
             Student.StuNo=join_apply.StuNo
@@ -157,12 +157,12 @@
 
     <!-- 填写退社团申请  -->
     <insert id="leaveApply">
-        insert into uclub.leave_apply values (#{ApplyNo},#{StuNo},#{ClubNo},#{Reason});
+        insert into uclub.leave_apply values (#{ApplyNo},#{StuNo},#{ClubNo},#{Reason},0);
     </insert>
 
     <!-- 获取退出社团表的信息 -->
     <select id="getLeaveClubApply" resultType="HashMap">
-        select Student.StuNo,Student.StuName,Student.college,Student.grade,Student.Tel,Student.Email,Student.Sex,Student.self_introduce,leave_apply.Reason
+        select Student.StuNo,Student.StuName,Student.college,Student.grade,Student.Tel,Student.Email,Student.Sex,Student.self_introduce,leave_apply.Reason,leave_apply.ApplyNo
         from uclub.Student,uclub.leave_apply
         <where>
             Student.StuNo=leave_apply.StuNo
@@ -181,12 +181,12 @@
     
     <!-- 申请活动经费 -->
     <insert id="priceApply">
-        insert into uclub.price_apply values (#{ApplyNo},#{ActivityNo},#{Reason},#{price},'未审核')
+        insert into uclub.price_apply values (#{ApplyNo},#{ActivityNo},#{Reason},#{price},0)
     </insert>
 
     <!-- 申请解散社团  -->
     <insert id="delClubApply">
-        insert into uclub.dissolve_apply  values (#{ApplyNo},#{StuNo},#{ClubNo},#{Reason});
+        insert into uclub.dissolve_apply  values (#{ApplyNo},#{StuNo},#{ClubNo},#{Reason},0);
     </insert>
 
     <!-- 获取学生职位 -->
@@ -222,6 +222,11 @@
             StuNo=#{StuNo} and ClubNo=#{ClubNo}
         </where>
     </select>
+
+    <!-- 回复 -->
+    <insert id="reply" >
+        insert into reply values (#{ApplyNo},null ,#{reason},null );
+    </insert>
 
 
 </mapper>

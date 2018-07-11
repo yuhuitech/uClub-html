@@ -543,6 +543,22 @@ public class DAO {
         }
         return 0;
     }
+
+    //发送回复
+    static void reply(SqlSessionFactory sqlSessionFactory,int ApplyNo, String reason){
+        try {
+            // 获取Session连接
+            SqlSession session = sqlSessionFactory.openSession();
+            // 获取Mapper
+            DaoInterface DAO = session.getMapper(DaoInterface.class);
+            DAO.reply(ApplyNo,reason);
+            session.commit();
+            session.close();
+            // 显示插入之后Apply信息
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
 
 

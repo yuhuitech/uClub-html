@@ -5,7 +5,7 @@
 <mapper namespace="operations.JoinClubDao">
 
    <insert id="joinClubApply">
-       INSERT into join_apply values (#{ApplyNo},#{StuNo},#{ClubNo},#{JoinReason});
+       INSERT into join_apply values (#{ApplyNo},#{StuNo},#{ClubNo},#{JoinReason},0);
    </insert>
 
     <select id="getClubName" resultType="String">
