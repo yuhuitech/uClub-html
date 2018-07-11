@@ -1,6 +1,6 @@
 <%@ page import="model.Club" %>
 <%@ page import="java.util.List" %>
-<%@ page import="servlet.DAO" %>
+<%@ page import="operations.DAO" %>
 <%@ page import="org.apache.ibatis.session.SqlSessionFactory" %>
 <%@ page import="java.util.EnumMap" %>
 <%@ page import="java.io.InputStream" %>

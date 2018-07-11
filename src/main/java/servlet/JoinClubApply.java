@@ -1,8 +1,7 @@
 package servlet;
 
 import Test.*;
-import operations.JoinClubDao;
-import org.apache.ibatis.session.SqlSession;
+import operations.ClubOperations;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
@@ -24,7 +23,7 @@ public class JoinClubApply extends HttpServlet {
 
         InputStream is = Test.class.getClassLoader().getResourceAsStream(resource);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
-        String ClubName=getClubName(sqlSessionFactory,ClubNo);
+        String ClubName=ClubOperations.getClubName(sqlSessionFactory,ClubNo);
         req.setAttribute("ClubName",ClubName);
         req.setAttribute("ClubNo",ClubNo);
         //跳转
@@ -34,19 +33,5 @@ public class JoinClubApply extends HttpServlet {
 
 
 
-
-    String getClubName(SqlSessionFactory sqlSessionFactory, int ClubNo){
-        String ClubName="";
-        try {
-            SqlSession session = sqlSessionFactory.openSession();
-            JoinClubDao selectInterface = session.getMapper(JoinClubDao.class);
-            ClubName=selectInterface.getClubName(ClubNo);
-            session.commit();
-            session.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return ClubName;
-    }
 
 }

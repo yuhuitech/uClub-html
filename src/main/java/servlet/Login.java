@@ -1,14 +1,12 @@
 package servlet;
 
 import Test.*;
-import operations.LoginDao;
-import org.apache.ibatis.session.SqlSession;
+import operations.DAO;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.IOException;
 import java.io.InputStream;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -41,9 +39,6 @@ public class Login extends HttpServlet {
             session.setAttribute("Status",status);
             resp.getWriter().print("{\"success\":\"true\"}");
             resp.getWriter().flush();
-            //页面跳转
-             //RequestDispatcher view = req.getRequestDispatcher("index.jsp");
-             //view.forward(req, resp);
         }
         else {
             resp.getWriter().print("{\"success\":\"false\"}");

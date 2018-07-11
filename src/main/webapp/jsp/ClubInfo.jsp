@@ -1,4 +1,4 @@
-<%@ page import="servlet.DAO" %>
+<%@ page import="operations.DAO" %>
 <%@ page import="java.io.InputStream" %>
 <%@ page import="org.apache.ibatis.session.SqlSessionFactory" %>
 <%@ page import="org.apache.ibatis.session.SqlSessionFactoryBuilder" %>
@@ -8,6 +8,8 @@
 <%@ page import="model.Activity" %>
 <%@ page import="servlet.ClubDetail" %>
 <%@ page import="java.util.HashMap" %>
+<%@ page import="operations.ClubOperations" %>
+<%@ page import="java.util.Date" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8"%><%--
   Created by IntelliJ IDEA.
   User: Administrator
@@ -19,6 +21,13 @@
 <html>
 <head>
     <script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://github.com/douglascrockford/JSON-js/blob/master/json2.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="../My97DatePicker/WdatePicker.js"></script>
     <title>UserHome</title>
 </head>
 <body>
@@ -29,7 +38,7 @@
     InputStream is = Test.class.getClassLoader().getResourceAsStream(resource);
     SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
     Club club = DAO.getClubById(sqlSessionFactory,ClubNo);
-    List<Activity> activities= ClubDetail.getClubActivities(sqlSessionFactory,ClubNo);
+    List<Activity> activities= ClubOperations.getClubActivities(sqlSessionFactory,ClubNo);
     List<HashMap> join_apply=DAO.getJoinClubApply(sqlSessionFactory,ClubNo);
     List<HashMap> leave_apply=DAO.getLeaveClubApply(sqlSessionFactory,ClubNo);
 %>
@@ -157,6 +166,28 @@
         }
     }
 
+    function display4(ANo) {
+        temp=ANo;
+        document.getElementById("ActiveNo").value=ANo;
+        document.getElementById("changeActInfo").style.display="";
+
+       /* $.ajax({
+            type:'POST',
+            url:"/activeDetail",
+            data:{
+                "ANo":ANo,
+            },
+            dataType : "text",
+            success:function(data) {
+                var json="("+data+")";
+                alert(data);
+                var obj=eval(json);
+                console.log(obj);
+            },
+            async:false
+        });*/
+    }
+
 </script>
 
 
@@ -177,18 +208,34 @@
             out.print("<div>"+act.getActive_name()+"("+act.getStatus()+") </div>");
             out.print("<input name=\"ClubNo\" type=\"hidden\" value=\""+ClubNo+"\" />");
             out.print("<br>");
-            out.print("<select id=\"ActiveStatus\" name=\"ActiveStatus"+act.getActiveNo()+"\"  value=\"${Status}\">");
-            out.print("    <option value=\"未进行\" >未进行</option>");
-            out.print("    <option value=\"正在进行\">正在进行</option>");
-            out.print("    <option value=\"已关闭\">已关闭</option>");
-            out.print("    <option value=\"已结束\">已结束</option>");
-            out.print("</select>");
-            out.print("<button name=\"ChangeActiveStatus\" type=\"submit\" value=\""+act.getActiveNo()+"\" >修改活动状态</button>");
+            out.print("<input type=\"button\" value=\"修改活动\"  onclick=\"display4("+act.getActiveNo()+")\">");
             out.print("<input type=\"button\" value=\"申请经费\" onclick=\"display("+act.getActiveNo()+")\">");
         }
     %>
 
 </form>
+
+<br>
+<br>
+
+<form style="display:none" id="changeActInfo" method = "post" action = "/changeActiveStatus">
+    <div>修改活动信息</div>
+    <input name="ActiveNo" id="ActiveNo" type="hidden" value="" />
+    活动名： <input type = "text" name = "changeName" value = ""><br/><br/>
+    活动信息：<input type = "text" name = "changeInfo" value = ""><br/><br/>
+    活动开始时间： <input type = "text" name = "changeBegin" value = "" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})"><br/><br/>
+    活动结束时间： <input type = "text" name = "changeEnd" value = "" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})"><br/><br/>
+    活动状态:
+    <select id="ActiveStatus" name="ActiveStatus"  value="${Status}">
+        <option value="未进行" >未进行</option>
+        <option value="正在进行">正在进行</option>
+        <option value="已关闭">已关闭</option>
+        <option value="已结束">已结束</option>
+    </select>
+    <br>
+    <button name="Club_id" type="submit" value = <%=ClubNo%>>提交更改</button>
+</form>
+
 
 <br>
 <form id="hiddenAct" style="display:none" action="" method="post">
@@ -199,13 +246,7 @@
                 out.print("<div>" + act.getActive_name() + "(" + act.getStatus() + ") </div>");
                 out.print("<input name=\"ClubNo\" type=\"hidden\" value=\"" + ClubNo + "\" />");
                 out.print("<br>");
-                out.print("<select id=\"ActiveStatus\" name=\"ActiveStatus" + act.getActiveNo() + "\"  value=\"${Status}\">");
-                out.print("    <option value=\"未进行\" >未进行</option>");
-                out.print("    <option value=\"正在进行\">正在进行</option>");
-                out.print("    <option value=\"已关闭\">已关闭</option>");
-                out.print("    <option value=\"已结束\">已结束</option>");
-                out.print("</select>");
-                out.print("<button name=\"ChangeActiveStatus\" type=\"submit\" value=\"" + act.getActiveNo() + "\" >修改活动状态</button>");
+                out.print("<input type=\"button\" value=\"修改活动\"  onclick=\"display4("+act.getActiveNo()+")\">");
                 out.print("<input type=\"button\" value=\"申请经费\" onclick=\"display(" + act.getActiveNo() + ")\">");
             }
         }
@@ -228,7 +269,7 @@
 
 
 <form method = "post" action = "/ActCreate">
-    <button name="Act_Create_Club" type="submit" value = <%= club.getClubNo()%>>创建活动</button>
+    <button name="Act_Create_Club" type="submit" value = <%=club.getClubNo()%>>创建活动</button>
 </form>
 
 

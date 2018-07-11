@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="servlet.DaoInterface">
+<mapper namespace="Dao.DaoInterface">
 
     <resultMap id="loginResultMap" type="model.Student">
         <result property="StuNo" column="StuNo"/>
@@ -59,8 +59,8 @@
     </update>
 
     <insert id = "AddActivity">
-        INSERT INTO Activity (active_name,active_info,ClubNo,active_time,status)
-        VALUES ('${active_name}','${active_info}','${ClubNo}','${active_time}','${status}')
+        INSERT INTO Activity (active_name,active_info,ClubNo,begin_time,end_time,status)
+        VALUES ('${active_name}','${active_info}','${ClubNo}',#{begin_time},#{end_time},'${status}')
     </insert>
 
 

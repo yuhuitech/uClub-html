@@ -1,4 +1,4 @@
-package servlet;
+package Dao;
 
 import model.Activity;
 import model.Club;
@@ -24,8 +24,8 @@ public interface DaoInterface {
      void setClubInfo(@Param("ClubNo") int clubNo,@Param("ClubInfo") String Info);
 
      void AddActivity(@Param("active_name") String name,@Param("active_info") String info,
-                      @Param("ClubNo") int ClubNo,@Param("active_time") String time,
-                      @Param("status") String status);
+                      @Param("ClubNo") int ClubNo,@Param("begin_time") String begin_time,
+                      @Param("end_time") String end_time,@Param("status") String status);
 
      String getStudentName(@Param("StuNo") int userID);
 
@@ -50,6 +50,10 @@ public interface DaoInterface {
     List<Activity> getClubActivities(@Param("ClubNo") int ClubNo);
 
     void changeActiveStatus(@Param("ActiveNo") int ActiveNo,
+                            @Param("active_name") String active_name,
+                            @Param("active_info") String active_info,
+                            @Param("begin_time") String begin_time,
+                            @Param("end_time") String end_time,
                             @Param("Status") String Status );
 
     List<HashMap> getJoinClubApply(@Param("ClubNo") int ClubNo);

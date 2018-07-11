@@ -1,6 +1,7 @@
 package servlet;
 
 import Test.Test;
+import operations.DAO;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
@@ -12,6 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @WebServlet(name = "ActCreateApply")
 public class ActCreateApply extends HttpServlet {
@@ -25,7 +30,21 @@ public class ActCreateApply extends HttpServlet {
         //获取相关要使用的属性
         String name = request.getParameter("Act_name");
         String info = request.getParameter("Act_info");
-        String time = request.getParameter("Act_time");
+        String begin = request.getParameter("begin_time");
+        String end = request.getParameter("end_time");
+
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");//yyyy-mm-dd, 会出现时间不对, 因为小写的mm是代表: 秒
+        Date begin_time = null;
+        Date end_time = null;
+        try {
+            begin_time = sdf.parse(begin);
+            end_time=sdf.parse(end);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        begin=sdf.format(begin_time);
+        end=sdf.format(end_time);
         String status = "未进行";
         int ClubNo = Integer.parseInt(request.getParameter("Club_id"));
 
@@ -33,7 +52,7 @@ public class ActCreateApply extends HttpServlet {
         String resource = "mybatis.xml";
         InputStream is = Test.class.getClassLoader().getResourceAsStream(resource);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
-        DAO.AddActive(sqlSessionFactory,name,info,ClubNo,time,status);
+        DAO.AddActive(sqlSessionFactory,name,info,ClubNo,begin,end,status);
         request.getRequestDispatcher(String.format("jsp/ClubInfo.jsp?ClubNo=%d",ClubNo)).forward(request, response);
 
     }

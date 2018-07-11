@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="servlet.DaoInterface">
+<mapper namespace="Dao.DaoInterface">
 
     <resultMap id="getApplyStuInfoMap"  type="HashMap">
         <result property="StuNo" column="Student.StuNo"/>
@@ -88,7 +88,7 @@
 
     <update id="changeActiveStatus">
         update uclub.Activity
-        set status=#{Status}
+        set active_name=#{active_name},active_info=#{active_info},begin_time=#{begin_time},end_time=#{end_time},status=#{Status}
         <where>
             ActiveNo=#{ActiveNo}
         </where>

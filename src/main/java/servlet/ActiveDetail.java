@@ -2,8 +2,7 @@ package servlet;
 
 import Test.Test;
 import model.Activity;
-import operations.ClubDetailDao;
-import org.apache.ibatis.session.SqlSession;
+import operations.ClubOperations;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
@@ -23,38 +22,30 @@ public class ActiveDetail extends HttpServlet {
     }
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int ActiveNo = Integer.parseInt(req.getParameter("activeNo"));
+        resp.setContentType("text/html; charset=utf-8");
+        int ActiveNo = 0;
+        if(req.getParameter("ANo")!=null) ActiveNo = Integer.parseInt(req.getParameter("ANo"));
+        else ActiveNo= Integer.parseInt(req.getParameter("activeNo"));
         String resource = "mybatis.xml";
         InputStream is = Test.class.getClassLoader().getResourceAsStream(resource);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
 
-        Activity act=getActiveDetail(sqlSessionFactory,ActiveNo);
+        Activity act=ClubOperations.getActiveDetail(sqlSessionFactory,ActiveNo);
         HttpSession session=req.getSession();
         req.setAttribute("ActiveNo",ActiveNo);
         req.setAttribute("ActiveName",act.getActive_name());
         req.setAttribute("ActiveClubNo",act.getClubNo());
-        req.setAttribute("ActiveTime",act.getActive_time());
+        req.setAttribute("ActiveBegin",act.getBegin_time());
+        req.setAttribute("ActiveEnd",act.getEnd_time());
         req.setAttribute("ActiveStatus",act.getStatus());
         req.setAttribute("ActiveInfo",act.getActive_info());
 
+      /*  resp.getWriter().print("{\"ActiveName\":\""+act.getActive_name()+"\" ,\"ActiveInfo\": \""+act.getActive_info()+"\" ," +
+                "\"ActiveBegin\":\""+act.getBegin_time()+"\" ,\"ActiveEnd\":\""+act.getEnd_time()+" \",\"ActiveStatus\": \""+act.getStatus()+"\"}");
+        resp.getWriter().flush();*/
         //跳转
         req.getRequestDispatcher("/jsp/activeDetail.jsp").forward(req,resp);
 
     }
-
-    Activity getActiveDetail(SqlSessionFactory sqlSessionFactory, int ActiveNo){
-
-        Activity act= new Activity();
-        try {
-            SqlSession session = sqlSessionFactory.openSession();
-            ClubDetailDao selectInterface = session.getMapper(ClubDetailDao.class);
-            act = selectInterface.getActiveDetail(ActiveNo);
-            session.commit();
-            session.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return act;
-    };
 
 }

@@ -4,7 +4,7 @@
 <%@ page import="org.apache.ibatis.session.SqlSessionFactoryBuilder" %>
 <%@ page import="java.util.HashMap" %>
 <%@ page import="java.util.List" %>
-<%@ page import="servlet.DAO" %><%--
+<%@ page import="operations.DAO" %><%--
   Created by IntelliJ IDEA.
   User: Haess
   Date: 2018/7/9

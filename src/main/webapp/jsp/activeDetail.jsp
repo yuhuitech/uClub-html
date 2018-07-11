@@ -1,5 +1,8 @@
-<%@ page import="servlet.DAO" %>
-<%@ page import="org.apache.ibatis.session.SqlSessionFactory" %><%--
+<%@ page import="operations.DAO" %>
+<%@ page import="org.apache.ibatis.session.SqlSessionFactory" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.text.ParseException" %><%--
   Created by IntelliJ IDEA.
   User: Haess
   Date: 2018/7/4
@@ -19,7 +22,8 @@
     Integer ActiveNo= (Integer) request.getAttribute("ActiveNo");
     String ActiveName= (String) request.getAttribute("ActiveName");
     Integer ActiveClubNo= (Integer) request.getAttribute("ActiveClubNo");
-    String ActiveTime= (String) request.getAttribute("ActiveTime");
+    Date ActiveBegin= (Date) request.getAttribute("ActiveBegin");
+    Date ActiveEnd= (Date) request.getAttribute("ActiveEnd");
     String ActiveStatus= (String) request.getAttribute("ActiveStatus");
     String ActiveInfo= (String) request.getAttribute("ActiveInfo");
     SqlSessionFactory sqlSessionFactory = (SqlSessionFactory) request.getServletContext().getAttribute("SqlSessionFactory");
@@ -60,8 +64,10 @@
 <h1 id="ActiveName">  <%=ActiveName%></h1>
 活动社团:
 <div id="ActiveClubNo"> <%=ClubName%></div>
-活动时间:
-<div id="ActiveTime"><%=ActiveTime%> </div>
+活动开始时间:
+<div id="ActiveTime"><%=ActiveBegin%> </div>
+活动结束时间：
+<div id="ActiveTime"><%=ActiveEnd%> </div>
 活动状态:
 <div id="ActiveStatus"><%=ActiveStatus%> </div>
 活动详情:

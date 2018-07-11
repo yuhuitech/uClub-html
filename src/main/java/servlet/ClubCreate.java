@@ -15,7 +15,7 @@ import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.Date;
 
-import static servlet.DAO.*;
+import static operations.DAO.*;
 
 @WebServlet(name = "ClubCreate")
 public class ClubCreate extends HttpServlet {

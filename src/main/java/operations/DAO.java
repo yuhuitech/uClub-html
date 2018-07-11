@@ -1,14 +1,9 @@
-package servlet;
+package operations;
 
-import com.sun.javafx.collections.MappingChange;
-import model.Activity;
 import model.Club;
-import operations.ClubDetailDao;
-import org.apache.ibatis.annotations.Param;
+import Dao.DaoInterface;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -113,7 +108,7 @@ public class DAO {
     }
 
     //社团管理者给社团添加活动
-    public static void AddActive(SqlSessionFactory sqlSessionFactory, String name,String info,int ClubNo,String time,String status)
+    public static void AddActive(SqlSessionFactory sqlSessionFactory, String name, String info, int ClubNo, String begin_time, String end_time, String status)
     {
 
         try {
@@ -122,7 +117,7 @@ public class DAO {
             // 获取Mapper
             DaoInterface selectInterface = session.getMapper(DaoInterface.class);
             //获取该学生所有的社团
-           selectInterface.AddActivity(name,info,ClubNo,time,status);
+           selectInterface.AddActivity(name,info,ClubNo,begin_time,end_time,status);
             session.commit();
             session.close();
 
@@ -214,7 +209,7 @@ public class DAO {
 
 
     //加入活动
-    static int joinActivity(SqlSessionFactory sqlSessionFactory, int StuNo, int ActiveNo){
+    public static int joinActivity(SqlSessionFactory sqlSessionFactory, int StuNo, int ActiveNo){
         try {
             // 获取Session连接
             SqlSession session = sqlSessionFactory.openSession();
@@ -234,7 +229,7 @@ public class DAO {
 
     //退出活动
 
-    static void exitActivity(SqlSessionFactory sqlSessionFactory, int StuNo, int ActiveNo){
+    public static void exitActivity(SqlSessionFactory sqlSessionFactory, int StuNo, int ActiveNo){
         try {
             // 获取Session连接
             SqlSession session = sqlSessionFactory.openSession();
@@ -250,13 +245,13 @@ public class DAO {
     }
 
     //修改活动状态
-    static void changeActiveStatus(SqlSessionFactory sqlSessionFactory, int ActiveNo, String Status){
+    public static void changeActiveStatus(SqlSessionFactory sqlSessionFactory, int ActiveNo, String active_name, String active_info, String begin_time, String end_time, String Status){
         try {
             // 获取Session连接
             SqlSession session = sqlSessionFactory.openSession();
             // 获取Mapper
             DaoInterface DAO = session.getMapper(DaoInterface.class);
-            DAO.changeActiveStatus(ActiveNo, Status);
+            DAO.changeActiveStatus(ActiveNo,active_name,active_info,begin_time,end_time, Status);
             session.commit();
             session.close();
             // 显示插入之后Apply信息
@@ -284,7 +279,7 @@ public class DAO {
         return list;
     }
      //通过加入社团申请
-    static int passJoinClub(SqlSessionFactory sqlSessionFactory, int StuNo, int ClubNo, String Job,Date join_time){
+    public static int passJoinClub(SqlSessionFactory sqlSessionFactory, int StuNo, int ClubNo, String Job, Date join_time){
         try {
             // 获取Session连接
             SqlSession session = sqlSessionFactory.openSession();
@@ -303,7 +298,7 @@ public class DAO {
 
     }
            //从申请表中移除
-    static void delFromJoinClub(SqlSessionFactory sqlSessionFactory, int StuNo){
+    public static void delFromJoinClub(SqlSessionFactory sqlSessionFactory, int StuNo){
         try {
             // 获取Session连接
             SqlSession session = sqlSessionFactory.openSession();
@@ -334,7 +329,7 @@ public class DAO {
         return list;
     }
     //修改成员职位
-    static void changeMemberJob(SqlSessionFactory sqlSessionFactory, int StuNo,int ClubNo,String Job){
+    public static void changeMemberJob(SqlSessionFactory sqlSessionFactory, int StuNo, int ClubNo, String Job){
         try {
             // 获取Session连接
             SqlSession session = sqlSessionFactory.openSession();
@@ -350,7 +345,7 @@ public class DAO {
     }
 
     //修改成员部门
-    static void changeMemberDepartment(SqlSessionFactory sqlSessionFactory, int StuNo,int ClubNo,String Department){
+    public static void changeMemberDepartment(SqlSessionFactory sqlSessionFactory, int StuNo, int ClubNo, String Department){
         try {
             // 获取Session连接
             SqlSession session = sqlSessionFactory.openSession();
@@ -366,7 +361,7 @@ public class DAO {
     }
 
     //填写退出社团时间
-    static void leaveClubTime(SqlSessionFactory sqlSessionFactory, int StuNo,int ClubNo,Date leave_time){
+    public static void leaveClubTime(SqlSessionFactory sqlSessionFactory, int StuNo, int ClubNo, Date leave_time){
         try {
             // 获取Session连接
             SqlSession session = sqlSessionFactory.openSession();
@@ -383,7 +378,7 @@ public class DAO {
 
 
     //退社团发申请
-    static void leaveApply(SqlSessionFactory sqlSessionFactory,int ApplyNo, int StuNo,int ClubNo,String Reason){
+    public static void leaveApply(SqlSessionFactory sqlSessionFactory, int ApplyNo, int StuNo, int ClubNo, String Reason){
         try {
             // 获取Session连接
             SqlSession session = sqlSessionFactory.openSession();
@@ -415,7 +410,7 @@ public class DAO {
     }
 
     //从申请表中移除
-    static void delFromLeaveClub(SqlSessionFactory sqlSessionFactory, int StuNo){
+    public static void delFromLeaveClub(SqlSessionFactory sqlSessionFactory, int StuNo){
         try {
             // 获取Session连接
             SqlSession session = sqlSessionFactory.openSession();
@@ -430,7 +425,7 @@ public class DAO {
          }
     }
 
-    static void priceApply(SqlSessionFactory sqlSessionFactory, int ApplyNo, String ActivityNo, String Reason, String price){
+    public static void priceApply(SqlSessionFactory sqlSessionFactory, int ApplyNo, String ActivityNo, String Reason, String price){
         try {
             // 获取Session连接
             SqlSession session = sqlSessionFactory.openSession();
@@ -445,7 +440,7 @@ public class DAO {
         }
     }
     //解散社团申请
-    static void delClubApply(SqlSessionFactory sqlSessionFactory,int ApplyNo, int StuNo, int ClubNo, String Reason){
+    public static void delClubApply(SqlSessionFactory sqlSessionFactory, int ApplyNo, int StuNo, int ClubNo, String Reason){
         try {
             // 获取Session连接
             SqlSession session = sqlSessionFactory.openSession();
@@ -460,7 +455,7 @@ public class DAO {
         }
     }
     //获取学生职位
-    static String getStudentJob(SqlSessionFactory sqlSessionFactory, int StuNo, int ClubNo){
+    public static String getStudentJob(SqlSessionFactory sqlSessionFactory, int StuNo, int ClubNo){
         String job="";
         try {
             // 获取Session连接
@@ -478,7 +473,7 @@ public class DAO {
     }
 
     //发送公告
-    static void sendNotice(SqlSessionFactory sqlSessionFactory, int NoticeNo,int StuNo, int ClubNo, String Notice){
+    public static void sendNotice(SqlSessionFactory sqlSessionFactory, int NoticeNo, int StuNo, int ClubNo, String Notice){
         try {
             // 获取Session连接
             SqlSession session = sqlSessionFactory.openSession();
@@ -494,7 +489,7 @@ public class DAO {
     }
 
     //发送招募信息
-    static void sendRecruit(SqlSessionFactory sqlSessionFactory,int RecruitNo, int ClubNo, String  Introduction, String recruit_text){
+    public static void sendRecruit(SqlSessionFactory sqlSessionFactory, int RecruitNo, int ClubNo, String Introduction, String recruit_text){
         try {
             // 获取Session连接
             SqlSession session = sqlSessionFactory.openSession();
@@ -510,7 +505,7 @@ public class DAO {
     }
 
     //重新加入社团
-    static void rejoin(SqlSessionFactory sqlSessionFactory,int StuNo, int ClubNo){
+    public static void rejoin(SqlSessionFactory sqlSessionFactory, int StuNo, int ClubNo){
         try {
             // 获取Session连接
             SqlSession session = sqlSessionFactory.openSession();
@@ -527,7 +522,7 @@ public class DAO {
     }
 
     //重新加入社团
-    static int isMember(SqlSessionFactory sqlSessionFactory,int StuNo, int ClubNo){
+    public static int isMember(SqlSessionFactory sqlSessionFactory, int StuNo, int ClubNo){
         try {
             // 获取Session连接
             SqlSession session = sqlSessionFactory.openSession();
@@ -545,7 +540,7 @@ public class DAO {
     }
 
     //发送回复
-    static void reply(SqlSessionFactory sqlSessionFactory,int ApplyNo, String reason){
+    public static void reply(SqlSessionFactory sqlSessionFactory, int ApplyNo, String reason){
         try {
             // 获取Session连接
             SqlSession session = sqlSessionFactory.openSession();

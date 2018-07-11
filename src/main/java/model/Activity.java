@@ -1,12 +1,15 @@
 package model;
 
+import java.util.Date;
+
 public class Activity {
 
     private int ActiveNo;
     private String active_name;
     private String active_info;
     private int ClubNo;
-    private String active_time;
+    private String begin_time;
+    private String end_time;
     private String status;
 
 
@@ -50,13 +53,6 @@ public class Activity {
 
 
 
-    public String getActive_time() {
-        return active_time;
-    }
-
-    public void setActive_time(String active_time) {
-        this.active_time = active_time;
-    }
 
 
 
@@ -69,4 +65,19 @@ public class Activity {
     }
 
 
+    public String getBegin_time() {
+        return begin_time;
+    }
+
+    public void setBegin_time(String begin_time) {
+        this.begin_time = begin_time;
+    }
+
+    public String getEnd_time() {
+        return end_time;
+    }
+
+    public void setEnd_time(String end_time) {
+        this.end_time = end_time;
+    }
 }

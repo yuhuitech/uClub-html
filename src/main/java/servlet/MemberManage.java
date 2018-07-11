@@ -1,6 +1,7 @@
 package servlet;
 
 import Test.Test;
+import operations.DAO;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
@@ -13,7 +14,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Date;
 
-import static servlet.DAO.getDateTime;
+import static operations.DAO.getDateTime;
 
 public class MemberManage extends HttpServlet {
     @Override

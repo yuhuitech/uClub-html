@@ -12,6 +12,7 @@
 <html>
 <head>
     <title>ActInfo</title>
+    <script type="text/javascript" src="../My97DatePicker/WdatePicker.js"></script>
 </head>
 <body>
 <%
@@ -23,8 +24,8 @@
 
     活动名： <input type = "text" name = "Act_name" value = ""><br/><br/>
     活动信息：<input type = "text" name = "Act_info" value = ""><br/><br/>
-    活动时间： <input type = "text" name = "Act_time" value = ""><br/><br/> <%-- 注意这里的时间是一个字符串类型，感觉后期还要加属性--%>
-
+    活动开始时间： <input type = "text" name = "begin_time" value = "" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})"><br/><br/> <%-- 注意这里的时间是一个字符串类型，感觉后期还要加属性--%>
+    活动结束时间： <input type = "text" name = "end_time" value = "" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})"><br/><br/>
 
     <button name="Club_id" type="submit" value = <%= ClubNo%>>提交更改</button>
 

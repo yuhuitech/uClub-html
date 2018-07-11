@@ -1,4 +1,4 @@
-package operations;
+package Dao;
 
 import model.Club;
 import org.apache.ibatis.annotations.Param;
