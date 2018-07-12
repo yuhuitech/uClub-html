@@ -1,6 +1,7 @@
 package servlet;
 
 import Test.Test;
+import model.Club;
 import model.Record;
 import operations.DAO;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -40,6 +41,8 @@ public class Recommend extends HttpServlet {
         //获取与学号绑定的参加社团数（分为成员和管理员两种）
         List<Record> joinClubRecordLow = DAO.getAllStudentClub(sqlSessionFactory,"成员");
         List<Record> joinClubRecordHeigh = DAO.getAllStudentClub(sqlSessionFactory,"社长");
+        joinClubRecordHeigh.addAll(DAO.getAllStudentClub(sqlSessionFactory,"部长"));
+        //temp数组是两者的集合，用于在求相似度时可以直接使用两种的集合
         List<Record> temp = new ArrayList<>();
         temp.addAll(joinClubRecordLow);
         temp.addAll(joinClubRecordHeigh);
@@ -64,10 +67,12 @@ public class Recommend extends HttpServlet {
         Record recordTemp2 = new Record();
         SimliarMatrix = recordTemp2.getSimilarList(temp);
         //创建每一个社团对该用户的推荐map表
-        Map<Integer,Double> recommendNum2 = recordTemp2.getActiveRecommendNum(clubRecord,temp,SimliarMatrix,
+        Map<Integer,Double> recommendNum2 = recordTemp2.getActiveRecommendNum(clubRecord,joinClubRecordLow,joinClubRecordHeigh,SimliarMatrix,
                 (Integer) request.getSession().getAttribute("UserNo"));
         //最后进行排序，并剔除已经参加的社团
         List<Integer> clubRecommend = recordTemp2.getSort(recommendNum2,(Integer) request.getSession().getAttribute("UserNo"));
+
+
 
 
         //将上面两个Record对象存放在请求中

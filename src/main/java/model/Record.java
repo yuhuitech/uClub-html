@@ -277,7 +277,16 @@ public class Record
     //获取最后的推荐值数组
     private Map<Integer, Double> getRecommendByJoin_Skin(Map<Integer, Integer> skin_time, List<Integer> my_join_active, Map<Integer, Map<Integer, Double>> SimliarMatrix)
     {
-        Map<Integer, Double> result = new HashMap<>();
+        Map<Integer, Double> result = new HashMap<>(); //参加活动爱好都设置为1
+        result = getRecommendByJoin(result,my_join_active, SimliarMatrix,1);
+        //接下来是浏览活动贡献的推荐值，浏览的爱好度为π/2*acrtanX（X为浏览次数）
+        result = getRecommendBySkin(result,skin_time,SimliarMatrix);
+        return result;
+    }
+
+    //根据参加来获取推荐度
+    private Map<Integer, Double> getRecommendByJoin( Map<Integer, Double> result,List<Integer> my_join_active,Map<Integer, Map<Integer, Double>> SimliarMatrix,int lovePoint)
+    {
         //首先获取参加活动所贡献的推荐值,参加的爱好度设置为1，最终由爱好度乘以活动间的相似度
         for (int i : my_join_active)
         {
@@ -291,14 +300,20 @@ public class Record
                 Double val = (Double) entry.getValue();
                 if (!result.containsKey(key))
                 {
-                    result.put(key, val);
+                    result.put(key, lovePoint*val);
                 }
                 else
                 {
-                    result.put(key, val + result.get(key));
+                    result.put(key, lovePoint*val + result.get(key));
                 }
             }
         }
+        return result;
+    }
+
+    //根据浏览来获取爱好度
+    private Map<Integer, Double> getRecommendBySkin(Map<Integer, Double> result,Map<Integer, Integer> skin_time,Map<Integer, Map<Integer, Double>> SimliarMatrix)
+    {
         //接下来是浏览活动贡献的推荐值，浏览的爱好度为π/2*acrtanX（X为浏览次数）
         Map<Integer, Integer> map_i = skin_time;
         Iterator iter = map_i.entrySet().iterator();
@@ -329,6 +344,17 @@ public class Record
         }
         return result;
     }
+    //针对社团的推荐生成
+    private Map<Integer, Double> getRecommendByJoin_Skin(Map<Integer, Integer> skin_time, List<Integer> my_join_active_low, List<Integer> my_join_active_heigh, Map<Integer, Map<Integer, Double>> SimliarMatrix)
+    {
+        Map<Integer, Double> result = new HashMap<>();
+        //获取参加的社团贡献的推荐值，成员爱好度设置为1，管理员设置为2
+        result = getRecommendByJoin(result,my_join_active_low,SimliarMatrix,1);
+        result = getRecommendByJoin(result,my_join_active_heigh,SimliarMatrix,2);
+        //接下来是浏览活动贡献的推荐值，浏览的爱好度为π/2*acrtanX（X为浏览次数）
+        result = getRecommendBySkin(result,skin_time,SimliarMatrix);
+        return result;
+    }
 
 
     //获取各个活动对当前用户的推荐度
@@ -343,6 +369,28 @@ public class Record
         this.my_join_activity = my_join_active;
         //获取最终推荐度
         result = getRecommendByJoin_Skin(skin_time, my_join_active, SimliarMatrix);
+        return result;
+    }
+
+    //获取每个社团对当前用户的推荐度（重载上面那个方法）
+    public Map<Integer, Double> getActiveRecommendNum(List<Record> activeRecord, List<Record> joinClubRecordLow, List<Record> joinClubRecordHeigh, Map<Integer, Map<Integer, Double>> SimliarMatrix, int UserNo)
+    {
+
+        //结果map表
+        Map<Integer, Double> result;
+        //提取出的浏览次数
+        Map<Integer, Integer> skin_time = getMySkinActive(UserNo, activeRecord);
+        //提取出参加的活动
+        List<Integer> my_join_active_low = getMyActive(UserNo, joinClubRecordLow); //成员身份
+        List<Integer> my_join_active_heigh = getMyActive(UserNo,joinClubRecordHeigh); //管理员身份
+        List<Integer> temp = new ArrayList<>();
+
+        //以及所有参加的互动
+        temp.addAll(my_join_active_low);
+        temp.addAll(my_join_active_heigh);
+        this.my_join_activity = temp;
+        //获取最终推荐度
+        result = getRecommendByJoin_Skin(skin_time, my_join_active_low,my_join_active_heigh, SimliarMatrix);
         return result;
     }
 
