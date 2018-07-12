@@ -72,7 +72,7 @@ public class Recommend extends HttpServlet {
         //最后进行排序，并剔除已经参加的社团
         List<Integer> clubRecommend = recordTemp2.getSort(recommendNum2,(Integer) request.getSession().getAttribute("UserNo"));
 
-
+         int i;
 
 
         //将上面两个Record对象存放在请求中
