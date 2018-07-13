@@ -1,17 +1,21 @@
 package servlet;
 
 import Test.Test;
+import model.Article;
 import model.Club;
 import model.Record;
 import operations.DAO;
+import org.apache.commons.fileupload.FileItem;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
@@ -72,8 +76,9 @@ public class Recommend extends HttpServlet {
         //最后进行排序，并剔除已经参加的社团
         List<Integer> clubRecommend = recordTemp2.getSort(recommendNum2,(Integer) request.getSession().getAttribute("UserNo"));
 
-         int i;
-
+        String path = getServletContext().getRealPath("/");
+        Article article = new Article(580148,2,path,"来吧试试看");
+        String test = article.getText();
 
         //将上面两个Record对象存放在请求中
         request.setAttribute("activeRecommend",activeRecommend);

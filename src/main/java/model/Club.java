@@ -1,14 +1,52 @@
 package model;
 
+import operations.DAO;
+
+import javax.servlet.ServletContext;
 import java.io.*;
 
 public class Club {
+
     private int ClubNo;
     private String ClubName;
     private String Type;
     private String ClubInfo;
     private String Res_url;
     private int status;
+    private int memberNum;
+    private int activeNum;
+    private int articalNum;
+
+
+    public int getMemberNum()
+    {
+        return memberNum;
+    }
+
+    public void setMemberNum(int memberNum)
+    {
+        this.memberNum = memberNum;
+    }
+
+    public int getActiveNum()
+    {
+        return activeNum;
+    }
+
+    public void setActiveNum(int activeNum)
+    {
+        this.activeNum = activeNum;
+    }
+
+    public int getArticalNum()
+    {
+        return articalNum;
+    }
+
+    public void setArticalNum(int articalNum)
+    {
+        this.articalNum = articalNum;
+    }
 
     public int getStatus() {
         return status;
@@ -58,14 +96,19 @@ public class Club {
         Res_url = res_url;
     }
 
-    public void setText(String url,String text) throws IOException
+    private int getArticleNum()
     {
-        File writename = new File(url); // 相对路径，如果没有则要建立一个新的output。txt文件
-        OutputStreamWriter osw = new OutputStreamWriter(new FileOutputStream(writename),"UTF-8");
-        writename.createNewFile(); // 创建新文件
-        BufferedWriter out = new BufferedWriter(osw);
-        out.write(text); // \r\n即为换行
-        out.flush(); // 把缓存区内容压入文件
-        out.close(); // 最后记得关闭文件
+      //下面几个方法的具体还没写
+        return 1;
     }
+    private int getactiveNum()
+    {
+        return 1;
+    }
+    private int getarticleNum()
+    {
+        return 1;
+    }
+
+
 }

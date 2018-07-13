@@ -28,7 +28,6 @@ public class ClubInfoChange extends HttpServlet {
         String club_info = request.getParameter("Club_info");
         int club_id = Integer.parseInt(request.getParameter("Club_id"));
         String resource = "mybatis.xml";
-
         InputStream is = Test.class.getClassLoader().getResourceAsStream(resource);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
         DAO.setClubInfo(sqlSessionFactory,club_id,club_info);
