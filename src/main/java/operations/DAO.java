@@ -1,5 +1,6 @@
 package operations;
 
+import model.Activity;
 import model.Club;
 import Dao.DaoInterface;
 import org.apache.ibatis.session.SqlSession;
@@ -108,7 +109,7 @@ public class DAO {
     }
 
     //社团管理者给社团添加活动
-    public static void AddActive(SqlSessionFactory sqlSessionFactory, String name, String info, int ClubNo, String begin_time, String end_time, String status)
+    public static void AddActive(SqlSessionFactory sqlSessionFactory, int ActiveNo,String name, String info, int ClubNo, String begin_time, String end_time, String status)
     {
 
         try {
@@ -117,7 +118,7 @@ public class DAO {
             // 获取Mapper
             DaoInterface selectInterface = session.getMapper(DaoInterface.class);
             //获取该学生所有的社团
-           selectInterface.AddActivity(name,info,ClubNo,begin_time,end_time,status);
+           selectInterface.AddActivity(ActiveNo,name,info,ClubNo,begin_time,end_time,status);
             session.commit();
             session.close();
 
@@ -553,6 +554,41 @@ public class DAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    //查找加入社团所有的活动
+    public static List<Activity> selectAllActivity(SqlSessionFactory sqlSessionFactory, int StuNo){
+        List<Activity> list=new ArrayList<>();
+        try {
+            // 获取Session连接
+            SqlSession session = sqlSessionFactory.openSession();
+            // 获取Mapper
+            DaoInterface DAO = session.getMapper(DaoInterface.class);
+            list=DAO.selectAllActivity(StuNo);
+            session.commit();
+            session.close();
+            // 显示插入之后Apply信息
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public static int isJoin(SqlSessionFactory sqlSessionFactory, int StuNo, int ActiveNo){
+        try {
+            // 获取Session连接
+            SqlSession session = sqlSessionFactory.openSession();
+            // 获取Mapper
+            DaoInterface DAO = session.getMapper(DaoInterface.class);
+            int i=DAO.isJoin(StuNo,ActiveNo);
+            session.commit();
+            session.close();
+            return i;
+            // 显示插入之后Apply信息
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
 }
 

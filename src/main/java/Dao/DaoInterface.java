@@ -3,13 +3,10 @@ package Dao;
 import model.Activity;
 import model.Club;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
 
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public interface DaoInterface {
 
@@ -23,7 +20,8 @@ public interface DaoInterface {
 
      void setClubInfo(@Param("ClubNo") int clubNo,@Param("ClubInfo") String Info);
 
-     void AddActivity(@Param("active_name") String name,@Param("active_info") String info,
+     void AddActivity(@Param("ActiveNo") int ActiveNo,
+                      @Param("active_name") String name,@Param("active_info") String info,
                       @Param("ClubNo") int ClubNo,@Param("begin_time") String begin_time,
                       @Param("end_time") String end_time,@Param("status") String status);
 
@@ -123,5 +121,10 @@ public interface DaoInterface {
     void reply(@Param("ApplyNo") int ApplyNo,
                  @Param("ReplyNo") int ReplyNo,
                  @Param("reason") String reason);
+
+    List<Activity> selectAllActivity(@Param("StuNo") int StuNo);
+
+    int isJoin(@Param("StuNo") int StuNo,
+               @Param("ActiveNo") int ActiveNo);
 }
 

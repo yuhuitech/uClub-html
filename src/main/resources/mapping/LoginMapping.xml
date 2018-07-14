@@ -59,8 +59,8 @@
     </update>
 
     <insert id = "AddActivity">
-        INSERT INTO Activity (active_name,active_info,ClubNo,begin_time,end_time,status)
-        VALUES ('${active_name}','${active_info}','${ClubNo}',#{begin_time},#{end_time},'${status}')
+        INSERT INTO Activity (ActiveNo,active_name,active_info,ClubNo,begin_time,end_time,status)
+        VALUES (#{ActiveNo},'${active_name}','${active_info}','${ClubNo}',#{begin_time},#{end_time},#{status})
     </insert>
 
 

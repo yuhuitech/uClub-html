@@ -274,7 +274,9 @@
 
 
 <br>
-<a href="http://hall.future.org.cn/" > 场地申请</a>
+<a href="http://hall.future.org.cn/" >
+<button> 场地申请</button>
+</a>
 <br>
 <br>
 <div>申请加入社团列表:</div>

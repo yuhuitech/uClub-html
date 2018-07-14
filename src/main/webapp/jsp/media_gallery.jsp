@@ -99,7 +99,7 @@
                     <ul class="nav child_menu">
                       <li><a href="my_group.html">加入的社团</a></li>
                       <li><a href="inbox.html">收到的消息</a></li>
-                      <li><a href="calendar.html">活动日历</a></li>
+                      <li><a href="calendar.jsp">活动日历</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-user"></i> 我 <span class="fa fa-chevron-down"></span></a>

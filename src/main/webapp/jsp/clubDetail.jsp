@@ -53,6 +53,7 @@
 
 <%
     for(Activity act : clubAct){
+        if(act.getStatus().equals("已关闭"))continue;
         out.print("<br>");
         out.print("<div>"+act.getActive_name()+" </div>");
         out.print("<input type=\"button\" name=\"ActiveNo\" value=\"点击查看\" onclick=\"getActiveNo("+act.getActiveNo()+")\"/>");

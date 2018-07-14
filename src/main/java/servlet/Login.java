@@ -1,17 +1,19 @@
 package servlet;
 
-import Test.*;
+import Test.Test;
+import model.Activity;
 import operations.DAO;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import java.io.IOException;
-import java.io.InputStream;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
 
 
 public class Login extends HttpServlet {
@@ -35,6 +37,17 @@ public class Login extends HttpServlet {
         if(userPasswd.equals(selectPasswd)){
             System.out.println("密码正确");
             HttpSession session = req.getSession();
+            List<Activity> list=DAO.selectAllActivity(sqlSessionFactory,userID);
+           /* String events="[";
+            for (Activity act: list){
+                events+="{\"id\":\""+act.getActiveNo()+"\",\"title\":\""+act.getActive_name()+"\",\"info\":\""+act.getActive_info()+
+                        "\",\"start\":\""+act.getBegin_time()+"\",\"end\":\""+act.getEnd_time()+"\",\"status\":\""+act.getStatus()+
+                        "\",\"color\":\"#008080\",\"clubNo\":\""+act.getClubNo()+"\",\"isJoin\":\""+DAO.isJoin(sqlSessionFactory,userID,act.getActiveNo())+"\"},";
+            }
+            events = events.substring(0,events.length() - 1);
+            events+="]";
+            System.out.println(events);
+            session.setAttribute("events",events);*/
             session.setAttribute("UserNo", userID);
             session.setAttribute("Status",status);
             resp.getWriter().print("{\"success\":\"true\"}");

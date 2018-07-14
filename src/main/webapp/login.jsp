@@ -19,16 +19,16 @@
 <title>  Login  </title>
 
 <!-- Bootstrap -->
-<link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="jsp/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
 <!-- Font Awesome -->
-<link href="vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+<link href="jsp/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
 <!-- NProgress -->
-<link href="vendors/nprogress/nprogress.css" rel="stylesheet"/>
+<link href="jsp/vendors/nprogress/nprogress.css" rel="stylesheet"/>
 <!-- Animate.css -->
-<link href="vendors/animate.css/animate.min.css" rel="stylesheet"/>
+<link href="jsp/vendors/animate.css/animate.min.css" rel="stylesheet"/>
 
 <!-- Custom Theme Style -->
-<link href="build/css/custom.min.css" rel="stylesheet"/>
+<link href="jsp/build/css/custom.min.css" rel="stylesheet"/>
 </head>
 
 <body class="login">
@@ -51,7 +51,7 @@
                     var objs=eval("("+data+")");
                     if(objs.success=="true") {
                         if(status=="student") {
-                            window.location.href = "jsp/index.jsp";
+                            window.location.href = "jsp/calendar.jsp";
                         }
                         else if(status=="admin"){
                             window.location.href = "jsp/TuserHome.jsp";

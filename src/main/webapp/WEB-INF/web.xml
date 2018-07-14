@@ -204,5 +204,16 @@
         <url-pattern>/sendRecruit</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>getJoinClubActivity</servlet-name>
+        <servlet-class>servlet.GetJoinClubActivity</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getJoinClubActivity</servlet-name>
+        <url-pattern>/getJoinClubActivity</url-pattern>
+    </servlet-mapping>
+
+
+
 
 </web-app>

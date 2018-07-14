@@ -46,6 +46,16 @@
         <result property="status" column="status"/>
     </resultMap>
 
+    <resultMap id="activity"  type="model.Activity">
+        <result property="ActiveNo" column="ActiveNo"/>
+        <result property="active_name" column="active_name"/>
+        <result property="active_info" column="active_info"/>
+        <result property="ClubNo" column="ClubNo"/>
+        <result property="begin_time" column="begin_time"/>
+        <result property="end_time" column="end_time"/>
+        <result property="status" column="status"/>
+    </resultMap>
+
     <select id="getStudentName" resultType="String">
         SELECT StuName FROM Student
         <where>
@@ -229,4 +239,15 @@
     </insert>
 
 
+    <!-- 获取学生加入社团的所有活动  -->
+    <select id="selectAllActivity" resultMap="activity">
+        select * from Activity
+        where ClubNo in ( select ClubNo from Member where StuNo=#{StuNo} );
+    </select>
+
+
+    <!-- 判断是否参加了活动 -->
+    <select id="isJoin" resultType="int">
+        select * from join_activity where StuNo=#{StuNo} and ActiveNo=#{ActiveNo};
+    </select>
 </mapper>

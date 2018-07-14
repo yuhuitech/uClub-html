@@ -28,10 +28,10 @@ public class ActCreateApply extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         //获取相关要使用的属性
-        String name = request.getParameter("Act_name");
-        String info = request.getParameter("Act_info");
-        String begin = request.getParameter("begin_time");
-        String end = request.getParameter("end_time");
+        String name = request.getParameter("title");
+        String info = request.getParameter("descr");
+        String begin = request.getParameter("createStartTime");
+        String end = request.getParameter("createEndTime");
 
         DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");//yyyy-mm-dd, 会出现时间不对, 因为小写的mm是代表: 秒
         Date begin_time = null;
@@ -46,18 +46,22 @@ public class ActCreateApply extends HttpServlet {
         begin=sdf.format(begin_time);
         end=sdf.format(end_time);
         String status = "未进行";
-        int ClubNo = Integer.parseInt(request.getParameter("Club_id"));
-
+        int ClubNo = Integer.parseInt(request.getParameter("adminClubName"));
+        int ActiveNo=DAO.getUUID();
+//        String ClubName=request.getParameter("adminClubName");
         //进行数据库插入操作
         String resource = "mybatis.xml";
         InputStream is = Test.class.getClassLoader().getResourceAsStream(resource);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
-        DAO.AddActive(sqlSessionFactory,name,info,ClubNo,begin,end,status);
-        request.getRequestDispatcher(String.format("jsp/ClubInfo.jsp?ClubNo=%d",ClubNo)).forward(request, response);
+        DAO.AddActive(sqlSessionFactory,ActiveNo,name,info,ClubNo,begin,end,status);
+//        request.getRequestDispatcher(String.format("jsp/ClubInfo.jsp?ClubNo=%d",ClubNo)).forward(request, response);
+        response.getWriter().print(ActiveNo);
+        response.getWriter().flush();
+
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        doPost(request,response);
     }
 }
