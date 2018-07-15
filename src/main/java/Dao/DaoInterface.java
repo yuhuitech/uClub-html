@@ -130,8 +130,10 @@ public interface DaoInterface {
 
     Student getStudentInfo(@Param("StuNo") int StuNo);
 
-    int getJoinActivityCount(@Param("StuNo") int StuNo);
-
-    int getArticalCount(@Param("StuNo") int StuNo);
+    void updateStuInfo(@Param("StuNo") int StuNo,
+                       @Param("grade") String grade,
+                       @Param("Tel") String Tel,
+                       @Param("Email") String Email,
+                       @Param("self_introduce") String self_introduce);
 }
 

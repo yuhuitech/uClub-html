@@ -127,7 +127,7 @@ td.fc-list-item-time.fc-widget-content {
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
                 <%--<i class="fa fa-paw"></i>--%>
-              <a href="index.html" class="site_title"><img src="images/logo8.png"> <span>    U社团</span></a>
+                    <a href="index.jsp" class="site_title"><img src="images/logo8.png"><span>&nbsp;</span></a>
             </div>
 
             <div class="clearfix"></div>

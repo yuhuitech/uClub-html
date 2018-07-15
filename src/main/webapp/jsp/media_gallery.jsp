@@ -104,7 +104,7 @@
                   </li>
                   <li><a><i class="fa fa-user"></i> 我 <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="profile.jsp">我的简历</a></li>
+                      <li><a href="profile2.jsp">我的简历</a></li>
                     </ul>
                   </li>
                 </ul>

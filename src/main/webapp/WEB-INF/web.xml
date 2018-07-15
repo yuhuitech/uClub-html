@@ -214,12 +214,12 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>getJoinCount</servlet-name>
-        <servlet-class>servlet.GetJoinCount</servlet-class>
+        <servlet-name>changeStuInfo</servlet-name>
+        <servlet-class>servlet.ChangeStuInfo</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>getJoinCount</servlet-name>
-        <url-pattern>/getJoinCount</url-pattern>
+        <servlet-name>changeStuInfo</servlet-name>
+        <url-pattern>/changeStuInfo</url-pattern>
     </servlet-mapping>
 
 

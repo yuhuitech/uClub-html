@@ -612,42 +612,24 @@ public class DAO {
     }
 
 
-    public static int getJoinActivityCount(SqlSessionFactory sqlSessionFactory, int StuNo)
+
+
+
+    public static void updateStuInfo(SqlSessionFactory sqlSessionFactory, int StuNo,String grade,String Tel, String Email, String self_introduce)
     {
-        int i=0;
         try {
             // 获取Session连接
             SqlSession session = sqlSessionFactory.openSession();
             // 获取Mapper
             DaoInterface selectInterface = session.getMapper(DaoInterface.class);
             //获取该学生所有的社团
-            i = selectInterface.getJoinActivityCount(StuNo);
+            selectInterface.updateStuInfo(StuNo,grade,Tel,Email,self_introduce);
             session.commit();
             session.close();
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return i;
-    }
-
-    public static int getArticalCount(SqlSessionFactory sqlSessionFactory, int StuNo)
-    {
-        int i=0;
-        try {
-            // 获取Session连接
-            SqlSession session = sqlSessionFactory.openSession();
-            // 获取Mapper
-            DaoInterface selectInterface = session.getMapper(DaoInterface.class);
-            //获取该学生所有的社团
-            i = selectInterface.getArticalCount(StuNo);
-            session.commit();
-            session.close();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return i;
     }
 }
 
