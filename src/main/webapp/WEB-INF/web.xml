@@ -213,6 +213,15 @@
         <url-pattern>/getJoinClubActivity</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>getJoinCount</servlet-name>
+        <servlet-class>servlet.GetJoinCount</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getJoinCount</servlet-name>
+        <url-pattern>/getJoinCount</url-pattern>
+    </servlet-mapping>
+
 
 
 

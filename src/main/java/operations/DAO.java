@@ -3,6 +3,7 @@ package operations;
 import model.Activity;
 import model.Club;
 import Dao.DaoInterface;
+import model.Student;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -589,6 +590,64 @@ public class DAO {
             e.printStackTrace();
         }
         return 0;
+    }
+
+    public static Student getStudentInfo(SqlSessionFactory sqlSessionFactory, int StuNo)
+    {
+        Student stu = null;
+        try {
+            // 获取Session连接
+            SqlSession session = sqlSessionFactory.openSession();
+            // 获取Mapper
+            DaoInterface selectInterface = session.getMapper(DaoInterface.class);
+            //获取该学生所有的社团
+            stu = selectInterface.getStudentInfo(StuNo);
+            session.commit();
+            session.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return stu;
+    }
+
+
+    public static int getJoinActivityCount(SqlSessionFactory sqlSessionFactory, int StuNo)
+    {
+        int i=0;
+        try {
+            // 获取Session连接
+            SqlSession session = sqlSessionFactory.openSession();
+            // 获取Mapper
+            DaoInterface selectInterface = session.getMapper(DaoInterface.class);
+            //获取该学生所有的社团
+            i = selectInterface.getJoinActivityCount(StuNo);
+            session.commit();
+            session.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return i;
+    }
+
+    public static int getArticalCount(SqlSessionFactory sqlSessionFactory, int StuNo)
+    {
+        int i=0;
+        try {
+            // 获取Session连接
+            SqlSession session = sqlSessionFactory.openSession();
+            // 获取Mapper
+            DaoInterface selectInterface = session.getMapper(DaoInterface.class);
+            //获取该学生所有的社团
+            i = selectInterface.getArticalCount(StuNo);
+            session.commit();
+            session.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return i;
     }
 }
 

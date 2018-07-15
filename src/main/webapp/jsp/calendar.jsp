@@ -185,7 +185,7 @@ td.fc-list-item-time.fc-widget-content {
                   </li>
                   <li><a><i class="fa fa-user"></i> 我 <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="profile.html">我的简历</a></li>
+                      <li><a href="profile.jsp">我的简历</a></li>
                     </ul>
                   </li>
                 </ul>
@@ -376,18 +376,19 @@ td.fc-list-item-time.fc-widget-content {
                                 </h3>
                             </div>
                         </div>
+
                         <div class="title_right">
-                            <%--<div class="col-md-4 col-sm-4 col-xs-12 form-group pull-right top_search">--%>
-                                <%--<div class="input-group">--%>
-                                    <%--<input type="text" id="searchInfo" class="form-control" placeholder="找找活动">--%>
-                                    <%--<span class="input-group-btn">--%>
-                                        <%--<button class="btn btn-default" onclick="searchSentence=$('#searchInfo').val();goToPageOption(1);"--%>
-                                        <%--type="button">--%>
-                                            <%--Go!--%>
-                                        <%--</button>--%>
-                                    <%--</span>--%>
-                                <%--</div>--%>
-                            <%--</div>--%>
+                            <div class="col-md-4 col-sm-4 col-xs-12 form-group pull-right top_search">
+                                <div class="input-group">
+                                    <input type="text" id="searchInfo" class="form-control" placeholder="找找活动">
+                                    <span class="input-group-btn">
+                                        <button id="searchbutton" class="btn btn-default" onclick="searchSentence=$('#searchInfo').val();goToPageOption(1);"
+                                        type="button">
+                                            Go!
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -586,6 +587,76 @@ td.fc-list-item-time.fc-widget-content {
       </div>
     </div>
 
+
+    <div class="form-horizontal">
+        <div class="modal fade" id="modalsearch">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <h3 class="modal-title" id="attachtitle">事件搜索结果</h3>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-body-content">
+                            <!-- <table id="searchtable"没有data-toggle="table"就不行
+                                  data-query-params="queryParams"
+                                  data-page-size="5"
+                                  data-page-list="[5, 25, 50, All]"
+                                  data-unique-id="id"
+                                  data-toolbar="#searchbar"
+                                  data-pagination="true"
+                                  data-side-pagination="client"
+                                  data-show-refresh="true"
+                                  data-click-to-select="true">
+                              <tr>
+                                <th data-formatter="index1">#</th>
+                                <th data-field="Title" data-formatter="setTtile">名称</th>
+                                <th data-field="Content">内容</th>
+                                <th data-field="Starttime" data-formatter="localDateFormatter">开始时间</th>
+                                <th data-field="Endtime" data-formatter="localDateFormatter">结束时间</th>
+                              </tr>
+                            </table> -->
+                            <div id="attachtoolbar" class="btn-group">
+                                <button type="button" data-name="deleteAttachButton" id="deleteAttachButton" class="btn btn-default">
+                                    <i class="fa fa-trash">删除</i>
+                                </button>
+                            </div>
+                            <table id="searchtable"
+                                   data-toggle="table"
+                                   data-toolbar="#attachtoolbar"
+                                   data-page-size="5"
+                                   data-page-list="[5, 25, 50, All]"
+                                   data-unique-id="id"
+                                   data-pagination="true"
+                                   data-side-pagination="client"
+                                   data-click-to-select="true">
+                                <thead>
+                                <tr>
+                                    <th data-formatter="index1">#</th>
+                                    <th data-field="title" data-formatter="settile" data-events="actionEvents">名称</th>
+                                    <th data-field="content">内容</th>
+                                    <th data-field="start" data-formatter="localDateFormatter">开始时间</th>
+                                    <th data-field="end" data-formatter="localDateFormatter">结束时间</th>
+                                </tr>
+                                </thead>
+                            </table>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
     <div id="fc_create" data-toggle="modal" data-target="#CalenderModalNew"></div>
     <div id="fc_edit" data-toggle="modal" data-target="#CalenderModalEdit"></div>
     <!-- /calendar modal -->
@@ -671,8 +742,7 @@ td.fc-list-item-time.fc-widget-content {
 
          setCalendar();
 
-      });
-
+     });
 
 
 

@@ -51,7 +51,7 @@
                     var objs=eval("("+data+")");
                     if(objs.success=="true") {
                         if(status=="student") {
-                            window.location.href = "jsp/calendar.jsp";
+                            window.location.href = "jsp/profile.jsp";
                         }
                         else if(status=="admin"){
                             window.location.href = "jsp/TuserHome.jsp";

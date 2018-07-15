@@ -2,6 +2,7 @@ package Dao;
 
 import model.Activity;
 import model.Club;
+import model.Student;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.Date;
@@ -126,5 +127,11 @@ public interface DaoInterface {
 
     int isJoin(@Param("StuNo") int StuNo,
                @Param("ActiveNo") int ActiveNo);
+
+    Student getStudentInfo(@Param("StuNo") int StuNo);
+
+    int getJoinActivityCount(@Param("StuNo") int StuNo);
+
+    int getArticalCount(@Param("StuNo") int StuNo);
 }
 

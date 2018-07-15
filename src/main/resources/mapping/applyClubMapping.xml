@@ -27,6 +27,18 @@
     </resultMap>
 
 
+    <resultMap id="Student" type="model.Student">
+        <result property="StuNo" column="StuNo"/>
+        <result property="StuName" column="StuName"/>
+        <result property="password" column="password"/>
+        <result property="college" column="college"/>
+        <result property="grade" column="grade"/>
+        <result property="Sex" column="Sex"/>
+        <result property="Tel" column="Tel"/>
+        <result property="Email" column="Email"/>
+        <result property="self_introduce" column="self_introduce"/>
+    </resultMap>
+
     <resultMap id="CreateClubMap" type="model.Student">
         <result property="ClubNo" column="ClubNo"/>
         <result property="ClubName" column="ClubName"/>
@@ -249,5 +261,20 @@
     <!-- 判断是否参加了活动 -->
     <select id="isJoin" resultType="int">
         select * from join_activity where StuNo=#{StuNo} and ActiveNo=#{ActiveNo};
+    </select>
+
+    <!-- 获取学生信息  -->
+    <select id="getStudentInfo" resultMap="Student">
+        select * from Student where StuNo=#{StuNo};
+    </select>
+
+    <!-- 统计学生参加的活动数 -->
+    <select id="getJoinActivityCount" resultType="int">
+        select count(*) from join_activity group by StuNo having StuNo=#{StuNo};
+    </select>
+
+    <!-- 统计学生发表的文章数 -->
+    <select id="getArticalCount" resultType="int">
+        select count(*) from Article group by StuNo having StuNo=#{StuNo};
     </select>
 </mapper>
