@@ -46,6 +46,7 @@
     <select id="getClubsAll" resultMap="ClubResultMap">
         SELECT * FROM Club WHERE  status = '1'
     </select>
+
     <select id="getClubs" resultMap="ClubResultMap">
         SELECT DISTINCT * FROM Club
         <where>

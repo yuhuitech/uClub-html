@@ -35,7 +35,7 @@ public class GetJoinClubActivity extends HttpServlet {
                     "\",\"start\":\""+act.getBegin_time()+"\",\"end\":\""+act.getEnd_time()+"\",\"status\":\""+act.getStatus()+
                     "\",\"color\":\"#008080\",\"clubName\":\""+DAO.getClubById(sqlSessionFactory,act.getClubNo()).getClubName()+"\",\"isJoin\":\""+DAO.isJoin(sqlSessionFactory,StuNo,act.getActiveNo())+"\"},";
         }
-        events = events.substring(0,events.length() - 1);
+        if(events.length()>1) events = events.substring(0,events.length() - 1);
         events+="]";
         System.out.println(events);
         session.setAttribute("events",events);

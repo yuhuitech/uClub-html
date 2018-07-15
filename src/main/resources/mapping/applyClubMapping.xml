@@ -242,7 +242,7 @@
     <!-- 获取学生加入社团的所有活动  -->
     <select id="selectAllActivity" resultMap="activity">
         select * from Activity
-        where ClubNo in ( select ClubNo from Member where StuNo=#{StuNo} );
+        where ClubNo in ( select ClubNo from Member where StuNo=#{StuNo} and leave_time is null);
     </select>
 
 

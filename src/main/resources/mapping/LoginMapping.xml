@@ -39,7 +39,7 @@
         WHERE
             ClubNo IN
             (
-               SELECT ClubNo FROM Member WHERE StuNo = '${StuNo}' AND  Job = '${Job}'
+               SELECT ClubNo FROM Member WHERE StuNo = '${StuNo}' AND  Job = '${Job}' AND leave_time is null
             )
 
     </select>

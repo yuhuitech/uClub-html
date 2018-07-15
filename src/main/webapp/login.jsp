@@ -96,7 +96,8 @@
                         <br />
 
                         <div>
-                            <h1><i class="fa fa-paw"></i> Uclub!</h1>
+                            <%--<i class="fa fa-paw"></i>--%>
+                            <h1><img src="jsp/images/logo6.png" /> Uclub!</h1>
                             <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
                         </div>
                     </div>
@@ -133,7 +134,8 @@
                         <br />
 
                         <div>
-                            <h1><i class="fa fa-paw"></i> Uclub!</h1>
+                            <%--<i class="fa fa-paw"></i>--%>
+                            <h1> <img src="jsp/images/logo6.png" />Uclub!</h1>
                             <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
                         </div>
                     </div>

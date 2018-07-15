@@ -31,7 +31,14 @@ To change this template use File | Settings | File Templates.
           List<Club> adminClubs=ClubOperations.getAllJoinClubs(sqlSessionFactory,StuNo);
           List<Club> joinClubs = DAO.getStudentClubs(sqlSessionFactory,StuNo,"成员");
           String StuName=DAO.getStudentName(sqlSessionFactory,StuNo);
-          adminClubs.removeAll(joinClubs);
+        //  for(int i=0)
+         if(adminClubs.size()!=0) {
+        for (int i = 0; i < adminClubs.size(); i++) {
+            for(int j=0;j< joinClubs.size();j++){
+                       if(adminClubs.get(i).getClubNo()==joinClubs.get(j).getClubNo())adminClubs.remove(i);
+            }
+        }
+    }
 //          System.out.println(basePath);
         //  System.out.println(event);
       %>
@@ -119,7 +126,8 @@ td.fc-list-item-time.fc-widget-content {
         <div class="col-md-3 left_col menu_fixed">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>U社团</span></a>
+                <%--<i class="fa fa-paw"></i>--%>
+              <a href="index.html" class="site_title"><img src="images/logo8.png"> <span>    U社团</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -127,7 +135,7 @@ td.fc-list-item-time.fc-widget-content {
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-                <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+                <img src="images/1.jpg" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
                 <span>欢迎,</span>
@@ -217,8 +225,8 @@ td.fc-list-item-time.fc-widget-content {
                                 <li class="" id="miniMenu">
                                     <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
                                     aria-expanded="false">
-                                        <img src="images/img.jpg" alt="">
-                                        John Doe
+                                        <img src="images/1.jpg" alt="">
+                                        <%=StuName%>
                                         <span class=" fa fa-angle-down">
                                         </span>
                                     </a>
@@ -265,7 +273,7 @@ td.fc-list-item-time.fc-widget-content {
                                         <li>
                                             <a>
                                                 <span class="image">
-                                                    <img src="images/img.jpg" alt="Profile Image" />
+                                                    <img src="images/1.jpg" alt="Profile Image" />
                                                 </span>
                                                 <span>
                                                     <span>
@@ -284,7 +292,7 @@ td.fc-list-item-time.fc-widget-content {
                                         <li>
                                             <a>
                                                 <span class="image">
-                                                    <img src="images/img.jpg" alt="Profile Image" />
+                                                    <img src="images/1.jpg" alt="Profile Image" />
                                                 </span>
                                                 <span>
                                                     <span>
@@ -303,7 +311,7 @@ td.fc-list-item-time.fc-widget-content {
                                         <li>
                                             <a>
                                                 <span class="image">
-                                                    <img src="images/img.jpg" alt="Profile Image" />
+                                                    <img src="images/1.jpg" alt="Profile Image" />
                                                 </span>
                                                 <span>
                                                     <span>
@@ -322,7 +330,7 @@ td.fc-list-item-time.fc-widget-content {
                                         <li>
                                             <a>
                                                 <span class="image">
-                                                    <img src="images/img.jpg" alt="Profile Image" />
+                                                    <img src="images/1.jpg" alt="Profile Image" />
                                                 </span>
                                                 <span>
                                                     <span>
@@ -369,17 +377,17 @@ td.fc-list-item-time.fc-widget-content {
                             </div>
                         </div>
                         <div class="title_right">
-                            <div class="col-md-4 col-sm-4 col-xs-12 form-group pull-right top_search">
-                                <div class="input-group">
-                                    <input type="text" id="searchInfo" class="form-control" placeholder="找找活动">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-default" onclick="searchSentence=$('#searchInfo').val();goToPageOption(1);"
-                                        type="button">
-                                            Go!
-                                        </button>
-                                    </span>
-                                </div>
-                            </div>
+                            <%--<div class="col-md-4 col-sm-4 col-xs-12 form-group pull-right top_search">--%>
+                                <%--<div class="input-group">--%>
+                                    <%--<input type="text" id="searchInfo" class="form-control" placeholder="找找活动">--%>
+                                    <%--<span class="input-group-btn">--%>
+                                        <%--<button class="btn btn-default" onclick="searchSentence=$('#searchInfo').val();goToPageOption(1);"--%>
+                                        <%--type="button">--%>
+                                            <%--Go!--%>
+                                        <%--</button>--%>
+                                    <%--</span>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
                         </div>
                     </div>
 
@@ -737,7 +745,8 @@ td.fc-list-item-time.fc-widget-content {
                     $('#fc_create').click();
                     $('#createStartTime').val(start.format("YYYY-MM-DD HH:mm"));
                     $('#createEndTime').val(end.format("YYYY-MM-DD HH:mm"));
-                    $("#adminClubName").val("1");
+                   // $("#adminClubName").val("0");
+                    $("#adminClubName option:first").prop("selected", 'selected');
                 },
                 eventClick: function(calEvent, jsEvent, view) {
                     $('#fc_edit').click();
@@ -772,7 +781,6 @@ td.fc-list-item-time.fc-widget-content {
                 editable: true,
                 events:
                     function(start, end ,timezone, callback){
-
                     $.ajax({
                         type:'Post',
                         url:"/getJoinClubActivity",
@@ -969,6 +977,7 @@ td.fc-list-item-time.fc-widget-content {
        $("#createSubmit").on("click", function() {
            var title = $("#title").val();
            if(!(title && $('#createStartTime').val()&& $('#createEndTime').val()))alert("标题和时间不可为空！");
+           else if(!$('#adminClubName').val()) alert("没有创建活动的权限，请先成为社团管理员！");
            else {
            $.ajax({
                type:'POST',

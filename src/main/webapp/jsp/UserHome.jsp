@@ -1,4 +1,5 @@
 <%@ page import="model.Club" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
 <%@ page import="operations.DAO" %>
 <%@ page import="org.apache.ibatis.session.SqlSessionFactory" %>
@@ -17,7 +18,14 @@
   //  List<Club> adminClubs = DAO.getStudentClubs(sqlSessionFactory,UserId,"社长");
     List<Club> adminClubs=ClubOperations.getAllJoinClubs(sqlSessionFactory,UserId);
     List<Club> joinClubs = DAO.getStudentClubs(sqlSessionFactory,UserId,"成员");
-    adminClubs.removeAll(joinClubs);
+    if(adminClubs.size()!=0) {
+        for (int i = 0; i < adminClubs.size(); i++) {
+            for(int j=0;j< joinClubs.size();j++){
+                       if(adminClubs.get(i).getClubNo()==joinClubs.get(j).getClubNo())adminClubs.remove(i);
+            }
+        }
+    }
+//    adminClubs.removeAll(joinClubs);
 %>
 <html>
 <head>
