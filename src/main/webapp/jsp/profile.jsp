@@ -1,13 +1,16 @@
 <%@ page import="Test.Test" %>
+<%@ page import="model.Activity" %>
 <%@ page import="model.Club" %>
 <%@ page import="model.Student" %>
 <%@ page import="operations.ClubOperations" %>
 <%@ page import="operations.DAO" %>
 <%@ page import="org.apache.ibatis.session.SqlSessionFactory" %>
 <%@ page import="org.apache.ibatis.session.SqlSessionFactoryBuilder" %>
+<%@ page import="javax.imageio.ImageIO" %>
+<%@ page import="java.awt.*" %>
+<%@ page import="java.io.File" %>
 <%@ page import="java.io.InputStream" %>
 <%@ page import="java.util.List" %>
-<%@ page import="model.Activity" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8"%>
 <html lang="en">
 <head>
@@ -120,7 +123,10 @@
             }
         }
         List<Activity> acts=DAO.selectAllActivity(sqlSessionFactory,StuNo);
-
+        String headImg="images/"+StuNo+".jpg";
+        File dir = new File(request.getContextPath()+"images/"+StuNo+".jpg");
+        if(dir.exists()) System.out.println("The file exist");
+        else System.out.println("The file is not exist");
 
     %>
 </head>
@@ -394,7 +400,7 @@
                                     <div class="profile_img">
                                         <div id="crop-avatar">
                                             <!-- Current avatar -->
-                                            <img class="img-responsive avatar-view" id="originalPhoto" src="images/picture.jpg" alt="Avatar" title="Change the avatar">
+                                            <img style="width: 150px;height:150px" class="img-responsive avatar-view" id="originalPhoto" src="images/<%=StuNo%>.jpg" onerror="javascript:this.src='images/user.png'" alt="Avatar" title="Change the avatar">
                                         </div>
                                     </div>
                                     <h3><%=student.getStuName()%></h3>
@@ -507,83 +513,24 @@
                                                                         <h2 class="title">
                                                                             <a>
                                                                                 <h3>
-                                                                                    Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?
+                                                                                    心理社团：解读你的一些小习惯
                                                                                 </h3>
                                                                             </a>
                                                                         </h2>
                                                                         <div class="byline">
                                                                             <span>
-                                                                                13 hours ago
+                                                                                1小时前
                                                                             </span>
                                                                             by
                                                                             <a>
-                                                                                Jane Smith
+                                                                                史蒂夫
                                                                             </a>
                                                                         </div>
                                                                         <p class="excerpt">
-                                                                            Film festivals used to be do-or-die moments for movie makers. They were
-                                                                            where you met the producers that could fund your project, and if the buyers
-                                                                            liked your flick, they’d pay to Fast-forward and…
+                                                                            不合情宜的愿望，超出规则的索取，皆为人性的弱点。
+                                                                            　　人们常说，世界上最难的就是了解人的内心世界。的确，我们每一个人的内心世界往往都是广阔而幽眇的，很多时候我们不知怎么的就会有一些奇怪的想法；而有的时候我们明明知道该怎么做，但是做出来的事情却又大相径庭；为什么对别人先否定后肯定、先抑后扬，最容易给人好感；为什么当一种愿望无法得到满足，有时人们会用其他愿望来代替它；为什么当别人答应了你的小要求，就比较容易答应你后面的大要求……
                                                                             <a>
-                                                                                Read&nbsp;More
-                                                                            </a>
-                                                                        </p>
-                                                                    </div>
-                                                                </div>
-                                                            </li>
-                                                            <li>
-                                                                <div class="newStyle">
-                                                                    <div class="block_content">
-                                                                        <h2 class="title">
-                                                                            <h3>
-                                                                                Who Needs Sundance When You’ve Got Crowdfunding?
-                                                                            </h3>
-                                                                        </h2>
-                                                                        <div class="byline">
-                                                                            <span>
-                                                                                13 hours ago
-                                                                            </span>
-                                                                            by
-                                                                            <a>
-                                                                                Jane Smith
-                                                                            </a>
-                                                                        </div>
-                                                                        <p class="excerpt">
-                                                                            Film festivals used to be do-or-die moments for movie makers. They were
-                                                                            where you met the producers that could fund your project, and if the buyers
-                                                                            liked your flick, they’d pay to Fast-forward and…
-                                                                            <a>
-                                                                                Read&nbsp;More
-                                                                            </a>
-                                                                        </p>
-                                                                    </div>
-                                                                </div>
-                                                            </li>
-                                                            <li>
-                                                                <div class="newStyle">
-                                                                    <div class="block_content">
-                                                                        <h2 class="title">
-                                                                            <a>
-                                                                                <h3>
-                                                                                    Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?
-                                                                                </h3>
-                                                                            </a>
-                                                                        </h2>
-                                                                        <div class="byline">
-                                                                            <span>
-                                                                                13 hours ago
-                                                                            </span>
-                                                                            by
-                                                                            <a>
-                                                                                Jane Smith
-                                                                            </a>
-                                                                        </div>
-                                                                        <p class="excerpt">
-                                                                            Film festivals used to be do-or-die moments for movie makers. They were
-                                                                            where you met the producers that could fund your project, and if the buyers
-                                                                            liked your flick, they’d pay to Fast-forward and…
-                                                                            <a>
-                                                                                Read&nbsp;More
+                                                                                查看更多&nbsp;
                                                                             </a>
                                                                         </p>
                                                                     </div>
@@ -689,7 +636,7 @@
                 <label class="form-group" for="self_introduce">头像预览:</label>
                 <div>
                     <div class="user-photo-box">
-                        <img id="user-photo" src="images/picture.jpg">
+                        <img id="user-photo" src="images/<%=StuNo%>.jpg" onerror="javascript:this.src='images/user.png'">
                     </div>
                     <br>
                     <button type="reset"  class="btn btn-default btn-round" data-target="#changeModal" data-toggle="modal"><span class="glyphicon " aria-hidden="true"></span>选择头像</button>
@@ -953,6 +900,9 @@
         //     width: 300,
         //     height: 300
         // }).toDataURL('image/png');
+        var self_introduce;
+        if(document.getElementById('self_introduce').innerText) self_introduce=document.getElementById('self_introduce').innerText;
+        else self_introduce=$('#self_introduce').val();
         $.ajax({
             type:'POST',
             url:"/changeStuInfo",
@@ -960,7 +910,7 @@
                 "grade":$('#grade').val(),
                 "Tel":$('#Tel').val(),
                 "Email": $('#Email').val(),
-                "self_introduce":document.getElementById('self_introduce').innerText,
+                "self_introduce":self_introduce
             },
             success:function() {
                 // $('#StuInfo li:eq(2) span').text($('#grade').val());
@@ -969,7 +919,10 @@
                 $('#StuInfo li:eq(6) span').text($('#self_introduce').val());
 
                     // .innerText=$('#Tel').val();
-            },async:false
+            },async:false,
+            error:function () {
+                alert('error!!')
+            }
         });
 
 
@@ -983,23 +936,26 @@
             // 坐标(0,0) 表示从此处开始绘制，相当于偏移。
             canvas.getContext("2d").drawImage(image, 0, 0);
             var photo = canvas.toDataURL('image/png');
-            // $.ajax({
-            //     url: '上传地址', // 要上传的地址
-            //     type: 'post',
-            //     data: {
-            //         'imgData': photo
-            //     },
-            //     dataType: 'json',
-            //     success: function (data) {
-            //         if (data.status == 0) {
-            //             // 将上传的头像的地址填入，为保证不载入缓存加个随机数
-            //             $('.user-photo').attr('src', '头像地址?t=' + Math.random());
-            //             $('#changeModal').modal('hide');
-            //         } else {
-            //             alert(data.info);
-            //         }
-            //     }
-            // });
+            $.ajax({
+                url: '/saveImg', // 要上传的地址
+                type: 'post',
+                data: {
+                    'imgData': photo
+                },
+                success: function () {
+                    // if (data.status == 0) {
+                    //     // 将上传的头像的地址填入，为保证不载入缓存加个随机数
+                    //     // $('.user-photo').attr('src', '头像地址?t=' + Math.random());
+                    //     // $('#changeModal').modal('hide');
+                    // } else {
+                    //     alert();
+                    // }
+                },
+                error:function () {
+                    alert("error")
+                }
+
+            });
             $('#originalPhoto').attr('src',image.src.toString());
             $('#changeMyInfo').modal("hide");
         }

@@ -222,6 +222,15 @@
         <url-pattern>/changeStuInfo</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>saveImg</servlet-name>
+        <servlet-class>servlet.SaveImg</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>saveImg</servlet-name>
+        <url-pattern>/saveImg</url-pattern>
+    </servlet-mapping>
+
 
 
 

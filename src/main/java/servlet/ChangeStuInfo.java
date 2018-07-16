@@ -16,6 +16,7 @@ import java.io.InputStream;
 public class ChangeStuInfo extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("修改个人数据成功");
         req.setCharacterEncoding("UTF-8");
         HttpSession session=req.getSession();
         Integer StuNo= (Integer) session.getAttribute("UserNo");
@@ -24,7 +25,7 @@ public class ChangeStuInfo extends HttpServlet {
         String Email=req.getParameter("Email");
         String self_introduce=req.getParameter("self_introduce");
         String resource = "mybatis.xml";
-
+        System.out.println("修改个人数据成功");
         InputStream is = Test.class.getClassLoader().getResourceAsStream(resource);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
 
