@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="DAO.ClubDetailDao">
+
+    <resultMap id="ClubDetailResult" type="model.Club">
+        <result property="ClubNo" column="ClubNo"/>
+        <result property="ClubName" column="ClubName"/>
+        <result property="Type" column="Type"/>
+        <result property="ClubInfo" column="ClubInfo"/>
+        <result property="Res_url" column="Res_url"/>
+    </resultMap>
+
+    <resultMap id="ClubActResult" type="model.Activity">
+        <result property="active_name" column="active_name"/>
+        <result property="ActiveNo" column="ActiveNo"/>
+        <result property="active_info" column="active_info"/>
+        <result property="ClubNo" column="ClubNo"/>
+        <result property="active_time" column="active_time"/>
+        <result property="status" column="status"/>
+    </resultMap>
+
+    <select id="getClubDetail" resultMap="ClubDetailResult">
+        SELECT * FROM Club
+        <where>
+            ClubNo = '${ClubNo}'
+        </where>
+    </select>
+    
+    <select id="getClubActivities" resultMap="ClubActResult">
+        SELECT * FROM Activity
+        <where>
+            ClubNo = '${ClubNo}'
+        </where>
+    </select>
+
+    <select id="getActiveDetail" resultMap="ClubActResult">
+        SELECT * FROM Activity
+        <where>
+            ActiveNo = '${ActiveNo}'
+        </where>
+    </select>
+
+    <select id="getAllClubs" resultMap="ClubDetailResult">
+        SELECT * FROM Club
+    </select>
+
+</mapper>

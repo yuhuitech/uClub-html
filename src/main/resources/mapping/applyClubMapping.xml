@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="applyClubDao">
+<mapper namespace="DAO.DaoInterface">
 
     <resultMap id="getApplyStuInfoMap" type="model.Student">
         <result property="StuNo" column="StuNo"/>
@@ -10,25 +10,15 @@
         <result property="college" column="college"/>
     </resultMap>
 
-    <resultMap id="applySummaryMap" type="model.Student">
+
+    <resultMap id="applyClubMap" type="model.Apply">
         <result property="ApplyNo" column="ApplyNo"/>
         <result property="ClubName" column="ClubName"/>
         <result property="ClubType" column="ClubType"/>
-        <result property="ClubInfo" column="ClubInfo"/>
-        <result property="StuNo" column="StuNo"/>
         <result property="ClubSize" column="ClubSize"/>
-        <result property="ApplyTime" column="ApplyTime"/>
-    </resultMap>
-
-
-    <resultMap id="CreateClubMap" type="model.Student">
-        <result property="ClubNo" column="ClubNo"/>
-        <result property="ClubName" column="ClubName"/>
-        <result property="ClubType" column="ClubType"/>
         <result property="ClubInfo" column="ClubInfo"/>
-        <result property="Res_url" column="Res_url"/>
+        <result property="ApplyTime" column="ApplyTime"/>
         <result property="status" column="status"/>
-        <result property="CreateTime" column="CreateTime"/>
     </resultMap>
 
     <select id="getStudentName" resultType="String">
@@ -54,6 +44,14 @@
     insert into uclub.Create_apply(ClubNo, ClubName, ClubType, ClubInfo, Res_url,status, CreateTime)
     values(#{ClubNo}, #{ClubName}, #{ClubType}, #{ClubInfo}, #{Res_url},#{status},#{CreateTime, jdbcType=TIMESTAMP})
 </insert>
+
+
+    <select id="getClubApply" resultType="String" resultMap="applyClubMap">
+        SELECT * FROM Create_apply
+        <where>
+            StuNo = '${StuNo}'
+        </where>
+    </select>
 
 
 </mapper>
