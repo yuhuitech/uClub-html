@@ -939,13 +939,13 @@
                     'imgData': photo
                 },
                 success: function () {
-                    // if (data.status == 0) {
-                    //     // 将上传的头像的地址填入，为保证不载入缓存加个随机数
-                    //     // $('.user-photo').attr('src', '头像地址?t=' + Math.random());
-                    //     // $('#changeModal').modal('hide');
-                    // } else {
-                    //     alert();
-                    // }
+                    if (data.status == 0) {
+                        // 将上传的头像的地址填入，为保证不载入缓存加个随机数
+                        $('.user-photo').attr('src', '/images/77.jpg'+'?t=' + Math.random());
+                        $('#changeModal').modal('hide');
+                    } else {
+                        alert();
+                    }
                 },
                 error:function () {
                     alert("error")

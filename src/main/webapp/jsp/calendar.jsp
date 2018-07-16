@@ -898,63 +898,63 @@ td.fc-list-item-time.fc-widget-content {
 
         };
 
-        $(".antosubmit2").on("click", function(event) {
-            if(status==="0") {
-                var start = $("#startTime").val();
-                var end = $("#endTime").val();
-                var title = $("#title2").val();
-                var color;
-                var checked = $('#participate').is(':checked');
-                if(checked===true)
-                {
-                    color="#008080";
-                }else
-                {
-                    color="#cde6c7";
-                }
-                if (title !== "") {
-                    $('#calendar').fullCalendar('renderEvent', {
-                        title: title,
-                        start: start,
-                        end: end,
-                        color: color
-                    });
-                }
-                $('.antoclose2').click();
-            }else if (status==="1"){
-                var start = $("#startTime").val();
-                var end = $("#endTime").val();
-                var title = $("#title2").val();
-                var color;
-                var checked = $('#participate').is(':checked');
-                if(checked===true)
-                {
-                    color="#008080";
-                }else
-                {
-                    color="#cde6c7";
-                }
-                selectedEvent.title = title;
-                selectedEvent.start = start;
-                selectedEvent.end = end;
-                selectedEvent.color = color;
-                $('#calendar').fullCalendar('updateEvent', selectedEvent);
-                $('.antoclose2').click();
-            }
-            calendar.fullCalendar('unselect');
-            $('#calendar'). fullCalendar ( 'refetchEvents');
-        });
-
-        $(".antodelete2").on("click", function(event) {
-            if(status==="0") {
-
-            }else if (status==="1"){
-                $('#calendar').fullCalendar( 'removeEvents' ,  selectedEvent.id);
-                $('.antoclose2').click();
-            }
-            calendar.fullCalendar('unselect');
-            $('#calendar'). fullCalendar ( 'refetchEvents' );
-        });
+        // $(".antosubmit2").on("click", function(event) {
+        //     if(status==="0") {
+        //         var start = $("#startTime").val();
+        //         var end = $("#endTime").val();
+        //         var title = $("#title2").val();
+        //         var color;
+        //         var checked = $('#participate').is(':checked');
+        //         if(checked===true)
+        //         {
+        //             color="#008080";
+        //         }else
+        //         {
+        //             color="#cde6c7";
+        //         }
+        //         if (title !== "") {
+        //             $('#calendar').fullCalendar('renderEvent', {
+        //                 title: title,
+        //                 start: start,
+        //                 end: end,
+        //                 color: color
+        //             });
+        //         }
+        //         $('.antoclose2').click();
+        //     }else if (status==="1"){
+        //         var start = $("#startTime").val();
+        //         var end = $("#endTime").val();
+        //         var title = $("#title2").val();
+        //         var color;
+        //         var checked = $('#participate').is(':checked');
+        //         if(checked===true)
+        //         {
+        //             color="#008080";
+        //         }else
+        //         {
+        //             color="#cde6c7";
+        //         }
+        //         selectedEvent.title = title;
+        //         selectedEvent.start = start;
+        //         selectedEvent.end = end;
+        //         selectedEvent.color = color;
+        //         $('#calendar').fullCalendar('updateEvent', selectedEvent);
+        //         $('.antoclose2').click();
+        //     }
+        //     calendar.fullCalendar('unselect');
+        //     $('#calendar'). fullCalendar ( 'refetchEvents');
+        // });
+        //
+        // $(".antodelete2").on("click", function(event) {
+        //     if(status==="0") {
+        //
+        //     }else if (status==="1"){
+        //         $('#calendar').fullCalendar( 'removeEvents' ,  selectedEvent.id);
+        //         $('.antoclose2').click();
+        //     }
+        //     calendar.fullCalendar('unselect');
+        //     $('#calendar'). fullCalendar ( 'refetchEvents' );
+        // });
 
 
         var stringToDate = function(dateStr,separator){
