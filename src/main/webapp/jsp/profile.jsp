@@ -145,7 +145,7 @@
                 <!-- menu profile quick info -->
                 <div class="profile clearfix">
                     <div class="profile_pic">
-                        <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+                        <img id="userImg" src="images/<%=StuNo%>.jpg" onerror="javascript:this.src='images/user.png'" alt="..." class="img-circle profile_img">
                     </div>
                     <div class="profile_info">
                         <span>欢迎,</span>
@@ -222,37 +222,37 @@
                         <li class="" id="miniMenu">
                             <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
                                aria-expanded="false">
-                                <img src="images/img.jpg" alt="">
-                                John Doe
+                                <img id="userImg2" src="images/<%=StuNo%>.jpg" onerror="javascript:this.src='images/user.png'" alt="">
+                                <%=student.getStuName()%>
                                 <span class=" fa fa-angle-down">
                                         </span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                <%--<li>--%>
+                                    <%--<a href="javascript:;">--%>
+                                        <%--Profile--%>
+                                    <%--</a>--%>
+                                <%--</li>--%>
+                                <%--<li>--%>
+                                    <%--<a href="javascript:;">--%>
+                                                <%--<span class="badge bg-red pull-right">--%>
+                                                    <%--50%--%>
+                                                <%--</span>--%>
+                                        <%--<span>--%>
+                                                    <%--Settings--%>
+                                                <%--</span>--%>
+                                    <%--</a>--%>
+                                <%--</li>--%>
+                                <%--<li>--%>
+                                    <%--<a href="javascript:;">--%>
+                                        <%--Help--%>
+                                    <%--</a>--%>
+                                <%--</li>--%>
                                 <li>
-                                    <a href="javascript:;">
-                                        Profile
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:;">
-                                                <span class="badge bg-red pull-right">
-                                                    50%
-                                                </span>
-                                        <span>
-                                                    Settings
-                                                </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:;">
-                                        Help
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="login.html">
+                                    <a href="../login.jsp">
                                         <i class="fa fa-sign-out pull-right">
                                         </i>
-                                        Log Out
+                                        返回登录
                                     </a>
                                 </li>
                             </ul>
@@ -270,76 +270,72 @@
                                 <li>
                                     <a>
                                                 <span class="image">
-                                                    <img src="images/img.jpg" alt="Profile Image" />
+                                                    <img src="images/user.png" alt="Profile Image" />
                                                 </span>
                                         <span>
                                                     <span>
-                                                        John Smith
+                                                        史蒂夫
                                                     </span>
                                                     <span class="time">
-                                                        3 mins ago
+                                                        一天前
                                                     </span>
                                                 </span>
                                         <span class="message">
-                                                    Film festivals used to be do-or-die moments for movie makers. They were
-                                                    where...
+                                                   恭喜你已经成为社团的一员！
                                                 </span>
                                     </a>
                                 </li>
                                 <li>
                                     <a>
                                                 <span class="image">
-                                                    <img src="images/img.jpg" alt="Profile Image" />
+                                                    <img src="images/user.png" alt="Profile Image" />
                                                 </span>
                                         <span>
                                                     <span>
-                                                        John Smith
+                                                        史蒂夫
                                                     </span>
                                                     <span class="time">
-                                                        3 mins ago
+                                                       一天前
                                                     </span>
                                                 </span>
                                         <span class="message">
-                                                    Film festivals used to be do-or-die moments for movie makers. They were
-                                                    where...
+                                                    退出社团的申请已经通过！
                                                 </span>
                                     </a>
                                 </li>
                                 <li>
                                     <a>
                                                 <span class="image">
-                                                    <img src="images/img.jpg" alt="Profile Image" />
+                                                    <img src="images/user.png" alt="Profile Image" />
                                                 </span>
                                         <span>
                                                     <span>
-                                                        John Smith
+                                                        史蒂夫
                                                     </span>
                                                     <span class="time">
-                                                        3 mins ago
+                                                        一天前
                                                     </span>
                                                 </span>
                                         <span class="message">
-                                                    Film festivals used to be do-or-die moments for movie makers. They were
-                                                    where...
+                                                   创建社团的申请正在审核…
                                                 </span>
                                     </a>
                                 </li>
                                 <li>
                                     <a>
                                                 <span class="image">
-                                                    <img src="images/img.jpg" alt="Profile Image" />
+                                                    <img src="images/user.png" alt="Profile Image" />
                                                 </span>
                                         <span>
                                                     <span>
-                                                        John Smith
+                                                       史蒂夫
                                                     </span>
                                                     <span class="time">
-                                                        3 mins ago
+                                                        3天前
                                                     </span>
                                                 </span>
                                         <span class="message">
-                                                    Film festivals used to be do-or-die moments for movie makers. They were
-                                                    where...
+                                                    资金申请…
                                                 </span>
                                     </a>
                                 </li>
@@ -347,7 +343,7 @@
                                     <div class="text-center">
                                         <a>
                                             <strong>
-                                                See All Alerts
+                                                查看全部
                                             </strong>
                                             <i class="fa fa-angle-right">
                                             </i>
@@ -372,16 +368,16 @@
                     <h3>我的简历</h3>
                 </div>
 
-                <div class="title_right">
-                    <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search for...">
-                            <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
-                    </span>
-                        </div>
-                    </div>
-                </div>
+                <%--<div class="title_right">--%>
+                    <%--<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">--%>
+                        <%--<div class="input-group">--%>
+                            <%--<input type="text" class="form-control" placeholder="Search for...">--%>
+                            <%--<span class="input-group-btn">--%>
+                      <%--<button class="btn btn-default" type="button">Go!</button>--%>
+                    <%--</span>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
 
                 <div class="clearfix"></div>
 
@@ -957,6 +953,8 @@
 
             });
             $('#originalPhoto').attr('src',image.src.toString());
+            $('#userImg').attr('src',image.src.toString());
+            $('#userImg2').attr('src',image.src.toString());
             $('#changeMyInfo').modal("hide");
         }
 
