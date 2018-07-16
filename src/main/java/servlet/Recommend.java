@@ -1,11 +1,11 @@
 package servlet;
 
 import Test.Test;
-import model.Article;
-import model.Club;
-import model.Record;
+import model.*;
+import net.sf.json.JSONArray;
 import operations.DAO;
 import org.apache.commons.fileupload.FileItem;
+import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
@@ -23,7 +23,8 @@ import java.util.*;
 
 @WebServlet(name = "Recommend")
 public class Recommend extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    {
 
         response.setContentType("text/html;charset=\"utf-8\"");
         PrintWriter out = response.getWriter();
@@ -36,22 +37,26 @@ public class Recommend extends HttpServlet {
         InputStream is = Test.class.getClassLoader().getResourceAsStream(resource);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
 
+
+         // 获取Session连接
+        SqlSession session = sqlSessionFactory.openSession();
+
         //调用数据库操作，获得与学号绑定的两个数组
-        List<Record> clubRecord = DAO.getClubTimes(sqlSessionFactory);
-        List<Record> activeRecord = DAO.getActiveTimes(sqlSessionFactory);
+        List<Record> clubRecord = DAO.getClubTimes(session);
+        List<Record> activeRecord = DAO.getActiveTimes(session);
 
         //获取与学号绑定的参加活动数
-        List<Record> joinAcitiveRecord = DAO.getAllStudentActive(sqlSessionFactory);
+        List<Record> joinAcitiveRecord = DAO.getAllStudentActive(session);
         //获取与学号绑定的参加社团数（分为成员和管理员两种）
-        List<Record> joinClubRecordLow = DAO.getAllStudentClub(sqlSessionFactory,"成员");
-        List<Record> joinClubRecordHeigh = DAO.getAllStudentClub(sqlSessionFactory,"社长");
-        joinClubRecordHeigh.addAll(DAO.getAllStudentClub(sqlSessionFactory,"部长"));
+        List<Record> joinClubRecordLow = DAO.getAllStudentClub(session, "成员");
+        List<Record> joinClubRecordHeigh = DAO.getAllStudentClub(session, "社长");
+        joinClubRecordHeigh.addAll(DAO.getAllStudentClub(session, "部长"));
         //temp数组是两者的集合，用于在求相似度时可以直接使用两种的集合
         List<Record> temp = new ArrayList<>();
         temp.addAll(joinClubRecordLow);
         temp.addAll(joinClubRecordHeigh);
         //用嵌套List二维数组来存放不同的社团或是活动间的相似度
-        Map<Integer,Map<Integer,Double>> SimliarMatrix;
+        Map<Integer, Map<Integer, Double>> SimliarMatrix;
         Record recordTemp = new Record();
 
         //活动推荐
@@ -59,10 +64,14 @@ public class Recommend extends HttpServlet {
         //获取活动相似度矩阵
         SimliarMatrix = recordTemp.getSimilarList(joinAcitiveRecord);
         //下面创建每一个活动对该用户的推荐度map表
-        Map<Integer,Double> recommendNum = recordTemp.getActiveRecommendNum(activeRecord,joinAcitiveRecord,SimliarMatrix,
-                (Integer) request.getSession().getAttribute("UserNo"));
+        Map<Integer, Double> recommendNum = recordTemp.getActiveRecommendNum(activeRecord, joinAcitiveRecord, SimliarMatrix, (Integer) request.getSession().getAttribute("UserNo"));
         //最后进行排序，得到排序的活动号排名并且剔除已经参加的活动
-        List<Integer> activeRecommend = recordTemp.getSort(recommendNum,(Integer) request.getSession().getAttribute("UserNo"));
+        List<Integer> activeRecommend = recordTemp.getSort(recommendNum, (Integer) request.getSession().getAttribute("UserNo"));
+        List<Activity> active_Recommend = new ArrayList<>();
+        for (int i : activeRecommend)
+        {
+            active_Recommend.add(ActiveDetail.getActiveDetail(sqlSessionFactory, i));
+        }
 
         //活动推荐结束
 
@@ -71,21 +80,35 @@ public class Recommend extends HttpServlet {
         Record recordTemp2 = new Record();
         SimliarMatrix = recordTemp2.getSimilarList(temp);
         //创建每一个社团对该用户的推荐map表
-        Map<Integer,Double> recommendNum2 = recordTemp2.getActiveRecommendNum(clubRecord,joinClubRecordLow,joinClubRecordHeigh,SimliarMatrix,
-                (Integer) request.getSession().getAttribute("UserNo"));
+        Map<Integer, Double> recommendNum2 = recordTemp2.getActiveRecommendNum(clubRecord, joinClubRecordLow, joinClubRecordHeigh, SimliarMatrix, (Integer) request.getSession().getAttribute("UserNo"));
         //最后进行排序，并剔除已经参加的社团
-        List<Integer> clubRecommend = recordTemp2.getSort(recommendNum2,(Integer) request.getSession().getAttribute("UserNo"));
+        List<Integer> clubRecommend = recordTemp2.getSort(recommendNum2, (Integer) request.getSession().getAttribute("UserNo"));
+        List<Club> club_Recommend = new ArrayList<>();
+        for (int i : clubRecommend)
+        {
+            club_Recommend.add(DAO.getClubById(sqlSessionFactory, i));
+        }
 
-        String path = getServletContext().getRealPath("/");
-        Article article = new Article(580148,2,path,"来吧试试看");
-        String test = article.getText();
+
+       List<Club> club_randoms = DAO.getRandomClub(sqlSessionFactory,8);
+
+
+       //把session提出来以提高效率
+       session.commit();
+       session.close();
+
 
         //将上面两个Record对象存放在请求中
-        request.setAttribute("activeRecommend",activeRecommend);
-        request.setAttribute("clubRecommend",clubRecommend);
+        request.setAttribute("active_Recommend",active_Recommend);
+        request.setAttribute("club_Recommend",club_Recommend);
+        request.setAttribute("club_randoms",club_randoms);
+
+
+        List<Message> messgaes = DAO.getMyMessage(sqlSessionFactory,(Integer) request.getSession().getAttribute("UserNo"));
+        request.setAttribute("messages",messgaes);
 
         //跳转到推荐页面
-        request.getRequestDispatcher("jsp/Recommend.jsp").forward(request,response);
+        request.getRequestDispatcher("test/Recommend.jsp").forward(request,response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

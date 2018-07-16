@@ -46,7 +46,7 @@ public class ActiveDetail extends HttpServlet {
 
     }
 
-    Activity getActiveDetail(SqlSessionFactory sqlSessionFactory, int ActiveNo){
+    public static Activity getActiveDetail(SqlSessionFactory sqlSessionFactory, int ActiveNo){
 
         Activity act= new Activity();
         try {

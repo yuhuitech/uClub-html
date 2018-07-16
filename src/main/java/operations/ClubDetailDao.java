@@ -14,4 +14,12 @@ public interface ClubDetailDao {
 
     Activity getActiveDetail(@Param("ActiveNo") int ActiveNo);
 
+    List<Club>getRandomClub(@Param("num") int num);
+
+    int getMemberNumByClub(@Param("ClubNo") int ClubNo);
+
+    int getArticleNumByClub(@Param("ClubNo") int ClubNo);
+
+    int getActiveNumByClub(@Param("ClubNo") int ClubNo);
+
 }

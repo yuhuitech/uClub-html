@@ -3,6 +3,7 @@ package operations;
 import Test.Test;
 import model.Article;
 import model.Club;
+import model.Message;
 import model.Record;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -234,18 +235,15 @@ public class DAO {
     }
 
     //获取各学生的活动访问情况
-    public static List<Record> getActiveTimes(SqlSessionFactory sqlSessionFactory)
+    public static List<Record> getActiveTimes(SqlSession session)
     {
         List<Record> record = new ArrayList<>();
         try {
 
-            // 获取Session连接
-            SqlSession session = sqlSessionFactory.openSession();
-            // 获取Mapper
+
             RecordDao selectInterface = session.getMapper(RecordDao.class);
             record = selectInterface.getActiveTimes();
-            session.commit();
-            session.close();
+
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -254,19 +252,16 @@ public class DAO {
     }
 
     //获取各学生的活动访问情况
-    public static List<Record> getClubTimes(SqlSessionFactory sqlSessionFactory)
+    public static List<Record> getClubTimes(SqlSession session)
     {
 
         List<Record> record = new ArrayList<>();
         try {
 
-            // 获取Session连接
-            SqlSession session = sqlSessionFactory.openSession();
+
             // 获取Mapper
             RecordDao selectInterface = session.getMapper(RecordDao.class);
             record = selectInterface.getClubTimes();
-            session.commit();
-            session.close();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -275,19 +270,17 @@ public class DAO {
     }
 
     //获取所有学生的活动参与情况
-    public static List<Record> getAllStudentActive(SqlSessionFactory sqlSessionFactory)
+    public static List<Record> getAllStudentActive(SqlSession session)
     {
 
         List<Record> activeRecord = new ArrayList<>();
         try {
 
-            // 获取Session连接
-            SqlSession session = sqlSessionFactory.openSession();
+
             // 获取Mapper
             RecordDao selectInterface = session.getMapper(RecordDao.class);
             activeRecord = selectInterface.getAllStudentActive();
-            session.commit();
-            session.close();
+
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -296,19 +289,15 @@ public class DAO {
     }
 
     //获得所有学生的社团参与情况（以职位进行分割）
-    public static List<Record> getAllStudentClub(SqlSessionFactory sqlSessionFactory,String job)
+    public static List<Record> getAllStudentClub(SqlSession session,String job)
     {
 
         List<Record> clubRecord = new ArrayList<>();
         try {
 
-            // 获取Session连接
-            SqlSession session = sqlSessionFactory.openSession();
-            // 获取Mapper
             RecordDao selectInterface = session.getMapper(RecordDao.class);
             clubRecord = selectInterface.getAllStudentClub(job);
-            session.commit();
-            session.close();
+
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -360,6 +349,91 @@ public class DAO {
         }
     }
 
+    //获取随机8个社团
+    public static List<Club>getRandomClub(SqlSessionFactory sqlSessionFactory,int num)
+    {
+        List<Club> random_clubs = new ArrayList<>();
+        try {
+
+            // 获取Session连接
+            SqlSession session = sqlSessionFactory.openSession();
+            // 获取Mapper
+            ClubDetailDao selectInterface = session.getMapper(ClubDetailDao.class);
+            random_clubs = selectInterface.getRandomClub(num);
+            session.commit();
+            session.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return random_clubs;
+    }
+
+    //根据社团号获取成员量，文章量，活动量几个信息
+    public static int getMemberNumByClub(SqlSession session,int ClubNo)
+    {
+        int nums = 0;
+        try {
+
+
+            ClubDetailDao selectInterface = session.getMapper(ClubDetailDao.class);
+            nums = selectInterface.getMemberNumByClub(ClubNo);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return nums;
+    }
+
+    public static int getArticleNumByClub(SqlSession session,int ClubNo)
+    {
+        int nums = 0;
+        try {
+            // 获取Mapper
+            ClubDetailDao selectInterface = session.getMapper(ClubDetailDao.class);
+            nums = selectInterface.getArticleNumByClub(ClubNo);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return nums;
+    }
+
+    public static int getActiveNumByClub(SqlSession session,int ClubNo)
+    {
+        int nums = 0;
+        try {
+            // 获取Mapper
+            ClubDetailDao selectInterface = session.getMapper(ClubDetailDao.class);
+            nums = selectInterface.getActiveNumByClub(ClubNo);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return nums;
+    }
+
+    //下面是有关message相关方法的实现
+    //从用户号获得所有的信息
+    public static List<Message> getMyMessage(SqlSessionFactory sqlSessionFactory,int UserNo)
+    {
+
+        List<Message> result = new ArrayList<>();
+        try {
+
+            // 获取Session连接
+            SqlSession session = sqlSessionFactory.openSession();
+            // 获取Mapper
+            MessageDAO selectInterface = session.getMapper(MessageDAO.class);
+            result = selectInterface.getMyMessage(UserNo);
+            session.commit();
+            session.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
     //获得一个8位随机数字
     public static int getUUID(){
         int applyNum=0;
@@ -374,6 +448,7 @@ public class DAO {
 
         return  applyNum;
     }
+
 
 
 

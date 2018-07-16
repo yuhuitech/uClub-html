@@ -22,6 +22,7 @@
         <mapper resource="/mapping/ClubDetailMapping.xml"/>
         <mapper resource="/mapping/RecordMapping.xml"/>
         <mapper resource="/mapping/ArticleMapping.xml"/>
+        <mapper resource="/mapping/MessageMapping.xml"/>
 
     </mappers>
 </configuration>

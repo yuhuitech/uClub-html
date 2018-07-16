@@ -13,9 +13,29 @@ public class Club {
     private String ClubInfo;
     private String Res_url;
     private int status;
-    private int memberNum;
+    private int memberNum ;
     private int activeNum;
     private int articalNum;
+    private double boy_girl;
+
+    public Club()
+    {
+        memberNum = 0;
+        activeNum = 0;
+        articalNum = 0;
+        boy_girl = 0;
+    }
+
+    public double getBoy_girl()
+    {
+        return boy_girl;
+    }
+
+    public void setBoy_girl(double boy_girl)
+    {
+        this.boy_girl = boy_girl;
+    }
+
 
 
     public int getMemberNum()
@@ -96,19 +116,7 @@ public class Club {
         Res_url = res_url;
     }
 
-    private int getArticleNum()
-    {
-      //下面几个方法的具体还没写
-        return 1;
-    }
-    private int getactiveNum()
-    {
-        return 1;
-    }
-    private int getarticleNum()
-    {
-        return 1;
-    }
+
 
 
 }
