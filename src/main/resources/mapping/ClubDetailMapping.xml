@@ -153,23 +153,7 @@ WHERE a.clubNo >=
         LIMIT 8
     </select>
 
-    <select id = "getMemberNumByClub" resultType="int">
-        SELECT COUNT(*)
-        FROM Member
-        WHERE ClubNo = '${ClubNo}$'
-    </select>
 
-    <select id="getArticleNumByClub" resultType="int">
-        SELECT COUNT (*)
-        FROM Article
-        WHERE ClubNo = '${ClubNo}$'
-    </select>
-
-    <select id="getActiveNumByClub" resultType="int">
-        SELECT COUNT (*)
-        FROM Activity
-        WHERE ClubNo = '${ClubNo}$'
-    </select>
 
 
 

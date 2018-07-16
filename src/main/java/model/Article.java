@@ -1,5 +1,6 @@
 package model;
 
+import operations.ArticleOperations;
 import operations.DAO;
 
 import java.io.*;
@@ -40,7 +41,7 @@ public class Article
            this.date = DAO.getDateTime();
            this.res_url = getCommentUUID();
            this.setText(url+"article/"+this.res_url+".txt",article);
-           DAO.addArticle(this.StuNo,this.ClubNo,this.res_url,this.date);
+           ArticleOperations.addArticle(this.StuNo,this.ClubNo,this.res_url,this.date);
 
     }
 

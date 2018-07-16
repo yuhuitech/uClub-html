@@ -4,6 +4,9 @@ import Test.Test;
 import model.*;
 import net.sf.json.JSONArray;
 import operations.DAO;
+import operations.MessageOperations;
+import operations.RandomOperations;
+import operations.RecordOperations;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -42,15 +45,15 @@ public class Recommend extends HttpServlet {
         SqlSession session = sqlSessionFactory.openSession();
 
         //调用数据库操作，获得与学号绑定的两个数组
-        List<Record> clubRecord = DAO.getClubTimes(session);
-        List<Record> activeRecord = DAO.getActiveTimes(session);
+        List<Record> clubRecord = RecordOperations.getClubTimes(session);
+        List<Record> activeRecord = RecordOperations.getActiveTimes(session);
 
         //获取与学号绑定的参加活动数
-        List<Record> joinAcitiveRecord = DAO.getAllStudentActive(session);
+        List<Record> joinAcitiveRecord = RecordOperations.getAllStudentActive(session);
         //获取与学号绑定的参加社团数（分为成员和管理员两种）
-        List<Record> joinClubRecordLow = DAO.getAllStudentClub(session, "成员");
-        List<Record> joinClubRecordHeigh = DAO.getAllStudentClub(session, "社长");
-        joinClubRecordHeigh.addAll(DAO.getAllStudentClub(session, "部长"));
+        List<Record> joinClubRecordLow = RecordOperations.getAllStudentClub(session, "成员");
+        List<Record> joinClubRecordHeigh = RecordOperations.getAllStudentClub(session, "社长");
+        joinClubRecordHeigh.addAll(RecordOperations.getAllStudentClub(session, "部长"));
         //temp数组是两者的集合，用于在求相似度时可以直接使用两种的集合
         List<Record> temp = new ArrayList<>();
         temp.addAll(joinClubRecordLow);
@@ -90,7 +93,7 @@ public class Recommend extends HttpServlet {
         }
 
 
-       List<Club> club_randoms = DAO.getRandomClub(sqlSessionFactory,8);
+       List<Club> club_randoms = RandomOperations.getRandomClub(sqlSessionFactory,8);
 
 
        //把session提出来以提高效率
@@ -104,7 +107,7 @@ public class Recommend extends HttpServlet {
         request.setAttribute("club_randoms",club_randoms);
 
 
-        List<Message> messgaes = DAO.getMyMessage(sqlSessionFactory,(Integer) request.getSession().getAttribute("UserNo"));
+        List<Message> messgaes = MessageOperations.getMyMessage(sqlSessionFactory,(Integer) request.getSession().getAttribute("UserNo"));
         request.setAttribute("messages",messgaes);
 
         //跳转到推荐页面

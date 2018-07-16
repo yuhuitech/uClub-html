@@ -9,6 +9,7 @@
 <%@ page import="Test.Test" %>
 <%@ page import="model.Activity" %>
 <%@ page import="model.Message" %>
+<%@ page import="operations.MessageOperations" %>
 <%--
   Created by IntelliJ IDEA.
   User: Administrator
@@ -49,7 +50,7 @@
     InputStream is = Test.class.getClassLoader().getResourceAsStream(resource);
     SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
     List<Club> Clubs = ClubOperations.getClubsALL(sqlSessionFactory);
-    List<Message> messages = DAO.getMyMessage(sqlSessionFactory,(Integer) request.getSession().getAttribute("UserNo"));
+    List<Message> messages = MessageOperations.getMyMessage(sqlSessionFactory,(Integer) request.getSession().getAttribute("UserNo"));
 %>
 <div class="container body">
     <div class="main_container">
@@ -387,12 +388,6 @@
                     </div>
                 </div>
                 <div class="row">
-
-
-
-
-
-
 
 
                     <%
