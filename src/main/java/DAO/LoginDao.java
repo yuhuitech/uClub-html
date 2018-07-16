@@ -1,4 +1,4 @@
-package DAO;
+package Dao;
 
 import operations.DAO;
 import org.apache.ibatis.annotations.Param;

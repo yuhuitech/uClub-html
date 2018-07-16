@@ -7,6 +7,46 @@ public class Club {
     private String ClubInfo;
     private String Res_url;
     private int status;
+    private int memberNum;
+    private int activeNum;
+
+    public int getArticalNum() {
+        return articalNum;
+    }
+
+    public void setArticalNum(int articalNum) {
+        this.articalNum = articalNum;
+    }
+
+    private int articalNum;
+
+    public int getMemberNum() {
+        return memberNum;
+    }
+
+    public void setMemberNum(int memberNum) {
+        this.memberNum = memberNum;
+    }
+
+    public int getActiveNum() {
+        return activeNum;
+    }
+
+    public void setActiveNum(int activeNum) {
+        this.activeNum = activeNum;
+    }
+
+    public int getArticleNum() {
+        return articleNum;
+    }
+
+    public void setArticleNum(int articleNum) {
+        this.articleNum = articleNum;
+    }
+
+    private int articleNum;
+
+
 
     public int getStatus() {
         return status;

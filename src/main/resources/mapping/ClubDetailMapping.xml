@@ -2,7 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="DAO.ClubDetailDao">
+
+<mapper namespace="Dao.ClubDetailDao">
+
 
     <resultMap id="ClubDetailResult" type="model.Club">
         <result property="ClubNo" column="ClubNo"/>
@@ -19,6 +21,17 @@
         <result property="ClubNo" column="ClubNo"/>
         <result property="active_time" column="active_time"/>
         <result property="status" column="status"/>
+    </resultMap>
+
+    <resultMap id="ClubDetailResultWithNum" type="model.Club">
+        <result property="ClubNo" column="ClubNo"/>
+        <result property="ClubName" column="ClubName"/>
+        <result property="Type" column="Type"/>
+        <result property="ClubInfo" column="ClubInfo"/>
+        <result property="Res_url" column="Res_url"/>
+        <result property="memberNum" column="Member_num"/>
+        <result property="activeNum" column="Active_num"/>
+        <result property="articleNum" column="Article_num"/>
     </resultMap>
 
     <select id="getClubDetail" resultMap="ClubDetailResult">
@@ -45,5 +58,107 @@
     <select id="getAllClubs" resultMap="ClubDetailResult">
         SELECT * FROM Club
     </select>
+
+    <select id = "getRandomClub" resultMap="ClubDetailResultWithNum">
+        SELECT a.ClubNo,ClubName,Type,ClubInfo,Res_url,status,Member_num,Active_num,Article_num FROM
+            (
+                SELECT a.ClubNo,Article_num,Member_num,Active_num
+                FROM
+                    (
+                        SELECT a.ClubNo,Article_num,Member_num FROM
+                            (
+                                SELECT Article.ClubNo ,COUNT(ArticleNo) AS Article_num
+                                FROM
+                                    Article
+                                GROUP BY Article.ClubNo
+                            ) a
+                            LEFT JOIN
+                            (
+                                SELECT Member.ClubNo,COUNT(Member.StuNo) AS Member_num
+                                FROM
+                                    Member
+                                GROUP BY Member.ClubNo
+                            ) b
+                                on a.ClubNo = b.ClubNo
+                        UNION
+                        SELECT b.ClubNo,Article_num,Member_num FROM
+                            (
+                                SELECT Article.ClubNo ,COUNT(ArticleNo) AS Article_num
+                                FROM
+                                    Article
+                                GROUP BY Article.ClubNo
+                            ) a
+                            RIGHT JOIN
+                            (
+                                SELECT Member.ClubNo,COUNT(Member.StuNo) AS Member_num
+                                FROM
+                                    Member
+                                GROUP BY Member.ClubNo
+                            ) b
+                                on a.ClubNo = b.ClubNo
+                    ) a
+                    LEFT JOIN
+                    (
+                        SELECT Activity.ClubNo,COUNT(ActiveNo) AS Active_num
+                        FROM Activity
+                        GROUP BY
+                            ClubNo
+                    ) b
+                        ON a.ClubNo = b.ClubNo
+                UNION
+                SELECT b.ClubNo,Article_num,Member_num,Active_num
+                FROM
+                    (
+                        SELECT a.ClubNo,Article_num,Member_num FROM
+                            (
+                                SELECT Article.ClubNo ,COUNT(ArticleNo) AS Article_num
+                                FROM
+                                    Article
+                                GROUP BY Article.ClubNo
+                            ) a
+                            LEFT JOIN
+                            (
+                                SELECT Member.ClubNo,COUNT(Member.StuNo) AS Member_num
+                                FROM
+                                    Member
+                                GROUP BY Member.ClubNo
+                            ) b
+                                on a.ClubNo = b.ClubNo
+                        UNION
+                        SELECT b.ClubNo,Article_num,Member_num FROM
+                            (
+                                SELECT Article.ClubNo ,COUNT(ArticleNo) AS Article_num
+                                FROM
+                                    Article
+                                GROUP BY Article.ClubNo
+                            ) a
+                            RIGHT JOIN
+                            (
+                                SELECT Member.ClubNo,COUNT(Member.StuNo) AS Member_num
+                                FROM
+                                    Member
+                                GROUP BY Member.ClubNo
+                            ) b
+                                on a.ClubNo = b.ClubNo
+                    ) a
+                    RIGHT JOIN
+                    (
+                        SELECT Activity.ClubNo,COUNT(ActiveNo) AS Active_num
+                        FROM Activity
+                        GROUP BY
+                            ClubNo
+                    ) b
+                        ON a.ClubNo = b.ClubNo
+            ) a
+            LEFT JOIN
+            Club
+                ON
+                    a.ClubNo = Club.clubNo
+        WHERE a.clubNo >=
+              ((SELECT MAX(ClubNo) FROM Club)-(SELECT MIN(ClubNo) FROM Club)) * RAND() + (SELECT MIN(ClubNo) FROM Club)
+        LIMIT 8
+    </select>
+
+
 
 </mapper>

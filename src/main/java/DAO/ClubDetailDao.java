@@ -1,4 +1,4 @@
-package DAO;
+package Dao;
 
 import model.Activity;
 import model.Club;
@@ -16,5 +16,7 @@ public interface ClubDetailDao {
     Activity getActiveDetail(@Param("ActiveNo") int ActiveNo);
 
     List<Club> getAllClubs();
+
+    List<Club>getRandomClub(@Param("num") int num);
 
 }

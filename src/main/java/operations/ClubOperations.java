@@ -1,12 +1,20 @@
 package operations;
 
+import Dao.*;
+
+import model.Activity;
+
 import model.Club;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import java.util.ArrayList;
 import java.util.List;
-import DAO.ClubDAO;
+//<<<<<<< HEAD
+
+//=======
+//import DAO.ClubDAO;
+//>>>>>>> wt716
 
 public class ClubOperations  {
    // @Override
@@ -100,7 +108,11 @@ public class ClubOperations  {
         return Clubs;
     }
 
+//<<<<<<< HEAD
+//    public static int upadteClub(SqlSessionFactory sqlSessionFactory, int ClubNo, String ClubName, String Type, String ClubInfo) {
+//=======
     public static int updateClub(SqlSessionFactory sqlSessionFactory, int ClubNo, String ClubName, String Type, String ClubInfo) {
+//>>>>>>> wt716
         try {
             // 获取Session连接
             SqlSession session = sqlSessionFactory.openSession();
@@ -117,13 +129,30 @@ public class ClubOperations  {
         //返回值状态-2，表示更新操作
     }
 
-    public static int addClub(SqlSessionFactory sqlSessionFactory, int ClubNo, String ClubName, String Type, String ClubInfo) {
+//    public static int addClub(SqlSessionFactory sqlSessionFactory, int ClubNo, String ClubName, String Type, String ClubInfo) {
+//        try {
+//            // 获取Session连接
+//            SqlSession session = sqlSessionFactory.openSession();
+//            // 获取Mapper
+//            ClubDAO clubDAO = session.getMapper(ClubDAO.class);
+//            int Clubs = clubDAO.addClub(ClubNo, ClubName, Type, ClubInfo);
+//            session.commit();
+//            session.close();
+//            return Clubs;
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return -3;
+//        //返回值状态-3，表示增加一个社团的操作
+//    }
+
+    public static int addClub(SqlSessionFactory sqlSessionFactory, int ClubNo, String ClubName, String Type, String ClubInfo,String Res_url,int status) {
         try {
             // 获取Session连接
-            SqlSession session = sqlSessionFactory.openSession();
+            SqlSession session = sqlSessionFactory.openSession(true);
             // 获取Mapper
             ClubDAO clubDAO = session.getMapper(ClubDAO.class);
-            int Clubs = clubDAO.addClub(ClubNo, ClubName, Type, ClubInfo);
+            int Clubs = clubDAO.addClub(ClubNo, ClubName, Type, ClubInfo,Res_url,status);
             session.commit();
             session.close();
             return Clubs;
@@ -145,11 +174,13 @@ public class ClubOperations  {
             session.commit();
             session.close();
             //return club;
+
         } catch (Exception e) {
             e.printStackTrace();
         }
         return club;
     }
+
 
     public static int deleteClub(SqlSessionFactory sqlSessionFactory, int ClubNo) {
         try {
@@ -192,6 +223,101 @@ public class ClubOperations  {
     }
 
 
+    public static List<Club> getAllJoinClubs(SqlSessionFactory sqlSessionFactory,int StuNo) {
+        List<Club> result = new ArrayList<>();
+        try {
+            // 获取Session连接
+            SqlSession session = sqlSessionFactory.openSession();
+            // 获取Mapper
+            ClubDAO clubDAO = session.getMapper(ClubDAO.class);
+            result = clubDAO.getAllJoinClubs(StuNo);
+            session.commit();
+            session.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public static  Activity getActiveDetail(SqlSessionFactory sqlSessionFactory, int ActiveNo){
+
+        Activity act= new Activity();
+        try {
+            SqlSession session = sqlSessionFactory.openSession();
+            ClubDetailDao selectInterface = session.getMapper(ClubDetailDao.class);
+            act = selectInterface.getActiveDetail(ActiveNo);
+            session.commit();
+            session.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return act;
+    }
+
+
+    public static Club getClubDetail(SqlSessionFactory sqlSessionFactory, int ClubNo){
+
+        Club club=new Club();
+        try {
+            SqlSession session = sqlSessionFactory.openSession();
+            ClubDetailDao selectInterface = session.getMapper(ClubDetailDao.class);
+            club = selectInterface.getClubDetail(ClubNo);
+            session.commit();
+            session.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return club;
+    }
+
+
+    public static List<Activity> getClubActivities(SqlSessionFactory sqlSessionFactory, int ClubNo){
+
+        List<Activity> list=new ArrayList<>();
+        try {
+            SqlSession session = sqlSessionFactory.openSession();
+            ClubDetailDao selectInterface = session.getMapper(ClubDetailDao.class);
+            list=selectInterface.getClubActivities(ClubNo);
+            session.commit();
+            session.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    public static int joinClubApply(SqlSessionFactory sqlSessionFactory, int ApplyNo, int StuNo, int ClubNo, String JoinReason){
+        int i=0;
+        try {
+            SqlSession session = sqlSessionFactory.openSession();
+            JoinClubDao selectInterface = session.getMapper(JoinClubDao.class);
+            i=selectInterface.joinClubApply(ApplyNo,StuNo,ClubNo,JoinReason);
+            System.out.println("成功插入数据");
+            session.commit();
+            session.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return i;
+    }
+
+    public static int getClubCounts(SqlSessionFactory sqlSessionFactory)
+    {
+        int counts = 0;
+        try {
+            // 获取Session连接
+            SqlSession session = sqlSessionFactory.openSession();
+            // 获取Mapper
+            ClubDAO clubDAO = session.getMapper(ClubDAO.class);
+            int clubs = clubDAO.getClubCounts();
+            counts = clubs;
+            session.commit();
+            session.close();
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return  counts;
+    }
 
 
 }

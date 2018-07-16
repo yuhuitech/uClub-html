@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="DAO.commentDao">
+
+    <resultMap id="commentMap" type="model.Comment">
+        <result property="StuNo" column="StuNo"/>
+        <result property="ArticleNo" column="ArticleNo"/>
+        <result property="CommentNo" column="CommentNo"/>
+        <result property="comment" column="comment"/>
+        <result property="SendTime" column="SendTime"/>
+        <result property="RelatedCommentNo" column="RelatedCommentNo"/>
+        <result property="RelatedStuNo" column="RelatedStuNo"/>
+    </resultMap>
+
+
+
+    <!--选择一个文章下面的所有评论-->
+    <select id="getAllComments" resultType="String"  resultMap="commentMap">
+        SELECT StuNo,CommentNo,comment, SendTime FROM comment
+        WHERE
+        ArticleNo = '${ArticleNo}' AND   RelatedCommentNo is null
+        ORDER BY SendTime
+    </select>
+
+    <!--选择一个文章下面的所有评论-->
+    <select id="getAllReply" resultType="String"  resultMap="commentMap">
+        SELECT * FROM comment
+        WHERE
+        RelatedCommentNo = '${RelatedCommentNo}'
+        ORDER BY SendTime
+    </select>
+
+
+
+    <!--插入评论-->
+    <insert id="addComment">
+        insert into uclub.comment(StuNo, ArticleNo, CommentNo, comment, SendTime,RelatedCommentNo,RelatedStuNo)
+        values(#{StuNo}, #{ArticleNo}, #{CommentNo}, #{comment},#{SendTime, jdbcType=TIMESTAMP},#{RelatedCommentNo},#{RelatedStuNo})
+    </insert>
+
+
+
+    <select id="getStuNo" resultType="String">
+        SELECT StuNo FROM comment
+        <where>
+            CommentNo = '${RelatedCommentNo}'
+        </where>
+    </select>
+
+
+    <!--下面是对留言板的表的操作部分-->
+
+
+    <resultMap id="messageBoardMap" type="model.MessageBoard">
+        <result property="StuNo" column="StuNo"/>
+        <result property="ClubNo" column="ClubNo"/>
+        <result property="MessageNo" column="MessageNo"/>
+        <result property="Message" column="Message"/>
+        <result property="PostTime" column="PostTime"/>
+    </resultMap>
+
+
+    <!--插入留言-->
+    <insert id="add2MessageBoard">
+        insert into uclub.message_board(StuNo, ClubNo, MessageNo, Message, PostTime)
+        values(#{StuNo}, #{ClubNo}, #{MessageNo}, #{Message},#{PostTime, jdbcType=TIMESTAMP})
+    </insert>
+
+
+    <!--通过ClubNo获取一个社团的所有留言,根据时间顺序排序-->
+    <select id="getMessageBoard" resultType="String" resultMap="messageBoardMap">
+        SELECT * FROM message_board
+        WHERE ClubNo = '${ClubNo}'
+       ORDER BY PostTime
+    </select>
+
+
+</mapper>

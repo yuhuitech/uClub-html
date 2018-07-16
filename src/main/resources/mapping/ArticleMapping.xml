@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="operations.ArticleDao">
+
+
+    <resultMap id="Article" type="model.Article">
+        <result property="ArticleNo" column="ArticleNo"/>
+        <result property="StuNo" column="StuNo"/>
+        <result property="ClubNo" column="ClubNo"/>
+        <result property="res_url" column="res_url"/>
+        <result property="date" column="date"/>
+    </resultMap>
+
+    <select id="getAllArticles" resultMap="Article">
+        SELECT * FROM Article ORDER BY date DESC
+    </select>
+
+    <insert id ="addArticle">
+            insert into Article(StuNo, ClubNo, res_url, date)
+        values(#{StuNo}, #{ClubNo}, #{res_url}, #{date, jdbcType=TIMESTAMP})
+    </insert>
+
+</mapper>

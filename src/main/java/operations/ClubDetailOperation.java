@@ -7,7 +7,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import java.util.ArrayList;
 import java.util.List;
-import DAO.ClubDetailDao;
+import Dao.ClubDetailDao;
 public class ClubDetailOperation {
 
     public static Club getClubDetail(SqlSessionFactory sqlSessionFactory, int ClubNo){

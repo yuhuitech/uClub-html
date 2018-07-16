@@ -1,8 +1,10 @@
-package DAO;
+package Dao;
 
+import model.Apply;
 import operations.DAO;
 import org.apache.ibatis.annotations.Param;
 import java.util.Date;
+import java.util.List;
 
 
 public interface ApplyClubDao {
@@ -27,6 +29,7 @@ public interface ApplyClubDao {
                 @Param("Res_url") String res_url,
                 @Param("status") String status,
                 @Param("CreateTime") Date createTime);
+
 
 
 }

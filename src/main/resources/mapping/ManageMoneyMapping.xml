@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Dao.MoneyDAO">
+    <resultMap id="MoneyApplyResultMap" type="model.MoneyApply">
+        <result property="ApplyNo" column="ApplyNo"/>
+        <result property="ActivityNo" column="ActivityNo"/>
+        <result property="Reason" column="Reason"/>
+        <result property="price" column="price"/>
+        <result property="status" column="status"/>
+        <result property="active_name" column="active_name"/>
+        <result property="ClubName" column="ClubName"/>
+    </resultMap>
+    <select id="getMoneyAppliesAll" resultMap="MoneyApplyResultMap">
+        SELECT M.ApplyNo,M.Reason,M.price,M.status,A.active_name,C.ClubName
+        FROM price_apply M,Activity A,Club C
+        <where>
+          A.ClubNo=C.ClubNo
+          AND
+          M.ActiveNo=A.ActiveNo
+          AND
+          M.status = '0'
+        </where>
+
+    </select>
+
+
+
+    <select id="getMoneyAppliesPassed" resultMap="MoneyApplyResultMap">
+        SELECT M.ApplyNo,M.Reason,M.price,M.status,A.active_name,C.ClubName
+        FROM price_apply M,Activity A,Club C
+        <where>
+            A.ClubNo=C.ClubNo
+            AND
+            M.ActiveNo=A.ActiveNo
+            AND
+            M.status = '1'
+        </where>
+    </select>
+
+
+    <select id="getMoneyAppliesFailed" resultMap="MoneyApplyResultMap">
+        SELECT M.ApplyNo,M.Reason,M.price,M.status,A.active_name,C.ClubName
+        FROM price_apply M,Activity A,Club C
+        <where>
+            A.ClubNo=C.ClubNo
+            AND
+            M.ActiveNo=A.ActiveNo
+        AND
+        M.status = '2'
+        </where>
+    </select>
+
+    <update id="checkFailed">
+        update price_apply
+        SET status = '2'
+        WHERE ApplyNo = '${ApplyNo}'
+    </update>
+
+    <update id="checkPassed">
+        update price_apply
+        SET status = '1'
+        WHERE ApplyNo = '${ApplyNo}'
+    </update>
+
+    <select id="getMAcounts" resultType="int">
+        SELECT COUNT(*) FROM  price_apply
+      <where>
+          status = '0'
+      </where>
+    </select>
+
+    <select id="getMAcountsHis" resultType="int">
+        SELECT COUNT(*) FROM  price_apply
+        <where>
+            status  != '0'
+
+        </where>
+    </select>
+
+</mapper>

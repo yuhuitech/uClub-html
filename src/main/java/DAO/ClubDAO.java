@@ -1,4 +1,4 @@
-package DAO;
+package Dao;
 
 import model.Club;
 import operations.DAO;
@@ -16,11 +16,21 @@ public interface ClubDAO {
     List<Club> getClubs(@Param("ClubNo") int ClubNo, @Param("ClubName") String ClubName, @Param("Type") String Type, @Param("ClubInfo") String ClubInfo);
     int updateClub(@Param("ClubNo") int ClubNo, @Param("ClubName") String ClubName, @Param("Type") String Type, @Param("ClubInfo") String ClubInfo);
 
-    int  addClub(@Param("ClubNo") int ClubNo, @Param("ClubName") String ClubName, @Param("Type") String Type, @Param("ClubInfo") String ClubInfo);
+//    int  addClub(@Param("ClubNo") int ClubNo, @Param("ClubName") String ClubName, @Param("Type") String Type, @Param("ClubInfo") String ClubInfo);
 
     Club getClub(@Param("ClubNo") int ClubNo);
 
     int deleteClub(@Param("ClubNo") int ClubNo);
+
+    List<Club> getAllJoinClubs(@Param("StuNo") int StuNo);
+
+    int getClubCounts();
+    int  addClub(@Param("ClubNo")int ClubNo,
+                 @Param("ClubName")String ClubName,
+                 @Param("Type")String Type,
+                 @Param("ClubInfo")String ClubInfo,
+                 @Param("Res_url")String Res_url,
+                 @Param("status")int status);
 
 
 

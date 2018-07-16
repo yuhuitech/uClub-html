@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Dao.ManageApplyDAO">
+    <resultMap id="ApplyResultMap" type="model.Apply">
+        <result property="ApplyNo" column="ApplyNo"/>
+        <result property="ClubName" column="ClubName"/>
+        <result property="ClubType" column="ClubType"/>
+        <result property="ClubInfo" column="ClubInfo"/>
+        <result property="StuNo" column="StuNo"/>
+        <result property="ClubSize" column="ClubSize"/>
+        <result property="ApplyTime" column="ApplyTime"/>
+        <result property="StuName" column="StuName"/>
+        <result property="Reason" column="Reason"/>
+        <result property="ClubNo" column="ClubNo"/>
+    </resultMap>
+
+
+    <select id="getUncheckCounts" resultType="int">
+        SELECT COUNT(*) FROM Create_apply
+        <where>
+            status = '0'
+        </where>
+
+    </select>
+
+
+    <select id="getcheckedCounts" resultType="int">
+        SELECT COUNT(*) FROM Create_apply
+        <where>
+            status != '0'
+
+        </where>
+
+    </select>
+
+    <select id="getstatus" resultType="int">
+        SELECT  status FROM  Create_apply
+        <where>
+            ApplyNo = '${ApplyNo}'
+        </where>
+    </select>
+
+    <select id="getAppliesAll" resultMap="ApplyResultMap">
+        SELECT * FROM  Create_apply
+
+    </select>
+    
+    
+    <select id="getAppliesAllV2" resultMap="ApplyResultMap">
+        SELECT A.ApplyNo,A.ClubName,A.ClubType,A.ClubInfo,A.StuNo,A.ClubSize,A.ApplyTime,S.StuName
+        FROM  Create_apply A,Student S
+    </select>
+
+    <select id="getAppliesUnchecked" resultMap="ApplyResultMap">
+        SELECT * FROM  Create_apply
+        <where>
+            status = '0'
+        </where>
+    </select>
+
+    <select id="getAppliesUncheckedV2" resultMap="ApplyResultMap">
+        SELECT A.ApplyNo,A.ClubName,A.ClubType,A.ClubInfo,A.StuNo,A.ClubSize,A.ApplyTime,S.StuName
+        FROM  Create_apply A,Student S
+        <where>
+            A.StuNo = S.StuNo
+            AND
+            A.status = '0'
+        </where>
+    </select>
+
+    <select id="getAppliesPassed" resultMap="ApplyResultMap">
+        SELECT * FROM  Create_apply
+        <where>
+            status = '1'
+        </where>
+    </select>
+
+    <select id="getAppliesPassedV2" resultMap="ApplyResultMap">
+        SELECT A.ApplyNo,A.ClubName,A.ClubType,A.ClubInfo,A.StuNo,A.ClubSize,A.ApplyTime,S.StuName
+        FROM  Create_apply A,Student S
+        <where>
+            A.StuNo = S.StuNo
+            AND
+            A.status = '1'
+        </where>
+    </select>
+
+    <select id="getAppliesFailed" resultMap="ApplyResultMap">
+        SELECT * FROM  Create_apply
+        <where>
+            status = '2'
+        </where>
+    </select>
+
+    <select id="getAppliesFailedV2" resultMap="ApplyResultMap">
+        SELECT A.ApplyNo,A.ClubName,A.ClubType,A.ClubInfo,A.StuNo,A.ClubSize,A.ApplyTime,S.StuName
+        FROM  Create_apply A,Student S
+        <where>
+            A.StuNo = S.StuNo
+            AND
+            A.status = '2'
+        </where>
+    </select>
+
+    <select id="getApplyTime">
+        SELECT ApplyTime FROM   Create_apply
+        <where>
+            ApplyNo = '${ApplyNo}'
+        </where>
+    </select>
+
+    <update id="checkPass">
+        UPDATE  Create_apply
+        SET status = '1'
+        WHERE  ApplyNo = '${ApplyNo}'
+    </update>
+
+    <update id="checkFailed">
+        UPDATE  Create_apply
+        SET status = '2'
+        WHERE  ApplyNo = '${ApplyNo}'
+    </update>
+
+    <select id="getStuName" resultType="String">
+        SELECT StuName FROM Student
+        WHERE
+        StuNo = '${StuNo}'
+    </select>
+
+
+    <select id="getDissolveAppliesAll" resultMap="ApplyResultMap">
+        SELECT D.ApplyNo,D.StuNo,D.ClubNo,D.Reason,D.status,S.StuName,C.ClubName
+        FROM dissolve_apply D,Student S,Club C
+        <where>
+            D.StuNo = S.StuNo
+            AND
+            D.ClubNo = C.ClubNo
+            AND
+            D.status = '0'
+        </where>
+    </select>
+
+    <update id="checkPassInDis">
+        UPDATE dissolve_apply
+        SET status = '1'
+        WHERE ApplyNo = '${ApplyNo}'
+    </update>
+
+    <update id ="checkFailInDis">
+        UPDATE  dissolve_apply
+        SET status = '2'
+        WHERE ApplyNo ='${ApplyNo}'
+    </update>
+
+    <select id="getDisCounts" resultType="int">
+        SELECT COUNT(*) FROM dissolve_apply
+        <where>
+            status = '0'
+        </where>
+    </select>
+
+</mapper>

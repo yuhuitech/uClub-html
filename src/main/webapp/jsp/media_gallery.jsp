@@ -1,11 +1,15 @@
 <%@ page import="org.apache.ibatis.session.SqlSessionFactory" %>
 <%@ page import="java.util.List" %>
 <%@ page import="model.Club" %>
-<%@ page import="controller.ApplyClubServlet" %>
-<%@ page import="controller.ClubDetail" %>
+
+
 <%@ page import="operations.ClubOperations" %>
 <%@ page import="operations.ClubDetailOperation" %>
-<%@ page import="operations.ApplyClubOperation" %>
+<%@ page import="operations.DAO" %>
+<%@ page import="java.io.InputStream" %>
+<%@ page import="org.apache.ibatis.session.SqlSessionFactoryBuilder" %>
+<%@ page import="model.Student" %>
+
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -19,10 +23,13 @@
   request.setCharacterEncoding("UTF-8");
   response.setCharacterEncoding("UTF-8");
   SqlSessionFactory sqlSessionFactory = (SqlSessionFactory) request.getServletContext().getAttribute("SqlSessionFactory");
+
   List<Club> clubs = ClubDetailOperation.getAllClubs(sqlSessionFactory);
-  userName=ApplyClubOperation.getStudentName(sqlSessionFactory,userNo);
+  userName=DAO.getStudentName(sqlSessionFactory,userNo);
   session.setAttribute("loginUserName",userName);
+
   request.setAttribute("Clubs",clubs);
+
 
 
 %>
@@ -91,25 +98,25 @@
                 <ul class="nav side-menu">
                   <li class="active"><a><i class="fa fa-home"></i> 主页 <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu" style="display: block;">
-                    	  <li><a href="index2.html" >趋势</a></li>
                       <li class="current-page"><a href="media_gallery.jsp">所有社团</a></li>
+                      <li><a href="index2.html" >趋势</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-edit"></i> 申请 <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="form.html">申请创建社团</a></li>
+                      <li><a href="formWizards.jsp">申请创建社团</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-desktop"></i> 社团中心 <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="my_group.html">加入的社团</a></li>
                       <li><a href="inbox.html">收到的消息</a></li>
-                      <li><a href="calendar.html">活动日历</a></li>
+                      <li><a href="calendar.jsp">活动日历</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-user"></i> 我 <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="profile.html">我的简历</a></li>
+                      <li><a href="profile.jsp">我的简历</a></li>
                     </ul>
                   </li>
                 </ul>
@@ -147,7 +154,9 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+
                     <img src="images/img.jpg" alt=""><%=userName%>
+
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">

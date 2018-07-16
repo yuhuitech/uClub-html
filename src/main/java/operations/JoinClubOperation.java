@@ -2,7 +2,7 @@ package operations;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
-import DAO.JoinClubDao;
+import Dao.JoinClubDao;
 public class JoinClubOperation {
 
     public static String getClubName(SqlSessionFactory sqlSessionFactory, int ClubNo){

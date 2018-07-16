@@ -2,7 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="DAO.DaoInterface">
+
+<mapper namespace="Dao.DaoInterface">
+
 
     <resultMap id="loginResultMap" type="model.Student">
         <result property="StuNo" column="StuNo"/>
@@ -39,7 +41,9 @@
         WHERE
             ClubNo IN
             (
-               SELECT ClubNo FROM Member WHERE StuNo = '${StuNo}' AND  Job = '${Job}'
+
+               SELECT ClubNo FROM Member WHERE StuNo = '${StuNo}' AND  Job = '${Job}' AND leave_time is null
+
             )
 
     </select>
@@ -59,8 +63,8 @@
     </update>
 
     <insert id = "AddActivity">
-        INSERT INTO Activity (active_name,active_info,ClubNo,active_time,status)
-        VALUES ('${active_name}','${active_info}','${ClubNo}','${active_time}','${status}')
+        INSERT INTO Activity (ActiveNo,active_name,active_info,ClubNo,begin_time,end_time,status)
+        VALUES (#{ActiveNo},'${active_name}','${active_info}','${ClubNo}',#{begin_time},#{end_time},#{status})
     </insert>
 
 
