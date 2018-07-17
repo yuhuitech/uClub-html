@@ -51,8 +51,8 @@ public class Login extends HttpServlet {
             session.setAttribute("UserNo", userID);
             session.setAttribute("Status",status);
 
-//            resp.getWriter().print("{\"success\":\"true\"}");
-//            resp.getWriter().flush();
+            resp.getWriter().print("{\"success\":\"true\"}");
+            resp.getWriter().flush();
         }
         else {
             resp.getWriter().print("{\"success\":\"false\"}");
