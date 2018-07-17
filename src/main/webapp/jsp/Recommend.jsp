@@ -117,6 +117,7 @@
 
     List<Club> Clubs = ClubOperations.getClubsALL(sqlSessionFactory);
     List<Message> messages = MessageOperations.getMyMessage(sqlSessionFactory,(Integer) request.getSession().getAttribute("UserNo"));
+    session.setAttribute("messages",messages);
 %>
 <div class="container body">
     <div class="main_container">
@@ -247,7 +248,7 @@
 
                                 <li>
                                     <div class="text-center">
-                                        <a href="inbox.html">
+                                        <a href="Messagebox.jsp">
                                             <strong>See All Alerts</strong>
                                             <i class="fa fa-angle-right"></i>
                                         </a>
@@ -322,7 +323,11 @@
                                 <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
-                                <%for(Club club:club_Recommend){%>
+                                <%  int i = 0;
+                                    for(Club club:club_Recommend){
+                                        i++;//用作计数
+                                        if(i>5) break;
+                                %>
                                 <article class="media event">
                                     <a class="pull-left date">
                                         <p class="month">April</p>
@@ -360,7 +365,11 @@
                                 <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
-                                <%for(Activity act:active_Recommend){%>
+                                <%int m = 0;
+                                    for(Activity act:active_Recommend){
+                                   m++;
+                                   if(m > 5) break;
+                                %>
                                 <article class="media event">
                                     <a class="pull-left date">
                                         <p class="month">April</p>
