@@ -21,6 +21,8 @@
 <%@ page import="java.text.DateFormat" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="static operations.DAO.getStudentName" %>
+<%@ page import="model.Article" %>
+<%@ page import="model.Message" %>
 <%@ page import="operations.DAO" %><%--
   Created by IntelliJ IDEA.
   User: 22847
@@ -31,243 +33,258 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
 
+    int artcle_num = Integer.parseInt( request.getParameter("url"));
+    List<Article> articles = ( List<Article>)session.getAttribute("articles");
+    Article article = articles.get(artcle_num);
+    String articleNo = article.getArticleNo()+"";
     response.setContentType("text/html;charset=\"utf-8\"");
 
     //消除接受乱码的问题
     request.setCharacterEncoding("UTF-8");
+
     String resource = "mybatis.xml";//mybatis资源
 
     InputStream is = Test.class.getClassLoader().getResourceAsStream(resource);
     SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
 
-    String articleNo  = "123456789876543";
+    //获取学生的名字
+    int StuNo = (Integer) session.getAttribute("UserNo");
+    String name = DAO.getStudentName(sqlSessionFactory,StuNo);
+    String author = DAO.getStudentName(sqlSessionFactory,article.getStuNo());
+
+    //获取该学生的信息数组
+    List<Message> messages = ( List<Message>)session.getAttribute("messages");
+
+
     //获取所有评论
 
 
+    String path = (String) session.getAttribute("Path");
     Integer stuNo = (Integer)request.getSession().getAttribute("UserNo");
-    String commentNo = getCommentUUID();
-    String comment = request.getParameter("comment");
-    Date sendTime = getDateTime();
-
-
-    //获取相关评论信息
-    String relatedCommentNo = request.getParameter("commentNo");
-
-
-    String CommentNo = request.getParameter("relatedCommentNo");
-    String relatedStuNo = getStuNo(sqlSessionFactory,CommentNo);
-
-    if (sqlSessionFactory != null && stuNo != 0 && articleNo != "" && commentNo != "" &&
-            comment != ""&&comment != null && sendTime != null&& relatedCommentNo!=""&&relatedStuNo!="") {
-        int addResult = addComment(sqlSessionFactory,stuNo,articleNo,commentNo,comment,sendTime,relatedCommentNo,relatedStuNo);
-        if (addResult == -1) {
-            System.out.println("写入数据库失败");
-        } else {
-            System.out.println("写入数据库成功");
-        }
-
-    } else {
-        //显示提交失败
-        System.out.println("评论失败");
-    }
-
-    List<Comment> Comments = getAllComments(sqlSessionFactory,articleNo);
-
-    session.setAttribute("Comments",Comments);
-    request.setAttribute("Comments",Comments);
-
+    String text = article.getText(path);
+    int a = 0;
 %>
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <!-- Meta, title, CSS, favicons, etc. -->
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>
-            Gentelella Alela! |
-        </title>
-        <!-- Bootstrap -->
-        <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-        <!-- Font Awesome -->
-        <link href="vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-        <!-- NProgress -->
-        <link href="vendors/nprogress/nprogress.css" rel="stylesheet">
-        <!-- iCheck -->
-        <link href="vendors/iCheck/skins/flat/green.css" rel="stylesheet">
-        <!-- bootstrap-progressbar -->
-        <link href="vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css"
-              rel="stylesheet">
-        <!-- jQuery custom content scroller -->
-        <link href="vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet"/>
-        <style>
-            .block_content { margin-top: 50px; }
-            span.replyMessage {
-                position: relative;
-                /* margin-left: 40%; */
-                float: right;
-                margin-right: 2%;
-            }
-            div#markdownArea {
-                left: -12px;
-                display: contents;
-            }
-            .markdownContainer {
-                /*margin-left: px;*/
-                margin-right: 30px;
-            }
-        </style>
-        <!-- Custom Theme Style -->
-        <link href="build/css/custom.min.css" rel="stylesheet">
-
-
-   <%--—————————————————————— 分割线—————————————————————————————————--%>
-
-    <title>Article</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdn.bootcss.com/foundation/5.5.3/css/foundation.min.css">
-    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://cdn.bootcss.com/foundation/5.5.3/js/foundation.min.js"></script>
-    <script src="https://cdn.bootcss.com/foundation/5.5.3/js/vendor/modernizr.js"></script>
-    <script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
-    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script>
-        var temp;
-        var temp2;
-        function show_modal() {
-            $('#myModal').modal('show');
-            document.getElementById("commentNo").value = temp;
-            document.getElementById("relatedCommentNo").value = temp2;
+    <title>
+        Gentelella Alela! |
+    </title>
+    <!--&lt;!&ndash; Bootstrap &ndash;&gt;-->
+    <!--<link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">-->
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Font Awesome -->
+    <link href="vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- bootstrap-progressbar -->
+    <link href="vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <!-- jQuery custom content scroller -->
+    <link href="vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet"/>
+    <style>
+        .editorClass {
+            width: -webkit-fill-available;
+            background: white;
         }
-        function load(){ search();}
-
-        function winclose(){
-
-            window.opener.location.reload();
+        /*custom.min.css:1040*/
+        .comment-css {
+            background:white;
         }
-
-        $(function() {
-            $('#tab').bootstrapTable({
-                locale:'zh-CN',//中文支持
-                // queryParams:queryParams,//请求服务器时所传的参数
-                sidePagination:'server',//指定服务器端分页
-                pagination: true,//是否开启分页（*）
-                pageNumber:1,//初始化加载第一页，默认第一页
-                pageSize:3,//单页记录数
-                pageList:[1,3,5]//分页步进值
-            });
-        });
-
-        function queryParams(params){
-            return{
-                page:params.offset/params.limit+1,//第几页
-                rows: params.limit,//每页多少条
-                title:$('#title').val()
-            }
+        code {
+            word-wrap: break-word;
         }
-
-        function search(){
-            $('#tab').bootstrapTable('refresh', {url: 'listContent',pageNumber:1,pageSize:3});
+        .block_content { margin-top: 50px; }
+        span.replyMessage {
+            position: relative;
+            /* margin-left: 40%; */
+            float: right;
+            margin-right: 1%;
         }
-
-        function test() {
-            $.ajax(
-                {
-                    url:'articleDetail.jsp',
-                    data:{
-                        'comment':$("#comment").val(),
-                        'commentNo':$("#commentNo").val(),
-                        'relatedCommentNo':$("#relatedCommentNo").val()
-
-                    },
-                    method:'POST',
-                    success:function (data) {
-                        alert('回复成功');
-                        self.location.reload();
-
-                        //winclose();
-                    }
-                }
-            );
-            // window.location.reload();
+        div#markdownArea {
+            left: -12px;
+            display: contents;
         }
-
-    </script>
+        .markdownContainer {
+            /*margin-left: px;*/
+            margin-right: 30px;
+        }
+    </style>
+    <!-- Custom Theme Style -->
+    <link href="build/css/custom.min.css" rel="stylesheet">
 </head>
-<body class="nav-md" onload="compile();">
+
+<body class="nav-md" onload="compile();initFunctionTemp();goToPageOption(1);">
 <div class="container body">
     <div class="main_container">
         <div class="col-md-3 left_col menu_fixed">
             <div class="left_col scroll-view">
                 <div class="navbar nav_title" style="border: 0;">
-                    <a href="Recommend.jsp" class="site_title"><img src="images/logo8.png"/><span>&nbsp;</span></a>
+                    <a href="index.html" class="site_title">
+                        <i class="fa fa-paw">
+                        </i>
+                        <span>
+                                    Gentelella Alela!
+                        </span>
+                    </a>
                 </div>
-
-                <div class="clearfix"></div>
-
+                <div class="clearfix">
+                </div>
                 <!-- menu profile quick info -->
                 <div class="profile clearfix">
                     <div class="profile_pic">
-                        <img id="userImg" src="images/<%=stuNo%>.jpg" onerror="javascript:this.src='images/user.png'" alt="..." class="img-circle profile_img">
+                        <img src="images/img.jpg" alt="..." class="img-circle profile_img">
                     </div>
                     <div class="profile_info">
-                        <span>欢迎,</span>
-                        <h2><%=DAO.getStudentName(sqlSessionFactory,stuNo)%> 同学</h2>
+                                <span>
+                                    Welcome,
+                                </span>
+                        <h2>
+                            <%out.println(name);%>
+                        </h2>
                     </div>
                 </div>
                 <!-- /menu profile quick info -->
-
                 <br />
-
                 <!-- sidebar menu -->
                 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                     <div class="menu_section">
-                        <h3>通用</h3>
+                        <h3>
+                            通用
+                        </h3>
                         <ul class="nav side-menu">
-                            <li><a><i class="fa fa-home"></i> 主页 <span class="fa fa-chevron-down"></span></a>
+                            <li class="active">
+                                <a>
+                                    <i class="fa fa-home">
+                                    </i>
+                                    主页
+                                    <span class="fa fa-chevron-down">
+                                    </span>
+                                </a>
                                 <ul class="nav child_menu">
-                                    <li><a href="Recommend.jsp">趋势</a></li>
-                                    <li><a href="media_gallery.jsp">所有社团</a></li>
+                                    <li>
+                                        <a href="index2.html">
+                                            趋势
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="index2.html">
+                                            所有社团
+                                        </a>
+                                    </li>
+                                    <li class="current-page">
+                                        <a>
+                                            文字
+                                            <span class="fa fa-chevron-down">
+                                                    </span>
+                                        </a>
+                                        <ul class="nav child_menu">
+                                            <li class="sub_menu">
+                                                <a href="plaza.html">
+                                                    广场
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="plaza.html">
+                                                    良品
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="plaza.html">
+                                                    美食
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
                                 </ul>
                             </li>
-                            <li><a><i class="fa fa-edit"></i> 申请 <span class="fa fa-chevron-down"></span></a>
+                            <li>
+                                <a>
+                                    <i class="fa fa-edit">
+                                    </i>
+                                    申请
+                                    <span class="fa fa-chevron-down">
+                                            </span>
+                                </a>
                                 <ul class="nav child_menu">
-                                    <li><a href="formWizards.jsp">申请创建社团</a></li>
+                                    <li>
+                                        <a href="form.html">
+                                            申请创建社团
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
-                            <li><a><i class="fa fa-desktop"></i> 社团中心 <span class="fa fa-chevron-down"></span></a>
+                            <li>
+                                <a>
+                                    <i class="fa fa-desktop">
+                                    </i>
+                                    社团中心
+                                    <span class="fa fa-chevron-down">
+                                            </span>
+                                </a>
                                 <ul class="nav child_menu">
-                                    <li><a href="my_group.html">加入的社团</a></li>
-                                    <li><a href="messageBoard.jsp">收到的消息</a></li>
-                                    <li><a href="calendar.jsp">活动日历</a></li>
+                                    <li>
+                                        <a href="my_group.html">
+                                            加入的社团
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="inbox.html">
+                                            收到的消息
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="calendar.html">
+                                            活动日历
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
-                            <li><a><i class="fa fa-user"></i> 我 <span class="fa fa-chevron-down"></span></a>
+                            <li>
+                                <a>
+                                    <i class="fa fa-user">
+                                    </i>
+                                    我
+                                    <span class="fa fa-chevron-down">
+                                            </span>
+                                </a>
                                 <ul class="nav child_menu">
-                                    <li><a href="profile.jsp">我的简历</a></li>
+                                    <li>
+                                        <a href="profile.html">
+                                            我的简历
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                         </ul>
                     </div>
                 </div>
                 <!-- /sidebar menu -->
-
                 <!-- /menu footer buttons -->
                 <div class="sidebar-footer hidden-small">
                     <a data-toggle="tooltip" data-placement="top" title="Settings">
-                        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-cog" aria-hidden="true">
+                                </span>
                     </a>
                     <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                        <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true">
+                                </span>
                     </a>
                     <a data-toggle="tooltip" data-placement="top" title="Lock">
-                        <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-eye-close" aria-hidden="true">
+                                </span>
                     </a>
-                    <a data-toggle="tooltip" data-placement="top" title="Logout" href="../login.jsp">
-                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                    <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+                                <span class="glyphicon glyphicon-off" aria-hidden="true">
+                                </span>
                     </a>
                 </div>
                 <!-- /menu footer buttons -->
@@ -288,33 +305,14 @@
                             <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
                                aria-expanded="false">
                                 <img src="images/img.jpg" alt="">
-                                John Doe
+                                <%out.println(name);%>
                                 <span class=" fa fa-angle-down">
                                         </span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">
+
                                 <li>
-                                    <a href="javascript:;">
-                                        Profile
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:;">
-                                                <span class="badge bg-red pull-right">
-                                                    50%
-                                                </span>
-                                        <span>
-                                                    Settings
-                                                </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:;">
-                                        Help
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="../login.jsp">
+                                    <a href="login.html">
                                         <i class="fa fa-sign-out pull-right">
                                         </i>
                                         Log Out
@@ -328,10 +326,11 @@
                                 <i class="fa fa-envelope-o">
                                 </i>
                                 <span class="badge bg-green">
-                                            6
+                                            <%out.println(messages.size());%>
                                         </span>
                             </a>
                             <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                                <%for(Message message:messages){%>
                                 <li>
                                     <a>
                                                 <span class="image">
@@ -339,75 +338,19 @@
                                                 </span>
                                         <span>
                                                     <span>
-                                                        John Smith
+                                                        Teacher
                                                     </span>
                                                     <span class="time">
-                                                        3 mins ago
+                                                        <%out.println(message.getTime());%>
                                                     </span>
                                                 </span>
                                         <span class="message">
-                                                    Film festivals used to be do-or-die moments for movie makers. They were
-                                                    where...
+                                                    <%out.println(message.getMessageInfo());%>
                                                 </span>
                                     </a>
                                 </li>
-                                <li>
-                                    <a>
-                                                <span class="image">
-                                                    <img src="images/img.jpg" alt="Profile Image" />
-                                                </span>
-                                        <span>
-                                                    <span>
-                                                        John Smith
-                                                    </span>
-                                                    <span class="time">
-                                                        3 mins ago
-                                                    </span>
-                                                </span>
-                                        <span class="message">
-                                                    Film festivals used to be do-or-die moments for movie makers. They were
-                                                    where...
-                                                </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a>
-                                                <span class="image">
-                                                    <img src="images/img.jpg" alt="Profile Image" />
-                                                </span>
-                                        <span>
-                                                    <span>
-                                                        John Smith
-                                                    </span>
-                                                    <span class="time">
-                                                        3 mins ago
-                                                    </span>
-                                                </span>
-                                        <span class="message">
-                                                    Film festivals used to be do-or-die moments for movie makers. They were
-                                                    where...
-                                                </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a>
-                                                <span class="image">
-                                                    <img src="images/img.jpg" alt="Profile Image" />
-                                                </span>
-                                        <span>
-                                                    <span>
-                                                        John Smith
-                                                    </span>
-                                                    <span class="time">
-                                                        3 mins ago
-                                                    </span>
-                                                </span>
-                                        <span class="message">
-                                                    Film festivals used to be do-or-die moments for movie makers. They were
-                                                    where...
-                                </span>
-                                </a>
-                                </li>
+                                <%}%>
+
                                 <li>
                                     <div class="text-center">
                                         <a>
@@ -452,14 +395,18 @@
             </div>
             <div class="clearfix"></div>
             <div class="row">
+                <!--下面的div是文章的显示div-->
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                         <div class="x_title" >
                             <div id="article_head" style="display: inline-grid;">
+                                <h2 style="overflow: unset;
+    white-space: inherit;
+    width: 100%;"><%out.println(article.getTitle());%></h2>
 
                             </div>
                             <br>
-                            <h2 style="position:absolute;">via <span>江疏影</span></h2>
+                            <h2 style="position:absolute;">via <span><%out.println(author);%></span></h2>
                             <ul class="nav navbar-right panel_toolbox">
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                 </li>
@@ -480,182 +427,173 @@
                             <div class="clearfix"></div>
                             <div class="markdownContainer">
                                 <div class="col-md-12" id="markdownArea">
+
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
+
+                <!--下面的div是评论的显示的div-->
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                         <div class="x_title">
                             <h2>跟帖</h2>
                             <ul class="nav navbar-right panel_toolbox">
-                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                <li>
+                                    <a data-toggle="collapse" data-target="#firstEditor">
+                                        <i class="fa fa-paper-plane"></i>
+                                    </a>
                                 </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#">Settings 1</a>
-                                        </li>
-                                        <li><a href="#">Settings 2</a>
-                                        </li>
-                                    </ul>
-                                </li>
-
                             </ul>
                             <div class="clearfix"></div>
                         </div>
+                        <!--下面的div是所有评论内容-->
                         <div class="x_content">
                             <ul class="list-unstyled msg_list">
-
-<%--分割线--%>
-                                <form align="center" action="articleDetail.jsp" method="post">
-                                    <div align="center" >
-                                        <label align="left" >我也说两句..</label><br>
-                                        <textarea style="width: 600px ; height: 100px" type="text" name="comment"></textarea>
-                                        <br>
-                                        <label align="center" >
-                                            <div class="button_container" align="center" >
-                                                <input type="submit" class="button" value="发送" />
+                                <!--文章阅读者评论文章的接口-->
+                                <div id="firstEditor" class="collapse demo">
+                                    <li style="background:  #FAFAFA;">
+                                        <div class="editorClass">
+                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                                <textarea class="resizable_textarea form-control" id="firstEditorPlate" placeholder="请输入您的跟帖" style="margin: 0px 210.266px 0px 0px;height: 92px;resize: inherit;"></textarea>
                                             </div>
-                                        </label>
+                                            <button type="submit" class="btn btn-success" style="float: right; margin: 0px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;" onclick="addReplyToArticle()">确认</button>
+                                        </div>
+                                    </li>
+                                </div>
+                                <!--所有评论div盒子-->
+                                <div id="allComments">
+                                    <!--通过page-divide来分页-->
+                                    <div class="page-divide" id="mainCommentdemo" style="display: none;">
+                                        <!--li里面主评论，这里的demo，demo2，要相应换成某条评论的id-->
+                                        <li>
+                                            <a>
+                                        <span class="image">
+                                            <img src="images/img.jpg" alt="img">
+                                        </span>
+                                                <span>
+                                                    <span>John Smith</span>
+                                                    <span class="replyMessage">
+                                                        <i class="fa fa-remove" onclick="removeReplyFromArticle('demo')"></i>
+                                                    </span>
+                                                    <span class="replyMessage" data-toggle="collapse"  onclick="$('#commentOfdemo').collapse('toggle');">
+                                                        <i class="fa fa-reorder"></i>
+                                                    </span>
+                                                    <span class="replyMessage" data-toggle="collapse" data-target="#editorOfdemo">
+                                                        <i class="fa fa-reply"></i>
+                                                    </span>
+                                                    <span class="time">
+                                                        3 mins ago
+                                                    </span>
+                                                </span>
+                                                <div class="clearfix"></div>
+                                                <span class="message">
+                                                    Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <div id="editorOfdemo" class="collapse demo">
+                                            <li style="background:  white;">
+                                                <div class="editorClass">
+                                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                                        <textarea id="editorPlateOfdemo" class="resizable_textarea form-control" placeholder="请输入您的回复" style="margin: 0px 210.266px 0px 0px;height: 92px;resize: inherit;"></textarea>
+                                                    </div>
+                                                    <button type="submit" class="btn btn-success" style="float: right; margin: 0px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;" onclick="addReplyToSomeone('demo')">确认</button>
+                                                </div>
+                                            </li>
+                                        </div>
+                                        <div id="commentOfdemo" class="collapse demo">
+                                            <li id="detailOfdemo-1" class="comment-css" style="background:white;">
+                                                <a>
+                                                    <span class="image">
+                                                        <img src="images/img.jpg" alt="img">
+                                                    </span>
+                                                    <span>
+                                                        <span>John Smith</span>
+                                                        <span class="replyMessage" onclick="removeReplyFromComment('demo-1')">
+                                                            <i class="fa fa-remove"></i>
+                                                        </span>
+                                                        <span class="time">3 mins ago</span>
+                                                    </span>
+                                                    <div class="clearfix"></div>
+                                                    <span class="message">
+                                                        Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li id="detailOfdemo-2" class="comment-css" style="background: white;">
+                                                <a>
+                                                    <span class="image">
+                                                        <img src="images/img.jpg" alt="img">
+                                                    </span>
+                                                    <span>
+                                                        <span>John Smith</span>
+                                                        <span class="replyMessage" onclick="removeReplyFromComment('demo-2')">
+                                                            <i class="fa fa-remove"></i>
+                                                        </span>
+                                                        <span class="time">3 mins ago</span>
+                                                    </span>
+                                                    <div class="clearfix"></div>
+                                                    <span class="message">
+                                                        Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that
+                                                    </span>
+                                                </a>
+                                            </li>
+                                        </div>
                                     </div>
-                                </form>
-    <%--分割线--%>
-    <%! int count=0; %>
-    <c:forEach items="${Comments}" var="keyword" varStatus="id">
-        <%
-            String formatDate = null;
-            //格式 24小时制：2016-07-06 09:39:58
-            DateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); //HH表示24小时制；
-            formatDate = dFormat.format( Comments.get(count).getSendTime());
 
-            session.setAttribute("formatDate",formatDate);
-            request.setAttribute("formatDate",formatDate);
-
-            int stuId = Comments.get(count).getStuNo();
-
-            String getStuName = getStudentName(sqlSessionFactory,stuId);
-
-            session.setAttribute("getStuName",getStuName);
-            request.setAttribute("getStuName",getStuName);
-
-        %>
-        <li>
-            <a>
-                <span class="time">
-                    <p style="color: black"><c:out value="${getStuName}"/> <c:out value="${formatDate}"/></p>
-        </span>
-        </span>
-        <div class="clearfix"></div>
-        <span class="message">
-         <h4 align="left"><c:out value="${keyword.comment}"/></h4>
-              <form action="articleDetail.jsp?commentNo=${keyword.commentNo}?relatedCommentNo=${keyword.relatedCommentNo}" enctype = "multipart/form-data" method="post" autocomplete="off">
-                 <label style="font-size: 10px;color: #987cb9 " id="btn_edit" type="text"  onclick="temp = '${keyword.commentNo}';temp2 = '${keyword.relatedCommentNo}';show_modal();" >回复</label>
-            </form>
-        </span>
-        <span class="replyMessage" >
-                </span>
-        </a>
-        </li>
-
-        <%
-            List<Comment> Reply = getAllReply(sqlSessionFactory,Comments.get(count).getCommentNo());
-            session.setAttribute("Reply",Reply);
-            request.setAttribute("Reply",Reply);
-            count++;
-        %>
-        <%! int n=0;%>
-        <c:forEach items="${Reply}" var="keyword" varStatus="id">
-
-            <%
-                String formatTime = null;
-                //格式 24小时制：2016-07-06 09:39:58
-                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); //HH表示24小时制；
-                formatTime = dateFormat.format( Reply.get(n).getSendTime());
-
-                session.setAttribute("formatTime",formatTime);
-                request.setAttribute("formatTime",formatTime);
-
-
-                int stuID1 = Reply.get(n).getStuNo();
-                String stuID2 = Reply.get(n).getRelatedStuNo();
-                String getName1 = getStudentName(sqlSessionFactory,stuID1);
-                String getName2="";
-                if (stuID2!=null) {
-                    getName2= getStudentName(sqlSessionFactory, Integer.parseInt(stuID2));
-                }
-                session.setAttribute("getName1",getName1);
-                request.setAttribute("getName1",getName1);
-
-                session.setAttribute("getName2",getName2);
-                request.setAttribute("getName2",getName2);
-            %>
-    <li>
-        <a>
-
-            <span class="time" >
-                <p style="color: black"><c:out value="${formatTime}"/>
-                </p>
-            </span>
-            </span>
-            <div class="clearfix">
-            <span class="message">
-                <div style="color: black">
-                        </div>
-            <span style="color: black"> <p style="font-size: 14px;color: black" align="left"><c:out value="——"/><c:out value="${getName1}"/>回复<c:out value="${getName2}"/>:<c:out value="${keyword.comment}"/></span>
-            <form action="articleDetail.jsp?commentNo=${keyword.commentNo}?relatedCommentNo=${keyword.relatedCommentNo}" enctype = "multipart/form-data" method="post" autocomplete="off">
-                 <label style="font-size: 10px;color: #987cb9 " id="btn_edit" type="text" onclick="temp = '${keyword.relatedCommentNo}';temp2 = '${keyword.commentNo}';show_modal();" >回复</label>
-             </form>
-
-            </span>
-                        </div>
-                <span class="replyMessage" >
-
-              </span>
-        </a>
-    </li>
-            <%n++;%>
-        </c:forEach>
-        <%n=0;%>
-    </c:forEach>
-    <%
-        count=0;
-    %>
+                                </div>
                             </ul>
+                            <!--下面的div用来分页-->
+                            <div class="row" id="pageDivide">
+                                <div class="col-sm-7  col-sm-3  col-xs-20" style="display: contents;">
+                                    <div class="dataTables_paginate paging_simple_numbers" id="datatable_paginate" style="margin-right: 10px;">
+                                        <ul class="pagination" id="choosePage">
+                                            <li class="paginate_button previous" id="datatable_previous" onclick="goToPageOption(currentPage-1);">
+                                                <a  aria-controls="datatable" data-dt-idx="0" tabindex="0" style="padding: 4px 5px !important;">
+                                                    <-
+                                                </a>
+                                            </li>
+                                            <li id="outerPage1" class="paginate_button " onclick="goToPageOption(pageRange[0])" >
+                                                <a id="Page1" aria-controls="datatable" data-dt-idx="1" tabindex="0" style="padding: 4px 5px !important;">
+                                                    1
+                                                </a>
+                                            </li>
+                                            <li id="outerPage2" class="paginate_button " onclick="goToPageOption(pageRange[1])" >
+                                                <a id="Page2" aria-controls="datatable" data-dt-idx="2" tabindex="0" style="padding: 4px 5px !important;">
+                                                    2
+                                                </a>
+                                            </li>
+                                            <li id="outerPage3" class="paginate_button " onclick="goToPageOption(pageRange[2])" >
+                                                <a id="Page3" aria-controls="datatable" data-dt-idx="3" tabindex="0" style="padding: 4px 5px !important;">
+                                                    3
+                                                </a>
+                                            </li>
+                                            <li id="outerPage4" class="paginate_button " onclick="goToPageOption(pageRange[3])">
+                                                <a id="Page4"  aria-controls="datatable" data-dt-idx="4" tabindex="0" style="padding: 4px 5px !important;">
+                                                    4
+                                                </a>
+                                            </li>
+                                            <li id="outerPage5" class="paginate_button " onclick="goToPageOption(pageRange[4])">
+                                                <a id="Page5"  aria-controls="datatable" data-dt-idx="5" tabindex="0" style="padding: 4px 5px !important;">
+                                                    5
+                                                </a>
+                                            </li>
+                                            <li class="paginate_button next" id="datatable_next" onclick="goToPageOption(currentPage+1);">
+                                                <a  aria-controls="datatable" data-dt-idx="7" tabindex="0" style="padding: 4px 5px !important;">
+                                                    ->
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-
-
             </div>
-<%--这里是showModal弹出框--%>
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <form action="comment.jsp"method="post" enctype = "multipart/form-data" id="editForm">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">回复</h4>
-                            </div>
-                            <div class="modal-body">
-                                <label  class="form-group" for="comment"></label>
-                                <input type="text" style="width: 550px;height: 110px" contenteditable="true" class="form-control" id="comment" name="comment" placeholder="请输入回复">
-                                <input type="hidden"  class="form-control" id="commentNo" name="commentNo">
-                                <input type="hidden"  class="form-control" id="relatedCommentNo" name="relatedCommentNo" >
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="reset"  class="btn btn-default" ><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> 重置</button>
-                            <button type="button" id="btn_submit"  onclick="test()" class="btn btn-primary" ><span class="glyphicon glyphicon-ok" aria-hidden="true" ></span> 发送</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-
-
             <div class="clearfix">
             </div>
         </div>
@@ -683,8 +621,10 @@
 <script src="vendors/jquery/dist/jquery.min.js">
 </script>
 <!-- Bootstrap -->
-<script src="vendors/bootstrap/dist/js/bootstrap.min.js">
-</script>
+<!--<script src="vendors/bootstrap/dist/js/bootstrap.min.js">-->
+<!--</script>-->
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <!-- FastClick -->
 <script src="vendors/fastclick/lib/fastclick.js">
 </script>
@@ -701,5 +641,372 @@
 <script src="build/js/custom.min.js">
 </script>
 </body>
+
 </html>
 <script src="mobile.js"></script>
+<script src="vendors/showdown/dist/showdown.js"></script>
+<script>
+    // 默认一页15个
+    var allNodes;
+    var allNum;
+    var showNodes;
+    var nowNum = 1;//一页的个数
+    var allPages;
+    var currentPage;
+    var pageRange;
+
+
+    var initFunctionTemp = function()
+    {
+        var temp = document.getElementById('allComments');
+        allNodes = temp.getElementsByClassName("page-divide");
+        allNum = allNodes.length;
+        // allNodes = deepCopy(allNodes);
+        allPages = Math.ceil(allNum*1.0/nowNum);
+        for(var i = 0; i<allNum; i++)
+        {
+            allNodes[i].style.display="none";
+        }
+        // goToPage(1);
+    }
+
+    var getIndexPages = function () {
+        if(currentPage<=3&&currentPage>0||allPages<=5)
+        {
+            return [1,2,3,4,5];
+        }
+        if(currentPage>3&&currentPage<allPages-2)
+        {
+            return [currentPage-2,currentPage-1,currentPage,currentPage+1,currentPage+2];
+        }
+        if(currentPage>=allPages-2&&currentPage<=allPages)
+        {
+            return [allPages-4,allPages-3,allPages-2,allPages-1,allPages];
+        }
+    }
+
+    var goToPageOption = function (pageNum) {
+        if($('#searchInfo').val()!=='')
+        {
+            searchForGroup(pageNum);
+        }else{
+            goToPage(pageNum,allNodes,allNum);
+        }
+        // var height = $("#allGroupsPage").offset().top;
+        // height = height + 30 + $("#allGroupsPage").height();
+        var height = $(window).height();
+        height = height.toString();
+        $("#searchSize").css("min-height",height+"px");
+//		$("#allGroups").css("display","inline");
+    }
+
+    var goToPage = function(pageNum,originNodes,allNumber)
+    {
+        if(pageNum>allPages) {
+            return;
+        }
+        if(pageNum<=0) {
+            return;
+        }
+        for(var i = 0; i<allNumber; i++)
+        {
+            originNodes[i].style.display="none";
+        }
+        currentPage = pageNum;
+        var nodes = new Array();
+        var init = (pageNum-1)*nowNum;
+        for(var i = 0; i<(nowNum>=(allNum-init)?(allNum-init):nowNum); i++)
+        {
+            nodes.push(allNodes[i+init]);
+            allNodes[i+init].style.display="inline";
+        }
+        showNodes=nodes;
+        pageRange = getIndexPages();
+
+        for(var temp = 0; temp<5; temp++)
+        {
+            document.getElementById("Page"+(temp+1)).innerText='?';
+            document.getElementById("outerPage"+(temp+1)).style.display = "inline";
+            document.getElementById("Page"+(temp+1)).style.display="inline";
+        }
+
+        for(temp = 0; temp<(5>=allPages?allPages:5); temp++)
+        {
+            document.getElementById("Page"+(temp+1)).innerText=pageRange[temp];
+            document.getElementById("outerPage"+(temp+1)).className = "paginate_button";
+            if(document.getElementById("Page"+(temp+1)).innerText===pageNum.toString())
+            {
+                document.getElementById("outerPage"+(temp+1)).className = "paginate_button active";
+            }
+        }
+
+        if(allPages<5){
+            for(temp = 0; temp<5; temp++)
+            {
+                if(document.getElementById("Page"+(temp+1)).innerText==='?') {
+                    document.getElementById("outerPage" + (temp + 1)).style.display = "none";
+                    document.getElementById("Page"+(temp+1)).style.display="none";
+                }
+            }
+        }
+    }
+</script>
+<!--下面是评论以及文章操作js代码-->
+<script>
+    var text = '';
+    function compile(){
+        $.ajax({
+            url:'/GetArticleServlet',
+            type:'POST',
+            data:{
+                articleNo:'<%out.print(artcle_num);%>'
+            },
+            success:function (data) {
+                text = data;
+                var converter = new showdown.Converter();
+                var html = converter.makeHtml(text);
+                document.getElementById("markdownArea").innerHTML = html;
+                windowResize();
+                markdownResize();
+            }
+        });
+
+    }
+
+    function markdownResize()
+    {
+        temp = $(window).width();
+        if (temp <= 342) {
+            <!--$("#markdownArea").find("h1").-->
+            $('h6').css('font-size', '10px');
+            $('p').css('font-size', '10px');
+            $('h5').css('font-size', '10px');
+            $('h4').css('font-size', '13px');
+//            $('h2').css('font-size', '18px');
+            $('h3').css('font-size', '15px');
+            $('h1').css('font-size', '20px');
+        } else {
+            $("#markdownArea").find('p').css('font-size', '');
+            $("#markdownArea").find('h6').css('font-size', '');
+            $("#markdownArea").find('h5').css('font-size', '');
+            $("#markdownArea").find('h4').css('font-size', '');
+            $("#markdownArea").find('h2').css('font-size', '15px');
+            $("#markdownArea").find('h3').css('font-size', '14px');
+            $("#markdownArea").find('h1').css('font-size', '17px');
+        }
+    }
+
+    $(window).resize(function(){
+        windowResize();
+        markdownResize();
+
+
+
+    });
+
+    $(window).ready(function () {
+        compile()
+    })
+    var temp1 = '2';
+    function addReplyToSomeone(id) {
+        var judge = confirm("确认添加回复吗？");
+        if (judge) {
+            if($('#editorPlateOf'+id+'').val().length===0)
+            {
+                alert("评论不能为空！");
+                return undefined;
+            }
+            var temp3 = temp1;
+            temp1 = temp1+'2';
+            $('#commentOf'+id+'').collapse('show');
+            // $("div#commentOf" + id + " ").prepend(
+            //     "<li style=\"background:  white;\">\n" +
+            //     "                      <a>\n" +
+            //     "                        <span class=\"image\">\n" +
+            //     "                          <img src=\"images/img.jpg\" alt=\"img\">\n" +
+            //     "                        </span>\n" +
+            //     "                        <span>\n" +
+            //     "                          <span>John Smith</span>\n" +
+            //     "                          <span class=\"replyMessage\">\n" +
+            //     "\n" +
+            //     "                        </span><span class=\"time\">Just now</span>\n" +
+            //     "                        </span>\n" +
+            //     "                        <div class=\"clearfix\"></div>\n" +
+            //     "                        <span class=\"message\">\n" +
+            //     "                          "+
+            //     $('#editorPlateOf'+id+'').val()+
+            //     "                        </span>\n" +
+            //     "                        \n" +
+            //     "                      </a>\n" +
+            //     "                    </li>"
+            // ).fadeIn('slow');
+            $("div#commentOf" + id + " ").prepend(
+                "<li id=\"detailOf"+temp3+"\" class=\"comment-css\" style=\"background: white;\">\n" +
+                "                                                <a>\n" +
+                "                                                    <span class=\"image\">\n" +
+                "                                                        <img src=\"images/img.jpg\" alt=\"img\">\n" +
+                "                                                    </span>\n" +
+                "                                                    <span>\n" +
+                "                                                        <span>John Smith</span>\n" +
+                "                                                        <span class=\"replyMessage\" onclick=\"removeReplyFromComment('"+temp3+"')\">\n" +
+                "                                                            <i class=\"fa fa-remove\"></i>\n" +
+                "                                                        </span>\n" +
+                "                                                        <span class=\"time\">刚刚</span>\n" +
+                "                                                    </span>\n" +
+                "                                                    <div class=\"clearfix\"></div>\n" +
+                "                                                    <span class=\"message\">\n" +
+                $('#editorPlateOf'+id+'').val() +
+                "                                                    </span>\n" +
+                "                                                </a>\n" +
+                "                                            </li>"
+            ).fadeIn(30000,function () {
+                $('#editorOf'+id+'').collapse('hide');
+                $('#editorPlateOf'+id+'').val("");
+            });
+
+        }
+    }
+
+    function removeReplyFromArticle(id) {
+        var newNowPage = currentPage;
+        var judge = confirm("确认移除您的回复吗？");
+        if (judge) {
+            // if($('#firstEditorPlate').val().length===0)
+            // {
+            //     alert("评论不能为空！");
+            //     return undefined;
+            // }
+            $('#mainComment'+id+'').remove().fadeOut('slow',function () {
+                $('#firstEditor').collapse('hide');
+                initFunctionTemp();
+                if(allPages<newNowPage)
+                    goToPageOption(newNowPage-1);
+                else if (allPages>=newNowPage)
+                    goToPageOption(newNowPage);
+            });
+
+        }
+    }
+
+    function removeReplyFromComment(id) {
+        var newNowPage = currentPage;
+        var judge = confirm("确认移除您的回复吗？");
+        if (judge) {
+            $('#detailOf'+id+'').remove().fadeOut('slow',function () {
+                $('#firstEditor').collapse('hide');
+                initFunctionTemp();
+                goToPageOption(newNowPage);
+            });
+
+        }
+    }
+
+    var temp = '1';
+    function addReplyToArticle() {
+        var judge = confirm("确认添加回复吗？");
+        if (judge) {
+            if($('#firstEditorPlate').val().length===0)
+            {
+                alert("评论不能为空！");
+                return undefined;
+            }
+            var id = temp;
+            temp = temp + '1';
+            ///这里ajax传回id
+            // $("div#allComments").prepend(
+            //     "<div class=\"page-divide\"><li>\n" +
+            //     "                      <a>\n" +
+            //     "                        <span class=\"image\">\n" +
+            //     "                          <img src=\"images/img.jpg\" alt=\"img\">\n" +
+            //     "                        </span>\n" +
+            //     "                        <span>\n" +
+            //     "                          <span>John Smith</span>\n" +
+            //     "                          <span class=\"replyMessage\">\n" +
+            //     "<span class=\"replyMessage\">\n" +
+            //     "<i class=\"fa fa-remove\"></i>\n" +
+            //     "</span>"+
+            //     "\n" +
+            //     "                        </span><span class=\"time\">Just now</span>\n" +
+            //     "                        </span>\n" +
+            //     "                        <div class=\"clearfix\"></div>\n" +
+            //     "                        <span class=\"message\">\n" +
+            //     "                          "+
+            //     $('#firstEditorPlate').val()+
+            //     "                        </span>\n" +
+            //     "                        \n" +
+            //     "                      </a>\n" +
+            //     "                    </li></div>"
+            // ).fadeIn('slow');
+            $("div#allComments").prepend(
+                " <div class=\"page-divide\" id=\"mainComment"+id+"\">\n" +
+                "                                        <li>\n" +
+                "                                            <a>\n" +
+                "                                        <span class=\"image\">\n" +
+                "                                            <img src=\"images/img.jpg\" alt=\"img\">\n" +
+                "                                        </span>\n" +
+                "                                                <span>\n" +
+                "                                                    <span>John Smith</span>\n" +
+                "                                                    <span class=\"replyMessage\">\n" +
+                "                                                        <i class=\"fa fa-remove\" onclick=\"removeReplyFromArticle('"+id+"')\"></i>\n" +
+                "                                                    </span>\n" +
+                "                                                    <span class=\"replyMessage\"   onclick=\";$('#commentOf"+id+"').collapse('toggle');\">\n" +
+                "                                                        <i class=\"fa fa-reorder\"></i>\n" +
+                "                                                    </span>\n" +
+                "                                                    <span class=\"replyMessage\" data-toggle=\"collapse\" data-target=\"#editorOf"+id+"\">\n" +
+                "                                                        <i class=\"fa fa-reply\"></i>\n" +
+                "                                                    </span>\n" +
+                "                                                    <span class=\"time\">\n" +
+                "                                                        3 mins ago\n" +
+                "                                                    </span>\n" +
+                "                                                </span>\n" +
+                "                                                <div class=\"clearfix\"></div>\n" +
+                "                                                <span class=\"message\">\n" +
+                $('#firstEditorPlate').val() +
+                "                                                </span>\n" +
+                "                                            </a>\n" +
+                "                                        </li>\n" +
+                "                                        <div id=\"editorOf"+id+"\" class=\"collapse demo\">\n" +
+                "                                            <li style=\"background:  white;\">\n" +
+                "                                                <div class=\"editorClass\">\n" +
+                "                                                    <div class=\"col-md-12 col-sm-12 col-xs-12\">\n" +
+                "                                                        <textarea id=\"editorPlateOf"+id+"\" class=\"resizable_textarea form-control\" placeholder=\"请输入您的回复\" style=\"margin: 0px 210.266px 0px 0px;height: 92px;resize: inherit;\"></textarea>\n" +
+                "                                                    </div>\n" +
+                "                                                    <button type=\"submit\" class=\"btn btn-success\" style=\"float: right; margin: 0px; margin-right: 10px; margin-top: 10px; margin-bottom: 10px;\" onclick=\"addReplyToSomeone('"+id+"')\">确认</button>\n" +
+                "                                                </div>\n" +
+                "                                            </li>\n" +
+                "                                        </div>\n" +
+                "                                        <div id=\"commentOf"+id+"\" class=\"collapse demo\">\n" +
+                "                                            \n" +
+                "                                        </div>\n" +
+                "                                    </div>"
+            ).fadeIn('slow',function () {
+                // $('#commentOf'+id+'').collapse({
+                //     toggle: false
+                // });
+                // $('#commentOf'+id+'').collapse('show');
+                initFunctionTemp();
+                goToPageOption(1);
+            });
+            $('#firstEditor').collapse('hide');
+            $('#firstEditorPlate').val("");
+        }
+    }
+
+    //     $(function () {
+    // //修复collapse不能正常折叠的问题
+    //         $(".collapsed").click(function () {
+    //             var itemHref = $(this).attr("href");
+    //             var itemClass = $(itemHref).attr("class");
+    //             if (itemClass === "panel-collapse collapse") {
+    //                 $(itemHref).attr("class", "panel-collapse collapse in").css("height", "auto");
+    //             } else {
+    //                 $(itemHref).attr("class", "panel-collapse collapse").css("height", "0px");
+    //             }
+    //             return false;//停止运行bootstrap自带的函数
+    //         });
+    //     })
+
+</script>
+<!-- jQuery custom content scroller -->
+<script src="vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+

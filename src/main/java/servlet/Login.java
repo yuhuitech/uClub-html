@@ -38,11 +38,12 @@ public class Login extends HttpServlet {
             System.out.println("密码正确");
             HttpSession session = req.getSession();
             List<Activity> list=DAO.selectAllActivity(sqlSessionFactory,userID);
+            String path = getServletContext().getRealPath("/");
            /* String events="[";
             for (Activity act: list){
                 events+="{\"id\":\""+act.getActiveNo()+"\",\"title\":\""+act.getActive_name()+"\",\"info\":\""+act.getActive_info()+
                         "\",\"start\":\""+act.getBegin_time()+"\",\"end\":\""+act.getEnd_time()+"\",\"status\":\""+act.getStatus()+
-                        "\",\"color\":\"#008080\",\"clubNo\":\""+act.getClubNo()+"\",\"isJoin\":\""+DAO.isJoin(sqlSessionFactory,userID,act.getActiveNo())+"\"},";
+                        "\",\"color\":\"#008080\",\"clubNo\":\""+act.getClubNo()+"\",\"isJoin\":\""+Dao.isJoin(sqlSessionFactory,userID,act.getActiveNo())+"\"},";
             }
             events = events.substring(0,events.length() - 1);
             events+="]";
@@ -50,6 +51,7 @@ public class Login extends HttpServlet {
             session.setAttribute("events",events);*/
             session.setAttribute("UserNo", userID);
             session.setAttribute("Status",status);
+            session.setAttribute("Path",path);
 
             resp.getWriter().print("{\"success\":\"true\"}");
             resp.getWriter().flush();

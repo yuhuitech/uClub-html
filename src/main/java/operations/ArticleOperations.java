@@ -38,7 +38,7 @@ public class ArticleOperations
         }
 
         //根据article对象插入对象时
-        public static void addArticle(int StuNo,int ClubNo,String res_url,Date date)
+        public static void addArticle(int StuNo,int ClubNo,String title,String res_url,Date date)
         {
 
             try {
@@ -49,7 +49,7 @@ public class ArticleOperations
                 SqlSession session = sqlSessionFactory.openSession();
                 // 获取Mapper
                 ArticleDao selectInterface = session.getMapper(ArticleDao.class);
-                selectInterface.addArticle(StuNo,ClubNo,res_url,date);
+                selectInterface.addArticle(StuNo,ClubNo,title,res_url,date);
                 session.commit();
                 session.close();
 

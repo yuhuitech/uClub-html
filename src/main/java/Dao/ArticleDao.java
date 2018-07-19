@@ -9,5 +9,5 @@ import java.util.List;
 public interface ArticleDao
 {
    List<Article> getAllArticles ();
-   void addArticle(@Param("StuNo") int StuNo, @Param("ClubNo") int ClubNo, @Param("res_url") String res_url, @Param("date") Date date);
+   void addArticle(@Param("StuNo") int StuNo, @Param("ClubNo") int ClubNo, @Param("Title") String title,@Param("res_url") String res_url, @Param("date") Date date);
 }

@@ -9,6 +9,7 @@ public class Club {
     private int status;
     private int memberNum;
     private int activeNum;
+    private int boy_to_girl;
 
     public int getArticalNum() {
         return articalNum;

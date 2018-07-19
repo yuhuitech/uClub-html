@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="operations.ArticleDao">
+<mapper namespace="Dao.ArticleDao">
 
 
     <resultMap id="Article" type="model.Article">
@@ -11,6 +11,7 @@
         <result property="ClubNo" column="ClubNo"/>
         <result property="res_url" column="res_url"/>
         <result property="date" column="date"/>
+        <result property="title" column="Title"/>
     </resultMap>
 
     <select id="getAllArticles" resultMap="Article">
@@ -18,8 +19,8 @@
     </select>
 
     <insert id ="addArticle">
-            insert into Article(StuNo, ClubNo, res_url, date)
-        values(#{StuNo}, #{ClubNo}, #{res_url}, #{date, jdbcType=TIMESTAMP})
+            insert into Article(StuNo, ClubNo,Title ,res_url, date)
+        values(#{StuNo}, #{ClubNo},#{Title}, #{res_url}, #{date, jdbcType=TIMESTAMP})
     </insert>
 
 </mapper>
