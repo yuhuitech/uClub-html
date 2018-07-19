@@ -27,6 +27,8 @@ import java.util.Map;
 
 import static operations.ClubOperations.getActiveDetail;
 
+import static operations.ClubOperations.getActiveDetail;
+
 @WebServlet(name = "Recommend")
 public class Recommend extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException

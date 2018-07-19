@@ -51,7 +51,11 @@
                     var objs=eval("("+data+")");
                     if(objs.success=="true") {
                         if(status=="student") {
+<<<<<<< HEAD
                             window.location.href = "jsp/club_detail.jsp?ClubNo=99781207";
+=======
+                            window.location.href = "jsp/Recommend.jsp";
+>>>>>>> 8cf256b275efd1ea5aadcd205006f5936a27838d
                         }
                         else if(status=="admin"){
                             window.location.href = "jsp/TuserHome.jsp";

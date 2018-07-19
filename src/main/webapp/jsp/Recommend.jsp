@@ -34,6 +34,7 @@
     List<Record> joinClubRecordHeigh = RecordOperations.getAllStudentClub(session1, "社长");
     joinClubRecordHeigh.addAll(RecordOperations.getAllStudentClub(session1, "部长"));
     //temp数组是两者的集合，用于在求相似度时可以直接使用两种的集合
+
     List<Record> temp = new ArrayList<Record>();
     temp.addAll(joinClubRecordLow);
     temp.addAll(joinClubRecordHeigh);
@@ -50,6 +51,7 @@
     //最后进行排序，得到排序的活动号排名并且剔除已经参加的活动
     List<Integer> activeRecommend = recordTemp.getSort(recommendNum, (Integer) request.getSession().getAttribute("UserNo"));
     List<Activity> active_Recommend = new ArrayList<Activity>();
+
     for (int i : activeRecommend)
     {
         active_Recommend.add(getActiveDetail(sqlSessionFactory, i));
@@ -66,6 +68,7 @@
     //最后进行排序，并剔除已经参加的社团
     List<Integer> clubRecommend = recordTemp2.getSort(recommendNum2, (Integer) request.getSession().getAttribute("UserNo"));
     List<Club> club_Recommend = new ArrayList<Club>();
+
     for (int i : clubRecommend)
     {
         club_Recommend.add(DAO.getClubById(sqlSessionFactory, i));
@@ -79,6 +82,7 @@
     session1.commit();
     session1.close();
     Integer StuNo= (Integer) session.getAttribute("UserNo");
+
 
 %>
 <%--
@@ -118,6 +122,7 @@
 
     List<Club> Clubs = ClubOperations.getClubsALL(sqlSessionFactory);
     List<Message> messages = MessageOperations.getMyMessage(sqlSessionFactory,(Integer) request.getSession().getAttribute("UserNo"));
+    session.setAttribute("messages",messages);
 %>
 <div class="container body">
     <div class="main_container">
@@ -246,7 +251,7 @@
 
                                 <li>
                                     <div class="text-center">
-                                        <a href="inbox.html">
+                                        <a href="Messagebox.jsp">
                                             <strong>See All Alerts</strong>
                                             <i class="fa fa-angle-right"></i>
                                         </a>
@@ -321,7 +326,15 @@
                                 <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
+<<<<<<< HEAD
                                 <%for(Club club:club_Recommend){%>
+=======
+                                <%  int i = 0;
+                                    for(Club club:club_Recommend){
+                                        i++;//用作计数
+                                        if(i>5) break;
+                                %>
+>>>>>>> 8cf256b275efd1ea5aadcd205006f5936a27838d
                                 <article class="media event">
                                     <a class="pull-left date">
                                         <p class="month">April</p>
@@ -359,7 +372,15 @@
                                 <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
+<<<<<<< HEAD
                                 <%for(Activity act:active_Recommend){%>
+=======
+                                <%int m = 0;
+                                    for(Activity act:active_Recommend){
+                                   m++;
+                                   if(m > 5) break;
+                                %>
+>>>>>>> 8cf256b275efd1ea5aadcd205006f5936a27838d
                                 <article class="media event">
                                     <a class="pull-left date">
                                         <p class="month">April</p>
