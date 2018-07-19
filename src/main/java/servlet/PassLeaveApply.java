@@ -33,13 +33,13 @@ public class PassLeaveApply extends HttpServlet {
 
         if(Action.equals("del")) {
             DAO.leaveClubTime(sqlSessionFactory,StuNo,ClubNo,date);
-            DAO.delFromLeaveClub(sqlSessionFactory, StuNo);
+            DAO.delFromLeaveClub(sqlSessionFactory, StuNo,ClubNo);
             DAO.reply(sqlSessionFactory, ApplyNo, ReplyNo,"退出社团的申请已经通过!");
             System.out.println("退出社团成功");
-            req.getRequestDispatcher("/jsp/ClubInfo.jsp?ClubNo=" + ClubNo).forward(req, resp);
+          //  req.getRequestDispatcher("/jsp/ClubInfo.jsp?ClubNo=" + ClubNo).forward(req, resp);
         }
         else {
-            DAO.delFromLeaveClub(sqlSessionFactory, StuNo);
+            DAO.delFromLeaveClub(sqlSessionFactory, StuNo,ClubNo);
             DAO.reply(sqlSessionFactory, ApplyNo, ReplyNo,"很遗憾，你退出社团的申请没有通过。");
             System.out.println("从申请表单中移除");
         }

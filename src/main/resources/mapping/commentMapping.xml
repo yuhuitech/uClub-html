@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="DAO.commentDao">
+<mapper namespace="Dao.commentDao">
 
     <resultMap id="commentMap" type="model.Comment">
         <result property="StuNo" column="StuNo"/>
@@ -76,5 +76,9 @@
        ORDER BY PostTime
     </select>
 
+    <!--删除留言-->
+    <delete id="delMessageBoard">
+        delete from message_board where MessageNo=#{MessageNo}
+    </delete>
 
 </mapper>

@@ -1,28 +1,34 @@
-<%@ page import="java.util.HashMap" %>
+
+<%@ page import="java.util.HashMap" %><%--
+  Created by IntelliJ IDEA.
+  User: Haess
+  Date: 2018/7/3
+  Time: 16:29
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-
     <script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<!-- Meta, title, CSS, favicons, etc. -->
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>  Login  </title>
+    <title>  Login  </title>
 
-<!-- Bootstrap -->
-<link href="jsp/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
-<!-- Font Awesome -->
-<link href="jsp/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
-<!-- NProgress -->
-<link href="jsp/vendors/nprogress/nprogress.css" rel="stylesheet"/>
-<!-- Animate.css -->
-<link href="jsp/vendors/animate.css/animate.min.css" rel="stylesheet"/>
+    <!-- Bootstrap -->
+    <link href="jsp/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <!-- Font Awesome -->
+    <link href="jsp/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet"/>
+    <!-- NProgress -->
+    <link href="jsp/vendors/nprogress/nprogress.css" rel="stylesheet"/>
+    <!-- Animate.css -->
+    <link href="jsp/vendors/animate.css/animate.min.css" rel="stylesheet"/>
 
-<!-- Custom Theme Style -->
-<link href="jsp/build/css/custom.min.css" rel="stylesheet"/>
+    <!-- Custom Theme Style -->
+    <link href="jsp/build/css/custom.min.css" rel="stylesheet"/>
 </head>
 
 <body class="login">
@@ -30,7 +36,35 @@
     <a class="hiddenanchor" id="signup"></a>
     <a class="hiddenanchor" id="signin"></a>
 
+    <script>
+        function login(userNo,passwd,status) {
+            $.ajax({
 
+                type:'POST',
+                url:"/login",
+                data:{
+                    "userNo":userNo,
+                    "passwd":passwd,
+                    "status": status,
+                },
+                success:function(data) {
+                    var objs=eval("("+data+")");
+                    if(objs.success=="true") {
+                        if(status=="student") {
+                            window.location.href = "jsp/club_detail.jsp?ClubNo=99781207";
+                        }
+                        else if(status=="admin"){
+                            window.location.href = "jsp/TuserHome.jsp";
+                        }
+                    }
+                    else {
+                        document.getElementById("reminder").innerText = "密码错误/帐号不存在";
+                    }
+                },
+                async:false});
+
+        }
+    </script>
 
     <div class="login_wrapper">
         <div class="animate form login_form">
@@ -124,51 +158,3 @@
 
 </html>
 
-<script>
-    function login(userNo,passwd,status) {
-        $.ajax({
-            type:'POST',
-            url:"/Recommend",
-            data:{
-                "userNo":userNo,
-                "passwd":passwd,
-                "status": status,
-            },
-            // success:function(data) {
-            //     var objs=eval("("+data+")");
-            //     if(objs.success=="true") {
-            //         // if(status==="student") {
-            //         //
-            //         //     // window.location.href = "jsp/jumping.jsp";
-            //         //     $.ajax({
-            //         //         type:'POST',
-            //         //         url:"/Recommend",
-            //         //         data:{
-            //         //             "userNo":userNo,
-            //         //             "passwd":passwd,
-            //         //             "status":status
-            //         //         },
-            //         //         success:function () {
-            //         //             alert("success!");
-            //         //             window.location.person.replace("jsp/Recommend.jsp");
-            //         //
-            //         //         },
-            //         //         error:function () {
-            //         //             alert("fail!");
-            //         //             window.location.person.replace("jsp/Recommend.jsp");
-            //         //         },
-            //         //     });
-            //         // }
-            //         // else if(status==="admin"){
-            //         //     window.location.href = "jsp/apply_center.jsp";
-            //         // }
-            //     }
-            //     else {
-            //         document.getElementById("reminder").innerText = "密码错误/帐号不存在";
-            //     }
-            // },
-            // async:false
-        });
-
-    }
-</script>

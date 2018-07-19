@@ -56,7 +56,7 @@
     </select>
 
     <update id="setClubInfo" >
-        UPDATE Club SET  ClubInfo = '${ClubInfo}'
+        UPDATE Club SET  ClubName=#{ClubName},`Type`=#{Type},ClubInfo = '${ClubInfo}'
         WHERE
         ClubNo = '${ClubNo}'
 

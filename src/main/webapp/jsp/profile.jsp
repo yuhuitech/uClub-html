@@ -120,7 +120,7 @@
                 }
             }
         }
-        List<Activity> acts=DAO.selectAllActivity(sqlSessionFactory,StuNo);
+        List<Activity> acts=DAO.getJoinActivity(sqlSessionFactory,StuNo);
         String headImg="images/"+StuNo+".jpg";
         File dir = new File(request.getContextPath()+"images/"+StuNo+".jpg");
         if(dir.exists()) System.out.println("The file exist");
@@ -136,7 +136,7 @@
         <div class="col-md-3 left_col menu_fixed">
             <div class="left_col scroll-view">
                 <div class="navbar nav_title" style="border: 0;">
-                    <a href="index.html" class="site_title"><img src="images/logo8.png"/><span>&nbsp;</span></a>
+                    <a href="Recommend.jsp" class="site_title"><img src="images/logo8.png"/><span>&nbsp;</span></a>
                 </div>
 
                 <div class="clearfix"></div>
@@ -144,7 +144,7 @@
                 <!-- menu profile quick info -->
                 <div class="profile clearfix">
                     <div class="profile_pic">
-                        <img id="userImg" src="images/<%=StuNo%>.jpg" onerror="javascript:this.src='images/user.png'" alt="..." class="img-circle profile_img">
+                        <img id="userImg" src="images/<%=StuNo%>.jpg?<%=Math.random()%>" onerror="javascript:this.src='images/user.png'" alt="..." class="img-circle profile_img">
                     </div>
                     <div class="profile_info">
                         <span>欢迎,</span>
@@ -162,25 +162,25 @@
                         <ul class="nav side-menu">
                             <li><a><i class="fa fa-home"></i> 主页 <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="index2.html">趋势</a></li>
-                                    <li><a href="index2.html">所有社团</a></li>
+                                    <li><a href="Recommend.jsp">趋势</a></li>
+                                    <li><a href="media_gallery.jsp">所有社团</a></li>
                                 </ul>
                             </li>
                             <li><a><i class="fa fa-edit"></i> 申请 <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="form.html">申请创建社团</a></li>
+                                    <li><a href="formWizards.jsp">申请创建社团</a></li>
                                 </ul>
                             </li>
                             <li><a><i class="fa fa-desktop"></i> 社团中心 <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href="my_group.html">加入的社团</a></li>
-                                    <li><a href="inbox.html">收到的消息</a></li>
+                                    <li><a href="messageBoard.jsp">收到的消息</a></li>
                                     <li><a href="calendar.jsp">活动日历</a></li>
                                 </ul>
                             </li>
                             <li><a><i class="fa fa-user"></i> 我 <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="profile.html">我的简历</a></li>
+                                    <li><a href="profile.jsp">我的简历</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -199,7 +199,7 @@
                     <a data-toggle="tooltip" data-placement="top" title="Lock">
                         <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
                     </a>
-                    <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+                    <a data-toggle="tooltip" data-placement="top" title="Logout" href="../login.jsp">
                         <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
                     </a>
                 </div>
@@ -221,7 +221,7 @@
                         <li class="" id="miniMenu">
                             <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
                                aria-expanded="false">
-                                <img id="userImg2" src="images/<%=StuNo%>.jpg" onerror="javascript:this.src='images/user.png'" alt="">
+                                <img id="userImg2" src="images/<%=StuNo%>.jpg?<%=Math.random()%>" onerror="javascript:this.src='images/user.png'" alt="">
                                 <%=student.getStuName()%>
                                 <span class=" fa fa-angle-down">
                                         </span>
@@ -376,7 +376,7 @@
                                     <div class="profile_img">
                                         <div id="crop-avatar">
                                             <!-- Current avatar -->
-                                            <img class="img-responsive avatar-view" id="originalPhoto" src="images/<%=StuNo%>.jpg" onerror="javascript:this.src='images/user.png'" alt="Avatar" title="Change the avatar">
+                                            <img class="img-responsive avatar-view" id="originalPhoto" src="images/<%=StuNo%>.jpg?<%=Math.random()%>" onerror="javascript:this.src='images/user.png'" alt="Avatar" title="Change the avatar">
                                         </div>
                                     </div>
                                     <h3><%=student.getStuName()%></h3>
@@ -667,7 +667,7 @@
                 <label class="form-group" for="self_introduce">头像预览:</label>
                 <div>
                     <div class="user-photo-box">
-                        <img id="user-photo" src="images/<%=StuNo%>.jpg" onerror="javascript:this.src='images/user.png'">
+                        <img id="user-photo" src="images/<%=StuNo%>.jpg?<%=Math.random()%>" onerror="javascript:this.src='images/user.png'">
                     </div>
                     <br>
                     <button type="reset"  class="btn btn-default btn-round" data-target="#changeModal" data-toggle="modal"><span class="glyphicon " aria-hidden="true"></span>选择头像</button>
@@ -971,16 +971,14 @@
                 url: '/saveImg', // 要上传的地址
                 type: 'post',
                 data: {
-                    'imgData': photo
+                    'imgData': photo,
+                    "name":<%=StuNo%>
                 },
                 success: function () {
-                    if (data.status == 0) {
                         // 将上传的头像的地址填入，为保证不载入缓存加个随机数
-                        $('.user-photo').attr('src', '/images/77.jpg'+'?t=' + Math.random());
+                        $('.user-photo').attr('src', '/images/<%=StuNo%>.jpg'+'?t=' + Math.random());
                         $('#changeModal').modal('hide');
-                    } else {
-                        alert();
-                    }
+
                 },
                 error:function () {
                     alert("error")
@@ -1041,367 +1039,3 @@
 </html>
 
 
-<%--<!----%>
-    <%--作者：offline--%>
-    <%--时间：2018-07-11--%>
-    <%--描述：修改用户信息的模态框--%>
-<%---->--%>
-
-<%--<div class="modal fade" id="changeMyInfo" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">--%>
-    <%--<div class="modal-dialog" role="document">--%>
-        <%--<div class="modal-content">--%>
-            <%--<div class="modal-header">--%>
-                <%--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>--%>
-                <%--<h4 class="modal-title" id="myModalLabel">修改个人信息</h4>--%>
-            <%--</div>--%>
-            <%--<div class="modal-body">--%>
-                <%--<label  class="form-group" for="bookID">年级:</label>--%>
-                <%--<div>--%>
-                    <%--<input type="text" contenteditable="false" class="form-control" id="bookID" name="bookID" placeholder="请输入您现在的年级D">--%>
-                <%--</div>--%>
-                <%--<label class="form-group" for="title">电话:</label>--%>
-                <%--<div>--%>
-                    <%--<input type="text" class="form-control"  id="title" name="title" placeholder="请输入您的电话">--%>
-                <%--</div>--%>
-                <%--<label class="form-group" for="price">邮箱:</label>--%>
-                <%--<div>--%>
-                    <%--<input type="text" class="form-control"  id="price" name="price" placeholder="请输入您的邮箱">--%>
-                <%--</div>--%>
-                <%--<label class="form-group" for="publishDate">个人简介:</label>--%>
-                <%--<div>--%>
-                    <%--<textarea type="text" class="form-control" id="publishDate"  name="publishDate" placeholder="请输入个人简介"></textarea>--%>
-                <%--</div>--%>
-                <%--<label class="form-group" for="publishDate">头像预览:</label>--%>
-                <%--<div>--%>
-                    <%--<div class="user-photo-box">--%>
-                        <%--<img id="user-photo" src="images/picture.jpg">--%>
-                    <%--</div>--%>
-                    <%--<br>--%>
-                    <%--<button type="reset"  class="btn btn-default btn-round" data-target="#changeModal" data-toggle="modal"><span class="glyphicon " aria-hidden="true"></span>选择头像</button>--%>
-                <%--</div>--%>
-            <%--</div>--%>
-            <%--<div class="modal-footer">--%>
-                <%--<button type="reset"  class="btn btn-default btn-round" ><span class="glyphicon " aria-hidden="true"></span>重置</button>--%>
-                <%--<button  class="btn btn-round btn-success" onclick="sendPhotoToServer();">提交</button>--%>
-            <%--</div>--%>
-        <%--</div>--%>
-
-    <%--</div>--%>
-<%--</div>--%>
-
-
-
-<%--<!--修改头像的模态框-->--%>
-<%--<div class="modal fade" id="changeModal"  role="dialog" aria-hidden="true" style="z-index: 1060">--%>
-    <%--<div class="modal-dialog">--%>
-        <%--<div class="modal-content">--%>
-            <%--<div class="modal-header">--%>
-                <%--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>--%>
-                <%--<h4 class="modal-title text-primary">--%>
-                    <%--<i class="fa fa-pencil"></i>--%>
-                    <%--更换头像--%>
-                <%--</h4>--%>
-            <%--</div>--%>
-            <%--<div class="modal-body">--%>
-                <%--<p class="tip-info text-center">--%>
-                    <%--未选择图片--%>
-                <%--</p>--%>
-                <%--<div class="img-container hidden">--%>
-                    <%--<img src="" alt="" id="photo">--%>
-                <%--</div>--%>
-                <%--<div class="img-preview-box hidden">--%>
-                    <%--<hr>--%>
-                    <%--<span>150*150:</span>--%>
-                    <%--<div class="img-preview img-preview-lg">--%>
-                    <%--</div>--%>
-                    <%--<span>100*100:</span>--%>
-                    <%--<div class="img-preview img-preview-md">--%>
-                    <%--</div>--%>
-                    <%--<span>30*30:</span>--%>
-                    <%--<div class="img-preview img-preview-sm">--%>
-                    <%--</div>--%>
-                <%--</div>--%>
-            <%--</div>--%>
-            <%--<div class="modal-footer">--%>
-                <%--<label class="btn btn-danger pull-left" for="photoInput">--%>
-                    <%--<input type="file" class="sr-only" id="photoInput" accept="image/*">--%>
-                    <%--<span>打开图片</span>--%>
-                <%--</label>--%>
-                <%--<button class="btn btn-primary disabled" disabled="true" onclick="sendPhoto();">提交</button>--%>
-                <%--<button class="btn btn-close" aria-hidden="true" data-dismiss="modal">取消</button>--%>
-            <%--</div>--%>
-        <%--</div>--%>
-    <%--</div>--%>
-<%--</div>--%>
-
-
-
-
-
-
-<%--<!-- jQuery -->--%>
-<%--<script src="vendors/jquery/dist/jquery.min.js"></script>--%>
-<%--<!-- Bootstrap -->--%>
-<%--<script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>--%>
-<%--<!-- FastClick -->--%>
-<%--<script src="vendors/fastclick/lib/fastclick.js"></script>--%>
-<%--<!-- NProgress -->--%>
-<%--<script src="vendors/nprogress/nprogress.js"></script>--%>
-<%--<!-- morris.js -->--%>
-<%--<script src="vendors/raphael/raphael.min.js"></script>--%>
-<%--<script src="vendors/morris.js/morris.min.js"></script>--%>
-<%--<!-- bootstrap-progressbar -->--%>
-<%--<script src="vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>--%>
-<%--<!-- bootstrap-daterangepicker -->--%>
-<%--<script src="vendors/moment/min/moment.min.js"></script>--%>
-<%--<script src="vendors/bootstrap-daterangepicker/daterangepicker.js"></script>--%>
-<%--<!-- jQuery custom content scroller -->--%>
-<%--<script src="vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>--%>
-<%--<!-- Custom Theme Scripts -->--%>
-<%--<script src="build/js/custom.min.js"></script>--%>
-<%--<!-- Chart.js -->--%>
-<%--<script src="vendors/Chart.js/dist/Chart.min.js"></script>--%>
-<%--<!----%>
-    <%--作者：offline--%>
-    <%--时间：2018-07-10--%>
-    <%--描述：手机初步适配--%>
-<%---->--%>
-<%--<script src="mobile.js"></script>--%>
-<%--<script src="vendors/cropper/dist/cropper.min.js"></script>--%>
-
-<%--<!--甜甜圈数据显示-->--%>
-<%--<script>--%>
-    <%--var status = 'in';--%>
-    <%--var data =[120, 50,30,30];--%>
-    <%--var canvasDoughnut;--%>
-    <%--var dataset = [{--%>
-        <%--data: [120, 50,30,30],--%>
-        <%--backgroundColor: [--%>
-            <%--"#3498DB",--%>
-            <%--"#455C73",--%>
-            <%--"#9B59B6",--%>
-            <%--"#BDC3C7",--%>
-            <%--"#26B99A"--%>
-
-        <%--],--%>
-        <%--hoverBackgroundColor: [--%>
-            <%--"#49A9EA",--%>
-            <%--"#34495E",--%>
-            <%--"#B370CF",--%>
-            <%--"#CFD4D8",--%>
-            <%--"#36CAAB"--%>
-        <%--]--%>
-    <%--}];--%>
-    <%--$(window).ready(function(){--%>
-        <%--Chart.defaults.global.legend = {--%>
-            <%--enabled: false--%>
-        <%--};--%>
-        <%--if ($('#canvasDoughnut').length ){--%>
-            <%--var ctx = document.getElementById("canvasDoughnut");--%>
-            <%--var data = {--%>
-                <%--labels: [--%>
-                    <%--"加入的活动",--%>
-                    <%--"加入社团数",--%>
-                    <%--"发表文章数",--%>
-                    <%--"管理社团数"--%>
-                <%--],--%>
-                <%--datasets: dataset--%>
-            <%--};--%>
-            <%--canvasDoughnut = new Chart(ctx, {--%>
-                <%--type: 'doughnut',--%>
-                <%--tooltipFillColor: "rgba(51, 51, 51, 0.55)",--%>
-                <%--data: data--%>
-            <%--});--%>
-
-
-
-        <%--};--%>
-    <%--});--%>
-
-    <%--$(window).scroll(function () {--%>
-        <%--var temp = document.getElementById('canvasDoughnut').getBoundingClientRect();--%>
-        <%--if((temp.top<0&&temp.bottom>0||temp.top<$(window).height()&&temp.bottom>$(window).height())&&status==='out')--%>
-        <%--{--%>
-        <%--for(var i = 0 ;i<canvasDoughnut.data.datasets.length;i++) {--%>
-            <%--canvasDoughnut.data.datasets[i].data.pop();--%>
-        <%--}--%>
-        <%--canvasDoughnut.update();--%>
-        <%--for(var i = 0 ;i<canvasDoughnut.data.datasets.length;i++) {--%>
-            <%--canvasDoughnut.data.datasets[i].data.push(data[i]);--%>
-        <%--}--%>
-        <%--canvasDoughnut.update();--%>
-            <%--console.log("I'm in");--%>
-            <%--status = "in";--%>
-        <%--}else if((temp.top>$(window).height()||temp.bottom<0)&&status==='in'){--%>
-            <%--console.log("I'm not");--%>
-            <%--status = "out";--%>
-        <%--}--%>
-    <%--});--%>
-
-<%--</script>--%>
-<%--<!--照片上传裁剪工具-->--%>
-<%--<script type="text/javascript">--%>
-    <%--var initCropperInModal = function(img, input, modal){--%>
-        <%--var $image = img;--%>
-        <%--var $inputImage = input;--%>
-        <%--var $modal = modal;--%>
-        <%--var options = {--%>
-            <%--aspectRatio: 1, // 纵横比--%>
-            <%--viewMode: 2,--%>
-            <%--dragMode:'move',--%>
-            <%--preview: '.img-preview', // 预览图的class名--%>
-            <%--guides:true,--%>
-            <%--modal:true,--%>
-            <%--background:true,--%>
-            <%--crop: function (e) {--%>
-                <%--console.log(e);--%>
-            <%--}--%>
-        <%--};--%>
-        <%--// 模态框隐藏后需要保存的数据对象--%>
-
-        <%--var saveData = {};--%>
-        <%--var URL = window.URL || window.webkitURL;--%>
-        <%--var blobURL;--%>
-        <%--$modal.on('show.bs.modal',function () {--%>
-            <%--// 如果打开模态框时没有选择文件就点击“打开图片”按钮--%>
-            <%--if(!$inputImage.val()){--%>
-                <%--$inputImage.click();--%>
-            <%--}--%>
-        <%--}).on('shown.bs.modal', function () {--%>
-            <%--// 重新创建--%>
-            <%--$image.cropper( $.extend(options, {--%>
-                <%--ready: function () {--%>
-                    <%--// 当剪切界面就绪后，恢复数据--%>
-                    <%--if(saveData.canvasData){--%>
-                        <%--$image.cropper('setCanvasData', saveData.canvasData);--%>
-                        <%--// $image.cropper('setCropBoxData', saveData.cropBoxData);--%>
-                    <%--}--%>
-                <%--}--%>
-            <%--}));--%>
-        <%--}).on('hidden.bs.modal', function () {--%>
-            <%--// 保存相关数据--%>
-            <%--saveData.cropBoxData = $image.cropper('getCropBoxData');--%>
-            <%--saveData.canvasData = $image.cropper('getCanvasData');--%>
-            <%--// 销毁并将图片保存在img标签--%>
-            <%--$image.cropper('destroy').attr('src',blobURL);--%>
-        <%--});--%>
-        <%--if (URL) {--%>
-            <%--$inputImage.change(function() {--%>
-                <%--var files = this.files;--%>
-                <%--var file;--%>
-                <%--if (!$image.data('cropper')) {--%>
-                    <%--return;--%>
-                <%--}--%>
-                <%--if (files && files.length) {--%>
-                    <%--file = files[0];--%>
-                    <%--if (/^image\/\w+$/.test(file.type)) {--%>
-
-                        <%--if(blobURL) {--%>
-                            <%--URL.revokeObjectURL(blobURL);--%>
-                        <%--}--%>
-                        <%--blobURL = URL.createObjectURL(file);--%>
-
-                        <%--// 重置cropper，将图像替换--%>
-                        <%--$image.cropper('reset').cropper('replace', blobURL);--%>
-
-                        <%--// 选择文件后，显示和隐藏相关内容--%>
-                        <%--$('.img-container').removeClass('hidden');--%>
-                        <%--$('.img-preview-box').removeClass('hidden');--%>
-                        <%--$('#changeModal .disabled').removeAttr('disabled').removeClass('disabled');--%>
-                        <%--$('#changeModal .tip-info').addClass('hidden');--%>
-
-                    <%--} else {--%>
-                        <%--window.alert('请选择一个图像文件！');--%>
-                    <%--}--%>
-                <%--}--%>
-            <%--});--%>
-        <%--} else {--%>
-            <%--$inputImage.prop('disabled', true).addClass('disabled');--%>
-        <%--}--%>
-    <%--}--%>
-
-    <%--var sendPhoto = function(){--%>
-        <%--$('#photo').cropper('getCroppedCanvas',{--%>
-            <%--width:300,--%>
-            <%--height:300--%>
-        <%--}).toBlob(function(blob){--%>
-            <%--// 转化为blob后更改src属性，隐藏模态框--%>
-            <%--$('#user-photo').attr('src',URL.createObjectURL(blob));--%>
-            <%--$('#changeModal').modal('hide');--%>
-        <%--});--%>
-    <%--}--%>
-
-
-    <%--var sendPhotoToServer = function () {--%>
-        <%--// 得到PNG格式的dataURL--%>
-        <%--// var photo = $('#user-photo').cropper('getCroppedCanvas', {--%>
-        <%--//     width: 300,--%>
-        <%--//     height: 300--%>
-        <%--// }).toDataURL('image/png');--%>
-
-        <%--var image = new Image();--%>
-        <%--image.src = $('#user-photo').attr('src').toString();--%>
-        <%--image.onload = function () {--%>
-            <%--var canvas = document.createElement("canvas");--%>
-            <%--canvas.width = image.width;--%>
-            <%--canvas.height = image.height;--%>
-            <%--// 坐标(0,0) 表示从此处开始绘制，相当于偏移。--%>
-            <%--canvas.getContext("2d").drawImage(image, 0, 0);--%>
-            <%--var photo = canvas.toDataURL('image/png');--%>
-            <%--// $.ajax({--%>
-            <%--//     url: '上传地址', // 要上传的地址--%>
-            <%--//     type: 'post',--%>
-            <%--//     data: {--%>
-            <%--//         'imgData': photo--%>
-            <%--//     },--%>
-            <%--//     dataType: 'json',--%>
-            <%--//     success: function (data) {--%>
-            <%--//         if (data.status == 0) {--%>
-            <%--//             // 将上传的头像的地址填入，为保证不载入缓存加个随机数--%>
-            <%--//             $('.user-photo').attr('src', '头像地址?t=' + Math.random());--%>
-            <%--//             $('#changeModal').modal('hide');--%>
-            <%--//         } else {--%>
-            <%--//             alert(data.info);--%>
-            <%--//         }--%>
-            <%--//     }--%>
-            <%--// });--%>
-            <%--$('#originalPhoto').attr('src',image.src.toString());--%>
-            <%--$('#changeMyInfo').modal("hide");--%>
-        <%--}--%>
-
-
-
-        <%--// var photo;--%>
-        <%--// $.ajax({--%>
-        <%--//     url: '上传地址', // 要上传的地址--%>
-        <%--//     type: 'post',--%>
-        <%--//     data: {--%>
-        <%--//         'imgData': photo--%>
-        <%--//     },--%>
-        <%--//     dataType: 'json',--%>
-        <%--//     success: function (data) {--%>
-        <%--//         if (data.status == 0) {--%>
-        <%--//             // 将上传的头像的地址填入，为保证不载入缓存加个随机数--%>
-        <%--//             $('.user-photo').attr('src', '头像地址?t=' + Math.random());--%>
-        <%--//             $('#changeModal').modal('hide');--%>
-        <%--//         } else {--%>
-        <%--//             alert(data.info);--%>
-        <%--//         }--%>
-        <%--//     }--%>
-        <%--// });--%>
-    <%--}--%>
-
-    <%--$(function(){--%>
-        <%--initCropperInModal($('#photo'),$('#photoInput'),$('#changeModal'));--%>
-    <%--});--%>
-<%--</script>--%>
-<%--<!--关键逻辑-->--%>
-<%--<script>--%>
-    <%--var originalPhoto;--%>
-
-
-<%--</script>--%>
-
-
-<%--</body>--%>
-<%--</html>--%>

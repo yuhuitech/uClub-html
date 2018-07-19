@@ -39,4 +39,6 @@ public interface commentDao {
                          @Param("PostTime") Date PostTime);
 
     List<MessageBoard> getMessageBoard(@Param("ClubNo") int clubNo);
+
+    void delMessageBoard(@Param("MessageNo") String MessageNo);
 }

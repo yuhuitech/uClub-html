@@ -30,7 +30,7 @@ public class LeaveApply extends HttpServlet {
         InputStream is = Test.class.getClassLoader().getResourceAsStream(resource);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
         DAO.leaveApply(sqlSessionFactory,ApplyNo, StuNo, ClubNo,Reason);
-        req.getRequestDispatcher("/clubDetail.jsp").forward(req, resp);
+      //  req.getRequestDispatcher("/clubDetail.jsp").forward(req, resp);
 
     }
 }

@@ -1,4 +1,8 @@
-<%--
+<%@ page import="org.apache.ibatis.session.SqlSessionFactory" %>
+<%@ page import="Test.Test" %>
+<%@ page import="org.apache.ibatis.session.SqlSessionFactoryBuilder" %>
+<%@ page import="java.io.InputStream" %>
+<%@ page import="operations.DAO" %><%--
   Created by IntelliJ IDEA.
   User: 22847
   Date: 2018/7/14
@@ -59,6 +63,12 @@
     <link href="vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
     <link href="vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
 
+    <%
+        Integer StuNo= (Integer) session.getAttribute("UserNo");
+        String resource = "mybatis.xml";
+        InputStream is = Test.class.getClassLoader().getResourceAsStream(resource);
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
+    %>
 </head>
 <body class="nav-md">
 <div class="container body">
@@ -66,7 +76,7 @@
         <div class="col-md-3 left_col menu_fixed">
             <div class="left_col scroll-view">
                 <div class="navbar nav_title" style="border: 0;">
-                    <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentelella Alela!</span></a>
+                    <a href="Recommend.jsp" class="site_title"><img src="images/logo8.png"/><span>&nbsp;</span></a>
                 </div>
 
                 <div class="clearfix"></div>
@@ -74,11 +84,11 @@
                 <!-- menu profile quick info -->
                 <div class="profile clearfix">
                     <div class="profile_pic">
-                        <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+                        <img id="userImg" src="images/<%=StuNo%>.jpg" onerror="javascript:this.src='images/user.png'" alt="..." class="img-circle profile_img">
                     </div>
                     <div class="profile_info">
-                        <span>Welcome,</span>
-                        <h2>John Doe</h2>
+                        <span>欢迎,</span>
+                        <h2><%=DAO.getStudentName(sqlSessionFactory,StuNo)%> 同学</h2>
                     </div>
                 </div>
                 <!-- /menu profile quick info -->
@@ -92,25 +102,25 @@
                         <ul class="nav side-menu">
                             <li><a><i class="fa fa-home"></i> 主页 <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="index2.html">趋势</a></li>
-                                    <li><a href="index2.html">所有社团</a></li>
+                                    <li><a href="Recommend.jsp">趋势</a></li>
+                                    <li><a href="media_gallery.jsp">所有社团</a></li>
                                 </ul>
                             </li>
                             <li><a><i class="fa fa-edit"></i> 申请 <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="form.html">申请创建社团</a></li>
+                                    <li><a href="formWizards.jsp">申请创建社团</a></li>
                                 </ul>
                             </li>
                             <li><a><i class="fa fa-desktop"></i> 社团中心 <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href="my_group.html">加入的社团</a></li>
-                                    <li><a href="inbox.html">收到的消息</a></li>
-                                    <li><a href="calendar.html">活动日历</a></li>
+                                    <li><a href="messageBoard.jsp">收到的消息</a></li>
+                                    <li><a href="calendar.jsp">活动日历</a></li>
                                 </ul>
                             </li>
                             <li><a><i class="fa fa-user"></i> 我 <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="profile.html">我的简历</a></li>
+                                    <li><a href="profile.jsp">我的简历</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -129,7 +139,7 @@
                     <a data-toggle="tooltip" data-placement="top" title="Lock">
                         <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
                     </a>
-                    <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+                    <a data-toggle="tooltip" data-placement="top" title="Logout" href="../login.jsp">
                         <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
                     </a>
                 </div>
@@ -160,7 +170,7 @@
                                     </a>
                                 </li>
                                 <li><a href="javascript:;">Help</a></li>
-                                <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                                <li><a href="../login.jsp"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                             </ul>
                         </li>
 

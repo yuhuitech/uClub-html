@@ -207,139 +207,71 @@
         <div class="col-md-3 left_col menu_fixed">
             <div class="left_col scroll-view">
                 <div class="navbar nav_title" style="border: 0;">
-                    <a href="index.html" class="site_title">
-                        <i class="fa fa-paw">
-                        </i>
-                        <span>
-                                    UClub!
-                        </span>
-                    </a>
+                    <a href="Recommend.jsp" class="site_title"><img src="images/logo8.png"/><span>&nbsp;</span></a>
                 </div>
-                <div class="clearfix">
-                </div>
+
+                <div class="clearfix"></div>
+
                 <!-- menu profile quick info -->
                 <div class="profile clearfix">
                     <div class="profile_pic">
-                        <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+                        <img id="userImg" src="images/<%=stuNo%>.jpg" onerror="javascript:this.src='images/user.png'" alt="..." class="img-circle profile_img">
                     </div>
                     <div class="profile_info">
-                                <span>
-                                    欢迎,
-                                </span>
-                        <h2>
-                            <%=student.getStuName()%> 同学
-                        </h2>
+                        <span>欢迎,</span>
+                        <h2><%=student.getStuName()%> 同学</h2>
                     </div>
                 </div>
                 <!-- /menu profile quick info -->
+
                 <br />
+
                 <!-- sidebar menu -->
                 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                     <div class="menu_section">
-                        <h3>
-                            通用
-                        </h3>
+                        <h3>通用</h3>
                         <ul class="nav side-menu">
-                            <li>
-                                <a>
-                                    <i class="fa fa-home">
-                                    </i>
-                                    主页
-                                    <span class="fa fa-chevron-down">
-                                            </span>
-                                </a>
+                            <li><a><i class="fa fa-home"></i> 主页 <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li>
-                                        <a href="media_gallery.jsp">
-                                            所有社团
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="index2.html">
-                                            趋势
-                                        </a>
-                                    </li>
+                                    <li><a href="Recommend.jsp">趋势</a></li>
+                                    <li><a href="media_gallery.jsp">所有社团</a></li>
                                 </ul>
                             </li>
-                            <li>
-                                <a>
-                                    <i class="fa fa-edit">
-                                    </i>
-                                    申请
-                                    <span class="fa fa-chevron-down">
-                                            </span>
-                                </a>
+                            <li><a><i class="fa fa-edit"></i> 申请 <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li>
-                                        <a href="messageBoard.jsp">
-                                            申请创建社团
-                                        </a>
-                                    </li>
+                                    <li><a href="formWizards.jsp">申请创建社团</a></li>
                                 </ul>
                             </li>
-                            <li>
-                                <a>
-                                    <i class="fa fa-desktop">
-                                    </i>
-                                    社团中心
-                                    <span class="fa fa-chevron-down">
-                                            </span>
-                                </a>
+                            <li><a><i class="fa fa-desktop"></i> 社团中心 <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li>
-                                        <a href="my_group.html">
-                                            加入的社团
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="inbox.html">
-                                            收到的消息
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="calendar.jsp">
-                                            活动日历
-                                        </a>
-                                    </li>
+                                    <li><a href="my_group.html">加入的社团</a></li>
+                                    <li><a href="messageBoard.jsp">收到的消息</a></li>
+                                    <li><a href="calendar.jsp">活动日历</a></li>
                                 </ul>
                             </li>
-                            <li>
-                                <a>
-                                    <i class="fa fa-user">
-                                    </i>
-                                    我
-                                    <span class="fa fa-chevron-down">
-                                            </span>
-                                </a>
+                            <li><a><i class="fa fa-user"></i> 我 <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li>
-                                        <a href="profile.html">
-                                            我的简历
-                                        </a>
-                                    </li>
+                                    <li><a href="profile.jsp">我的简历</a></li>
                                 </ul>
                             </li>
                         </ul>
                     </div>
                 </div>
                 <!-- /sidebar menu -->
+
                 <!-- /menu footer buttons -->
                 <div class="sidebar-footer hidden-small">
                     <a data-toggle="tooltip" data-placement="top" title="Settings">
-                                <span class="glyphicon glyphicon-cog" aria-hidden="true">
-                                </span>
+                        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
                     </a>
                     <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true">
-                                </span>
+                        <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
                     </a>
                     <a data-toggle="tooltip" data-placement="top" title="Lock">
-                                <span class="glyphicon glyphicon-eye-close" aria-hidden="true">
-                                </span>
+                        <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
                     </a>
-                    <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
-                                <span class="glyphicon glyphicon-off" aria-hidden="true">
-                                </span>
+                    <a data-toggle="tooltip" data-placement="top" title="Logout" href="../login.jsp">
+                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
                     </a>
                 </div>
                 <!-- /menu footer buttons -->

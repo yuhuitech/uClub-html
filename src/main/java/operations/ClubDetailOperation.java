@@ -1,5 +1,6 @@
 package operations;
 
+import Dao.ClubDetailDao;
 import model.Activity;
 import model.Club;
 import org.apache.ibatis.session.SqlSession;
@@ -7,7 +8,6 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import java.util.ArrayList;
 import java.util.List;
-import Dao.ClubDetailDao;
 public class ClubDetailOperation {
 
     public static Club getClubDetail(SqlSessionFactory sqlSessionFactory, int ClubNo){

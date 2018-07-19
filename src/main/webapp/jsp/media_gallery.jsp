@@ -72,7 +72,7 @@
         <div class="col-md-3 left_col menu_fixed">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Uclub!</span></a>
+              <a href="Recommend.jsp" class="site_title"><img src="images/logo8.png"/><span>&nbsp;</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -80,11 +80,11 @@
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-                <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+                <img id="userImg" src="images/<%=userNo%>.jpg" onerror="javascript:this.src='images/user.png'" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
                 <span>欢迎,</span>
-                <h2><%=userName%></h2>
+                <h2><%=userName%> 同学</h2>
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -96,10 +96,10 @@
               <div class="menu_section">
                 <h3>通用</h3>
                 <ul class="nav side-menu">
-                  <li class="active"><a><i class="fa fa-home"></i> 主页 <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu" style="display: block;">
-                      <li class="current-page"><a href="media_gallery.jsp">所有社团</a></li>
-                      <li><a href="index2.html" >趋势</a></li>
+                  <li><a><i class="fa fa-home"></i> 主页 <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="Recommend.jsp">趋势</a></li>
+                      <li><a href="media_gallery.jsp">所有社团</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-edit"></i> 申请 <span class="fa fa-chevron-down"></span></a>
@@ -110,7 +110,7 @@
                   <li><a><i class="fa fa-desktop"></i> 社团中心 <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="my_group.html">加入的社团</a></li>
-                      <li><a href="inbox.html">收到的消息</a></li>
+                      <li><a href="messageBoard.jsp">收到的消息</a></li>
                       <li><a href="calendar.jsp">活动日历</a></li>
                     </ul>
                   </li>
@@ -135,7 +135,7 @@
               <a data-toggle="tooltip" data-placement="top" title="Lock">
                 <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
               </a>
-              <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+              <a data-toggle="tooltip" data-placement="top" title="Logout" href="../login.jsp">
                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
               </a>
             </div>
@@ -155,7 +155,7 @@
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 
-                    <img src="images/img.jpg" alt=""><%=userName%>
+                    <img id="userImg2" src="images/<%=userNo%>.jpg?<%=Math.random()%>" onerror="javascript:this.src='images/user.png'" alt=""><%=userName%>
 
                     <span class=" fa fa-angle-down"></span>
                   </a>
@@ -168,7 +168,7 @@
                       </a>
                     </li>
                     <li><a href="javascript:;">Help</a></li>
-                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                    <li><a href="../login.jsp"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                   </ul>
                 </li>
 
@@ -275,17 +275,19 @@
                   <div id="allGroups">
                     <c:forEach items="${requestScope.Clubs}" var="keyword">
 
-                      <div class="col-md-55">
+                      <div class="col-md-55" onclick="window.location.href='club_detail.jsp?ClubNo=${keyword.clubNo}'">
                         <div class="thumbnail">
                           <div class="image view view-first">
-                            <img style="width: 100%; display: block;" src="images/media.jpg" alt="image" />
+                            <img style="width: 100%; display: block;position:relative;top:-75px;" src="images/${keyword.clubNo}.jpg?<%=Math.random()%>" onerror="javascript:this.src='images/logo.png'" alt="image" />
                             <div class="mask">
-                              <p>Your Text</p>
+                              <span>
+                              <p>查看详情</p>
                               <div class="tools tools-bottom">
                                 <a href="#"><i class="fa fa-link"></i></a>
                                 <a href="#"><i class="fa fa-pencil"></i></a>
                                 <a href="#"><i class="fa fa-times"></i></a>
                               </div>
+                              </span>
                             </div>
                           </div>
                           <div  class="groupNameCSS">
@@ -395,7 +397,7 @@
     var allNodes;
     var allNum;
     var showNodes;
-    var nowNum = 7;//一页的个数
+    var nowNum = 10;//一页的个数
     var allPages;
     var currentPage;
     var pageRange;

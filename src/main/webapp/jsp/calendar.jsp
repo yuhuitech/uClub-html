@@ -127,7 +127,7 @@ td.fc-list-item-time.fc-widget-content {
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
                 <%--<i class="fa fa-paw"></i>--%>
-                    <a href="index.jsp" class="site_title"><img src="images/logo8.png"><span>&nbsp;</span></a>
+                    <a href="Recommend.jsp" class="site_title"><img src="images/logo8.png"><span>&nbsp;</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -135,7 +135,7 @@ td.fc-list-item-time.fc-widget-content {
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-                <img src="images/1.jpg" alt="..." class="img-circle profile_img">
+                  <img id="userImg" src="images/<%=StuNo%>.jpg" onerror="javascript:this.src='images/user.png'" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
                 <span>欢迎,</span>
@@ -153,27 +153,27 @@ td.fc-list-item-time.fc-widget-content {
                 <ul class="nav side-menu">
                   <li class="active"><a><i class="fa fa-home"></i> 主页 <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                    	  <li><a href="index2.html">趋势</a></li>
-                      <li><a href="index2.html">所有社团</a></li>
-                      <li><a>广场<span class="fa fa-chevron-down"></span></a>
-                          <ul class="nav child_menu">
-                            <li class="sub_menu">
-                            	<a href="level2.html">竞技</a>
-                            </li>
-                            <li>
-                            	<a href="#level2_1">良品</a>
-                            </li>
-                            <li>
-                            	<a href="#level2_2">美食</a>
-                            </li>
-                          </ul>
-                        </li>
-                      
+                    	  <li><a href="Recommend.jsp">趋势</a></li>
+                      <li><a href="media_gallery.jsp">所有社团</a></li>
+                      <%--<li><a>广场<span class="fa fa-chevron-down"></span></a>--%>
+                          <%--<ul class="nav child_menu">--%>
+                            <%--<li class="sub_menu">--%>
+                            	<%--<a href="level2.html">竞技</a>--%>
+                            <%--</li>--%>
+                            <%--<li>--%>
+                            	<%--<a href="#level2_1">良品</a>--%>
+                            <%--</li>--%>
+                            <%--<li>--%>
+                            	<%--<a href="#level2_2">美食</a>--%>
+                            <%--</li>--%>
+                          <%--</ul>--%>
+                        <%--</li>--%>
+
                     </ul>
                   </li>
                   <li><a><i class="fa fa-edit"></i> 申请 <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="form.html">申请创建社团</a></li>
+                      <li><a href="formWizards.jsp">申请创建社团</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-desktop"></i> 社团中心 <span class="fa fa-chevron-down"></span></a>
@@ -204,7 +204,7 @@ td.fc-list-item-time.fc-widget-content {
               <a data-toggle="tooltip" data-placement="top" title="Lock">
                 <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
               </a>
-              <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+              <a data-toggle="tooltip" data-placement="top" title="Logout" href="../login.jsp">
                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
               </a>
             </div>
@@ -225,7 +225,7 @@ td.fc-list-item-time.fc-widget-content {
                                 <li class="" id="miniMenu">
                                     <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
                                     aria-expanded="false">
-                                        <img src="images/1.jpg" alt="">
+                                        <img src="images/<%=StuNo%>.jpg" onerror="javascript:this.src='images/user.png'" alt="">
                                         <%=StuName%>
                                         <span class=" fa fa-angle-down">
                                         </span>
@@ -252,7 +252,7 @@ td.fc-list-item-time.fc-widget-content {
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="login.html">
+                                            <a href="../login.jsp">
                                                 <i class="fa fa-sign-out pull-right">
                                                 </i>
                                                 Log Out
@@ -273,7 +273,7 @@ td.fc-list-item-time.fc-widget-content {
                                         <li>
                                             <a>
                                                 <span class="image">
-                                                    <img src="images/1.jpg" alt="Profile Image" />
+                                                    <img src="images/<%=StuNo%>.jpg" onerror="javascript:this.src='images/user.png'" alt="Profile Image" />
                                                 </span>
                                                 <span>
                                                     <span>

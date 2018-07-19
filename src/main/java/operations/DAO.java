@@ -1,16 +1,20 @@
 package operations;
 
 
+import Dao.DaoInterface;
 import model.Activity;
 import model.Apply;
 import model.Club;
-import Dao.DaoInterface;
 import model.Student;
-
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+
 //<<<<<<< HEAD
 //import java.util.*;
 //
@@ -18,11 +22,6 @@ import java.text.SimpleDateFormat;
 //
 //    //获取学生的密码
 //=======
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import Dao.DaoInterface;
 public class DAO {
 //>>>>>>> wt716
     public static String getStudentPasswd(SqlSessionFactory sqlSessionFactory, int userID){
@@ -108,7 +107,7 @@ public class DAO {
     }
 
     //社团管理者设置社团简介信息
-    public static void setClubInfo(SqlSessionFactory sqlSessionFactory, int ClubNo,String ClubInfo)
+    public static void setClubInfo(SqlSessionFactory sqlSessionFactory, int ClubNo,String ClubName,String Type,String ClubInfo)
     {
 
         try {
@@ -117,7 +116,7 @@ public class DAO {
             // 获取Mapper
             DaoInterface selectInterface = session.getMapper(DaoInterface.class);
             //获取该学生所有的社团
-             selectInterface.setClubInfo(ClubNo,ClubInfo);
+             selectInterface.setClubInfo(ClubNo,ClubName,Type,ClubInfo);
             session.commit();
             session.close();
 
@@ -344,13 +343,13 @@ public class DAO {
 
     }
            //从申请表中移除
-    public static void delFromJoinClub(SqlSessionFactory sqlSessionFactory, int StuNo){
+    public static void delFromJoinClub(SqlSessionFactory sqlSessionFactory, int StuNo ,int ClubNo){
         try {
             // 获取Session连接
             SqlSession session = sqlSessionFactory.openSession();
             // 获取Mapper
             DaoInterface DAO = session.getMapper(DaoInterface.class);
-            DAO.delFromJoinClub(StuNo);
+            DAO.delFromJoinClub(StuNo,ClubNo);
             session.commit();
             session.close();
             // 显示插入之后Apply信息
@@ -375,13 +374,13 @@ public class DAO {
         return list;
     }
     //修改成员职位
-    public static void changeMemberJob(SqlSessionFactory sqlSessionFactory, int StuNo, int ClubNo, String Job){
+    public static void changeMemberJob(SqlSessionFactory sqlSessionFactory, int StuNo, int ClubNo, String Job,String Department){
         try {
             // 获取Session连接
             SqlSession session = sqlSessionFactory.openSession();
             // 获取Mapper
             DaoInterface DAO = session.getMapper(DaoInterface.class);
-            DAO.changeMemberJob(StuNo,ClubNo,Job);
+            DAO.changeMemberJob(StuNo,ClubNo,Job,Department);
             session.commit();
             session.close();
             // 显示插入之后Apply信息
@@ -456,13 +455,13 @@ public class DAO {
     }
 
     //从申请表中移除
-    public static void delFromLeaveClub(SqlSessionFactory sqlSessionFactory, int StuNo){
+    public static void delFromLeaveClub(SqlSessionFactory sqlSessionFactory, int StuNo,int ClubNo){
         try {
             // 获取Session连接
             SqlSession session = sqlSessionFactory.openSession();
             // 获取Mapper
             DaoInterface DAO = session.getMapper(DaoInterface.class);
-            DAO.delFromLeaveClub(StuNo);
+            DAO.delFromLeaveClub(StuNo,ClubNo);
             session.commit();
             session.close();
             // 显示插入之后Apply信息
@@ -676,6 +675,45 @@ public class DAO {
         }
     }
 
+
+    public static int getSexCount(SqlSessionFactory sqlSessionFactory, int ClubNo,String Sex)
+    {
+        int i=0;
+        try {
+            // 获取Session连接
+            SqlSession session = sqlSessionFactory.openSession();
+            // 获取Mapper
+            DaoInterface selectInterface = session.getMapper(DaoInterface.class);
+            //获取该学生所有的社团
+            i=selectInterface.getSexCount(ClubNo,Sex);
+            session.commit();
+            session.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return i;
+    }
+
+
+    public static List<Activity> getJoinActivity(SqlSessionFactory sqlSessionFactory, int StuNo)
+    {
+        List<Activity> i=null;
+        try {
+            // 获取Session连接
+            SqlSession session = sqlSessionFactory.openSession();
+            // 获取Mapper
+            DaoInterface selectInterface = session.getMapper(DaoInterface.class);
+            //获取该学生所有的社团
+            i=selectInterface.getJoinActivity(StuNo);
+            session.commit();
+            session.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return i;
+    }
 }
 
 

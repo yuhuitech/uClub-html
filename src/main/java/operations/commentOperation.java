@@ -1,5 +1,6 @@
 package operations;
 
+import Dao.commentDao;
 import model.Comment;
 import model.MessageBoard;
 import org.apache.ibatis.session.SqlSession;
@@ -9,8 +10,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
-
-import Dao.commentDao;
 
 public class commentOperation {
 
@@ -141,7 +140,20 @@ public class commentOperation {
         return messages;
     }
 
+    public static void delMessageBoard(SqlSessionFactory sqlSessionFactory, String MessageNo){
+        try {
+            // 获取Session连接
+            SqlSession session = sqlSessionFactory.openSession();
+            // 获取Mapper
+            commentDao DAO = session.getMapper(commentDao.class);
+            DAO.delMessageBoard(MessageNo);
+            session.commit();
+            session.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
+    }
 
 
 }

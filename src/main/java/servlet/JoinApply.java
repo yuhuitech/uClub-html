@@ -30,7 +30,7 @@ public class JoinApply extends HttpServlet {
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
         int i=ClubOperations.joinClubApply(sqlSessionFactory,ApplyNo,StuNo,ClubNo,JoinReason);
         //跳转
-        req.getRequestDispatcher("jsp/index.jsp").forward(req,resp);
+       // req.getRequestDispatcher("jsp/index.jsp").forward(req,resp);
 
     }
 

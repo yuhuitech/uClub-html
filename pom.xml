@@ -28,6 +28,12 @@
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
         <!-- jstl-api -->
         <dependency>
             <groupId>javax.servlet.jsp.jstl</groupId>
@@ -110,6 +116,7 @@
             <artifactId>reflectasm</artifactId>
             <version>1.09</version>
         </dependency>
+
 
         <dependency>
             <groupId>javax.servlet</groupId>

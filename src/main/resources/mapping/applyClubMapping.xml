@@ -131,11 +131,12 @@
 
     <!-- 查看申请加入社团的列表  -->
     <select id="getJoinClubApply" resultType="HashMap">
-        select Student.StuNo,Student.StuName,Student.college,Student.grade,Student.Tel,Student.Email,Student.Sex,Student.self_introduce,join_apply.JoinReason,join_apply.ApplyNo
+        select Student.StuNo,Student.StuName,Student.college,Student.grade,Student.Tel,Student.Sex,Student.self_introduce,join_apply.JoinReason,join_apply.ApplyNo
         from uclub.Student,uclub.join_apply
         <where>
             Student.StuNo=join_apply.StuNo
             and ClubNo=#{ClubNo}
+            and join_apply.Status=0
         </where>
     </select>
 
@@ -146,9 +147,9 @@
 
     <!-- 从加入社团申请表中删除  -->
     <delete id="delFromJoinClub">
-        delete from uclub.join_apply
+        update uclub.join_apply set Status=2
         <where>
-            StuNo = #{StuNo}
+            StuNo = #{StuNo} and ClubNo=#{ClubNo}
         </where>
     </delete>
 
@@ -159,20 +160,20 @@
         from Student,Member
         <where>
             Student.StuNo=Member.StuNo
-            and ClubNo=#{ClubNo}
+            and ClubNo=#{ClubNo} and leave_time is null
         </where>
         order by Member.leave_time
     </select>
 
     <!-- 修改成员职位 -->
     <update id="changeMemberJob">
-        update uclub.Member set Job=#{Job}
+        update uclub.Member set Job=#{Job},Department=#{Department}
         <where>
             StuNo=#{StuNo} and ClubNo=#{ClubNo}
         </where>
     </update>
 
-    <!-- 修改成员部门 -->
+    <!-- 废弃 -->
     <update id="changeMemberDepartment">
         update uclub.Member set Department=#{Department}
         <where>
@@ -197,22 +198,24 @@
 
     <!-- 获取退出社团表的信息 -->
     <select id="getLeaveClubApply" resultType="HashMap">
-        select Student.StuNo,Student.StuName,Student.college,Student.grade,Student.Tel,Student.Email,Student.Sex,Student.self_introduce,leave_apply.Reason,leave_apply.ApplyNo
-        from uclub.Student,uclub.leave_apply
+        select Student.StuNo,Student.StuName,Student.college,Student.grade,Student.Tel,Student.Email,Student.Sex,Student.self_introduce,leave_apply.Reason,leave_apply.ApplyNo,Member.Job
+        from uclub.Student,uclub.leave_apply,uclub.Member
         <where>
             Student.StuNo=leave_apply.StuNo
-            and ClubNo=#{ClubNo}
+            and leave_apply.ClubNo=Member.ClubNo
+            and Member.ClubNo=#{ClubNo}
+            and leave_apply.Status=0
         </where>
     </select>
 
 
     <!-- 从退出社团申请表中删除  -->
-    <delete id="delFromLeaveClub">
-        delete from uclub.leave_apply
+    <update id="delFromLeaveClub">
+        update uclub.leave_apply set Status=2
         <where>
-            StuNo = #{StuNo}
+            StuNo = #{StuNo} and ClubNo=#{ClubNo}
         </where>
-    </delete>
+    </update>
     
     <!-- 申请活动经费 -->
     <insert id="priceApply">
@@ -296,6 +299,14 @@
         </where>
     </select>
 
+      <!-- 获取指定性别人数 -->
+    <select id="getSexCount" resultType="int">
+        SELECT count(*) FROM Student WHERE Sex=#{Sex} AND StuNo IN (SELECT StuNo FROM Member WHERE ClubNo=#{ClubNo} AND leave_time is null);
+    </select>
 
-
+    <!--获取参加的所有活动-->
+    <select id="getJoinActivity" resultMap="activity">
+        select * from Activity
+        where ActiveNo in ( select ActiveNo from join_activity where StuNo=#{StuNo});
+    </select>
 </mapper>

@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!-- Meta, title, CSS, favicons, etc. -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>
+            Gentelella Alela! |
+        </title>
+        <!-- Bootstrap -->
+        <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Font Awesome -->
+        <link href="vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+        <!-- NProgress -->
+        <link href="vendors/nprogress/nprogress.css" rel="stylesheet">
+        <!-- iCheck -->
+        <link href="vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+        <!-- bootstrap-progressbar -->
+        <link href="vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css"
+        rel="stylesheet">
+        <!-- jQuery custom content scroller -->
+        <link href="vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet"/>
+        <style>
+            .block_content { margin-top: 50px; }
+        </style>
+        <!-- Custom Theme Style -->
+        <link href="build/css/custom.min.css" rel="stylesheet">
+    </head>
+    
+    <body class="nav-md" onload="initFunctionTemp()">
+        <div class="container body">
+            <div class="main_container">
+                <div class="col-md-3 left_col menu_fixed">
+                    <div class="left_col scroll-view">
+                        <div class="navbar nav_title" style="border: 0;">
+                            <a href="index.html" class="site_title">
+                                <i class="fa fa-paw">
+                                </i>
+                                <span>
+                                    Gentelella Alela!
+                                </span>
+                            </a>
+                        </div>
+                        <div class="clearfix">
+                        </div>
+                        <!-- menu profile quick info -->
+                        <div class="profile clearfix">
+                            <div class="profile_pic">
+                                <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+                            </div>
+                            <div class="profile_info">
+                                <span>
+                                    Welcome,
+                                </span>
+                                <h2>
+                                    John Doe
+                                </h2>
+                            </div>
+                        </div>
+                        <!-- /menu profile quick info -->
+                        <br />
+                        <!-- sidebar menu -->
+                        <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                            <div class="menu_section">
+                                <h3>
+                                    通用
+                                </h3>
+                                <ul class="nav side-menu">
+                                    <li class="active">
+                                        <a>
+                                            <i class="fa fa-home">
+                                            </i>
+                                            主页
+                                            <span class="fa fa-chevron-down">
+                                            </span>
+                                        </a>
+                                        <ul class="nav child_menu">
+                                            <li>
+                                                <a href="index2.html">
+                                                    趋势
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="index2.html">
+                                                    所有社团
+                                                </a>
+                                            </li>
+                                            <li class="current-page">
+                                                <a>
+                                                    文字
+                                                    <span class="fa fa-chevron-down">
+                                                    </span>
+                                                </a>
+                                                <ul class="nav child_menu">
+                                                    <li class="sub_menu">
+                                                        <a href="plaza.html">
+                                                            广场
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="plaza.html">
+                                                            良品
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="plaza.html">
+                                                            美食
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a>
+                                            <i class="fa fa-edit">
+                                            </i>
+                                            申请
+                                            <span class="fa fa-chevron-down">
+                                            </span>
+                                        </a>
+                                        <ul class="nav child_menu">
+                                            <li>
+                                                <a href="form.html">
+                                                    申请创建社团
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a>
+                                            <i class="fa fa-desktop">
+                                            </i>
+                                            社团中心
+                                            <span class="fa fa-chevron-down">
+                                            </span>
+                                        </a>
+                                        <ul class="nav child_menu">
+                                            <li>
+                                                <a href="my_group.html">
+                                                    加入的社团
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="inbox.html">
+                                                    收到的消息
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="calendar.html">
+                                                    活动日历
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a>
+                                            <i class="fa fa-user">
+                                            </i>
+                                            我
+                                            <span class="fa fa-chevron-down">
+                                            </span>
+                                        </a>
+                                        <ul class="nav child_menu">
+                                            <li>
+                                                <a href="profile.html">
+                                                    我的简历
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- /sidebar menu -->
+                        <!-- /menu footer buttons -->
+                        <div class="sidebar-footer hidden-small">
+                            <a data-toggle="tooltip" data-placement="top" title="Settings">
+                                <span class="glyphicon glyphicon-cog" aria-hidden="true">
+                                </span>
+                            </a>
+                            <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true">
+                                </span>
+                            </a>
+                            <a data-toggle="tooltip" data-placement="top" title="Lock">
+                                <span class="glyphicon glyphicon-eye-close" aria-hidden="true">
+                                </span>
+                            </a>
+                            <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+                                <span class="glyphicon glyphicon-off" aria-hidden="true">
+                                </span>
+                            </a>
+                        </div>
+                        <!-- /menu footer buttons -->
+                    </div>
+                </div>
+                <!-- top navigation -->
+                <div class="top_nav">
+                    <div class="nav_menu" id="pageSize">
+                        <nav>
+                            <div class="nav toggle">
+                                <a id="menu_toggle">
+                                    <i class="fa fa-bars">
+                                    </i>
+                                </a>
+                            </div>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="" id="miniMenu">
+                                    <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                                    aria-expanded="false">
+                                        <img src="images/img.jpg" alt="">
+                                        John Doe
+                                        <span class=" fa fa-angle-down">
+                                        </span>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                        <li>
+                                            <a href="javascript:;">
+                                                Profile
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">
+                                                <span class="badge bg-red pull-right">
+                                                    50%
+                                                </span>
+                                                <span>
+                                                    Settings
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">
+                                                Help
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="login.html">
+                                                <i class="fa fa-sign-out pull-right">
+                                                </i>
+                                                Log Out
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li role="presentation" class="dropdown" id="messageDropDown">
+                                    <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown"
+                                    aria-expanded="false">
+                                        <i class="fa fa-envelope-o">
+                                        </i>
+                                        <span class="badge bg-green">
+                                            6
+                                        </span>
+                                    </a>
+                                    <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                                        <li>
+                                            <a>
+                                                <span class="image">
+                                                    <img src="images/img.jpg" alt="Profile Image" />
+                                                </span>
+                                                <span>
+                                                    <span>
+                                                        John Smith
+                                                    </span>
+                                                    <span class="time">
+                                                        3 mins ago
+                                                    </span>
+                                                </span>
+                                                <span class="message">
+                                                    Film festivals used to be do-or-die moments for movie makers. They were
+                                                    where...
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a>
+                                                <span class="image">
+                                                    <img src="images/img.jpg" alt="Profile Image" />
+                                                </span>
+                                                <span>
+                                                    <span>
+                                                        John Smith
+                                                    </span>
+                                                    <span class="time">
+                                                        3 mins ago
+                                                    </span>
+                                                </span>
+                                                <span class="message">
+                                                    Film festivals used to be do-or-die moments for movie makers. They were
+                                                    where...
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a>
+                                                <span class="image">
+                                                    <img src="images/img.jpg" alt="Profile Image" />
+                                                </span>
+                                                <span>
+                                                    <span>
+                                                        John Smith
+                                                    </span>
+                                                    <span class="time">
+                                                        3 mins ago
+                                                    </span>
+                                                </span>
+                                                <span class="message">
+                                                    Film festivals used to be do-or-die moments for movie makers. They were
+                                                    where...
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a>
+                                                <span class="image">
+                                                    <img src="images/img.jpg" alt="Profile Image" />
+                                                </span>
+                                                <span>
+                                                    <span>
+                                                        John Smith
+                                                    </span>
+                                                    <span class="time">
+                                                        3 mins ago
+                                                    </span>
+                                                </span>
+                                                <span class="message">
+                                                    Film festivals used to be do-or-die moments for movie makers. They were
+                                                    where...
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <div class="text-center">
+                                                <a>
+                                                    <strong>
+                                                        See All Alerts
+                                                    </strong>
+                                                    <i class="fa fa-angle-right">
+                                                    </i>
+                                                </a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <!-- /top navigation -->
+                <!-- page content -->
+                <div class="right_col" role="main">
+                    <div class="">
+                        <div class="page-title">
+                            <div class="title_left">
+                                <h3>
+                                    广场
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="title_right">
+                            <div class="col-md-4 col-sm-4 col-xs-12 form-group pull-right top_search">
+                                <div class="input-group">
+                                    <input type="text" id="searchInfo" class="form-control" placeholder="随便搜">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" onclick="searchSentence=$('#searchInfo').val();goToPageOption(1);"
+                                        type="button">
+                                            Go!
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2>
+                                    广场文章
+                                </h2>
+                                <div class="clearfix">
+                                </div>
+                            </div>
+                            <div class="x_content">
+                                <ul class="list-unstyled timeline" id="allGroups">
+                                    <li class="groupList">
+                                        <div class="block">
+                                            <div class="tags">
+                                                <a href="" class="tag">
+                                                    <span style="text-align: center;" class="clubName">
+                                                        自强
+                                                    </span>
+                                                </a>
+                                            </div>
+                                            <div class="block_content">
+                                                <h2 class="title ArticleTitle">
+                                                    <a class="articleTitle">
+                                                        自强欢迎有志的你
+                                                    </a>
+                                                </h2>
+                                                <div class="byline">
+                                                    <span class="publishTime">
+                                                        13 hours ago
+                                                    </span>
+                                                    via
+                                                    <a class="author">
+                                                        江疏影
+                                                    </a>
+                                                </div>
+                                                <p class="excerpt">
+                                                    <span class="articleContent">
+                                                        武汉大学自强网络文化工作室(自强Studio),是武汉大学党委学工部直属的校级学生组织,我们立志于做最专业的学生互联网团队。旗下产品如淘课啦、掌上武大APP、掌上武大...
+                                                    </span>
+                                                    <a>
+                                                        Read&nbsp;More
+                                                    </a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="groupList">
+                                        <div class="block">
+                                            <div class="tags">
+                                                <a href="" class="tag">
+                                                    <span style="text-align: center;" class="clubName">
+                                                        网球社
+                                                    </span>
+                                                </a>
+                                            </div>
+                                            <div class="block_content">
+                                                <h2 class="title">
+                                                    <a class="articleTitle">
+                                                        如何快速提升网球技能？
+                                                    </a>
+                                                </h2>
+                                                <div class="byline">
+                                                    <span class="publishTime">
+                                                        13 hours ago
+                                                    </span>
+                                                    via
+                                                    <a class="author">
+                                                        王小明
+                                                    </a>
+                                                </div>
+                                                <p class="excerpt">
+                                                    <span class="articleContent">
+                                                        网球运动是一种球类运动，通常在两个单打球员或两对组合之间进行。球员在网球场上隔着球网用网球拍击打网球。现代网球运动诞生于19世纪的英国伯明翰，最初被称为是“草地网球”，此后网球运动得到了飞速的发展，1877年首个大满贯赛温布尔登...
+                                                    </span>
+                                                    <a>
+                                                        Read&nbsp;More
+                                                    </a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="groupList">
+                                        <div class="block">
+                                            <div class="tags">
+                                                <a href="" class="tag">
+                                                    <span style="text-align: center;" class="clubName">
+                                                        口琴社
+                                                    </span>
+                                                </a>
+                                            </div>
+                                            <div class="block_content">
+                                                <h2 class="title">
+                                                    <a class="articleTitle">
+                                                        如何选购口琴？
+                                                    </a>
+                                                </h2>
+                                                <div class="byline">
+                                                    <span class="publishTime">
+                                                        13 hours ago
+                                                    </span>
+                                                    via
+                                                    <a class="author">
+                                                        孙俪
+                                                    </a>
+                                                </div>
+                                                <p class="excerpt">
+                                                    <span class="articleContent">
+                                                        口琴，(英文Harmonica），用嘴吹或吸气，使金属簧片振动发声的多簧片乐器；在乐器分类上属于自由簧的吹奏乐器。其发声源是长度介于1.5～3.5cm的簧片而非空气柱
+                                                        （如长笛）。口琴主要分为独奏口琴和合奏口琴，各自又有不同种类 。其音域依种类..
+                                                    </span>
+                                                    <a>
+                                                        Read&nbsp;More
+                                                    </a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="groupList">
+                                        <div class="block">
+                                            <div class="tags">
+                                                <a href="" class="tag">
+                                                    <span style="text-align: center;" class="clubName">
+                                                        电竞社
+                                                    </span>
+                                                </a>
+                                            </div>
+                                            <div class="block_content">
+                                                <h2 class="title">
+                                                    <a class="articleTitle">
+                                                        电竞社招新
+                                                    </a>
+                                                </h2>
+                                                <div class="byline">
+                                                    <span class="publishTime">
+                                                        6 hours ago
+                                                    </span>
+                                                    via
+                                                    <a class="author">
+                                                        孙红雷
+                                                    </a>
+                                                </div>
+                                                <p class="excerpt">
+                                                    <span class="articleContent">
+                                                        电子竞技（英语：eSports）是指使用电子游戏来比赛的体育项目。随着游戏对经济、社会的影响力不断壮大，电子竞技正式成为体育竞技的一种。电子竞技就是电子游戏比赛达到竞技层面的活动。(电话也可以电子竞技)电子竞技运动就是利用电子设备（电脑、游戏主机、街机）作为运动器械进行的、但是操作上强调人与人之间的智力与反应对抗运动。
+                                                        荷兰市场分析公司Newzoo预估，2015年全球电竞产值将达到2.5亿美金[1]，2017年全球电竞市场报告则指出，全球电竞市场收入预计将达6.96亿美元，比去年增长了41%。包括广告投入1.55亿美元，赛事和赞助2.66亿美元，媒体转播权9500万美元，消费者的消费支出6300万美元，剩下的1.16亿美元则为游戏厂商将进入电子竞技的总投资。电竞产业产生的经济效益发展迅速，如Dota
+                                                        2的国际邀请赛奖金就高达1500万美元。超过3.8亿人在线观看世界各地的电视节目.
+                                                    </span>
+                                                    <a>
+                                                        Read&nbsp;More
+                                                    </a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="groupList">
+                                        <div class="block">
+                                            <div class="tags">
+                                                <a href="" class="tag">
+                                                    <span style="text-align: center;" class="clubName">
+                                                        创新发明社
+                                                    </span>
+                                                </a>
+                                            </div>
+                                            <div class="block_content">
+                                                <h2 class="title">
+                                                    <a class="articleTitle">
+                                                        发明社招新！！！
+                                                    </a>
+                                                </h2>
+                                                <div class="byline">
+                                                    <span class="publishTime">
+                                                        1 hours ago
+                                                    </span>
+                                                    via
+                                                    <a class="author">
+                                                        罗志祥
+                                                    </a>
+                                                </div>
+                                                <p class="excerpt">
+                                                    <span class="articleContent">
+                                                        创新的定义：创新是指以现有的思维模式提出有别于常规或常人思路的见解为导向，利用现有的知识和物质，在特定的环境中，本着理想化需要或为满足社会需求，去改进或创造新的事物、方法、元素、路径、环境，并能获得一定有益效果的行为。
+                                                        创新的定义是推出新事物。[1] 中文“创新”一词是在1980年代才被人们接受的[来源请求]。英语：Innovation是指科技上的发明、创造。后来意义发生推广，用于指代在人的主观作用推动下产生所有以前没有的设想、技术、文化、商业或者社会方面的关系。也指自然科学的新发现。
+                                                        创新具有某种不可预见性[2]。科技创新是各创新主体、各创新要素交互作用下的一种复杂涌现现象，是技术进步与应用创新所构成的创新双螺旋共同演进的产物[3]。大多数的创新行为都是未经计划的产物，因而创新是不能计划的[4]。
+                                                        创新具有一定的风险，可是如果企业选择在原地踏步，同样也是一种危险的行为，因为竞争者可能会开发出更好或者更价廉的产品。 Christensen将这种局面表述为“创新者的难题”（The
+                                                        Innovator's Dilemma）。随着当今世界的变革不断加速，作为对变革的应对手段的创新也就越来越多地成为人们谈论的话题。信息技术的发展进一步带动了以用户为中心、以社会实践为舞台、以共同创新、开放创新为特点的用户参与的创新2.0模式，带动了创新的扩散和普适，创新2.0被认为是创新形态应对知识社会来临的新变化。[5]
+                                                        由创新带动的生产力的增长是经济财富增长的根本原因。革新如果被世界广泛采纳就是创新。在很多领域中，一些新的事物革新的必须与先前的充分的不同，而不是没有意义的改变，比如说在艺术、经济、商业和政治领域中。在经济领域，创新必须带来价值的增长，比如客户价值、产品价值。创新的目的是积极意义的变革，使得事情变得更好。创新可以指思想，事物，过程或服务中的质变和量变。创新在经济、商业、技术、社会学以及建筑学这些领域的研究中有着举足轻重的分量。口语上，经常用“创新”一词表示改革的结果。既然改革被视为经济发展的主要推动力，那么对决策者来说，促进创新的因素也被视为至关重要。
+                                                    </span>
+                                                    <a>
+                                                        Read&nbsp;More
+                                                    </a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="groupList">
+                                        <div class="block">
+                                            <div class="tags">
+                                                <a href="" class="tag">
+                                                    <span style="text-align: center;" class="clubName">
+                                                        口琴社
+                                                    </span>
+                                                </a>
+                                            </div>
+                                            <div class="block_content">
+                                                <h2 class="title">
+                                                    <a class="articleTitle">
+                                                        如何选购口琴？
+                                                    </a>
+                                                </h2>
+                                                <div class="byline">
+                                                    <span class="publishTime">
+                                                        13 hours ago
+                                                    </span>
+                                                    via
+                                                    <a class="author">
+                                                        孙俪
+                                                    </a>
+                                                </div>
+                                                <p class="excerpt">
+                                                    <span class="articleContent">
+                                                        口琴，(英文Harmonica），用嘴吹或吸气，使金属簧片振动发声的多簧片乐器；在乐器分类上属于自由簧的吹奏乐器。其发声源是长度介于1.5～3.5cm的簧片而非空气柱
+                                                        （如长笛）。口琴主要分为独奏口琴和合奏口琴，各自又有不同种类 。其音域依种类..
+                                                    </span>
+                                                    <a>
+                                                        Read&nbsp;More
+                                                    </a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="groupList">
+                                        <div class="block">
+                                            <div class="tags">
+                                                <a href="" class="tag">
+                                                    <span style="text-align: center;" class="clubName">
+                                                        电竞社
+                                                    </span>
+                                                </a>
+                                            </div>
+                                            <div class="block_content">
+                                                <h2 class="title">
+                                                    <a class="articleTitle">
+                                                        电竞社招新
+                                                    </a>
+                                                </h2>
+                                                <div class="byline">
+                                                    <span class="publishTime">
+                                                        6 hours ago
+                                                    </span>
+                                                    via
+                                                    <a class="author">
+                                                        孙红雷
+                                                    </a>
+                                                </div>
+                                                <p class="excerpt">
+                                                    <span class="articleContent">
+                                                        电子竞技（英语：eSports）是指使用电子游戏来比赛的体育项目。随着游戏对经济、社会的影响力不断壮大，电子竞技正式成为体育竞技的一种。电子竞技就是电子游戏比赛达到竞技层面的活动。(电话也可以电子竞技)电子竞技运动就是利用电子设备（电脑、游戏主机、街机）作为运动器械进行的、但是操作上强调人与人之间的智力与反应对抗运动。
+                                                        荷兰市场分析公司Newzoo预估，2015年全球电竞产值将达到2.5亿美金[1]，2017年全球电竞市场报告则指出，全球电竞市场收入预计将达6.96亿美元，比去年增长了41%。包括广告投入1.55亿美元，赛事和赞助2.66亿美元，媒体转播权9500万美元，消费者的消费支出6300万美元，剩下的1.16亿美元则为游戏厂商将进入电子竞技的总投资。电竞产业产生的经济效益发展迅速，如Dota
+                                                        2的国际邀请赛奖金就高达1500万美元。超过3.8亿人在线观看世界各地的电视节目.
+                                                    </span>
+                                                    <a>
+                                                        Read&nbsp;More
+                                                    </a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="groupList">
+                                        <div class="block">
+                                            <div class="tags">
+                                                <a href="" class="tag">
+                                                    <span style="text-align: center;" class="clubName">
+                                                        C++爱好者协会
+                                                    </span>
+                                                </a>
+                                            </div>
+                                            <div class="block_content">
+                                                <h2 class="title">
+                                                    <a class="articleTitle">
+                                                        C++社团寻求大佬
+                                                    </a>
+                                                </h2>
+                                                <div class="byline">
+                                                    <span class="publishTime">
+                                                        13 hours ago
+                                                    </span>
+                                                    via
+                                                    <a class="author">
+                                                        小菜比
+                                                    </a>
+                                                </div>
+                                                <p class="excerpt">
+                                                    <span class="articleContent">
+                                                        C++是一种使用广泛的计算机程序设计语言。它是一种通用程序设计语言，支持多重编程模式，例如过程化程序设计、数据抽象、面向对象程序设计、泛型程序设计和设计模式等。
+                                                        比雅尼·斯特劳斯特鲁普博士在贝尔实验室工作期间在20世纪80年代发明并实现了C++。起初，这种语言被称作“C with Classes”（“包含‘类’的C语言”），作为C语言的增强版出现。随后，C++不断增加新特性。虚函数（virtual
+                                                        function）、运算符重载（operator overloading）、多继承（multiple inheritance）、标准模板库（standard
+                                                        template library, STL）、异常处理（exception）、运行时类型信息（Runtime type information）、名字空间（namespace）等概念逐渐纳入标准。1998年，国际标准组织（ISO）颁布了C++程序设计语言的第一个国际标准ISO/IEC
+                                                        14882:1998，目前最新标准为ISO/IEC 14882:2017。根据《C++编程思想》（Thinking in C++）一书，C++与C的代码执行效率往往相差在±5%之间。
+                                                        C++语言发展大概可以分为三个阶段：第一阶段从80年代到1995年。这一阶段C++语言基本上是传统类型上的面
+                                                    </span>
+                                                    <a>
+                                                        Read&nbsp;More
+                                                    </a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="groupList">
+                                        <div class="block">
+                                            <div class="tags">
+                                                <a href="" class="tag">
+                                                    <span style="text-align: center;" class="clubName">
+                                                        吃乎
+                                                    </span>
+                                                </a>
+                                            </div>
+                                            <div class="block_content">
+                                                <h2 class="title">
+                                                    <a class="articleTitle">
+                                                        大家都想了解那些美食呢？戳我留言丫~
+                                                    </a>
+                                                </h2>
+                                                <div class="byline">
+                                                    <span class="publishTime">
+                                                        13 hours ago
+                                                    </span>
+                                                    via
+                                                    <a class="author">
+                                                        小吃货
+                                                    </a>
+                                                </div>
+                                                <p class="excerpt">
+                                                    <span class="articleContent">
+                                                        进食又称食、用餐、俗称吃、吃饭，是动物为了保持体能和生命所进行之有序的摄入营养和能量的过程，是动物的一种本能。所有动物都必须进食其他生物才得以生存。不同动物的进食方式不一样，以人类来说，进食乃指将食物放入口内，然后加以咀嚼、吞咽的一系列过程。
+                                                        进食由肚子饿所触发，通过一些生理及心理作用引起食欲，促使动物去找寻食物以进食。若进食失调便会造成许多疾病，如厌食症、暴食症、营养不良等。
+                                                    </span>
+                                                    <a>
+                                                        Read&nbsp;More
+                                                    </a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="groupList">
+                                        <div class="block">
+                                            <div class="tags">
+                                                <a href="" class="tag">
+                                                    <span style="text-align: center;" class="clubName">
+                                                        游泳爱好者协会
+                                                    </span>
+                                                </a>
+                                            </div>
+                                            <div class="block_content">
+                                                <h2 class="title">
+                                                    <a class="articleTitle">
+                                                        通知，信息学部游泳池已开放
+                                                    </a>
+                                                </h2>
+                                                <div class="byline">
+                                                    <span class="publishTime">
+                                                        1 hours ago
+                                                    </span>
+                                                    via
+                                                    <a class="author">
+                                                        浪里白条
+                                                    </a>
+                                                </div>
+                                                <p class="excerpt">
+                                                    <span class="articleContent">
+                                                        游泳是康乐活动、社交活动、也可以是竞赛运动 2008年北京夏季奥林匹克运动会4×100米接力，选手们正在准备。 游泳，是在水中靠浮力，借自身肢体的动作在水中运动前进的运动和技能。游泳运动可分为竞技游泳和实用游泳，竞技游泳是奥林匹克运动会中的第二大项目，包括：蝶泳、仰泳（也称背泳）、蛙泳、捷泳（也称自由泳、爬泳），四种泳姿的竞速项目，以及花样游泳等。
+                                                        早期的游泳活动，多被视为贵族子女教育及士兵训练的一个重要部分，公元前25世纪古埃及已有类似游泳的活动。古罗马人兴建了巨大浴池，游泳成为上流社会人士社交活动。18世纪末，工人游泳的机会增多，游泳开始成为一种普通运动。[1]
+                                                        竞技游泳源于19世纪中期的英国及澳洲，1837年英国游泳协会成立，开创了近代游泳竞赛的历史。1869年，英国业余游泳总会成立，这是世界第一个国家游泳总会。二十世纪初，世界各国的游泳比赛开始普及，1894年6月16日，在巴黎成立国际奥林匹克委员会时，游泳被列为1896年奥运会的项目之一。1908年，国际游泳联合会（FINA）成立。
+                                                    </span>
+                                                    <a>
+                                                        Read&nbsp;More
+                                                    </a>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="row" id="pageDivide">
+                                <div class="col-sm-5">
+                                    <div class="dataTables_info" id="datatable_info" role="status" aria-live="polite">
+                                        <!--Showing 1 to 10 of 57 entries-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" id="pageDivide">
+                        <div class="col-sm-5">
+                            <div class="dataTables_info" id="datatable_info" role="status" aria-live="polite">
+                                <!--Showing 1 to 10 of 57 entries-->
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="dataTables_paginate paging_simple_numbers" id="datatable_paginate">
+                                <ul class="pagination" id="choosePage">
+                                    <li class="paginate_button previous" id="datatable_previous" onclick="goToPageOption(currentPage-1);">
+                                        <a aria-controls="datatable" data-dt-idx="0" tabindex="0">
+                                            Previous
+                                        </a>
+                                    </li>
+                                    <li id="outerPage1" class="paginate_button " onclick="goToPageOption(pageRange[0])">
+                                        <a id="Page1" aria-controls="datatable" data-dt-idx="1" tabindex="0">
+                                            1
+                                        </a>
+                                    </li>
+                                    <li id="outerPage2" class="paginate_button " onclick="goToPageOption(pageRange[1])">
+                                        <a id="Page2" aria-controls="datatable" data-dt-idx="2" tabindex="0">
+                                            2
+                                        </a>
+                                    </li>
+                                    <li id="outerPage3" class="paginate_button " onclick="goToPageOption(pageRange[2])">
+                                        <a id="Page3" aria-controls="datatable" data-dt-idx="3" tabindex="0">
+                                            3
+                                        </a>
+                                    </li>
+                                    <li id="outerPage4" class="paginate_button " onclick="goToPageOption(pageRange[3])">
+                                        <a id="Page4" aria-controls="datatable" data-dt-idx="4" tabindex="0">
+                                            4
+                                        </a>
+                                    </li>
+                                    <li id="outerPage5" class="paginate_button " onclick="goToPageOption(pageRange[4])">
+                                        <a id="Page5" aria-controls="datatable" data-dt-idx="5" tabindex="0">
+                                            5
+                                        </a>
+                                    </li>
+                                    <li class="paginate_button next" id="datatable_next" onclick="goToPageOption(currentPage+1);">
+                                        <a aria-controls="datatable" data-dt-idx="7" tabindex="0">
+                                            Next
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                    </div>
+                </div>
+                <!-- /page content -->
+                <!-- footer content -->
+                <footer>
+                    <div class="pull-right">
+                        Copyright © UClub All Rights Reserved
+                    </div>
+                    <div class="clearfix">
+                    </div>
+                </footer>
+                <!-- /footer content -->
+            </div>
+        </div>
+        <div id="custom_notifications" class="custom-notifications dsp_none">
+            <ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group">
+            </ul>
+            <div class="clearfix">
+            </div>
+            <div id="notif-group" class="tabbed_notifications">
+            </div>
+        </div>
+        <!-- jQuery -->
+        <script src="vendors/jquery/dist/jquery.min.js">
+        </script>
+        <!-- Bootstrap -->
+        <script src="vendors/bootstrap/dist/js/bootstrap.min.js">
+        </script>
+        <!-- FastClick -->
+        <script src="vendors/fastclick/lib/fastclick.js">
+        </script>
+        <!-- NProgress -->
+        <script src="vendors/nprogress/nprogress.js">
+        </script>
+        <!-- bootstrap-progressbar -->
+        <script src="vendors/bootstrap-progressbar/bootstrap-progressbar.min.js">
+        </script>
+        <!-- iCheck -->
+        <script src="vendors/iCheck/icheck.min.js">
+        </script>
+        <!-- Custom Theme Scripts -->
+        <script src="build/js/custom.min.js">
+        </script>
+    </body>
+
+</html>
+<script>
+    // 默认一页15个
+    var allNodes;
+    var allNum;
+    var showNodes;
+    var nowNum = 5; //一页的个数
+    var allPages;
+    var currentPage;
+    var pageRange;
+    var articles = new Array();
+    var searchSentence;
+
+    var getArticle = function() {
+        var clubs = document.getElementsByClassName('clubName');
+        var titles = document.getElementsByClassName('articleTitle');
+        var authors = document.getElementsByClassName('author');
+        var contents = document.getElementsByClassName('articleContent');
+        var times = document.getElementsByClassName('publishTime');
+        allNum = clubs.length;
+        for (var i = 0; i < allNum; i++) {
+            var article = clubs[i].innerHTML + " " + titles[i].innerHTML + " " + authors[i].innerHTML + " " + contents[i].innerHTML + " " + times[i].innerHTML;
+            articles.push(article);
+            if (contents[i].innerHTML.trim().length > 200) {
+                contents[i].innerHTML = contents[i].innerHTML.trim().substring(0, 200) + "....";
+            } else {
+                contents[i].innerHTML = contents[i].innerHTML.trim();
+            }
+        }
+    }
+
+    var initFunctionTemp = function() {
+        getArticle();
+        var temp = document.getElementById('allGroups');
+        allNodes = temp.getElementsByClassName("groupList");
+        allNum = allNodes.length;
+        // allNodes = deepCopy(allNodes);
+        allPages = Math.ceil(allNum * 1.0 / nowNum);
+        for (var i = 0; i < allNum; i++) {
+            allNodes[i].style.display = "none";
+        }
+        goToPage(1);
+    }
+
+    var getIndexPages = function() {
+        if (currentPage <= 3 && currentPage > 0 || allPages <= 5) {
+            return [1, 2, 3, 4, 5];
+        }
+        if (currentPage > 3 && currentPage < allPages - 2) {
+            return [currentPage - 2, currentPage - 1, currentPage, currentPage + 1, currentPage + 2];
+        }
+        if (currentPage >= allPages - 2 && currentPage <= allPages) {
+            return [allPages - 4, allPages - 3, allPages - 2, allPages - 1, allPages];
+        }
+    }
+
+    var goToPageOption = function(pageNum) {
+        if ($('#searchInfo').val() !== '' || searchSentence !== '') {
+            searchForGroup(pageNum);
+        } else {
+            goToPage(pageNum, allNodes, allNum);
+        }
+
+    }
+
+    var goToPage = function(pageNum, originNodes, allNumber) {
+        if (pageNum > allPages) {
+            return;
+        }
+        if (pageNum <= 0) {
+            return;
+        }
+        for (var i = 0; i < allNumber; i++) {
+            originNodes[i].style.display = "none";
+        }
+        currentPage = pageNum;
+        var nodes = new Array();
+        var init = (pageNum - 1) * nowNum;
+        for (var i = 0; i < (nowNum >= (allNum - init) ? (allNum - init) : nowNum); i++) {
+            nodes.push(allNodes[i + init]);
+            allNodes[i + init].style.display = "inline";
+        }
+        showNodes = nodes;
+        pageRange = getIndexPages();
+
+        for (var temp = 0; temp < 5; temp++) {
+            document.getElementById("Page" + (temp + 1)).innerText = '?';
+            document.getElementById("outerPage" + (temp + 1)).style.display = "inline";
+            document.getElementById("Page" + (temp + 1)).style.display = "inline";
+        }
+
+        for (temp = 0; temp < (5 >= allPages ? allPages: 5); temp++) {
+            document.getElementById("Page" + (temp + 1)).innerText = pageRange[temp];
+            document.getElementById("outerPage" + (temp + 1)).className = "paginate_button";
+            if (document.getElementById("Page" + (temp + 1)).innerText === pageNum.toString()) {
+                document.getElementById("outerPage" + (temp + 1)).className = "paginate_button active";
+            }
+        }
+        if (allPages < 5) {
+            for (temp = 0; temp < 5; temp++) {
+                if (document.getElementById("Page" + (temp + 1)).innerText === '?') {
+                    document.getElementById("outerPage" + (temp + 1)).style.display = "none";
+                    document.getElementById("Page" + (temp + 1)).style.display = "none";
+                }
+            }
+        }
+    }
+
+    function searchForGroup(pageNum) {
+        var searchInfo = $('#searchInfo').val();
+        var tempNodes = allNodes;
+        var tempAllNum = allNum;
+        var tempAllPages = allPages;
+        var showNodes = new Array();
+        for (var i = 0; i < allNum; i++) {
+            if (articles[i].indexOf(searchInfo) !== -1) {
+                showNodes.push(allNodes[i]);
+            }
+        }
+        allNodes = showNodes;
+        allNum = allNodes.length;
+        allPages = Math.ceil(allNum * 1.0 / nowNum);
+        goToPage(pageNum, tempNodes, tempAllNum);
+        allNodes = tempNodes;
+        allNum = tempAllNum;
+        allPages = tempAllPages;
+    }
+</script>
+	<!--
+    	作者：offline
+    	时间：2018-07-10
+    	描述：手机初步适配
+    -->
+    <script src="mobile.js"></script>
+	<!-- jQuery custom content scroller -->
+    <script src="vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>

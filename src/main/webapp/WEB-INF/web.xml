@@ -10,6 +10,22 @@
         <listener-class>controller.SQLConnectListner</listener-class>
     </listener>
 
+    <error-page>
+        <error-code>404</error-code>
+        <location>/jsp/page_404.html</location>
+    </error-page>
+
+    <error-page>
+        <error-code>500</error-code>
+        <location>/jsp/page_500.html</location>
+    </error-page>
+
+    <error-page>
+        <error-code>403</error-code>
+        <location>/jsp/page_403.html</location>
+    </error-page>
+
+
     <welcome-file-list>
         <welcome-file>login.jsp</welcome-file>
     </welcome-file-list>
@@ -304,6 +320,50 @@
         <url-pattern>/Recommend</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>getJoinList</servlet-name>
+        <servlet-class>servlet.GetJoinList</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getJoinList</servlet-name>
+        <url-pattern>/getJoinList</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>getExitList</servlet-name>
+        <servlet-class>servlet.GetExitList</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getExitList</servlet-name>
+        <url-pattern>/getExitList</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>getMemberInfo</servlet-name>
+        <servlet-class>servlet.GetMemberInfo</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getMemberInfo</servlet-name>
+        <url-pattern>/getMemberInfo</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>addMessage</servlet-name>
+        <servlet-class>servlet.AddMessage</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>addMessage</servlet-name>
+        <url-pattern>/addMessage</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>delMessage</servlet-name>
+        <servlet-class>servlet.DelMessage</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>delMessage</servlet-name>
+        <url-pattern>/delMessage</url-pattern>
+    </servlet-mapping>
 
 
 

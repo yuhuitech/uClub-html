@@ -1,5 +1,6 @@
 package servlet;
 
+import Test.Test;
 import operations.DAO;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
@@ -13,8 +14,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 
-import Test.*;
-
 @WebServlet(name = "ClubInfoChange")
 public class ClubInfoChange extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -26,13 +25,15 @@ public class ClubInfoChange extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         String club_info = request.getParameter("Club_info");
+        String club_name=request.getParameter("Club_name");
         int club_id = Integer.parseInt(request.getParameter("Club_id"));
+        String club_type=request.getParameter("Club_type");
         String resource = "mybatis.xml";
 
         InputStream is = Test.class.getClassLoader().getResourceAsStream(resource);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
-        DAO.setClubInfo(sqlSessionFactory,club_id,club_info);
-        request.getRequestDispatcher("jsp/UserHome.jsp").forward(request, response);
+        DAO.setClubInfo(sqlSessionFactory,club_id,club_name,club_type,club_info);
+        //request.getRequestDispatcher("jsp/UserHome.jsp").forward(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -22,7 +22,8 @@ public interface DaoInterface {
 
      Club getClubById(@Param("ClubNo") int clubNo);
 
-     void setClubInfo(@Param("ClubNo") int clubNo,@Param("ClubInfo") String Info);
+     void setClubInfo(@Param("ClubNo") int ClubNo,@Param("ClubName") String ClubName,
+                      @Param("Type") String Type, @Param("ClubInfo") String ClubInfo);
 
      void AddActivity(@Param("ActiveNo") int ActiveNo,
                       @Param("active_name") String name,@Param("active_info") String info,
@@ -68,13 +69,14 @@ public interface DaoInterface {
                        @Param("Job") String Job,
                        @Param("join_time") Date join_time);
 
-     void delFromJoinClub(@Param("StuNo") int StuNo);
+     void delFromJoinClub(@Param("StuNo") int StuNo,@Param("ClubNo") int ClubNo);
 
      List<HashMap> getMembers(@Param("ClubNo") int ClubNo);
 
      void changeMemberJob(@Param("StuNo") int StuNo,
                           @Param("ClubNo") int ClubNo,
-                          @Param("Job") String Job);
+                          @Param("Job") String Job,
+                          @Param("Department") String Department);
 
      void changeMemberDepartment (@Param("StuNo") int StuNo,
                                   @Param("ClubNo") int ClubNo,
@@ -94,7 +96,7 @@ public interface DaoInterface {
 
      List<HashMap> getLeaveClubApply(@Param("ClubNo") int ClubNo);
 
-     void delFromLeaveClub(@Param("StuNo") int StuNo);
+     void delFromLeaveClub(@Param("StuNo") int StuNo,@Param("ClubNo") int ClubNo);
 
      void priceApply(@Param("ApplyNo") int ApplyNo,
                      @Param("ActivityNo") String ActivityNo,
@@ -141,5 +143,10 @@ public interface DaoInterface {
                         @Param("Tel") String Tel,
                         @Param("Email") String Email,
                         @Param("self_introduce") String self_introduce);
+
+     int getSexCount(@Param("ClubNo") int ClubNo,
+                     @Param("Sex") String Sex);
+
+     List<Activity> getJoinActivity(@Param("StuNo") int StuNo);
 }
 
