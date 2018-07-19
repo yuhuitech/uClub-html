@@ -13,7 +13,7 @@ import java.util.List;
 //<<<<<<< HEAD
 
 //=======
-//import DAO.ClubDAO;
+//import Dao.ClubDAO;
 //>>>>>>> wt716
 
 public class ClubOperations  {

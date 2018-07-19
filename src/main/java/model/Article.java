@@ -126,7 +126,23 @@ public class Article
         return ret;
     }
 
-
+    public String getStandardText(String url) {
+        BufferedReader input;
+        String line = null;
+        String ret = "";
+        url = url+"article/"+this.res_url+".txt";
+        try {
+            FileInputStream fis = new FileInputStream(url);
+            InputStreamReader isr = new InputStreamReader(fis,"UTF-8");
+            input = new BufferedReader(isr);
+            while ((line = input.readLine()) != null)
+                ret += line+"&#10;";
+            input.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return ret.trim();
+    }
 
     //获得一个长度为16的字符串编号作为评论编号
     private String getCommentUUID() {

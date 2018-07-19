@@ -15,15 +15,10 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-//<<<<<<< HEAD
-//import java.util.*;
-//
-//public class DAO {
-//
-//    //获取学生的密码
-//=======
+
+
 public class DAO {
-//>>>>>>> wt716
+
     public static String getStudentPasswd(SqlSessionFactory sqlSessionFactory, int userID){
         String selectPasswd="";
         try {

@@ -365,6 +365,23 @@
         <url-pattern>/delMessage</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>GetArticleServlet</servlet-name>
+        <servlet-class>servlet.GetArticleServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetArticleServlet</servlet-name>
+        <url-pattern>/GetArticleServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ArticleCreate</servlet-name>
+        <servlet-class>servlet.ArticleCreate</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ArticleCreate</servlet-name>
+        <url-pattern>/ArticleCreate</url-pattern>
+    </servlet-mapping>
 
 
 </web-app>

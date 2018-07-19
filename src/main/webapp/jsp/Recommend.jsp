@@ -159,6 +159,11 @@
                                     <li><a href="media_gallery.jsp">所有社团</a></li>
                                 </ul>
                             </li>
+                            <li><a><i class="fa fa-edit"></i> 广场 <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="plaza.jsp">进入广场</a></li>
+                                </ul>
+                            </li>
                             <li><a><i class="fa fa-edit"></i> 申请 <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href="formWizards.jsp">申请创建社团</a></li>
@@ -326,15 +331,13 @@
                                 <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
-<<<<<<< HEAD
-                                <%for(Club club:club_Recommend){%>
-=======
+
                                 <%  int i = 0;
                                     for(Club club:club_Recommend){
                                         i++;//用作计数
                                         if(i>5) break;
                                 %>
->>>>>>> 8cf256b275efd1ea5aadcd205006f5936a27838d
+
                                 <article class="media event">
                                     <a class="pull-left date">
                                         <p class="month">April</p>
@@ -372,15 +375,13 @@
                                 <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
-<<<<<<< HEAD
-                                <%for(Activity act:active_Recommend){%>
-=======
+
                                 <%int m = 0;
                                     for(Activity act:active_Recommend){
                                    m++;
                                    if(m > 5) break;
                                 %>
->>>>>>> 8cf256b275efd1ea5aadcd205006f5936a27838d
+
                                 <article class="media event">
                                     <a class="pull-left date">
                                         <p class="month">April</p>
