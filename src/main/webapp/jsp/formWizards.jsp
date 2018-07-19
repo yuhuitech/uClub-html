@@ -1,8 +1,10 @@
-<%@ page import="org.apache.ibatis.session.SqlSessionFactory" %>
-<%@ page import="Test.Test" %>
-<%@ page import="org.apache.ibatis.session.SqlSessionFactoryBuilder" %>
+<%@ page import="java.io.PrintWriter" %>
 <%@ page import="java.io.InputStream" %>
-<%@ page import="operations.DAO" %><%--
+<%@ page import="Test.Test" %>
+<%@ page import="org.apache.ibatis.session.SqlSessionFactory" %>
+<%@ page import="org.apache.ibatis.session.SqlSessionFactoryBuilder" %>
+<%@ page import="static operations.DAO.getStudentName" %>
+<%@ page import="static operations.DAO.getCollege" %><%--
   Created by IntelliJ IDEA.
   User: 22847
   Date: 2018/7/14
@@ -11,6 +13,35 @@
 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%
+    //把ClubCreate里面的一部分功能放到了jsp
+    response.setContentType("text/html;charset=\"utf-8\"");
+    //消除接受乱码的问题
+    request.setCharacterEncoding("UTF-8");
+    Integer userID = (Integer) session.getAttribute("UserNo");
+    //获取从页面上传递来的数据
+    int userNo = userID;
+
+    String stuName=null;
+    String college=null;
+    String resource = "mybatis.xml";
+
+    InputStream is = Test.class.getClassLoader().getResourceAsStream(resource);
+    SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
+
+    stuName = getStudentName(sqlSessionFactory,userID);
+    college =getCollege(sqlSessionFactory,userID);
+
+    session.setAttribute("userNo",userNo);
+    request.setAttribute("userNo",userNo);
+
+    session.setAttribute("stuName",stuName);
+    request.setAttribute("stuName",stuName);
+
+    session.setAttribute("college",college);
+    request.setAttribute("college",college);
+%>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -19,6 +50,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+
+    <!-- Bootstrap -->
+    <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- jQuery custom content scroller -->
+    <link href="vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet"/>
+    <!-- Custom Theme Style -->
+    <link href="build/css/custom.min.css" rel="stylesheet">
+    <link href="vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+    <link href="vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+    <link href="vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+    <link href="vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+
+
+
+
     <title>社团申请提交 | </title>
     <style>
         .hiddenCol{
@@ -26,7 +78,7 @@
         }
         .overflowContent
         {
-            width:30px;
+            width:60px;
             overflow: hidden;
             /*white-space: nowrap;*/
             text-overflow: ellipsis;
@@ -47,28 +99,20 @@
         }
     </style>
 
-    <!-- Bootstrap -->
-    <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <!-- NProgress -->
-    <link href="vendors/nprogress/nprogress.css" rel="stylesheet">
-    <!-- jQuery custom content scroller -->
-    <link href="vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet"/>
-    <!-- Custom Theme Style -->
-    <link href="build/css/custom.min.css" rel="stylesheet">
-    <link href="vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
-    <link href="vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
-    <link href="vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
-    <link href="vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
-    <link href="vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
 
-    <%
-        Integer StuNo= (Integer) session.getAttribute("UserNo");
-        String resource = "mybatis.xml";
-        InputStream is = Test.class.getClassLoader().getResourceAsStream(resource);
-        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
-    %>
+    <%--<script>--%>
+    <%--$(window).ready(function() {--%>
+    <%--$.ajax({--%>
+    <%--type:'POST',--%>
+    <%--url:"/ClubCreate",--%>
+    <%--success:function(data) {--%>
+    <%--alert("success");--%>
+    <%--},--%>
+    <%--async:false});--%>
+
+    <%--});--%>
+
+    <%--</script>--%>
 </head>
 <body class="nav-md">
 <div class="container body">
@@ -84,11 +128,11 @@
                 <!-- menu profile quick info -->
                 <div class="profile clearfix">
                     <div class="profile_pic">
-                        <img id="userImg" src="images/<%=StuNo%>.jpg" onerror="javascript:this.src='images/user.png'" alt="..." class="img-circle profile_img">
+                        <img id="userImg" src="images/<%=userNo%>.jpg" onerror="javascript:this.src='images/user.png'" alt="..." class="img-circle profile_img">
                     </div>
                     <div class="profile_info">
                         <span>欢迎,</span>
-                        <h2><%=DAO.getStudentName(sqlSessionFactory,StuNo)%> 同学</h2>
+                        <h2><%=stuName%> 同学</h2>
                     </div>
                 </div>
                 <!-- /menu profile quick info -->
@@ -103,7 +147,12 @@
                             <li><a><i class="fa fa-home"></i> 主页 <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href="Recommend.jsp">趋势</a></li>
-                                    <li><a href="media_gallery.jsp">所有社团</a></li>
+                                    <li><a href="#">所有社团</a></li>
+                                </ul>
+                            </li>
+                            <li><a><i class="fa fa-edge"></i> 广场 <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="plaza.jsp">进入广场</a></li>
                                 </ul>
                             </li>
                             <li><a><i class="fa fa-edit"></i> 申请 <span class="fa fa-chevron-down"></span></a>
@@ -145,6 +194,7 @@
                 </div>
                 <!-- /menu footer buttons -->
             </div>
+
         </div>
 
         <!-- top navigation -->
@@ -170,7 +220,7 @@
                                     </a>
                                 </li>
                                 <li><a href="javascript:;">Help</a></li>
-                                <li><a href="../login.jsp"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                                <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                             </ul>
                         </li>
 
@@ -323,58 +373,43 @@
                                             </a>
                                         </li>
                                     </ul>
-<%
-    String userNo = request.getParameter("userNo");
-    String stuName = (String) request.getAttribute("stuName");
-    String college = (String) request.getAttribute("college");
+                                    <h2 class="StepTitle">提交个人信息</h2>
+                                    <form action="/ClubCreate" method="post" id="applyClubForm" class="form-horizontal form-label-left">
 
-    session.setAttribute("userNo",userNo);
-    request.setAttribute("userNo",userNo);
-
-    session.setAttribute("stuName",stuName);
-    request.setAttribute("stuName",stuName);
-
-    session.setAttribute("college",college);
-    request.setAttribute("college",college);
-
-%>
-                                        <h2 class="StepTitle">提交个人信息</h2>
-                                        <form action="/ClubCreate" method="post" id="applyClubForm" class="form-horizontal form-label-left">
-
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="stuName">姓名
-                                                </label>
-                                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <input type="text" id="stuName"  readonly  unselectable="on" required="required" class="form-control col-md-7 col-xs-12" value=<c:out value="${stuName}"/>>
-                                                </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="stuName">姓名
+                                            </label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <input type="text" id="stuName"  readonly  unselectable="on" required="required" class="form-control col-md-7 col-xs-12" value=<c:out value="${stuName}"/>>
                                             </div>
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="userNo">学号</span>
-                                                </label>
-                                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <input type="text" id="userNo"  readonly  unselectable="on" name="userNo" required="required" class="form-control col-md-7 col-xs-12" value=<c:out value="${userNo}"/>>
-                                                </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="userNo">学号</span>
+                                            </label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <input type="text" id="userNo"  readonly  unselectable="on" name="userNo" required="required" class="form-control col-md-7 col-xs-12" value=<c:out value="${userNo}"/>>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="college" class="control-label col-md-3 col-sm-3 col-xs-12">学院</label>
-                                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <input id="college"  readonly  unselectable="on" class="form-control col-md-7 col-xs-12" type="text" name="appercol" value=<c:out value="${college}"/>>
-                                                </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="college" class="control-label col-md-3 col-sm-3 col-xs-12">学院</label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <input id="college"  readonly  unselectable="on" class="form-control col-md-7 col-xs-12" type="text" name="appercol" value=<c:out value="${college}"/>>
                                             </div>
+                                        </div>
 
 
                                         <h2 class="StepTitle">提交社团信息</h2>
-                                            <div class="form-group">
-                                                    <label for="clubName" class="control-label col-md-3 col-sm-3 col-xs-12">社团名称</label>
+                                        <div class="form-group">
+                                            <label for="clubName" class="control-label col-md-3 col-sm-3 col-xs-12">社团名称</label>
 
-                                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <input type="text" id="clubName" name="clubName" required="required" class="form-control col-md-7 col-xs-12">
-                                                </div>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <input type="text" id="clubName" name="clubName" required="required" class="form-control col-md-7 col-xs-12">
                                             </div>
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">社团类型</span>
-                                                </label>
-                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">社团类型</span>
+                                            </label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
                                                 <select name="clubType" id="clubType" style="height: 35px">
                                                     <option value ="舞蹈">舞蹈</option>
                                                     <option value ="体育">体育</option>
@@ -387,44 +422,44 @@
                                                     <option value ="其他">其他</option>
                                                 </select>
 
-                                                </div>
                                             </div>
+                                        </div>
 
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">社团规模（包含人数）
-                                                </label>
-                                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <select name="clubSize" id="clubSize" style="height: 35px">
-                                                        <option value ="0-50人">0-50人</option>
-                                                        <option value ="50-100人">50-100人</option>
-                                                        <option value="100人以上">100人以上</option>
-                                                    </select>
-                                                </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">社团规模（包含人数）
+                                            </label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <select name="clubSize" id="clubSize" style="height: 35px">
+                                                    <option value ="0-50人">0-50人</option>
+                                                    <option value ="50-100人">50-100人</option>
+                                                    <option value="100人以上">100人以上</option>
+                                                </select>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="clubInfo" class="control-label col-md-3 col-sm-3 col-xs-12">社团简介</label>
-                                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <textarea id="clubInfo" name="clubInfo"style="width: 500px;height: 100px;"required="required"  class="form-control col-md-7 col-xs-12" type="text" ></textarea>
-                                                </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="clubInfo" class="control-label col-md-3 col-sm-3 col-xs-12">社团简介</label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <textarea id="clubInfo" name="clubInfo"style="width: 500px;height: 100px;"required="required"  class="form-control col-md-7 col-xs-12" type="text" ></textarea>
                                             </div>
-                                            <div id="step-3">
-                                                <h2 class="StepTitle">请检查你的信息</h2>
-                                                <p>请检查您的信息，确认无误后，你可以提交你的信息，并等待审核。
-                                                </p>
-                                            </div>
+                                        </div>
+                                        <div id="step-3">
+                                            <h2 class="StepTitle">请检查你的信息</h2>
+                                            <p>请检查您的信息，确认无误后，你可以提交你的信息，并等待审核。
+                                            </p>
+                                        </div>
 
-                                            <div align="center">
-                                                <label>
-                                                    <div class="button_container" style="align-content: center">
-                                                        <input id="btn_send_create_club"  style="width: 80px;height: 30px;align-content: center" type="submit" class="btn btn-default submit" value="提交申请" />
-                                                    </div>
-                                                </label>
-                                                <label>
-                                                    <div class="button_container" style="align-content: center">
-                                                        <input   style="width: 80px;height: 30px;align-content: center" type="button" class="btn btn-default submit" onclick=" manageCreateApplyEnter()" value="申请历史" />
-                                                    </div>
-                                                </label>
-                                            </div>
+                                        <div align="center">
+                                            <label>
+                                                <div class="button_container" style="align-content: center">
+                                                    <input id="btn_send_create_club"  style="width: 80px;height: 30px;align-content: center" type="submit" class="btn btn-default submit" value="提交申请" />
+                                                </div>
+                                            </label>
+                                            <label>
+                                                <div class="button_container" style="align-content: center">
+                                                    <input   style="width: 80px;height: 30px;align-content: center" type="button" class="btn btn-default submit" onclick=" manageCreateApplyEnter()" value="申请历史" />
+                                                </div>
+                                            </label>
+                                        </div>
                                     </form>
 
 
@@ -751,7 +786,7 @@
             selectedRol = this;
             alert(this.cells[0].innerText);
             $('#editCreateApplyTableDetail').modal('show');
-           // var d = manageCreateApplyTable.row(this).data;
+            // var d = manageCreateApplyTable.row(this).data;
             // alert(manageCreateApplyTable.row("").data)data
             editingID = this.cells[0].innerText;//利用selectedRol向弹出的模态框提交数据，修改结果
             $("#clubNameInCreateApplyTable").val(this.cells[1].innerText);

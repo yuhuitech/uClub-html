@@ -29,8 +29,6 @@
 
     List<Article> articles = getAllArticle();
 
-
-
     session.setAttribute("articles",articles);
     request.setAttribute("articles",articles);
 
@@ -102,7 +100,7 @@
                                 <li><a><i class="fa fa-home"></i> 主页 <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li><a href="Recommend.jsp">趋势</a></li>
-                                        <li><a href="mediaGallery.jsp">所有社团</a></li>
+                                        <li><a href="media_gallery.jsp">所有社团</a></li>
                                     </ul>
                                 </li>
                                 <li><a><i class="fa fa-edge"></i> 广场 <span class="fa fa-chevron-down"></span></a>
@@ -264,12 +262,15 @@
                     </div>
                     <div class="x_content">
                         <ul class="list-unstyled timeline" id="allGroups">
-<% for (int i=0;i<articles.size();i++){%>
-                            <li class="groupList" style="display: none;">
+                            <% for (int i=0;i<articles.size();i++){%>
+                            <li class="groupList">
                                 <div class="block">
                                     <div class="tags">
-                                        <a href="" class="tag">
-                                                    <span style="text-align: center;" class="clubName">
+                                        <%
+                                            //String articleNo= String.valueOf(articles.get(i).getArticleNo());
+                                            out.print("    <a href=\"articleDetail.jsp?url="+i+"\" class=\"tag\">");
+                                        %>
+                                        <span style="text-align: center;" class="clubName">
                                                         <%=getClubName(sqlSessionFactory,articles.get(i).getClubNo())%>
                                                     </span>
                                         </a>
@@ -296,10 +297,13 @@
                                             </a>
                                         </div>
                                         <p class="excerpt">
-                                                    <span class="articleContent"><%String path = (String)session.getAttribute("Path");%><%=articles.get(i).getStandardText(path)%></span>
+                                                    <span class="articleContent">
+                                                     <%String path = (String)session.getAttribute("Path");%>
+                                                        <%=articles.get(i).getStandardText(path)%>
+                                                    </span>
                                             <%
-//                                           String a= String.valueOf(articles.get(i).getArticleNo());
-                                           out.print("<a href=\"articleDetail.jsp?url="+i+"\">");
+                                                //String a= String.valueOf(articles.get(i).getArticleNo());
+                                                out.print("<a href=\"articleDetail.jsp?url="+i+"\">");
                                             %>
 
                                             Read&nbsp;More
@@ -309,7 +313,7 @@
                                 </div>
                             </li>
 
-<%}%>
+                            <%}%>
 
 
 

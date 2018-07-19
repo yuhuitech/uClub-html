@@ -81,4 +81,9 @@
         delete from message_board where MessageNo=#{MessageNo}
     </delete>
 
+    <delete id="deleteComment" >
+        DELETE FROM comment WHERE CommentNo = '${CommentNo}'
+    </delete>
+
+
 </mapper>

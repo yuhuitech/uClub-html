@@ -155,6 +155,24 @@ public class commentOperation {
 
     }
 
+    public static int deleteComment(SqlSessionFactory sqlSessionFactory, String commentNo){
+        int result = -1;
+        try {
+            // 获取Session连接
+            SqlSession session = sqlSessionFactory.openSession();
+            // 获取Mapper
+            commentDao DAO = session.getMapper(commentDao.class);
+            result = DAO.deleteComment(commentNo);
+            session.commit();
+            session.close();
+            // 显示插入之后Apply信息
+            return result;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
 
 }
 

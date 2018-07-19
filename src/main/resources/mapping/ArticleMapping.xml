@@ -23,4 +23,10 @@
         values(#{StuNo}, #{ClubNo},#{Title}, #{res_url}, #{date, jdbcType=TIMESTAMP})
     </insert>
 
+
+    <select id="getStuNoByArticleNo" resultType="int">
+        SELECT StuNo FROM Article WHERE ArticleNo = '${ArticleNo}'
+    </select>
+
+
 </mapper>

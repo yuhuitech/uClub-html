@@ -41,4 +41,6 @@ public interface commentDao {
     List<MessageBoard> getMessageBoard(@Param("ClubNo") int clubNo);
 
     void delMessageBoard(@Param("MessageNo") String MessageNo);
+
+    int deleteComment(  @Param("CommentNo") String CommentNo);
 }

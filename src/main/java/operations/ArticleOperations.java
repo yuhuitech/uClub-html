@@ -57,4 +57,24 @@ public class ArticleOperations
                 e.printStackTrace();
             }
         }
+
+    public static int getStuNoByArticleNo(SqlSessionFactory sqlSessionFactory,String articleNo)
+    {
+
+        int stuNo=0;
+        try {
+            // 获取Session连接
+            SqlSession session = sqlSessionFactory.openSession();
+            // 获取Mapper
+            ArticleDao selectInterface = session.getMapper(ArticleDao.class);
+            stuNo =  selectInterface.getStuNoByArticleNo(articleNo);
+            session.commit();
+            session.close();
+            //return stuNo;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return stuNo;
+    }
 }
