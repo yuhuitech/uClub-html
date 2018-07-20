@@ -563,20 +563,20 @@ public class DAO {
 
     //重新加入社团
     public static int isMember(SqlSessionFactory sqlSessionFactory, int StuNo, int ClubNo){
+        int i=0;
         try {
             // 获取Session连接
             SqlSession session = sqlSessionFactory.openSession();
             // 获取Mapper
             DaoInterface DAO = session.getMapper(DaoInterface.class);
-            int i=DAO.isMember(StuNo,ClubNo);
+            i=DAO.isMember(StuNo,ClubNo);
             session.commit();
             session.close();
-            return i;
             // 显示插入之后Apply信息
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return 0;
+        return i;
     }
 
     //发送回复

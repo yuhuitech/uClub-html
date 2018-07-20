@@ -416,7 +416,7 @@
                                                 </a>
                                                 <ul class="dropdown-menu" role="menu">
                                                     <c:choose>
-                                                        <c:when test="${job!='成员'}">
+                                                        <c:when test="${job!='成员'&&job!=null}">
                                                             <li>
                                                                 <a onclick="manageClubMemberEnter();">
                                                                     管理成员
@@ -520,9 +520,22 @@
                                             <br />
                                             <!-- start skills -->
                                             <!-- end of skills -->
+
                                             <%
-                                                if(temp==0)out.print("<img src=\"images/notPassed1.jpg\" style=\"width: 100px;height:100px;opacity: 0.25;position: absolute;right: 10px;bottom: 10px\">");
-                                                else out.print("<img src=\"images/passed1.jpg\" style=\"width: 100px;height:100px;position: absolute;opacity: 0.25;right: 10px;bottom: 10px\">");
+                                                if(temp==0)out.print("<img src=\"images/notPassed1.jpg\" style=\"    width: 33%;\n" +
+                                                        "    vertical-align: middle;\n" +
+                                                        "    opacity: 0.7;\n" +
+                                                        "    position: absolute;\n" +
+                                                        "    top: 68%;\n" +
+                                                        "    left: 60%;\n" +
+                                                        "    transform: rotate(-10deg);\">");
+                                                else out.print("<img src=\"images/passed1.jpg\" style=\"    width: 33%;\n" +
+                                                        "    vertical-align: middle;\n" +
+                                                        "    opacity: 0.7;\n" +
+                                                        "    position: absolute;\n" +
+                                                        "    top: 68%;\n" +
+                                                        "    left: 60%;\n" +
+                                                        "    transform: rotate(-10deg);\">");
                                             %>
 
                                         </div>
@@ -787,13 +800,14 @@
                               <span>
                             <span><%=DAO.getStudentName(sqlSessionFactory,msg.getStuNo())%></span>
                                   <%
+                                      if(job!=null){
                                       if(!job.equals("成员")){
                                   %>
                             <span class="replyMessage">
                                 <i class="removeReply fa fa-remove" id="<%=msg.getMessageNo()%>"></i>
                             </span>
                                   <%
-                                      }
+                                      }}
                                   %>
 
                             <span class="time">
