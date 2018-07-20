@@ -66,6 +66,7 @@
     <!-- jQuery custom content scroller -->
     <link href="vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet"/>
     <!-- Custom Theme Style -->
+
     <link href="build/css/custom.min.css" rel="stylesheet">
     <link href="vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
     <link href="vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
@@ -73,6 +74,8 @@
     <link href="vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
     <link href="vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+    <link href="vendors/SmartWizard-master/dist/css/smart_wizard.css" rel="stylesheet">
+    <link href="vendors/SmartWizard-master/dist/css/smart_wizard_theme_arrows.min.css" rel="stylesheet">
 
 
 
@@ -104,7 +107,18 @@
             opacity: 1;
         }
     </style>
-
+    <style>
+        .nav-tabs>li {
+            float: unset !important;
+            margin-bottom: -1px;
+        }
+        /*li.nav-item.done {*/
+        /*float: none;*/
+        /*}*/
+        /*li.nav-item.active {*/
+        /*float: none;*/
+        /*}*/
+    </style>
 
     <%--<script>--%>
     <%--$(window).ready(function() {--%>
@@ -120,7 +134,7 @@
 
     <%--</script>--%>
 </head>
-<body class="nav-md">
+<body class="nav-md" onload="initMySmartWizard();">
 <div class="container body">
     <div class="main_container">
         <div class="col-md-3 left_col menu_fixed">
@@ -183,22 +197,6 @@
                 </div>
                 <!-- /sidebar menu -->
 
-                <!-- /menu footer buttons -->
-                <div class="sidebar-footer hidden-small">
-                    <a data-toggle="tooltip" data-placement="top" title="Settings">
-                        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                        <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="Lock">
-                        <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="Logout" href="../login.jsp">
-                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-                    </a>
-                </div>
-                <!-- /menu footer buttons -->
             </div>
 
         </div>
@@ -304,13 +302,9 @@
                                     <li class="dropdown">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
                                         <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">Settings 1</a>
-                                            </li>
-                                            <li><a href="#">Settings 2</a>
+                                            <li><a href="#" onclick="manageCreateApplyEnter();">查看历史申请</a>
                                             </li>
                                         </ul>
-                                    </li>
-                                    <li><a class="close-link"><i class="fa fa-close"></i></a>
                                     </li>
                                 </ul>
                                 <div class="clearfix"></div>
@@ -350,9 +344,12 @@
                                             </a>
                                         </li>
                                     </ul>
+                                    <div>
+                                    <div id="step-1">
                                     <h2 class="StepTitle">提交个人信息</h2>
-                                    <form action="/ClubCreate" method="post" id="applyClubForm" class="form-horizontal form-label-left">
+                                    <%--<form action="/ClubCreate" method="post" id="applyClubForm" class="form-horizontal form-label-left">--%>
 
+                                        <form class="form-horizontal form-label-left">
                                         <div class="form-group">
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12" for="stuName">姓名
                                             </label>
@@ -373,9 +370,14 @@
                                                 <input id="college"  readonly  unselectable="on" class="form-control col-md-7 col-xs-12" type="text" name="appercol" value=<c:out value="${college}"/>>
                                             </div>
                                         </div>
+                                        </form>
+                                    </div>
 
 
+
+                                    <div id="step-2">
                                         <h2 class="StepTitle">提交社团信息</h2>
+                                    <form class="form-horizontal form-label-left">
                                         <div class="form-group">
                                             <label for="clubName" class="control-label col-md-3 col-sm-3 col-xs-12">社团名称</label>
 
@@ -419,26 +421,30 @@
                                                 <textarea id="clubInfo" name="clubInfo"style="width: 500px;height: 100px;"required="required"  class="form-control col-md-7 col-xs-12" type="text" ></textarea>
                                             </div>
                                         </div>
+                                    </form>
+                                    </div>
+
                                         <div id="step-3">
                                             <h2 class="StepTitle">请检查你的信息</h2>
                                             <p>请检查您的信息，确认无误后，你可以提交你的信息，并等待审核。
                                             </p>
                                         </div>
 
-                                        <div align="center">
-                                            <label>
-                                                <div class="button_container" style="align-content: center">
-                                                    <input id="btn_send_create_club"  style="width: 80px;height: 30px;align-content: center" type="submit" class="btn btn-default submit" value="提交申请" />
-                                                </div>
-                                            </label>
-                                            <label>
-                                                <div class="button_container" style="align-content: center">
-                                                    <input   style="width: 80px;height: 30px;align-content: center" type="button" class="btn btn-default submit" onclick=" manageCreateApplyEnter()" value="申请历史" />
-                                                </div>
-                                            </label>
-                                        </div>
-                                    </form>
 
+                                        <%--<div align="center">--%>
+                                            <%--<label>--%>
+                                                <%--<div class="button_container" style="align-content: center">--%>
+                                                    <%--<input id="btn_send_create_club"  style="width: 80px;height: 30px;align-content: center" type="submit" class="btn btn-default submit" value="提交申请" />--%>
+                                                <%--</div>--%>
+                                            <%--</label>--%>
+                                            <%--<label>--%>
+                                                <%--<div class="button_container" style="align-content: center">--%>
+                                                    <%--<input   style="width: 80px;height: 30px;align-content: center" type="button" class="btn btn-default submit" onclick=" manageCreateApplyEnter()" value="申请历史" />--%>
+                                                <%--</div>--%>
+                                            <%--</label>--%>
+                                        <%--</div>--%>
+
+                                    </div>
 
                                 </div>
                                 <!-- End SmartWizard Content -->
@@ -548,10 +554,109 @@
 <script src="vendors/DataTables/Buttons-1.5.2/js/buttons.print.js"></script>
 <script src="vendors/DataTables/Buttons-1.5.2/js/buttons.bootstrap.min.js"></script>
 <script src="vendors/DataTables/pdfmake-0.1.36/vfs_fonts.js"></script>
-
+<script src="vendors/SmartWizard-master/dist/js/jquery.smartWizard.min.js"></script>
 
 </body>
 </html>
+<script>
+    function initMySmartWizard() {
+        $('#wizard').smartWizard({
+            selected: 0,  // Initial selected step, 0 = first step
+            keyNavigation: true, // Enable/Disable keyboard navigation(left and right keys are used if enabled)
+            autoAdjustHeight: true, // Automatically adjust content height
+            cycleSteps: false, // Allows to cycle the navigation of steps
+            backButtonSupport: true, // Enable the back button support
+            useURLhash: true, // Enable selection of the step based on url hash
+            lang: {  // Language variables
+                next: '下一个',
+                previous: '上一个',
+            },
+            toolbarSettings: {
+                toolbarPosition: 'bottom', // none, top, bottom, both
+                toolbarButtonPosition: 'right', // left, right
+                showNextButton: true, // show/hide a Next button
+                showPreviousButton: true, // show/hide a Previous button
+                toolbarExtraButtons: [
+                    $('<button id="finishButton"></button>').text('完成')
+                        .addClass('btn btn-info')
+                        .on('click', function () {
+                            var code = confirm('是否要提交申请呢？');
+                            if(code)
+                            {
+                                if($('#clubName').val().length<=0)
+                                {
+                                    alert('您的社团名不完整！');
+                                    return undefined;
+                                } else if(document.getElementById("clubType").value.length<=0)
+                                {
+                                    alert('您的社团类型不完整！');
+                                    return undefined;
+                                } else if($('#clubInfo').val().length<=0)
+                                {
+                                    alert('您的社团简介不完整！');
+                                    return undefined;
+                                } else if(document.getElementById("clubSize").value.length<=0)
+                                {
+                                    alert('您的社团规模不完整！');
+                                    return undefined;
+                                }
+                                $.ajax({
+                                    url:'/ClubCreate',
+                                    method: 'POST',
+                                    data:{
+                                        clubType : document.getElementById("clubType").value,
+                                        clubInfo : $('#clubInfo').val(),
+                                        clubSize : document.getElementById("clubSize").value,
+                                        clubName : $('#clubName').val()
+                                    },
+                                    async: false,
+                                    success: function () {
+                                        alert('您的申请已经递交，请耐心等待，您可在右上角的工具按钮处找到历史申请记录');
+                                        window.location.href = "formWizard.jsp";
+                                    }, error: function () {
+                                        alert("非常抱歉，您的申请递交失败，请您重试");
+                                    }
+                                });
+                            }else
+                            {
+
+                            }
+                        })
+                ]
+            },
+            anchorSettings: {
+                anchorClickable: true, // Enable/Disable anchor navigation
+                enableAllAnchors: false, // Activates all anchors clickable all times
+                markDoneStep: true, // add done css
+                enableAnchorOnDoneStep: true // Enable/Disable the done steps navigation
+            },
+            contentURL: null, // content url, Enables Ajax content loading. can set as data data-content-url on anchor
+            disabledSteps: [],    // Array Steps disabled
+            errorSteps: [],    // Highlight step with errors
+            theme: 'line',
+            transitionEffect: 'fade', // Effect on navigation, none/slide/fade
+            transitionSpeed: '400'
+        });
+        $('.sw-btn-prev').addClass('btn-success');
+        $('.sw-btn-next').addClass('btn-primary');
+        $('#finishButton').attr('disabled',"true");
+        $('.btn-group.mr-2.sw-btn-group-extra').css('float','right');
+        $('#finishButton').css('display','none');
+
+
+        // $('#wizard [rel=3]').addClass("done").removeClass("disabled");
+        $("#wizard").on("showStep", function(e, anchorObject, stepNumber, stepDirection) {
+            if(stepNumber==2)
+            {
+                $('#finishButton').removeAttr("disabled");
+                if($('#finishButton').css('display')==='none')
+                {
+                    $('#finishButton').fadeIn('slow');
+                }
+            }
+        });
+    };
+</script>
 <script>
     var remarkShowLength = 3;//默认显示的字符串长度
 
@@ -651,6 +756,14 @@
                     title: "申请状态"
                 },
             ],
+            "createdRow": function( row, data, dataIndex ) {
+                // $(row).children('td').eq(1).attr('content',data.hr.position);
+                var temp = $(row).children('td');
+                for(var i = 0; i<temp.length; i++)
+                {
+                    temp.eq(i).attr('content',data[i]);
+                }
+            },
             "columnDefs": [
                 {
                     type : "string",
@@ -669,13 +782,14 @@
                 {
                     type : "string",
                     targets : [3],
-                    // "render": function (data, type, row, meta) {
-                    //     if (row[3].length > remarkShowLength) {
-                    //         return row[3].substring(0,remarkShowLength)+"...";//显示部分信息
-                    //     } else {
-                    //         return row[3];//显示原始全部信息 }
-                    //     }
-                    // }
+                    "render": function (data, type, row, meta) {
+
+                        if (row[3].length > remarkShowLength) {
+                            return row[3].substring(0,remarkShowLength)+"...";//显示部分信息
+                        } else {
+                            return row[3];//显示原始全部信息 }
+                        }
+                    }
                 },
                 {
                     type : "string",
@@ -768,7 +882,7 @@
             editingID = this.cells[0].innerText;//利用selectedRol向弹出的模态框提交数据，修改结果
             $("#clubNameInCreateApplyTable").val(this.cells[1].innerText);
             $("#clubTypeInCreateApplyTable").val(this.cells[2].innerText);
-            $("#clubInfoInCreateApplyTable").val(this.cells[3].innerText);
+            $("#clubInfoInCreateApplyTable").val($(this).children('td').eq(3).attr('content'));
             $("#clubSizeInCreateApplyTable").val(this.cells[4].innerText);
             $("#applyTimeInCreateApplyTable").val(this.cells[5].innerText);
             $("#applyStatusInCreateApplyTable").val(this.cells[6].innerText);
