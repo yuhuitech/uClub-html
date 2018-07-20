@@ -13,6 +13,7 @@
 <%@ page import="Test.Test" %>
 <%@ page import="org.apache.ibatis.session.SqlSessionFactoryBuilder" %>
 <%@ page import="org.apache.ibatis.session.SqlSession" %>
+<%@ page import="model.Message" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -26,6 +27,7 @@
     int c4 = ManageApplyOperations.getcheckedCounts(sqlSessionFactory);
     int c5 = ManageApplyOperations.getDisCounts(sqlSessionFactory);
     int c6 = MoneyOperations.getMAcountHis(sqlSessionFactory);
+    List<Message> messages = (List<Message>)session.getAttribute("messages");
 //    session.setAttribute("c1",c1);
 //    request.setAttribute("c1",c1);
 //    session.setAttribute("c2",c2);
@@ -176,84 +178,33 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="images/img.jpg" alt="">John Doe
+                    <img src="images/img.jpg" alt=""><%out.println(session.getAttribute("name"));%>
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="javascript:;"> Profile</a></li>
-                    <li>
-                      <a href="javascript:;">
-                        <span class="badge bg-red pull-right">50%</span>
-                        <span>Settings</span>
-                      </a>
-                    </li>
-                    <li><a href="javascript:;">Help</a></li>
-                    <li><a href="../login.jsp"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                   </ul>
                 </li>
 
                 <li role="presentation" class="dropdown">
                   <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                       <i class="fa fa-envelope-o" style=" line-height: 32px;"></i>
-                    <span class="badge bg-green">6</span>
+                    <span class="badge bg-green"><%out.println(messages.size());%></span>
                   </a>
                   <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                      <%for(Message message:messages){%>
                     <li>
                       <a>
                         <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
                         <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
+                          <span>Teacher</span>
+                          <span class="time"><%out.println(message.getTime());%></span>
                         </span>
                         <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
+                         <%out.println(message.getMessageInfo());%>
                         </span>
                       </a>
                     </li>
-                    <li>
-                      <a>
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a>
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <div class="text-center">
-                        <a>
-                          <strong>See All Alerts</strong>
-                          <i class="fa fa-angle-right"></i>
-                        </a>
-                      </div>
-                    </li>
+                      <%}%>
                   </ul>
                 </li>
               </ul>

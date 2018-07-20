@@ -2,17 +2,14 @@
 <%@ page import="Test.Test"%>
 <%@ page import="org.apache.ibatis.session.SqlSessionFactory" %>
 <%@ page import="org.apache.ibatis.session.SqlSessionFactoryBuilder" %>
-<%@ page import="model.Student" %>
 <%@ page import="operations.DAO" %>
-<%@ page import="model.Club" %>
 <%@ page import="java.util.List" %>
 <%@ page import="operations.ClubOperations" %>
-<%@ page import="model.Activity" %>
 <%@ page import="java.io.File" %>
-<%@ page import="model.Article" %>
 <%@ page import="static operations.ArticleOperations.getArticleByStuNo" %>
 <%@ page import="java.text.DateFormat" %>
 <%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="model.*" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -137,6 +134,7 @@
 
 
         List<Article> myArticle = getArticleByStuNo(sqlSessionFactory,StuNo);
+        List<Message> messages = (List<Message>)session.getAttribute("messages");
         session.setAttribute("articles",myArticle);
         request.setAttribute("articles",myArticle);
 
@@ -245,92 +243,32 @@
                             <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown"
                                aria-expanded="false">
                                 <i class="fa fa-envelope-o" style=" line-height: 32px;"></i>
+                                <span class="badge bg-green"><%out.println(messages.size());%></span>
                             </a>
                             <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                                <%for(Message message:messages){%>
                                 <li>
                                     <a>
-                                                <span class="image">
-                                                    <img src="images/img.jpg" alt="Profile Image" />
-                                                </span>
+                                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
                                         <span>
-                                                    <span>
-                                                        王菲
-                                                    </span>
-                                                    <span class="time">
-                                                        3 mins ago
-                                                    </span>
-                                                </span>
+                          <span>Teacher</span>
+                          <span class="time"><%out.println(message.getTime());%></span>
+                        </span>
                                         <span class="message">
-                                                    昨天发的新专辑你听了没，你看我的自拍好看吗
-                                                </span>
+                          <%out.println(message.getMessageInfo());%>
+                        </span>
                                     </a>
                                 </li>
-                                <li>
-                                    <a>
-                                                <span class="image">
-                                                    <img src="images/img.jpg" alt="Profile Image" />
-                                                </span>
-                                        <span>
-                                                    <span>
-                                                        合唱团团长
-                                                    </span>
-                                                    <span class="time">
-                                                        3 mins ago
-                                                    </span>
-                                                </span>
-                                        <span class="message">
-                                                    后天在信部大活的表演，我们就不去了，你独唱吧
-                                                </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a>
-                                                <span class="image">
-                                                    <img src="images/img.jpg" alt="Profile Image" />
-                                                </span>
-                                        <span>
-                                                    <span>
-                                                        系统管理员
-                                                    </span>
-                                                    <span class="time">
-                                                        3 mins ago
-                                                    </span>
-                                                </span>
-                                        <span class="message">
-                                                    您申请加入鬼畜社的申请已经通过！恭喜您！亲爱的同学
-                                                </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a>
-                                                <span class="image">
-                                                    <img src="images/img.jpg" alt="Profile Image" />
-                                                </span>
-                                        <span>
-                                                    <span>
-
-                                                    </span>
-                                                    <span class="time">
-                                                        3 mins ago
-                                                    </span>
-                                                </span>
-                                        <span class="message">
-                                                    Film festivals used to be do-or-die moments for movie makers. They were
-                                                    where...
-                                                </span>
-                                    </a>
-                                </li>
+                                <%}%>
                                 <li>
                                     <div class="text-center">
-                                        <a>
-                                            <strong>
-                                                See All Alerts
-                                            </strong>
-                                            <i class="fa fa-angle-right">
-                                            </i>
+                                        <a href="Messagebox.jsp">
+                                            <strong>See All Alerts</strong>
+                                            <i class="fa fa-angle-right"></i>
                                         </a>
                                     </div>
                                 </li>
+
                             </ul>
                         </li>
                     </ul>
