@@ -94,6 +94,9 @@ td.fc-list-item-time.fc-widget-content {
     word-break: break-all;
     word-wrap: break-word;
 }
+      .right_col {
+          min-height:800px !important;
+      }
     </style>
 
 
@@ -125,10 +128,9 @@ td.fc-list-item-time.fc-widget-content {
       <div class="main_container">
         <div class="col-md-3 left_col menu_fixed">
           <div class="left_col scroll-view">
-            <div class="navbar nav_title" style="border: 0;">
-                <%--<i class="fa fa-paw"></i>--%>
-                    <a href="Recommend.jsp" class="site_title"><img src="images/logo8.png"><span>&nbsp;</span></a>
-            </div>
+              <div class="navbar nav_title" style="border: 0;">
+                  <a href="Recommend.jsp" style="padding-left: 2px; height: 100px;" class="site_title" style=" padding-left: 2px;"><img style="display: flex; margin-top: 15px;" src="images/logo8.png"/><span>&nbsp;</span></a>
+              </div>
 
             <div class="clearfix"></div>
 
@@ -194,20 +196,7 @@ td.fc-list-item-time.fc-widget-content {
             <!-- /sidebar menu -->
 
             <!-- /menu footer buttons -->
-            <div class="sidebar-footer hidden-small">
-              <a data-toggle="tooltip" data-placement="top" title="Settings">
-                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="Lock">
-                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="Logout" href="../login.jsp">
-                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-              </a>
-            </div>
+
             <!-- /menu footer buttons -->
           </div>
         </div>
@@ -263,11 +252,7 @@ td.fc-list-item-time.fc-widget-content {
                                 <li role="presentation" class="dropdown" id="messageDropDown">
                                     <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown"
                                     aria-expanded="false">
-                                        <i class="fa fa-envelope-o">
-                                        </i>
-                                        <span class="badge bg-green">
-                                            6
-                                        </span>
+                                        <i class="fa fa-envelope-o" style=" line-height: 32px;"></i>
                                     </a>
                                     <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
                                         <li>
@@ -556,8 +541,8 @@ td.fc-list-item-time.fc-widget-content {
                 </div>
 
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">结束时间</label>
-                    <div class="col-sm-10">
+                  <label class="col-sm-2 col-sm-3 col-xs-15 control-label">结束时间</label>
+                    <div class="col-sm-10 col-sm-9 col-xs-20">
                       <div class="input-group date" id="myDatepickerEnd">
                         <input type="text" class="form-control" readonly="readonly" id="endTime" name="endTime">
                         <span class="input-group-addon">
@@ -569,7 +554,7 @@ td.fc-list-item-time.fc-widget-content {
 
 
                 <div class="form-group">
-                  <label class="col-sm-3 control-label">是否参与</label>
+                  <label class="col-sm-2 col-sm-3 col-xs-15 control-label">是否参与</label>
                   <div class="col-sm-9">
                       <label>
                           <input class="js-switch" type="checkbox" data-switchery="true" id="join" onclick="checkboxChange()"/>
@@ -703,9 +688,7 @@ td.fc-list-item-time.fc-widget-content {
            position: 'absolute' // Element positioning
        };
 
-       var target = document.getElementById('calendar');
-       var spinner = new Spinner(opts).spin(target);
-       target.appendChild(spinner.el);
+
 
        var events=[];
       function convertDateFromString(dateString) {
@@ -800,6 +783,7 @@ td.fc-list-item-time.fc-widget-content {
                 selectable: true,
                 selectHelper: true,
                 eventStartEditable:false,
+                noEventsMessage:'没有活动可显示',
                 buttonText:{
                     prev:     '上',
                     next:     '下',
@@ -851,6 +835,12 @@ td.fc-list-item-time.fc-widget-content {
                 editable: true,
                 events:
                     function(start, end ,timezone, callback){
+                        var temp = $('#pageSize').width();
+                        var target = document.getElementById('calendar');
+                        var spinner = new Spinner(opts).spin(target);
+                        target.appendChild(spinner.el);
+                    // $('.fc-view-container').css('display', 'none');
+                    //     $('.fc-toolbar.fc-header-toolbar').css('display', 'none');
                     $.ajax({
                         type:'Post',
                         url:"/getJoinClubActivity",
@@ -889,6 +879,40 @@ td.fc-list-item-time.fc-widget-content {
                             console.log(events);
                             spinner.stop();
                             callback(events);
+                            temp = $('#pageSize').width();
+                            if (temp <= 266) {
+                                $('#messageDropDown').css('display', 'none');
+                            } else {
+                                $('#messageDropDown').css('display', 'inline');
+                            }
+                            if (temp <= 234) {
+                                $('#miniMenu').css('display', 'none');
+                            } else {
+                                $('#miniMenu').css('display', 'inline');
+                            }
+                            temp = $('#pageSize').width();
+                            if (temp <= 342) {
+                                $('.fc-listMonth-button').click();
+                                $('.fc-agendaDay-button').css('display', 'none');
+                                $('.fc-agendaWeek-button').css('display', 'none');
+                                $('.fc-month-button').css('display', 'none');
+                                $('.fc-today-button').css('display', 'none');
+                                $('h2').css('font-size', '15px');
+                                $('h3').css('font-size', '20px');
+                                $('h1').css('font-size', '25px');
+                            } else {
+                                $('.fc-agendaDay-button').css('display', 'inline');
+                                $('.fc-agendaWeek-button').css('display', 'inline');
+                                $('.fc-month-button').css('display', 'inline');
+                                $('.fc-today-button').css('display', 'inline');
+                                $('#calendar').css('font-size', '1em');
+                                $('h2').css('font-size', '');
+                                $('h3').css('font-size', '');
+                                $('h1').css('font-size', '');
+                            }
+                            // $('.fc-view-container').fadeIn(1500);
+                            // $('.fc-toolbar.fc-header-toolbar').fadeIn(1500);
+
                         }
                     });
                 },
@@ -897,64 +921,6 @@ td.fc-list-item-time.fc-widget-content {
             windowResize();
 
         };
-
-        // $(".antosubmit2").on("click", function(event) {
-        //     if(status==="0") {
-        //         var start = $("#startTime").val();
-        //         var end = $("#endTime").val();
-        //         var title = $("#title2").val();
-        //         var color;
-        //         var checked = $('#participate').is(':checked');
-        //         if(checked===true)
-        //         {
-        //             color="#008080";
-        //         }else
-        //         {
-        //             color="#cde6c7";
-        //         }
-        //         if (title !== "") {
-        //             $('#calendar').fullCalendar('renderEvent', {
-        //                 title: title,
-        //                 start: start,
-        //                 end: end,
-        //                 color: color
-        //             });
-        //         }
-        //         $('.antoclose2').click();
-        //     }else if (status==="1"){
-        //         var start = $("#startTime").val();
-        //         var end = $("#endTime").val();
-        //         var title = $("#title2").val();
-        //         var color;
-        //         var checked = $('#participate').is(':checked');
-        //         if(checked===true)
-        //         {
-        //             color="#008080";
-        //         }else
-        //         {
-        //             color="#cde6c7";
-        //         }
-        //         selectedEvent.title = title;
-        //         selectedEvent.start = start;
-        //         selectedEvent.end = end;
-        //         selectedEvent.color = color;
-        //         $('#calendar').fullCalendar('updateEvent', selectedEvent);
-        //         $('.antoclose2').click();
-        //     }
-        //     calendar.fullCalendar('unselect');
-        //     $('#calendar'). fullCalendar ( 'refetchEvents');
-        // });
-        //
-        // $(".antodelete2").on("click", function(event) {
-        //     if(status==="0") {
-        //
-        //     }else if (status==="1"){
-        //         $('#calendar').fullCalendar( 'removeEvents' ,  selectedEvent.id);
-        //         $('.antoclose2').click();
-        //     }
-        //     calendar.fullCalendar('unselect');
-        //     $('#calendar'). fullCalendar ( 'refetchEvents' );
-        // });
 
 
         var stringToDate = function(dateStr,separator){

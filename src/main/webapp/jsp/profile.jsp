@@ -52,7 +52,11 @@
         .modal-dialog{position:absolute;width:auto;margin:0px auto;left:10px;right:0;top:10%}
         @media (min-width:1000px){.modal-dialog{width:600px}*/
     </style>
-
+    <style>
+        .right_col {
+            min-height:800px !important;
+        }
+    </style>
     <style type="text/css">
 
         #user-photo {
@@ -136,7 +140,7 @@
         <div class="col-md-3 left_col menu_fixed">
             <div class="left_col scroll-view">
                 <div class="navbar nav_title" style="border: 0;">
-                    <a href="Recommend.jsp" class="site_title"><img src="images/logo8.png"/><span>&nbsp;</span></a>
+                    <a href="Recommend.jsp" style="padding-left: 2px; height: 100px;" class="site_title" style=" padding-left: 2px;"><img style="display: flex; margin-top: 15px;" src="images/logo8.png"/><span>&nbsp;</span></a>
                 </div>
 
                 <div class="clearfix"></div>
@@ -189,20 +193,6 @@
                 <!-- /sidebar menu -->
 
                 <!-- /menu footer buttons -->
-                <div class="sidebar-footer hidden-small">
-                    <a data-toggle="tooltip" data-placement="top" title="Settings">
-                        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                        <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="Lock">
-                        <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="Logout" href="../login.jsp">
-                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-                    </a>
-                </div>
                 <!-- /menu footer buttons -->
             </div>
         </div>
@@ -239,11 +229,7 @@
                         <li role="presentation" class="dropdown" id="messageDropDown">
                             <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown"
                                aria-expanded="false">
-                                <i class="fa fa-envelope-o">
-                                </i>
-                                <span class="badge bg-green">
-                                            6
-                                        </span>
+                                <i class="fa fa-envelope-o" style=" line-height: 32px;"></i>
                             </a>
                             <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
                                 <li>
@@ -765,51 +751,118 @@
 <!--甜甜圈数据显示-->
 <!--甜甜圈数据显示-->
 <script>
-    var array=[];
+    <%--var array=[];--%>
+    <%--var canvasDoughnut;--%>
+    <%--$(window).ready(function(){--%>
+        <%--Chart.defaults.global.legend = {--%>
+            <%--enabled: false--%>
+        <%--};--%>
+        <%--array.push(<%=acts.size()%>);--%>
+        <%--array.push(<%=joinClubs.size()%>);--%>
+        <%--array.push(<%=acts.size()%>);//文章数我可到哪里获取喔--%>
+        <%--array.push(<%=adminClubs.size()%>);--%>
+        <%--var ctx = document.getElementById("canvasDoughnut");--%>
+        <%--var data = {--%>
+            <%--labels: [--%>
+                <%--"加入的活动",--%>
+                <%--"加入社团数",--%>
+                <%--"发表文章数",--%>
+                <%--"管理社团数"--%>
+            <%--],--%>
+            <%--datasets: [{--%>
+                <%--data: array,--%>
+                <%--backgroundColor: [--%>
+                    <%--"#3498DB",--%>
+                    <%--"#455C73",--%>
+                    <%--"#9B59B6",--%>
+                    <%--"#BDC3C7",--%>
+                    <%--"#26B99A"--%>
 
+                <%--],--%>
+                <%--hoverBackgroundColor: [--%>
+                    <%--"#49A9EA",--%>
+                    <%--"#34495E",--%>
+                    <%--"#B370CF",--%>
+                    <%--"#CFD4D8",--%>
+                    <%--"#36CAAB"--%>
+                <%--]--%>
+            <%--}]--%>
+        <%--};--%>
+        <%--canvasDoughnut = new Chart(ctx, {--%>
+            <%--type: 'doughnut',--%>
+            <%--tooltipFillColor: "rgba(51, 51, 51, 0.55)",--%>
+            <%--data: data,--%>
+        <%--});--%>
+    <%--})--%>
+    <%--$(window).scroll(function () {--%>
+        <%--var temp = document.getElementById('canvasDoughnut').getBoundingClientRect();--%>
+        <%--if((temp.top<0&&temp.bottom>0||temp.top<$(window).height()&&temp.bottom>$(window).height())&&status==='out')--%>
+        <%--{--%>
+            <%--for(var i = 0 ;i<canvasDoughnut.data.datasets.length;i++) {--%>
+                <%--canvasDoughnut.data.datasets[i].data.pop();--%>
+            <%--}--%>
+            <%--canvasDoughnut.update();--%>
+            <%--for(var i = 0 ;i<canvasDoughnut.data.datasets.length;i++) {--%>
+                <%--canvasDoughnut.data.datasets[i].data.push(data[i]);--%>
+            <%--}--%>
+            <%--canvasDoughnut.update();--%>
+            <%--console.log("I'm in");--%>
+            <%--status = "in";--%>
+        <%--}else if((temp.top>$(window).height()||temp.bottom<0)&&status==='in'){--%>
+            <%--console.log("I'm not");--%>
+            <%--status = "out";--%>
+        <%--}--%>
+    <%--});--%>
+
+
+
+    var status = 'in';
+    var data =[<%=acts.size()%>, <%=joinClubs.size()%>,<%=acts.size()%>,<%=adminClubs.size()%>];
+    var canvasDoughnut;
+    var dataset = [{
+        data: [<%=acts.size()%>, <%=joinClubs.size()%>,<%=acts.size()%>,<%=adminClubs.size()%>],
+        backgroundColor: [
+            "#3498DB",
+            "#455C73",
+            "#9B59B6",
+            "#BDC3C7",
+            "#26B99A"
+
+        ],
+        hoverBackgroundColor: [
+            "#49A9EA",
+            "#34495E",
+            "#B370CF",
+            "#CFD4D8",
+            "#36CAAB"
+        ]
+    }];
     $(window).ready(function(){
         Chart.defaults.global.legend = {
             enabled: false
         };
-        array.push(<%=acts.size()%>);
-        array.push(<%=joinClubs.size()%>);
-        array.push(<%=acts.size()%>);//文章数我可到哪里获取喔
-        array.push(<%=adminClubs.size()%>);
-
-        var ctx = document.getElementById("canvasDoughnut");
-        var data = {
-            labels: [
-                "加入的活动",
-                "加入社团数",
-                "发表文章数",
-                "管理社团数"
-            ],
-            datasets: [{
-                data: array,
-                backgroundColor: [
-                    "#3498DB",
-                    "#455C73",
-                    "#9B59B6",
-                    "#BDC3C7",
-                    "#26B99A"
-
+        if ($('#canvasDoughnut').length ){
+            var ctx = document.getElementById("canvasDoughnut");
+            var data = {
+                labels: [
+                    "加入的活动",
+                    "加入社团数",
+                    "发表文章数",
+                    "管理社团数"
                 ],
-                hoverBackgroundColor: [
-                    "#49A9EA",
-                    "#34495E",
-                    "#B370CF",
-                    "#CFD4D8",
-                    "#36CAAB"
-                ]
-            }]
-        };
-        var canvasDoughnut = new Chart(ctx, {
-            type: 'doughnut',
-            tooltipFillColor: "rgba(51, 51, 51, 0.55)",
-            data: data,
-        });
+                datasets: dataset
+            };
+            canvasDoughnut = new Chart(ctx, {
+                type: 'doughnut',
+                tooltipFillColor: "rgba(51, 51, 51, 0.55)",
+                data: data
+            });
 
-    })
+
+
+        };
+    });
+
     $(window).scroll(function () {
         var temp = document.getElementById('canvasDoughnut').getBoundingClientRect();
         if((temp.top<0&&temp.bottom>0||temp.top<$(window).height()&&temp.bottom>$(window).height())&&status==='out')
@@ -829,6 +882,8 @@
             status = "out";
         }
     });
+
+
 
 </script>
 

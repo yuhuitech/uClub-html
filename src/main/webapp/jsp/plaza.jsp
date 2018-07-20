@@ -62,7 +62,12 @@
         .block_content { margin-top: 50px; }
     </style>
     <!-- Custom Theme Style -->
-    <link href="build/css/custom.min.css" rel="stylesheet">
+    <link href="build/css/custom.min.css" rel="stylesheet"/>
+    <style>
+        .right_col {
+            min-height:800px !important;
+        }
+    </style>
 </head>
 <body class="nav-md" onload="initFunctionTemp()">
 <div class="container body">
@@ -71,7 +76,7 @@
             <div class="col-md-3 left_col menu_fixed">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0;">
-                        <a href="Recommend.jsp" class="site_title"><img src="images/logo8.png"/><span>&nbsp;</span></a>
+                        <a href="Recommend.jsp" style="padding-left: 2px; height: 100px;" class="site_title" style=" padding-left: 2px;"><img style="display: flex; margin-top: 15px;" src="images/logo8.png"/><span>&nbsp;</span></a>
                     </div>
 
                     <div class="clearfix"></div>
@@ -182,8 +187,7 @@
                         <li role="presentation" class="dropdown" id="messageDropDown">
                             <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown"
                                aria-expanded="false">
-                                <i class="fa fa-envelope-o">
-                                </i>
+                                <i class="fa fa-envelope-o" style=" line-height: 32px;"></i>
                                 <span class="badge bg-green">
                                             <%out.println(messages.size());%>
                                         </span>

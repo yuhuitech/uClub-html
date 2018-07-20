@@ -74,7 +74,11 @@
                 margin-right: 2%;
             }
         </style>
-
+        <style>
+            .right_col {
+                min-height:800px !important;
+            }
+        </style>
         <style type="text/css">
             #user-photo {
                 width:300px;
@@ -163,7 +167,7 @@
                 <div class="col-md-3 left_col menu_fixed">
                     <div class="left_col scroll-view">
                         <div class="navbar nav_title" style="border: 0;">
-                            <a href="Recommend.jsp" class="site_title"><img src="images/logo8.png"/><span>&nbsp;</span></a>
+                            <a href="Recommend.jsp" style="padding-left: 2px; height: 100px;" class="site_title" style=" padding-left: 2px;"><img style="display: flex; margin-top: 15px;" src="images/logo8.png"/><span>&nbsp;</span></a>
                         </div>
 
                         <div class="clearfix"></div>
@@ -216,20 +220,7 @@
                         <!-- /sidebar menu -->
 
                         <!-- /menu footer buttons -->
-                        <div class="sidebar-footer hidden-small">
-                            <a data-toggle="tooltip" data-placement="top" title="Settings">
-                                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                            </a>
-                            <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-                            </a>
-                            <a data-toggle="tooltip" data-placement="top" title="Lock">
-                                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-                            </a>
-                            <a data-toggle="tooltip" data-placement="top" title="Logout" href="../login.jsp">
-                                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-                            </a>
-                        </div>
+
                         <!-- /menu footer buttons -->
                     </div>
                 </div>
@@ -284,12 +275,9 @@
                                 </li>
                                 <li role="presentation" class="dropdown" id="messageDropDown">
                                     <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown"
-                                    aria-expanded="false">
-                                        <i class="fa fa-envelope-o">
+                                       aria-expanded="false">
+                                        <i class="fa fa-envelope-o" style=" line-height: 32px;">
                                         </i>
-                                        <span class="badge bg-green">
-                                            6
-                                        </span>
                                     </a>
                                     <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
                                         <li>
@@ -533,9 +521,8 @@
                                             <!-- start skills -->
                                             <!-- end of skills -->
                                             <%
-
-                                                if(temp==0)out.print("<img src=\"images/notPassed1.jpg\" style=\"width: 100px;height:100px;position: absolute;right: 10px;bottom: 10px\">");
-                                                else out.print("<img src=\"images/passed1.jpg\" style=\"width: 100px;height:100px;position: absolute;right: 10px;bottom: 10px\">");
+                                                if(temp==0)out.print("<img src=\"images/notPassed1.jpg\" style=\"width: 100px;height:100px;opacity: 0.25;position: absolute;right: 10px;bottom: 10px\">");
+                                                else out.print("<img src=\"images/passed1.jpg\" style=\"width: 100px;height:100px;position: absolute;opacity: 0.25;right: 10px;bottom: 10px\">");
                                             %>
 
                                         </div>
@@ -717,7 +704,7 @@
                                                             </div>
                                                         </ul>
                                                         <div class="row" id="pageDivide">
-                                                            <div class="col-sm-7  col-sm-3  col-xs-20">
+                                                            <div class="col-sm-12 col-sm-12  col-xs-12">
                                                                 <div class="dataTables_paginate paging_simple_numbers" id="datatable_paginate">
                                                                     <ul class="pagination" id="choosePage">
                                                                         <li class="paginate_button previous" id="datatable_previous" onclick="articlePageDivider.goToPageOption(articlePageDivider.currentPage-1);">
@@ -786,6 +773,7 @@
                 <div class="x_content">
                     <div id="messagesAll">
                   <ul class="list-unstyled msg_list">
+
 <!---                        ---->
                   <%
                       DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
@@ -827,7 +815,7 @@
                   </ul>
                     </div>
                     <div class="row" >
-                        <div class="col-sm-7  col-sm-3  col-xs-20">
+                        <div class="col-sm-12 col-sm-12  col-xs-12">
                             <div class="dataTables_paginate paging_simple_numbers" >
                                 <ul class="pagination" >
                                     <li class="paginate_button previous"  onclick="messageDivider.goToPageOption(messageDivider.currentPage-1);">
@@ -835,27 +823,27 @@
                                             <-
                                         </a>
                                     </li>
-                                    <li id="outerMessagePage1" class="paginate_button " onclick="messageDivider.goToPageOption(messageDivider.pageRange[0])" >
+                                    <li id="outerMessagePage1" class="paginate_button " onclick="messageDivider.goToPageOption(messageDivider.pageRange[0])" style="display: none;">
                                         <a id="messagePage1" aria-controls="datatable" data-dt-idx="1" tabindex="0" style="padding: 4px 5px !important;">
                                             1
                                         </a>
                                     </li>
-                                    <li id="outerMessagePage2" class="paginate_button " onclick="messageDivider.goToPageOption(messageDivider.pageRange[1])" >
+                                    <li id="outerMessagePage2" class="paginate_button " onclick="messageDivider.goToPageOption(messageDivider.pageRange[1])" style="display: none;">
                                         <a id="messagePage2" aria-controls="datatable" data-dt-idx="2" tabindex="0" style="padding: 4px 5px !important;">
                                             2
                                         </a>
                                     </li>
-                                    <li id="outerMessagePage3" class="paginate_button " onclick="messageDivider.goToPageOption(messageDivider.pageRange[2])" >
+                                    <li id="outerMessagePage3" class="paginate_button " onclick="messageDivider.goToPageOption(messageDivider.pageRange[2])" style="display: none;">
                                         <a id="messagePage3" aria-controls="datatable" data-dt-idx="3" tabindex="0" style="padding: 4px 5px !important;">
                                             3
                                         </a>
                                     </li>
-                                    <li id="outerMessagePage4" class="paginate_button " onclick="messageDivider.goToPageOption(messageDivider.pageRange[3])">
+                                    <li id="outerMessagePage4" class="paginate_button " onclick="messageDivider.goToPageOption(messageDivider.pageRange[3])" style="display: none;">
                                         <a id="messagePage4"  aria-controls="datatable" data-dt-idx="4" tabindex="0" style="padding: 4px 5px !important;">
                                             4
                                         </a>
                                     </li>
-                                    <li id="outerMessagePage5" class="paginate_button " onclick="messageDivider.goToPageOption(messageDivider.pageRange[4])">
+                                    <li id="outerMessagePage5" class="paginate_button " onclick="messageDivider.goToPageOption(messageDivider.pageRange[4])" style="display: none;">
                                         <a id="messagePage5"  aria-controls="datatable" data-dt-idx="5" tabindex="0" style="padding: 4px 5px !important;">
                                             5
                                         </a>
@@ -2504,13 +2492,18 @@ $('#datatable-buttons-test tbody').on('click', 'tr', function () {
             var temp = document.getElementById(this.outerID);
             this.allNodes = temp.getElementsByClassName(this.innerID);
             this.allNum = this.allNodes.length;
-            // allNodes = deepCopy(allNodes);
-            this.allPages = Math.ceil(this.allNum*1.0/this.nowNum);
-            for(var i = 0; i<this.allNum; i++)
+            if(!isNaN(this.allNum))
             {
-                this.allNodes[i].style.display="none";
+                this.allPages = Math.ceil(this.allNum*1.0/this.nowNum);
+                for(var i = 0; i<this.allNum; i++)
+                {
+                    this.allNodes[i].style.display="none";
+                }
+                this.goToPage(1);
+            }else
+            {
+
             }
-            this.goToPage(1);
         }
 
         Article.prototype.getIndexPages = function () {

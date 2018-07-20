@@ -14,7 +14,7 @@
 <%@ page import="operations.*" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8"%>
 
-<% //c试着把整个servlet搬过来
+<% //试着把整个servlet搬过来
     String resource = "mybatis.xml";
     InputStream is = Test.class.getClassLoader().getResourceAsStream(resource);
     SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
@@ -115,6 +115,17 @@
     <link href="vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet"/>
     <!-- Custom Theme Style -->
     <link href="build/css/custom.min.css" rel="stylesheet">
+    <style>
+        .right_col {
+            min-height:800px !important;
+        }
+        .pull-left.date {
+            background: #008080;
+        }
+        .list-inline.widget_profile_box {
+            /*background: #008080;*/
+        }
+    </style>
 </head>
 
 <body class="nav-md">
@@ -129,7 +140,7 @@
         <div class="col-md-3 left_col menu_fixed">
             <div class="left_col scroll-view">
                 <div class="navbar nav_title" style="border: 0;">
-                    <a href="Recommend.jsp" class="site_title"><img src="images/logo8.png"/><span>&nbsp;</span></a>
+                    <a href="Recommend.jsp" style="padding-left: 2px; height: 100px;" class="site_title" style=" padding-left: 2px;"><img style="display: flex; margin-top: 15px;" src="images/logo8.png"/><span>&nbsp;</span></a>
                 </div>
 
                 <div class="clearfix"></div>
@@ -137,7 +148,7 @@
                 <!-- menu profile quick info -->
                 <div class="profile clearfix">
                     <div class="profile_pic">
-                        <img id="userImg" src="images/<%=StuNo%>.jpg" onerror="javascript:this.src='images/user.png'" alt="..." class="img-circle profile_img">
+                        <img id="userImg"  src="images/<%=StuNo%>.jpg" onerror="javascript:this.src='images/user.png'" alt="..." class="img-circle profile_img">
                     </div>
                     <div class="profile_info">
                         <span>欢迎,</span>
@@ -186,22 +197,6 @@
                 </div>
                 <!-- /sidebar menu -->
 
-                <!-- /menu footer buttons -->
-                <div class="sidebar-footer hidden-small">
-                    <a data-toggle="tooltip" data-placement="top" title="Settings">
-                        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                        <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="Lock">
-                        <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="Logout" href="../login.jsp">
-                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-                    </a>
-                </div>
-                <!-- /menu footer buttons -->
             </div>
         </div>
 
@@ -235,7 +230,7 @@
 
                         <li role="presentation" class="dropdown">
                             <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
-                                <i class="fa fa-envelope-o"></i>
+                                <i class="fa fa-envelope-o" style=" line-height: 32px;"></i>
                                 <span class="badge bg-green"><%out.println(messages.size());%></span>
                             </a>
                             <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
@@ -273,43 +268,10 @@
         <!-- page content -->
         <div class="right_col" role="main">
             <div class="">
-                <div class="row top_tiles">
-                    <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <div class="tile-stats">
-                            <div class="icon"><i class="fa fa-caret-square-o-right"></i></div>
-                            <div class="count">179</div>
-                            <h3>New Sign ups</h3>
-                            <p>Lorem ipsum psdea itgum rixt.</p>
-                        </div>
-                    </div>
-                    <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <div class="tile-stats">
-                            <div class="icon"><i class="fa fa-comments-o"></i></div>
-                            <div class="count">179</div>
-                            <h3>New Sign ups</h3>
-                            <p>Lorem ipsum psdea itgum rixt.</p>
-                        </div>
-                    </div>
-                    <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <div class="tile-stats">
-                            <div class="icon"><i class="fa fa-sort-amount-desc"></i></div>
-                            <div class="count">179</div>
-                            <h3>New Sign ups</h3>
-                            <p>Lorem ipsum psdea itgum rixt.</p>
-                        </div>
-                    </div>
-                    <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <div class="tile-stats">
-                            <div class="icon"><i class="fa fa-check-square-o"></i></div>
-                            <div class="count">179</div>
-                            <h3>New Sign ups</h3>
-                            <p>Lorem ipsum psdea itgum rixt.</p>
-                        </div>
-                    </div>
-                </div>
+
 
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="x_panel">
                             <div class="x_title">
                                 <h2>推荐社团 <small>clubs</small></h2>
@@ -340,8 +302,7 @@
 
                                 <article class="media event">
                                     <a class="pull-left date">
-                                        <p class="month">April</p>
-                                        <p class="day">23</p>
+                                        <p class="day newDay" style=" line-height: 40px;"><%=i%></p>
                                     </a>
                                     <div class="media-body">
                                         <a class="title" href="#"><%out.println(club.getClubName());%></a>
@@ -353,7 +314,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="x_panel">
                             <div class="x_title">
                                 <h2>推荐活动 <small>activities</small></h2>
@@ -384,8 +345,7 @@
 
                                 <article class="media event">
                                     <a class="pull-left date">
-                                        <p class="month">April</p>
-                                        <p class="day">23</p>
+                                        <p class="day newDay" style=" line-height: 40px;"><%=m%></p>
                                     </a>
                                     <div class="media-body">
                                         <a class="title" href="#"><%out.println(act.getActive_name());%></a>
@@ -398,81 +358,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4">
-                        <div class="x_panel">
-                            <div class="x_title">
-                                <h2>Top Profiles <small>Sessions</small></h2>
-                                <ul class="nav navbar-right panel_toolbox">
-                                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                    </li>
-                                    <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#">Settings 1</a>
-                                            </li>
-                                            <li><a href="#">Settings 2</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li><a class="close-link"><i class="fa fa-close"></i></a>
-                                    </li>
-                                </ul>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="x_content">
-                                <article class="media event">
-                                    <a class="pull-left date">
-                                        <p class="month">April</p>
-                                        <p class="day">23</p>
-                                    </a>
-                                    <div class="media-body">
-                                        <a class="title" href="#">Item One Title</a>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                    </div>
-                                </article>
-                                <article class="media event">
-                                    <a class="pull-left date">
-                                        <p class="month">April</p>
-                                        <p class="day">23</p>
-                                    </a>
-                                    <div class="media-body">
-                                        <a class="title" href="#">Item Two Title</a>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                    </div>
-                                </article>
-                                <article class="media event">
-                                    <a class="pull-left date">
-                                        <p class="month">April</p>
-                                        <p class="day">23</p>
-                                    </a>
-                                    <div class="media-body">
-                                        <a class="title" href="#">Item Two Title</a>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                    </div>
-                                </article>
-                                <article class="media event">
-                                    <a class="pull-left date">
-                                        <p class="month">April</p>
-                                        <p class="day">23</p>
-                                    </a>
-                                    <div class="media-body">
-                                        <a class="title" href="#">Item Two Title</a>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                    </div>
-                                </article>
-                                <article class="media event">
-                                    <a class="pull-left date">
-                                        <p class="month">April</p>
-                                        <p class="day">23</p>
-                                    </a>
-                                    <div class="media-body">
-                                        <a class="title" href="#">Item Three Title</a>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                    </div>
-                                </article>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
                 <div class="row">
 
@@ -482,13 +368,13 @@
                         {
                     %>
 
-                    <div class="col-md-3 col-xs-12 widget widget_tally_box">
+                    <div class="col-md-3 col-xs-12 widget widget_tally_box"     style="max-width: none;">
                         <div class="x_panel fixed_height_390">
                             <div class="x_content">
 
                                 <div class="flex">
                                     <ul class="list-inline  widget_profile_box">
-                                        <li>
+                                        <li style="visibility: hidden;">
                                             <a>
                                                 <i class="fa fa-facebook"></i>
                                             </a>
@@ -496,7 +382,7 @@
                                         <li>
                                             <img  src="images/user.png" alt="..." class="img-circle profile_img">
                                         </li>
-                                        <li>
+                                        <li style="visibility: hidden;">
                                             <a>
                                                 <i class="fa fa-twitter"></i>
                                             </a>
@@ -538,12 +424,7 @@
         <!-- /page content -->
 
         <!-- footer content -->
-        <footer>
-            <div class="pull-right">
-                Copyright © UClub All Rights Reserved
-            </div>
-            <div class="clearfix"></div>
-        </footer>
+
         <!-- /footer content -->
     </div>
 </div>

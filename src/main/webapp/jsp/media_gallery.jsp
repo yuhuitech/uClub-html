@@ -50,6 +50,9 @@
 				text-align:center;
 				transform: translate(-50%, -50%); 
 			}
+        .col-md-3.col-sm-3.col-xs-12{
+          display: none;
+        }
 	</style>
 
     <title> Uclub | </title>
@@ -66,13 +69,13 @@
     <link href="build/css/custom.min.css" rel="stylesheet">
   </head>
 
-  <body class="nav-md" onload="initFunctionTemp()">
+  <body class="nav-md" onload="initFunctionTemp();">
     <div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col menu_fixed">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="Recommend.jsp" class="site_title"><img src="images/logo8.png"/><span>&nbsp;</span></a>
+              <a href="Recommend.jsp" style="padding-left: 2px; height: 100px;" class="site_title" style=" padding-left: 2px;"><img style="display: flex; margin-top: 15px;" src="images/logo8.png"/><span>&nbsp;</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -124,22 +127,7 @@
             </div>
             <!-- /sidebar menu -->
 
-            <!-- /menu footer buttons -->
-            <div class="sidebar-footer hidden-small">
-              <a data-toggle="tooltip" data-placement="top" title="Settings">
-                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="Lock">
-                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="Logout" href="../login.jsp">
-                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-              </a>
-            </div>
-            <!-- /menu footer buttons -->
+
           </div>
         </div>
 
@@ -148,7 +136,7 @@
           <div class="nav_menu">
             <nav>
               <div class="nav toggle">
-                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                <a id="menu_toggle"><i class="fa fa-bars" onmouseup="setImagePosition();"></i></a>
               </div>
 
               <ul class="nav navbar-nav navbar-right">
@@ -174,8 +162,8 @@
 
                 <li role="presentation" class="dropdown">
                   <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
-                    <i class="fa fa-envelope-o"></i>
-                    <span class="badge bg-green">6</span>
+                    <i class="fa fa-envelope-o" style=" line-height: 32px;"></i>
+
                   </a>
                   <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
                     <li>
@@ -250,18 +238,18 @@
                 <h3> 大本营 <small> 有想要拔草的咩~</small> </h3>
               </div>
 
-              <div class="title_right">
-                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                  <div class="input-group">
-                    <input type="text" class="form-control" id="searchInfo" placeholder="键入关键字寻找社团吧...">
-                    <span class="input-group-btn">
+
+            </div>
+            <div class="title_right">
+              <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                <div class="input-group">
+                  <input type="text" class="form-control" id="searchInfo" placeholder="键入关键字寻找社团吧...">
+                  <span class="input-group-btn">
                         <button class="btn btn-default" type="button" onclick="goToPageOption(1);">Go!</button>
                     </span>
-                  </div>
                 </div>
               </div>
             </div>
-
             <div class="clearfix"></div>
 
             <div class="row">
@@ -274,11 +262,10 @@
 
                   <div id="allGroups">
                     <c:forEach items="${requestScope.Clubs}" var="keyword">
-
-                      <div class="col-md-55" onclick="window.location.href='club_detail.jsp?ClubNo=${keyword.clubNo}'">
+                      <div class="col-md-3 col-sm-3 col-xs-12" onclick="window.location.href='club_detail.jsp?ClubNo=${keyword.clubNo}'">
                         <div class="thumbnail">
                           <div class="image view view-first">
-                            <img style="width: 100%; display: block;position:relative;top:-75px;" src="images/${keyword.clubNo}.jpg?<%=Math.random()%>" onerror="javascript:this.src='images/logo.png'" alt="image" />
+                            <img class="adjustPhoto" style="display: block;position: relative;width: 100%;bottom: 60%;" src="images/${keyword.clubNo}.jpg?<%=Math.random()%>" onerror="javascript:this.src='images/logo.png'" alt="image" />
                             <div class="mask">
                               <span>
                               <p>查看详情</p>
@@ -295,9 +282,6 @@
                           </div>
                         </div>
                       </div>
-
-
-
                     </c:forEach>
                   </div>
 
@@ -309,42 +293,42 @@
                     			<!--Showing 1 to 10 of 57 entries-->
                     		</div>
                     	</div>
-                    	<div class="col-sm-7">
+                    	<div class="col-sm-12 col-sm-12 col-xs-12">
                     		<div class="dataTables_paginate paging_simple_numbers" id="datatable_paginate">
                     			<ul class="pagination" id="choosePage">
                     				<li class="paginate_button previous" id="datatable_previous" onclick="goToPageOption(currentPage-1);">
-                    					<a  aria-controls="datatable" data-dt-idx="0" tabindex="0">
-                    						Previous
+                    					<a  aria-controls="datatable" data-dt-idx="0" tabindex="0" style="padding: 4px 5px !important;">
+                    						<-
                     					</a>
                     				</li>
                     				<li id="outerPage1" class="paginate_button " onclick="goToPageOption(pageRange[0])" >
-                    					<a id="Page1" aria-controls="datatable" data-dt-idx="1" tabindex="0">
+                    					<a id="Page1" aria-controls="datatable" data-dt-idx="1" tabindex="0" style="padding: 4px 5px !important;">
                     						1
                     					</a>
                     				</li>
                     				<li id="outerPage2" class="paginate_button " onclick="goToPageOption(pageRange[1])" >
-                    					<a id="Page2" aria-controls="datatable" data-dt-idx="2" tabindex="0">
+                    					<a id="Page2" aria-controls="datatable" data-dt-idx="2" tabindex="0" style="padding: 4px 5px !important;">
                     						2
                     					</a>
                     				</li>
                     				<li id="outerPage3" class="paginate_button " onclick="goToPageOption(pageRange[2])" >
-                                        <a id="Page3" aria-controls="datatable" data-dt-idx="3" tabindex="0">
+                                        <a id="Page3" aria-controls="datatable" data-dt-idx="3" tabindex="0" style="padding: 4px 5px !important;">
                     					    3
                                         </a>
                     				</li>
                     				<li id="outerPage4" class="paginate_button " onclick="goToPageOption(pageRange[3])">
-                    					<a id="Page4"  aria-controls="datatable" data-dt-idx="4" tabindex="0">
+                    					<a id="Page4"  aria-controls="datatable" data-dt-idx="4" tabindex="0" style="padding: 4px 5px !important;">
                                             4
                                         </a>
                                     </li>
                                     <li id="outerPage5" class="paginate_button " onclick="goToPageOption(pageRange[4])">
-                                        <a id="Page5"  aria-controls="datatable" data-dt-idx="5" tabindex="0">
+                                        <a id="Page5"  aria-controls="datatable" data-dt-idx="5" tabindex="0" style="padding: 4px 5px !important;">
                                             5
                                         </a>
                                     </li>
                                     <li class="paginate_button next" id="datatable_next" onclick="goToPageOption(currentPage+1);">
-                                        <a  aria-controls="datatable" data-dt-idx="7" tabindex="0">
-                                            Next
+                                        <a  aria-controls="datatable" data-dt-idx="7" tabindex="0" style="padding: 4px 5px !important;">
+                                            ->
                                         </a>
                                     </li>
                     			</ul>
@@ -390,6 +374,21 @@
   </body>
 </html>
 
+<script>
+
+  // function setImagePosition() {
+  //     var allPhotos = document.getElementsByClassName('adjustPhoto');
+  //     for(var i = 0; i<allPhotos.length; i++)
+  //     {
+  //         var nowPhoto = allPhotos[i];
+  //         var heightOfPhoto = nowPhoto.height;
+  //         var positionOfFather = nowPhoto.parentNode;
+  //         var heightOfParents = positionOfFather.clientHeight;
+  //         nowPhoto.style.bottom = (heightOfPhoto-heightOfParents)/2.0.toString()+'px';
+  //     }
+  // }
+
+</script>
 
 
 <script>
@@ -406,7 +405,7 @@
     var initFunctionTemp = function()
     {
         var temp = document.getElementById('allGroups');
-        allNodes = temp.getElementsByClassName("col-md-55");
+        allNodes = temp.getElementsByClassName("col-md-3 col-sm-3 col-xs-12");
         allNum = allNodes.length;
         // allNodes = deepCopy(allNodes);
         allPages = Math.ceil(allNum*1.0/nowNum);
@@ -439,7 +438,6 @@
         }else{
             goToPage(pageNum,allNodes,allNum);
         }
-
     }
 
     var goToPage = function(pageNum,originNodes,allNumber)
@@ -481,17 +479,6 @@
                 document.getElementById("outerPage"+(temp+1)).className = "paginate_button active";
             }
         }
-
-        // if(pageNum===2)
-        //     document.getElementById("outerPage2").className = "paginate_button active";
-        // else if(pageNum===1)
-        //     document.getElementById("outerPage1").className = "paginate_button active";
-        // else if(pageNum===allPages)
-        //     document.getElementById("outerPage5").className = "paginate_button active";
-        // else if(pageNum===allPages-1)
-        //     document.getElementById("outerPage4").className = "paginate_button active";
-        // else
-        //     document.getElementById("outerPage3").className = "paginate_button active";
         if(allPages<=5){
             for(temp = 0; temp<5; temp++)
             {
@@ -503,6 +490,9 @@
         }
     }
 
+    // $(window).ready(function () {
+    //     setImagePosition();
+    // });
 
     function searchForGroup(pageNum) {
         var searchInfo = $('#searchInfo').val();
