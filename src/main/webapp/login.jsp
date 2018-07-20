@@ -13,6 +13,16 @@
     body {
         background-image:  url(jsp/images/b4.jpg) !important;
     }
+    .login_content h1:before {
+        background: unset !important;
+        background: linear-gradient(right,#7e7e7e 0,#fff 100%);
+        left: 0;
+    }
+    .login_content h1:after {
+        background: unset !important;
+        background: linear-gradient(left,#7e7e7e 0,#fff 100%);
+        right: 0;
+    }
 </style>
 <head>
     <script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
