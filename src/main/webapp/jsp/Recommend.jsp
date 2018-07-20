@@ -82,6 +82,8 @@
     session1.commit();
     session1.close();
     Integer StuNo= (Integer) session.getAttribute("UserNo");
+    String name = DAO.getStudentName(sqlSessionFactory,StuNo);
+    session.setAttribute("name",name);
 
 
 %>
@@ -216,15 +218,13 @@
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                <li><a href="javascript:;"> Profile</a></li>
                                 <li>
-                                    <a href="javascript:;">
-                                        <span class="badge bg-red pull-right">50%</span>
-                                        <span>Settings</span>
+                                    <a href="../login.jsp">
+                                        <i class="fa fa-sign-out pull-right">
+                                        </i>
+                                        Log Out
                                     </a>
                                 </li>
-                                <li><a href="javascript:;">Help</a></li>
-                                <li><a href="../login.jsp"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                             </ul>
                         </li>
 
@@ -305,7 +305,7 @@
                                         <p class="day newDay" style=" line-height: 40px;"><%=i%></p>
                                     </a>
                                     <div class="media-body">
-                                        <a class="title" href="#"><%out.println(club.getClubName());%></a>
+                                        <a class="title" href = <%out.println("club_detail.jsp?ClubNo="+club.getClubNo());%>><%out.println(club.getClubName());%></a>
                                         <p><%out.println(club.getClubInfo());%></p>
                                     </div>
                                 </article><%}%>
@@ -348,7 +348,7 @@
                                         <p class="day newDay" style=" line-height: 40px;"><%=m%></p>
                                     </a>
                                     <div class="media-body">
-                                        <a class="title" href="#"><%out.println(act.getActive_name());%></a>
+                                        <a class="title" href="calendar.jsp"><%out.println(act.getActive_name());%></a>
                                         <p><%out.println(act.getActive_info());%></p>
                                     </div>
                                 </article>
@@ -390,7 +390,9 @@
                                     </ul>
                                 </div>
 
-                                <h3 class="name"><%out.println(club.getClubName());%></h3>
+                                <h3 class="name" >
+                                    <a href = <%out.println("club_detail.jsp?ClubNo="+club.getClubNo());%>><%out.println(club.getClubName());%></a>
+                                </h3>
 
                                 <div class="flex">
                                     <ul class="list-inline count2">
