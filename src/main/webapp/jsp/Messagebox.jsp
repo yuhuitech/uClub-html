@@ -6,7 +6,8 @@
 <%@ page import="org.apache.ibatis.session.SqlSessionFactory" %>
 <%@ page import="org.apache.ibatis.session.SqlSessionFactoryBuilder" %>
 <%@ page import="java.text.DateFormat" %>
-<%@ page import="java.text.SimpleDateFormat" %><%--
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.HashMap" %><%--
   Created by IntelliJ IDEA.
   User: Administrator
   Date: 2018/7/16
@@ -17,6 +18,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
@@ -43,7 +45,22 @@
 </head>
 
 <body class="nav-md">
-<%  List<Message> messages =(List<Message>) request.getSession().getAttribute("messages");%>
+<%
+    List<Message> messages =(List<Message>) request.getSession().getAttribute("messages");
+    Integer StuNo= (Integer) session.getAttribute("UserNo");
+    String resource = "mybatis.xml";
+    InputStream is = Test.class.getClassLoader().getResourceAsStream(resource);
+    SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
+    List<HashMap> createReply=DAO.getCreateReply(sqlSessionFactory,StuNo);
+    List<HashMap> dissolveReply=DAO.getDissolveReply(sqlSessionFactory,StuNo);
+    List<HashMap> joinReply=DAO.getJoinReply(sqlSessionFactory,StuNo);
+    List<HashMap> leaveReply=DAO.getLeaveReply(sqlSessionFactory,StuNo);
+    List<HashMap> priceReply=DAO.getPriceReply(sqlSessionFactory,StuNo);
+
+
+
+
+%>
 <div class="container body">
     <div class="main_container">
         <div class="col-md-3 left_col menu_fixed">
@@ -62,9 +79,9 @@
                 <div class="profile_info">
                     <span>欢迎,</span>
                     <h2><%
-                        String resource = "mybatis.xml";
-                        InputStream is = Test.class.getClassLoader().getResourceAsStream(resource);
-                        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
+//                        String resource = "mybatis.xml";
+//                        InputStream is = Test.class.getClassLoader().getResourceAsStream(resource);
+//                        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
                         out.println(DAO.getStudentName(sqlSessionFactory,(Integer)request.getSession().getAttribute("UserNo")));%> 同学</h2>
                 </div>
                 </div>
@@ -228,12 +245,12 @@
                                 </li>
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#">Settings 1</a>
-                                        </li>
-                                        <li><a href="#">Settings 2</a>
-                                        </li>
-                                    </ul>
+                                    <%--<ul class="dropdown-menu" role="menu">--%>
+                                        <%--<li><a href="#">Settings 1</a>--%>
+                                        <%--</li>--%>
+                                        <%--<li><a href="#">Settings 2</a>--%>
+                                        <%--</li>--%>
+                                    <%--</ul>--%>
                                 </li>
                                 <li><a class="close-link"><i class="fa fa-close"></i></a>
                                 </li>
@@ -243,29 +260,156 @@
                         <div class="x_content" style="width: 100%;height: 400px;overflow: hidden;overflow-y: auto;">
                             <ul class="list-unstyled msg_list">
                                 <%
-
+                                    int a=0;
                                     for(Message message:messages){
                                 %>
-                                <li>
+                                <li class="trueLi"  name="messages">
+                                    <%--<input type="hidden" class="hiddenType" value="Message"/>--%>
+                                    <input type="hidden" class="messages" id="messages" value="<%=a%>"/>
                                     <a>
-                        <span class="image">
-                          <img src="images/img.jpg" alt="img">
-                        </span>
+                                        <span class="image">
+                                            <img src="images/user.png" alt="img">
+                                        </span>
                                         <span>
-                          <span>Teacher</span>
-                          <span class="time"><%
-                              String formatDate1 = null;
-                              //格式 24小时制：2016-07-06 09:39:58
-                              DateFormat dFormat1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); //HH表示24小时制；
-                              formatDate1 = dFormat1.format(message.getTime());
-                          %><%out.println(formatDate1);%></span>
-                        </span>
+                                            <span>Teacher</span>
+                                            <span class="time"><%
+                                                String formatDate1 = null;
+                                                //格式 24小时制：2016-07-06 09:39:58
+                                                DateFormat dFormat1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); //HH表示24小时制；
+                                                formatDate1 = dFormat1.format(message.getTime());
+                                            %><%out.println(formatDate1);%></span>
+                                        </span>
                                         <span class="message">
-                          <%out.println(message.getMessageInfo());%>
-                        </span>
+                                            <%out.println(message.getMessageInfo());%>
+                                        </span>
                                     </a>
                                 </li>
-                                <%}%>
+                                <%
+                                    a++;}%>
+
+
+                                <%
+                                    int b=0;
+                                    if(createReply.size()>0){
+                                    for(HashMap map:createReply){
+                                %>
+                                <li class="trueLi"  name="createReply">
+                                    <%--<input type="hidden" class="hiddenType" value="CreateReply"/>--%>
+                                    <input type="hidden" class="messages" id="createReply" value="<%=b%>"/>
+                                    <a>
+                                        <span class="image">
+                                            <img src="images/user.png" alt="img">
+                                        </span>
+                                        <span>
+                                            <span>Teacher</span>
+
+                                        </span>
+                                        <span class="message">
+                                            <%out.println(map.get("reason"));%>
+                                        </span>
+                                    </a>
+                                </li>
+                                <%
+                                    b++;}}%>
+
+
+                                <%
+                                    int c=0;
+                                    if(dissolveReply.size()>0){
+                                    for(HashMap map:dissolveReply){
+                                %>
+                                <li class="trueLi"  name="dissolveReply">
+                                    <%--<input type="hidden" class="hiddenType" value="DissolveReply"/>--%>
+                                    <input type="hidden" class="messages" id="dissolveReply" value="<%=c%>"/>
+                                    <a>
+                                        <span class="image">
+                                            <img src="images/user.png" alt="img">
+                                        </span>
+                                        <span>
+                                            <span>Teacher</span>
+
+                                        </span>
+                                        <span class="message">
+                                            <%out.println(map.get("reason"));%>
+                                        </span>
+                                    </a>
+                                </li>
+                                <%
+                                    c++;}}%>
+
+
+                                <%
+                                    int d=0;
+                                    if(joinReply.size()>0){
+                                    for(HashMap map:joinReply){
+                                %>
+                                <li class="trueLi"  name="joinReply">
+                                    <%--<input type="hidden" class="hiddenType" value="JoinReply"/>--%>
+                                    <input type="hidden" class="messages" id="joinReply" value="<%=d%>"/>
+                                    <a>
+                                        <span class="image">
+                                            <img src="images/user.png" alt="img">
+                                        </span>
+                                        <span>
+                                            <span>Teacher</span>
+
+                                        </span>
+                                        <span class="message">
+                                            <%out.println(map.get("reason"));%>
+                                        </span>
+                                    </a>
+                                </li>
+                                <%
+                                    d++;}}%>
+
+                                <%
+                                    int e=0;
+                                    if(leaveReply.size()>0){
+                                    for(HashMap map:leaveReply){
+                                %>
+                                <li class="trueLi"  name="leaveReply">
+                                    <%--<input type="hidden" class="hiddenType" value="LeaveReply"/>--%>
+                                    <input type="hidden" class="messages" id="leaveReply" value="<%=e%>"/>
+                                    <a>
+                                        <span class="image">
+                                            <img src="images/user.png" alt="img">
+                                        </span>
+                                        <span>
+                                            <span>Teacher</span>
+
+                                        </span>
+                                        <span class="message">
+                                            <%out.println(map.get("reason"));%>
+                                        </span>
+                                    </a>
+                                </li>
+                                <%
+                                    e++;}}%>
+
+                                <%
+                                    int f=0;
+                                    if(priceReply.size()>0){
+                                    for(HashMap map:priceReply){
+                                %>
+                                <li class="trueLi"  name="priceReply">
+                                    <%--<input type="hidden" class="hiddenType" value="PriceReply"/>--%>
+                                    <input type="hidden" class="messages" id="priceReply" value="<%=f%>"/>
+                                    <a>
+                                        <span class="image">
+                                            <img src="images/user.png" alt="img">
+                                        </span>
+                                        <span>
+                                            <span>Teacher</span>
+
+                                        </span>
+                                        <span class="message">
+                                            <%out.println(map.get("reason"));%>
+                                        </span>
+                                    </a>
+                                </li>
+                                <%
+                                    f++;}}%>
+
 
                             </ul>
                         </div>
@@ -307,7 +451,8 @@
                         </div>
                         <div class="x_content">
                             <div class="row">
-
+                               <input type="hidden" id="name" name="name" value="">
+                                <input type="hidden" id="index" name="index" value="">
                                 <!-- /MAIL LIST -->
 
                                 <!-- CONTENT MAIL -->
@@ -319,26 +464,26 @@
                                                     <button id="compose" class="btn btn-sm btn-success btn-block" type="button">回复</button>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4 col-sm-8 col-xs-8 text-right">
-                                                <p class="date"> 收信日期 8:02 PM 12 FEB 2014</p>
-                                            </div>
+                                            <%--<div class="col-md-4 col-sm-8 col-xs-8 text-right">--%>
+                                                <%--<p class="date"> 收信日期 8:02 PM 12 FEB 2014</p>--%>
+                                            <%--</div>--%>
                                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                                <h4>您的申请已经通过</h4>
+                                                <h4 id="msgHead"></h4>
                                             </div>
                                         </div>
                                         <div class="sender-info">
                                             <div class="row">
                                                 <div class="col-md-12">
-                                                    <strong>王老师</strong>
-                                                    发给
-                                                    <strong>我</strong>
+                                                    <%--<strong>王老师</strong>--%>
+                                                    <%--发给--%>
+                                                    <%--<strong>我</strong>--%>
 
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div class="view-mail">
-                                            我已经收到了你的通知，我觉得我们需要找个时间谈一下，下周一上班的时候你来办公室找我一趟吧。
+                                        <div class="view-mail" id="msgDetail">
+
                                         </div>
                                         <div class="btn-group">
                                             <!--<button class="btn btn-sm btn-primary" type="button"><i class="fa fa-reply"></i> Reply</button>
@@ -390,6 +535,15 @@
     </div>
 </div>
 
+<script>
+    function getDetail(name,index) {
+
+    }
+</script>
+
+
+
+
 <!-- jQuery -->
 <script src="vendors/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap -->
@@ -409,3 +563,37 @@
 <script src="mobile.js"></script>
 </body>
 </html>
+<script>
+    $('.trueLi').click(function () {
+        var name  = $(this).attr('name');
+        var  index=$(this).children('.messages').val();
+        $('#name').val(name);
+        $('#index').val(index);
+
+        $.ajax({
+            type:'POST',
+            url:"/getMessageDetail",
+            data:{
+                "name":name,
+                "index":index
+            },
+            success:function(data) {
+                var obj=eval('('+data+')');
+                if('reason' in obj) document.getElementById("msgHead").innerText=obj.reason;
+                if('messageInfo' in obj){
+                    document.getElementById("msgHead").innerText=obj.messageInfo;
+                    document.getElementById("msgDetail").innerText=obj.messageInfo;
+                }
+                if('ClubName' in obj) document.getElementById("msgDetail").innerText="社团名称:  "+obj.ClubName;
+                if('active_name' in obj) document.getElementById("msgDetail").innerText+="\n活动名称:  "+obj.active_name;
+                if('price' in obj) document.getElementById("msgDetail").innerText+="\n申请资金:  "+obj.price;
+                if('ApplyTime' in obj) document.getElementById("msgDetail").innerText+="\n申请时间:  "+obj.ApplyTime;
+            },
+            error:function(data){
+                alert(data);
+            },
+            async:false});
+
+    })
+
+</script>

@@ -338,13 +338,13 @@ public class DAO {
 
     }
            //从申请表中移除
-    public static void delFromJoinClub(SqlSessionFactory sqlSessionFactory, int StuNo ,int ClubNo){
+    public static void delFromJoinClub(SqlSessionFactory sqlSessionFactory, int StuNo ,int ClubNo,int Status){
         try {
             // 获取Session连接
             SqlSession session = sqlSessionFactory.openSession();
             // 获取Mapper
             DaoInterface DAO = session.getMapper(DaoInterface.class);
-            DAO.delFromJoinClub(StuNo,ClubNo);
+            DAO.delFromJoinClub(StuNo,ClubNo,Status);
             session.commit();
             session.close();
             // 显示插入之后Apply信息
@@ -450,13 +450,13 @@ public class DAO {
     }
 
     //从申请表中移除
-    public static void delFromLeaveClub(SqlSessionFactory sqlSessionFactory, int StuNo,int ClubNo){
+    public static void delFromLeaveClub(SqlSessionFactory sqlSessionFactory, int StuNo,int ClubNo,int Status){
         try {
             // 获取Session连接
             SqlSession session = sqlSessionFactory.openSession();
             // 获取Mapper
             DaoInterface DAO = session.getMapper(DaoInterface.class);
-            DAO.delFromLeaveClub(StuNo,ClubNo);
+            DAO.delFromLeaveClub(StuNo,ClubNo,Status);
             session.commit();
             session.close();
             // 显示插入之后Apply信息
@@ -701,6 +701,107 @@ public class DAO {
             DaoInterface selectInterface = session.getMapper(DaoInterface.class);
             //获取该学生所有的社团
             i=selectInterface.getJoinActivity(StuNo);
+            session.commit();
+            session.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return i;
+    }
+
+
+
+
+    /**************************回复相关********************************/
+
+    public static List<HashMap> getCreateReply(SqlSessionFactory sqlSessionFactory, int StuNo)
+    {
+        List<HashMap> i=null;
+        try {
+            // 获取Session连接
+            SqlSession session = sqlSessionFactory.openSession();
+            // 获取Mapper
+            DaoInterface selectInterface = session.getMapper(DaoInterface.class);
+            //获取该学生所有的社团
+            i=selectInterface.getCreateReply(StuNo);
+            session.commit();
+            session.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return i;
+    }
+
+
+    public static List<HashMap> getDissolveReply(SqlSessionFactory sqlSessionFactory, int StuNo)
+    {
+        List<HashMap> i=null;
+        try {
+            // 获取Session连接
+            SqlSession session = sqlSessionFactory.openSession();
+            // 获取Mapper
+            DaoInterface selectInterface = session.getMapper(DaoInterface.class);
+            //获取该学生所有的社团
+            i=selectInterface.getDissolveReply(StuNo);
+            session.commit();
+            session.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return i;
+    }
+
+    public static List<HashMap> getJoinReply(SqlSessionFactory sqlSessionFactory, int StuNo)
+    {
+        List<HashMap> i=null;
+        try {
+            // 获取Session连接
+            SqlSession session = sqlSessionFactory.openSession();
+            // 获取Mapper
+            DaoInterface selectInterface = session.getMapper(DaoInterface.class);
+            //获取该学生所有的社团
+            i=selectInterface.getJoinReply(StuNo);
+            session.commit();
+            session.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return i;
+    }
+
+    public static List<HashMap> getLeaveReply(SqlSessionFactory sqlSessionFactory, int StuNo)
+    {
+        List<HashMap> i=null;
+        try {
+            // 获取Session连接
+            SqlSession session = sqlSessionFactory.openSession();
+            // 获取Mapper
+            DaoInterface selectInterface = session.getMapper(DaoInterface.class);
+            //获取该学生所有的社团
+            i=selectInterface.getLeaveReply(StuNo);
+            session.commit();
+            session.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return i;
+    }
+
+    public static List<HashMap> getPriceReply(SqlSessionFactory sqlSessionFactory, int StuNo)
+    {
+        List<HashMap> i=null;
+        try {
+            // 获取Session连接
+            SqlSession session = sqlSessionFactory.openSession();
+            // 获取Mapper
+            DaoInterface selectInterface = session.getMapper(DaoInterface.class);
+            //获取该学生所有的社团
+            i=selectInterface.getPriceReply(StuNo);
             session.commit();
             session.close();
 

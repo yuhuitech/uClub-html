@@ -147,7 +147,7 @@
 
     <!-- 从加入社团申请表中删除  -->
     <delete id="delFromJoinClub">
-        update uclub.join_apply set Status=2
+        update uclub.join_apply set Status=#{Status}
         <where>
             StuNo = #{StuNo} and ClubNo=#{ClubNo}
         </where>
@@ -165,17 +165,9 @@
         order by Member.leave_time
     </select>
 
-    <!-- 修改成员职位 -->
+    <!-- 修改成员职位和部门 -->
     <update id="changeMemberJob">
         update uclub.Member set Job=#{Job},Department=#{Department}
-        <where>
-            StuNo=#{StuNo} and ClubNo=#{ClubNo}
-        </where>
-    </update>
-
-    <!-- 废弃 -->
-    <update id="changeMemberDepartment">
-        update uclub.Member set Department=#{Department}
         <where>
             StuNo=#{StuNo} and ClubNo=#{ClubNo}
         </where>
@@ -211,7 +203,7 @@
 
     <!-- 从退出社团申请表中删除  -->
     <update id="delFromLeaveClub">
-        update uclub.leave_apply set Status=2
+        update uclub.leave_apply set Status=#{Status}
         <where>
             StuNo = #{StuNo} and ClubNo=#{ClubNo}
         </where>
@@ -310,4 +302,41 @@
         where ActiveNo in ( select ActiveNo from join_activity where StuNo=#{StuNo})
         and ClubNo in (select ClubNo from Member where StuNo=#{StuNo} and leave_time is null);
     </select>
+
+
+    <select id="getCreateReply" resultType="HashMap">
+        SELECT ClubName,ApplyTime,reply.reason FROM Create_apply,reply
+        WHERE Create_apply.ApplyNo=reply.ApplyNo
+        and StuNo=#{StuNo};
+    </select>
+
+    <select id="getDissolveReply" resultType="HashMap">
+        SELECT ClubName,dissolve_apply.Reason,reply.reason FROM dissolve_apply,reply,Club
+        WHERE dissolve_apply.ApplyNo=reply.ApplyNo
+        and dissolve_apply.ClubNo=Club.ClubNo
+        and StuNo=#{StuNo};
+    </select>
+
+    <select id="getJoinReply" resultType="HashMap">
+        SELECT ClubName,reply.reason FROM join_apply,reply,Club
+        WHERE join_apply.ApplyNo=reply.ApplyNo
+        and join_apply.ClubNo=Club.ClubNo
+        and StuNo=#{StuNo};
+    </select>
+
+    <select id="getLeaveReply" resultType="HashMap">
+        SELECT ClubName,reply.reason FROM leave_apply,reply,Club
+        WHERE leave_apply.ApplyNo=reply.ApplyNo
+        and leave_apply.ClubNo=Club.ClubNo
+        and StuNo=#{StuNo};
+    </select>
+
+    <select id="getPriceReply" resultType="HashMap">
+        SELECT active_name,ClubName,price,reply.reason FROM price_apply,reply,Activity,Club
+        WHERE price_apply.ApplyNo=reply.ApplyNo
+        AND price_apply.ActiveNo=Activity.ActiveNo
+        AND Activity.ClubNo=Club.ClubNo
+        AND Club.ClubNo in (select ClubNo from Member where StuNo=#{StuNo});
+    </select>
+
 </mapper>

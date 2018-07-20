@@ -69,7 +69,7 @@ public interface DaoInterface {
                        @Param("Job") String Job,
                        @Param("join_time") Date join_time);
 
-     void delFromJoinClub(@Param("StuNo") int StuNo,@Param("ClubNo") int ClubNo);
+     void delFromJoinClub(@Param("StuNo") int StuNo,@Param("ClubNo") int ClubNo,@Param("Status") int Status);
 
      List<HashMap> getMembers(@Param("ClubNo") int ClubNo);
 
@@ -96,7 +96,7 @@ public interface DaoInterface {
 
      List<HashMap> getLeaveClubApply(@Param("ClubNo") int ClubNo);
 
-     void delFromLeaveClub(@Param("StuNo") int StuNo,@Param("ClubNo") int ClubNo);
+     void delFromLeaveClub(@Param("StuNo") int StuNo,@Param("ClubNo") int ClubNo,@Param("Status") int Status);
 
      void priceApply(@Param("ApplyNo") int ApplyNo,
                      @Param("ActivityNo") String ActivityNo,
@@ -148,5 +148,12 @@ public interface DaoInterface {
                      @Param("Sex") String Sex);
 
      List<Activity> getJoinActivity(@Param("StuNo") int StuNo);
+
+
+     List<HashMap> getCreateReply(@Param("StuNo") int StuNo);
+     List<HashMap> getDissolveReply(@Param("StuNo") int StuNo);
+     List<HashMap> getJoinReply(@Param("StuNo") int StuNo);
+     List<HashMap> getLeaveReply(@Param("StuNo") int StuNo);
+     List<HashMap> getPriceReply(@Param("StuNo") int StuNo);
 }
 

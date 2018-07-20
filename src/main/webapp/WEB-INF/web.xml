@@ -391,4 +391,13 @@
         <servlet-name>AddComment</servlet-name>
         <url-pattern>/AddComment</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>getMessageDetail</servlet-name>
+        <servlet-class>servlet.getMessageDetail</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>getMessageDetail</servlet-name>
+        <url-pattern>/getMessageDetail</url-pattern>
+    </servlet-mapping>
 </web-app>

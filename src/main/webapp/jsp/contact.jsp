@@ -237,7 +237,12 @@
                             <h4 class="brief"><i><%=DAO.getClubById(sqlSessionFactory,ClubNo).getClubName()%></i></h4>
                             <div class="left col-xs-7">
                               <h2><%=map.get("StuName")%></h2>
-                              <p><strong></strong> <%=map.get("Job")%> </p>
+                                <%
+                                    String Department="";
+                                    if(map.get("Department")!=null)Department= (String) map.get("Department");
+
+                                %>
+                              <p><strong></strong> <%=Department+" "+map.get("Job")%> </p>
                               <ul class="list-unstyled">
                                 <li><i class="fa fa-building"></i> Email: <%=map.get("Email")%></li>
                                 <li><i class="fa fa-phone"></i> Phone: <%=map.get("Tel")%></li>
