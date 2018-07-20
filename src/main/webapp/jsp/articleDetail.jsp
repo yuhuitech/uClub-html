@@ -138,38 +138,35 @@
                 <div class="navbar nav_title" style="border: 0;">
                     <a href="Recommend.jsp" style="padding-left: 2px; height: 100px;" class="site_title" style=" padding-left: 2px;"><img style="display: flex; margin-top: 15px;" src="images/logo8.png"/><span>&nbsp;</span></a>
                 </div>
-                <div class="clearfix">
-                </div>
+
+                <div class="clearfix"></div>
+
                 <!-- menu profile quick info -->
                 <div class="profile clearfix">
                     <div class="profile_pic">
-                        <img src="images/img.jpg" alt="..." class="img-circle profile_img">
-                    </div>
-                    <div class="profile_info">
-                                <span>
-                                    Welcome,
-                                </span>
-                        <h2>
-                            <%out.println(name);%>
-                        </h2>
+                        <img id="userImg"  src="images/<%= request.getSession().getAttribute("UserNo")%>.jpg" onerror="javascript:this.src='images/user.png'" alt="..." class="img-circle profile_img">
                     </div>
                 </div>
-                <!-- /menu profile quick info -->
+                <div class="profile_info">
+                    <span>欢迎,</span>
+                    <h2><%
+                        out.println(DAO.getStudentName(sqlSessionFactory,(Integer)request.getSession().getAttribute("UserNo")));%> 同学</h2>
+                </div>
+            </div>
+            <!-- /menu profile quick info -->
                 <br />
                 <!-- sidebar menu -->
                 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                     <div class="menu_section">
-                        <h3>
-                            通用
-                        </h3>
+                        <h3>通用</h3>
                         <ul class="nav side-menu">
                             <li><a><i class="fa fa-home"></i> 主页 <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="Recommend.jsp">趋势</a></li>
+                                    <li><a href="Recommend.jsp">推荐</a></li>
                                     <li><a href="media_gallery.jsp">所有社团</a></li>
                                 </ul>
                             </li>
-                            <li><a><i class="fa fa-edit"></i> 广场 <span class="fa fa-chevron-down"></span></a>
+                            <li><a><i class="fa fa-cube"></i> 广场 <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
                                     <li><a href="plaza.jsp">进入广场</a></li>
                                 </ul>
@@ -181,8 +178,8 @@
                             </li>
                             <li><a><i class="fa fa-desktop"></i> 社团中心 <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="my_group.html">加入的社团</a></li>
-                                    <li><a href="messageBoard.jsp">收到的消息</a></li>
+                                    <li><a href="my_group.jsp">加入的社团</a></li>
+                                    <li><a href="Messagebox.jsp">收到的消息</a></li>
                                     <li><a href="calendar.jsp">活动日历</a></li>
                                 </ul>
                             </li>

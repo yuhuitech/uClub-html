@@ -158,11 +158,11 @@
                 <!-- menu profile quick info -->
                 <div class="profile clearfix">
                     <div class="profile_pic">
-                        <img id="userImg" src="images/<%=StuNo%>.jpg?<%=Math.random()%>" onerror="javascript:this.src='images/user.png'" alt="..." class="img-circle profile_img">
+                        <img id="userImg"  src="images/<%=StuNo%>.jpg" onerror="javascript:this.src='images/user.png'" alt="..." class="img-circle profile_img">
                     </div>
                     <div class="profile_info">
                         <span>欢迎,</span>
-                        <h2><%=student.getStuName()%> 同学</h2>
+                        <h2><%=DAO.getStudentName(sqlSessionFactory,StuNo)%> 同学</h2>
                     </div>
                 </div>
                 <!-- /menu profile quick info -->
@@ -176,8 +176,13 @@
                         <ul class="nav side-menu">
                             <li><a><i class="fa fa-home"></i> 主页 <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="Recommend.jsp">趋势</a></li>
+                                    <li><a href="Recommend.jsp">推荐</a></li>
                                     <li><a href="media_gallery.jsp">所有社团</a></li>
+                                </ul>
+                            </li>
+                            <li><a><i class="fa fa-cube"></i> 广场 <span class="fa fa-chevron-down"></span></a>
+                                <ul class="nav child_menu">
+                                    <li><a href="plaza.jsp">进入广场</a></li>
                                 </ul>
                             </li>
                             <li><a><i class="fa fa-edit"></i> 申请 <span class="fa fa-chevron-down"></span></a>
@@ -187,8 +192,8 @@
                             </li>
                             <li><a><i class="fa fa-desktop"></i> 社团中心 <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="my_group.html">加入的社团</a></li>
-                                    <li><a href="messageBoard.jsp">收到的消息</a></li>
+                                    <li><a href="my_group.jsp">加入的社团</a></li>
+                                    <li><a href="Messagebox.jsp">收到的消息</a></li>
                                     <li><a href="calendar.jsp">活动日历</a></li>
                                 </ul>
                             </li>

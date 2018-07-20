@@ -149,50 +149,41 @@ td.fc-list-item-time.fc-widget-content {
             <br />
 
             <!-- sidebar menu -->
-            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-              <div class="menu_section">
-                <h3>通用</h3>
-                <ul class="nav side-menu">
-                  <li class="active"><a><i class="fa fa-home"></i> 主页 <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                    	  <li><a href="Recommend.jsp">趋势</a></li>
-                      <li><a href="media_gallery.jsp">所有社团</a></li>
-                      <%--<li><a>广场<span class="fa fa-chevron-down"></span></a>--%>
-                          <%--<ul class="nav child_menu">--%>
-                            <%--<li class="sub_menu">--%>
-                            	<%--<a href="level2.html">竞技</a>--%>
-                            <%--</li>--%>
-                            <%--<li>--%>
-                            	<%--<a href="#level2_1">良品</a>--%>
-                            <%--</li>--%>
-                            <%--<li>--%>
-                            	<%--<a href="#level2_2">美食</a>--%>
-                            <%--</li>--%>
-                          <%--</ul>--%>
-                        <%--</li>--%>
-
-                    </ul>
-                  </li>
-                  <li><a><i class="fa fa-edit"></i> 申请 <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="formWizards.jsp">申请创建社团</a></li>
-                    </ul>
-                  </li>
-                  <li><a><i class="fa fa-desktop"></i> 社团中心 <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="my_group.html">加入的社团</a></li>
-                      <li><a href="inbox.html">收到的消息</a></li>
-                      <li><a href="calendar.jsp">活动日历</a></li>
-                    </ul>
-                  </li>
-                  <li><a><i class="fa fa-user"></i> 我 <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="profile.jsp">我的简历</a></li>
-                    </ul>
-                  </li>
-                </ul>
+              <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                  <div class="menu_section">
+                      <h3>通用</h3>
+                      <ul class="nav side-menu">
+                          <li><a><i class="fa fa-home"></i> 主页 <span class="fa fa-chevron-down"></span></a>
+                              <ul class="nav child_menu">
+                                  <li><a href="Recommend.jsp">推荐</a></li>
+                                  <li><a href="media_gallery.jsp">所有社团</a></li>
+                              </ul>
+                          </li>
+                          <li><a><i class="fa fa-cube"></i> 广场 <span class="fa fa-chevron-down"></span></a>
+                              <ul class="nav child_menu">
+                                  <li><a href="plaza.jsp">进入广场</a></li>
+                              </ul>
+                          </li>
+                          <li><a><i class="fa fa-edit"></i> 申请 <span class="fa fa-chevron-down"></span></a>
+                              <ul class="nav child_menu">
+                                  <li><a href="formWizards.jsp">申请创建社团</a></li>
+                              </ul>
+                          </li>
+                          <li><a><i class="fa fa-desktop"></i> 社团中心 <span class="fa fa-chevron-down"></span></a>
+                              <ul class="nav child_menu">
+                                  <li><a href="my_group.jsp">加入的社团</a></li>
+                                  <li><a href="Messagebox.jsp">收到的消息</a></li>
+                                  <li><a href="calendar.jsp">活动日历</a></li>
+                              </ul>
+                          </li>
+                          <li><a><i class="fa fa-user"></i> 我 <span class="fa fa-chevron-down"></span></a>
+                              <ul class="nav child_menu">
+                                  <li><a href="profile.jsp">我的简历</a></li>
+                              </ul>
+                          </li>
+                      </ul>
+                  </div>
               </div>
-            </div>
             <!-- /sidebar menu -->
 
             <!-- /menu footer buttons -->
