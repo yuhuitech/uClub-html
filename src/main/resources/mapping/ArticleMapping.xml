@@ -28,5 +28,13 @@
         SELECT StuNo FROM Article WHERE ArticleNo = '${ArticleNo}'
     </select>
 
+    <select id="getArticleByStuNo" resultType="String" resultMap="Article">
+        SELECT * FROM Article WHERE StuNo = '${StuNo}' ORDER  BY date DESC
+    </select>
 
+
+
+    <select id="getArticleByClubNo" resultType="String" resultMap="Article">
+        SELECT * FROM Article WHERE ClubNo = '${ClubNo}' ORDER  BY date DESC
+    </select>
 </mapper>

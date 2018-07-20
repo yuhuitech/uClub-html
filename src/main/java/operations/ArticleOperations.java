@@ -77,4 +77,45 @@ public class ArticleOperations
         }
         return stuNo;
     }
+
+
+
+    public static List<Article> getArticleByStuNo(SqlSessionFactory sqlSessionFactory,int StuNo)
+    {
+
+        List<Article> articles = new ArrayList<>();
+        try {
+            // 获取Session连接
+            SqlSession session = sqlSessionFactory.openSession();
+            // 获取Mapper
+            ArticleDao selectInterface = session.getMapper(ArticleDao.class);
+            articles = selectInterface.getArticleByStuNo(StuNo);
+            session.commit();
+            session.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return articles;
+    }
+
+    public static List<Article>   getArticleByClubNo(SqlSessionFactory sqlSessionFactory,int ClubNo)
+    {
+
+        List<Article> articles = new ArrayList<>();
+        try {
+            // 获取Session连接
+            SqlSession session = sqlSessionFactory.openSession();
+            // 获取Mapper
+            ArticleDao selectInterface = session.getMapper(ArticleDao.class);
+            articles = selectInterface.getArticleByClubNo(ClubNo);
+            session.commit();
+            session.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return articles;
+    }
+
 }

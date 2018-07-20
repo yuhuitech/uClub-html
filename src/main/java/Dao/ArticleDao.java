@@ -12,4 +12,9 @@ public interface ArticleDao
    void addArticle(@Param("StuNo") int StuNo, @Param("ClubNo") int ClubNo, @Param("Title") String title,@Param("res_url") String res_url, @Param("date") Date date);
 
    int getStuNoByArticleNo(@Param("ArticleNo") String ArticleNo);
+
+   List<Article> getArticleByStuNo(@Param("StuNo") int StuNo);
+
+   List<Article> getArticleByClubNo(@Param("ClubNo") int ClubNo);
+
 }

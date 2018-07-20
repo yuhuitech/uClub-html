@@ -9,6 +9,10 @@
 <%@ page import="operations.ClubOperations" %>
 <%@ page import="model.Activity" %>
 <%@ page import="java.io.File" %>
+<%@ page import="model.Article" %>
+<%@ page import="static operations.ArticleOperations.getArticleByStuNo" %>
+<%@ page import="java.text.DateFormat" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -129,6 +133,12 @@
         File dir = new File(request.getContextPath()+"images/"+StuNo+".jpg");
         if(dir.exists()) System.out.println("The file exist");
         else System.out.println("The file is not exist");
+
+
+
+        List<Article> myArticle = getArticleByStuNo(sqlSessionFactory,StuNo);
+        session.setAttribute("articles",myArticle);
+        request.setAttribute("articles",myArticle);
 
     %>
 
@@ -468,94 +478,53 @@
                                                      aria-labelledby="headingTwo" aria-expanded="false">
                                                     <div class="panel-body">
                                                         <ul class="list-unstyled timeline">
+
+                                                            <%
+                                                                int count=0;
+                                                                for (Article article:myArticle){
+                                                            %>
                                                             <li>
                                                                 <div class="newStyle">
                                                                     <div class="block_content">
                                                                         <h2 class="title">
                                                                             <a>
                                                                                 <h3>
-                                                                                    Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?
+                                                                                   <%=article.getTitle()%>
                                                                                 </h3>
                                                                             </a>
                                                                         </h2>
                                                                         <div class="byline">
                                                                             <span>
-                                                                                13 hours ago
+                                                                                 <%
+                                                                                     String formatDate = null;
+                                                                                     //格式 24小时制：2016-07-06 09:39:58
+                                                                                     DateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); //HH表示24小时制；
+                                                                                     formatDate = dFormat.format( article.getDate());
+                                                                                 %>
+                                                                                 <%=formatDate%>
                                                                             </span>
                                                                             by
                                                                             <a>
-                                                                                Jane Smith
+                                                                              <%=StuName%>
                                                                             </a>
                                                                         </div>
                                                                         <p class="excerpt">
-                                                                            Film festivals used to be do-or-die moments for movie makers. They were
-                                                                            where you met the producers that could fund your project, and if the buyers
-                                                                            liked your flick, they’d pay to Fast-forward and…
-                                                                            <a>
-                                                                                Read&nbsp;More
+                                                                            <%String path = (String)session.getAttribute("Path");%>
+                                                                            <%=article.getStandardText(path)%>
+                                                                            <%
+                                                                                //String a= String.valueOf(articles.get(i).getArticleNo());
+                                                                                out.print("<a href=\"articleDetail.jsp?url="+count+"\">");
+                                                                                count++;
+                                                                            %>
+
+                                                                            Read&nbsp;More
                                                                             </a>
                                                                         </p>
                                                                     </div>
                                                                 </div>
                                                             </li>
-                                                            <li>
-                                                                <div class="newStyle">
-                                                                    <div class="block_content">
-                                                                        <h2 class="title">
-                                                                            <h3>
-                                                                                Who Needs Sundance When You’ve Got Crowdfunding?
-                                                                            </h3>
-                                                                        </h2>
-                                                                        <div class="byline">
-                                                                            <span>
-                                                                                13 hours ago
-                                                                            </span>
-                                                                            by
-                                                                            <a>
-                                                                                Jane Smith
-                                                                            </a>
-                                                                        </div>
-                                                                        <p class="excerpt">
-                                                                            Film festivals used to be do-or-die moments for movie makers. They were
-                                                                            where you met the producers that could fund your project, and if the buyers
-                                                                            liked your flick, they’d pay to Fast-forward and…
-                                                                            <a>
-                                                                                Read&nbsp;More
-                                                                            </a>
-                                                                        </p>
-                                                                    </div>
-                                                                </div>
-                                                            </li>
-                                                            <li>
-                                                                <div class="newStyle">
-                                                                    <div class="block_content">
-                                                                        <h2 class="title">
-                                                                            <a>
-                                                                                <h3>
-                                                                                    Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?
-                                                                                </h3>
-                                                                            </a>
-                                                                        </h2>
-                                                                        <div class="byline">
-                                                                            <span>
-                                                                                13 hours ago
-                                                                            </span>
-                                                                            by
-                                                                            <a>
-                                                                                Jane Smith
-                                                                            </a>
-                                                                        </div>
-                                                                        <p class="excerpt">
-                                                                            Film festivals used to be do-or-die moments for movie makers. They were
-                                                                            where you met the producers that could fund your project, and if the buyers
-                                                                            liked your flick, they’d pay to Fast-forward and…
-                                                                            <a>
-                                                                                Read&nbsp;More
-                                                                            </a>
-                                                                        </p>
-                                                                    </div>
-                                                                </div>
-                                                            </li>
+                                                            <%}%>
+
                                                         </ul>
                                                     </div>
                                                 </div>

@@ -1,20 +1,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="Test.Test" %>
-<%@ page import="model.Club" %>
-<%@ page import="model.Student" %>
 <%@ page import="operations.ClubOperations" %>
 <%@ page import="operations.DAO" %>
 <%@ page import="org.apache.ibatis.session.SqlSessionFactory" %>
 <%@ page import="org.apache.ibatis.session.SqlSessionFactoryBuilder" %>
 <%@ page import="java.io.InputStream" %>
 <%@ page import="java.util.List" %>
-<%@ page import="model.Activity" %>
 <%@ page import="servlet.ClubDetail" %>
 <%@ page import="operations.ClubDetailOperation" %>
-<%@ page import="model.MessageBoard" %>
 <%@ page import="operations.commentOperation" %>
 <%@ page import="java.text.DateFormat" %>
 <%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="model.*" %>
+<%@ page import="static operations.ArticleOperations.getArticleByClubNo" %>
+<%@ page import="static operations.ManageApplyOperations.getStuName" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8"%>
 <html lang="en">
     
@@ -50,7 +49,7 @@
             }
             .modal-dialog{
 
-                width: 2000px；
+                width: 2000px;
             }
             .modal-body{
                 height:500px;
@@ -156,6 +155,12 @@
             String job=DAO.getStudentJob(sqlSessionFactory,StuNo,ClubNo);
             session.setAttribute("job",job);
             List<MessageBoard> message=commentOperation.getMessageBoard(sqlSessionFactory,ClubNo);
+
+
+            List<Article> clubArticle = getArticleByClubNo(sqlSessionFactory,ClubNo);
+
+            session.setAttribute("articles",clubArticle);
+            request.setAttribute("articles",clubArticle);
         %>
 
 
@@ -195,6 +200,11 @@
                                         <ul class="nav child_menu">
                                             <li><a href="Recommend.jsp">趋势</a></li>
                                             <li><a href="media_gallery.jsp">所有社团</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a><i class="fa fa-edit"></i> 广场 <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="plaza.jsp">进入广场</a></li>
                                         </ul>
                                     </li>
                                     <li><a><i class="fa fa-edit"></i> 申请 <span class="fa fa-chevron-down"></span></a>
@@ -630,90 +640,48 @@
                                                     <div class="panel-body">
                                                         <ul class="list-unstyled timeline">
                                                             <div id="articles">
+                                                                <%
+                                                                int count = 0;
+                                                                for (Article article:clubArticle){
+                                                                %>
                                                                 <li class="innerArticle">
                                                                 <div class="newStyle">
                                                                     <div class="block_content">
                                                                         <h2 class="title">
                                                                             <a>
-                                                                                Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?
+                                                                              <%=article.getTitle()%>
                                                                             </a>
                                                                         </h2>
                                                                         <div class="byline">
                                                                             <span>
-                                                                                13 hours ago
+                                                                        <%
+                                                                            String formatDate = null;
+                                                                            //格式 24小时制：2016-07-06 09:39:58
+                                                                            DateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); //HH表示24小时制；
+                                                                            formatDate = dFormat.format(article.getDate());
+                                                                        %>
+                                                                                 <%=formatDate%>
                                                                             </span>
                                                                             by
                                                                             <a>
-                                                                                Jane Smith
+                                                                                <%=getStuName(sqlSessionFactory,article.getStuNo())%>
                                                                             </a>
                                                                         </div>
                                                                         <p class="excerpt">
-                                                                            Film festivals used to be do-or-die moments for movie makers. They were
-                                                                            where you met the producers that could fund your project, and if the buyers
-                                                                            liked your flick, they’d pay to Fast-forward and…
-                                                                            <a>
-                                                                                Read&nbsp;More
+                                                                            <%String path = (String)session.getAttribute("Path");%>
+                                                                            <%=article.getStandardText(path)%>
+                                                                            <%
+                                                                                out.print("<a href=\"articleDetail.jsp?url="+count+"\">");
+                                                                                count++;
+                                                                            %>
+                                                                            Read&nbsp;More
                                                                             </a>
                                                                         </p>
                                                                     </div>
                                                                 </div>
                                                             </li>
-                                                                <li class="innerArticle">
-                                                                <div class="newStyle">
-                                                                    <div class="block_content">
-                                                                        <h2 class="title">
-                                                                            <a>
-                                                                                Who Needs Sundance When You’ve Got Crowdfunding?
-                                                                            </a>
-                                                                        </h2>
-                                                                        <div class="byline">
-                                                                            <span>
-                                                                                13 hours ago
-                                                                            </span>
-                                                                            by
-                                                                            <a>
-                                                                                Jane Smith
-                                                                            </a>
-                                                                        </div>
-                                                                        <p class="excerpt">
-                                                                            Film festivals used to be do-or-die moments for movie makers. They were
-                                                                            where you met the producers that could fund your project, and if the buyers
-                                                                            liked your flick, they’d pay to Fast-forward and…
-                                                                            <a>
-                                                                                Read&nbsp;More
-                                                                            </a>
-                                                                        </p>
-                                                                    </div>
-                                                                </div>
-                                                            </li>
-                                                                <li class="innerArticle">
-                                                                <div class="newStyle">
-                                                                    <div class="block_content">
-                                                                        <h2 class="title">
-                                                                            <a>
-                                                                                Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?
-                                                                            </a>
-                                                                        </h2>
-                                                                        <div class="byline">
-                                                                            <span>
-                                                                                13 hours ago
-                                                                            </span>
-                                                                            by
-                                                                            <a>
-                                                                                Jane Smith
-                                                                            </a>
-                                                                        </div>
-                                                                        <p class="excerpt">
-                                                                            Film festivals used to be do-or-die moments for movie makers. They were
-                                                                            where you met the producers that could fund your project, and if the buyers
-                                                                            liked your flick, they’d pay to Fast-forward and…
-                                                                            <a>
-                                                                                Read&nbsp;More
-                                                                            </a>
-                                                                        </p>
-                                                                    </div>
-                                                                </div>
-                                                            </li>
+                                                                <%}%>
+
                                                             </div>
                                                         </ul>
                                                         <div class="row" id="pageDivide">
