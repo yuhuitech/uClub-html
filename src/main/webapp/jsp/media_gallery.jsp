@@ -108,6 +108,11 @@
                       <li><a href="media_gallery.jsp">所有社团</a></li>
                     </ul>
                   </li>
+                  <li><a><i class="fa fa-cube"></i> 广场 <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="plaza.jsp">进入广场</a></li>
+                    </ul>
+                  </li>
                   <li><a><i class="fa fa-edit"></i> 申请 <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="formWizards.jsp">申请创建社团</a></li>

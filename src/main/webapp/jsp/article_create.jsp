@@ -7,7 +7,9 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.text.DateFormat" %>
 <%@ page import="java.text.SimpleDateFormat" %>
-<%@ page import="static operations.ManageApplyOperations.getStuName" %><%--
+<%@ page import="static operations.ManageApplyOperations.getStuName" %>
+<%@ page import="model.Club" %>
+<%@ page import="operations.ClubOperations" %><%--
   Created by IntelliJ IDEA.
   User: Administrator
   Date: 2018/7/18
@@ -16,7 +18,15 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<%List<Message> messages = (List<Message>)session.getAttribute("messages");%>
+<%Integer StuNo=(Integer) session.getAttribute("UserNo");
+    String event= (String) session.getAttribute("events");
+    String resource = "mybatis.xml";
+    InputStream is = Test.class.getClassLoader().getResourceAsStream(resource);
+    SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
+    List<Club> adminClubs= ClubOperations.getAllJoinClubs(sqlSessionFactory,StuNo);
+    List<Club> joinClubs = DAO.getStudentClubs(sqlSessionFactory,StuNo,"成员");
+    List<Message> messages = (List<Message>)session.getAttribute("messages");
+%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,7 +37,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
-        文章编辑
+       文章发表
     </title>
     <!-- Bootstrap -->
     <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -113,16 +123,15 @@
                     <div class="profile_pic">
                         <img id="userImg"  src="images/<%= request.getSession().getAttribute("UserNo")%>.jpg" onerror="javascript:this.src='images/user.png'" alt="..." class="img-circle profile_img">
                     </div>
+                    <div class="profile_info">
+                        <span>欢迎,</span>
+                        <h2><%
+                            out.println(DAO.getStudentName(sqlSessionFactory,(Integer)request.getSession().getAttribute("UserNo")));%> 同学</h2>
+                    </div>
                 </div>
-                <div class="profile_info">
-                    <span>欢迎,</span>
-                    <h2><%
-                        String resource = "mybatis.xml";
-                        InputStream is = Test.class.getClassLoader().getResourceAsStream(resource);
-                        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
-                        out.println(DAO.getStudentName(sqlSessionFactory,(Integer)request.getSession().getAttribute("UserNo")));%> 同学</h2>
-                </div>
-            </div>
+
+
+                <!-- /menu profile quick info -->
             <!-- /menu profile quick info -->
                 <br />
                 <!-- sidebar menu -->
@@ -233,7 +242,9 @@
                             <li>
                                 <div class="text-center">
                                     <a>
-                                        <strong>查看全部消息</strong>
+                                        <strong>
+                                            查看全部消息
+                                        </strong>
                                         <i class="fa fa-angle-right">
                                         </i>
                                     </a>
@@ -273,16 +284,27 @@
             <div class="clearfix"></div>
             <div class="row" style=" z-index: -1;overflow:hidden">
                 <!--下面的div是文章的显示div-->
+
+
                 <!--<div class="col-md-12 col-sm-12 col-xs-12">-->
                 <div id="markdownOuterArea">
-                    <div class="am-g am-padding-top" style="height:80px;width:100%">
-                        <div class="am-u-lg-11" style="height:70%">
-                            <input type="hidden" id="userExperienceId" value="">
-                            <input class="title-input" maxlength="128" required="required" id="articleTitle" type="text" style="height:100%;width:100%" placeholder="请输入文章标题" value="">
-                        </div>
 
-                        <div class="am-u-lg-1" style="height:80%">
-                            <button id="publishBtn" class="am-btn am-btn-danger am-btn-xl" style="float: right;" onclick="postArticleToServer(); ">发表文章</button>
+                        <label class="col-md-3 col-sm-6 col-xs-12 control-label">社团名称</label>
+                        <div class="col-sm-9">
+                            <select class="select2_multiple form-control" multiple="multiple" name="adminClubName" id="adminClubName" >
+                                <%
+                                    for(Club club:adminClubs){
+                                %>   <option value="<%=club.getClubNo()%>" ><%=club.getClubName()%></option><%
+                                }
+                            %>
+                            </select>
+                        </div>
+                    <div class="col-sm-9 col-sm-9 col-xs-12">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="articleTitle" placeholder="请输入文章标题~">
+                            <span class="input-group-btn">
+                                <button type="button" id="postArticle" class="btn btn-primary" onclick="postArticleToServer()">发表文章 </button>
+                        </span>
                         </div>
                     </div>
                     <div id="test-editormd">
@@ -585,6 +607,7 @@
 
 
     function postArticleToServer() {
+        var clubName = $('#adminClubName').val();
         var title = $('#articleTitle').val();
         var content = testEditor.getMarkdown();
         alert(content);
@@ -594,7 +617,11 @@
             data:{
                 "title":title,
                 "author":'julia',
-                "passage":content
+                "passage":content,
+                "clubNo":document.getElementById("adminClubName").value
+            },
+            success:function () {
+                window.location.href='plaza.jsp'
             }
         })
     }

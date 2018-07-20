@@ -887,8 +887,6 @@ td.fc-list-item-time.fc-widget-content {
               },async:false
               });
             $('#fc_edit').click();
-
-
       }
 
         function checkboxChange() {
@@ -903,9 +901,7 @@ td.fc-list-item-time.fc-widget-content {
 
 
        function createActivity() {
-
            $('#fc_create').click();
-
        }
        Date.prototype.format = function(fmt) {
            var o = {

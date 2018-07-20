@@ -2,6 +2,7 @@ package servlet;
 
 import model.Article;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,10 +21,13 @@ public class ArticleCreate extends HttpServlet
         String passage = request.getParameter("passage");
         String author = request.getParameter("author");
         String title = request.getParameter("title");
+        String temp = request.getParameter("clubNo");
+        int clubNo = Integer.parseInt(request.getParameter("clubNo"));
         Article article = new Article();
-        article.CreateArticle(StuNo,12362018,title,path,passage);
+        article.CreateArticle(StuNo,clubNo,title,path,passage);
         String a = article.getText(path);
         System.out.println(a);
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException

@@ -262,6 +262,10 @@
                         <h2>
                             广场文章
                         </h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li><a href="article_create.jsp"><i class="fa fa-edit">发表文章</i></a>
+                            </li>
+                        </ul>
                         <div class="clearfix">
                         </div>
                     </div>
@@ -319,8 +323,6 @@
                             </li>
 
                             <%}%>
-
-
 
                         </ul>
                     </div>
