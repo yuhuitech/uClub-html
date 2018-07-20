@@ -9,6 +9,11 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
+<style>
+    body {
+        background-image:  url(jsp/images/b4.jpg) !important;
+    }
+</style>
 <head>
     <script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -32,7 +37,7 @@
     <link href="jsp/build/css/custom.min.css" rel="stylesheet"/>
 </head>
 
-<body class="login">
+<body class="login" style=" background-size:  cover;">
 <div>
     <a class="hiddenanchor" id="signup"></a>
     <a class="hiddenanchor" id="signin"></a>
@@ -52,11 +57,7 @@
                     var objs=eval("("+data+")");
                     if(objs.success=="true") {
                         if(status=="student") {
-
-
-
                             window.location.href = "jsp/Recommend.jsp";
-
                         }
                         else if(status=="admin"){
                             window.location.href = "jsp/TuserHome.jsp";
@@ -64,6 +65,7 @@
                     }
                     else {
                         document.getElementById("reminder").innerText = "密码错误/帐号不存在";
+                        document.getElementById("reminder2").innerText = "密码错误/帐号不存在";
                     }
                 },
                 async:false});
@@ -71,11 +73,11 @@
         }
     </script>
 
-    <div class="login_wrapper">
+    <div class="login_wrapper"  style="margin: 10% auto 0;">
         <div class="animate form login_form">
-            <section class="login_content">
-                <form action="login" method="post">
-                    <h1>学生登录</h1>
+            <section class="login_content" style=" margin: 0 auto; padding: 25px 0 0; position: relative; display: contents; text-align: center; text-shadow: 0 1px 0 #fff; min-width: 280px;">
+                <form action="login" method="post" style="  background: rgba(255,255,255,0.7);  padding: 40px;  box-shadow: 1px 1px 5px #888888;  border-radius: 10px;">
+                    <h1  style="color: #659099; text-shadow: none;">学生登录</h1>
                     <div>
                         <input type="text" class="form-control" id="Sno" placeholder="帐号/学号" required="" />
                     </div>
@@ -87,12 +89,12 @@
                     </div>
                     <br />
                     <div>
-                        <input type="button" class="btn btn-default submit" value="登录"  onclick="login($('#Sno').val(),$('#Spasswd').val(),'student')" />
+                        <input type="button" class="btn btn-round btn-success" style="background: darkcyan; width: 200px;" value="登录"  onclick="login($('#Sno').val(),$('#Spasswd').val(),'student')" />
                     </div>
 
                     <div class="clearfix"></div>
 
-                    <div class="separator">
+                    <div class="separator" style="color: #659099; text-shadow: none;">
                         <p class="change_link">切换模式：
                             <a href="#signup" class="to_register"> 管理员登录 </a>
                         </p>
@@ -102,8 +104,8 @@
 
                         <div>
                             <%--<i class="fa fa-paw"></i>--%>
-                            <h1><img src="jsp/images/logo6.png" /> Uclub!</h1>
-                            <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
+                            <%--<h1><img src="jsp/images/logo6.png" /> Uclub!</h1>--%>
+                            <p style=" position:  absolute; top: 83%; left: 30%;">Create by Uclub Team.</p>
                         </div>
                     </div>
                 </form>
@@ -111,9 +113,9 @@
         </div>
 
         <div id="register" class="animate form registration_form">
-            <section class="login_content">
-                <form>
-                    <h1>管理员登录</h1>
+            <section class="login_content" style=" margin: 0 auto; padding: 25px 0 0; position: relative; display: contents; text-align: center; text-shadow: 0 1px 0 #fff; min-width: 280px;">
+                <form style="  background: rgba(255,255,255,0.7);  padding: 40px;  box-shadow: 1px 1px 5px #888888;  border-radius: 10px;">
+                    <h1  style="color: #659099; text-shadow: none;">管理员登录</h1>
                     <div>
                         <input type="text" class="form-control" id="Ano" placeholder="Username" required="" />
                     </div>
@@ -121,16 +123,16 @@
                         <input type="password" class="form-control" id="Apasswd" placeholder="Password" required="" />
                     </div>
                     <div>
-                        <span id="reminder"></span>
+                        <span id="reminder2"></span>
                     </div>
                     <br />
                     <div>
-                        <input type="button" class="btn btn-default submit" value="登录"  onclick="login($('#Ano').val(),$('#Apasswd').val(),'admin')" />
+                        <input type="button" class="btn btn-round btn-success" value="登录"  style="background: darkcyan; width: 200px;"  onclick="login($('#Ano').val(),$('#Apasswd').val(),'admin')" />
                     </div>
 
                     <div class="clearfix"></div>
 
-                    <div class="separator">
+                    <div class="separator"  style="color: #659099; text-shadow: none;">
                         <p class="change_link">切换模式：
                             <a href="#signin" class="to_register"> 学生登录 </a>
                         </p>
@@ -140,8 +142,8 @@
 
                         <div>
                             <%--<i class="fa fa-paw"></i>--%>
-                            <h1> <img src="jsp/images/logo6.png" />Uclub!</h1>
-                            <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
+                            <%--<h1> <img src="jsp/images/logo6.png" />Uclub!</h1>--%>
+                            <p style=" position:  absolute; top: 83%; left: 30%;">Create by Uclub Team.</p>
                         </div>
                     </div>
                 </form>

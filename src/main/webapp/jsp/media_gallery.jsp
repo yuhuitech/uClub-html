@@ -306,7 +306,7 @@
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+            Create by Uclub Team.
           </div>
           <div class="clearfix"></div>
         </footer>
@@ -356,7 +356,7 @@
     var allNodes;
     var allNum;
     var showNodes;
-    var nowNum = 10;//一页的个数
+    var nowNum = 8;//一页的个数
     var allPages;
     var currentPage;
     var pageRange;

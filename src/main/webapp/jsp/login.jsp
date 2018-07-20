@@ -136,7 +136,7 @@
                         <div>
                             <%--<i class="fa fa-paw"></i>--%>
                             <h1> <img src="jsp/images/logo6.png" />Uclub!</h1>
-                            <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
+                            <p>Create by Uclub Team.</p>
                         </div>
                     </div>
                 </form>

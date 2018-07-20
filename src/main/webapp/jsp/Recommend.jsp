@@ -426,7 +426,12 @@
         <!-- /page content -->
 
         <!-- footer content -->
-
+        <footer>
+            <div class="pull-right">
+                Create by Uclub Team.
+            </div>
+            <div class="clearfix"></div>
+        </footer>
         <!-- /footer content -->
     </div>
 </div>

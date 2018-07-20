@@ -133,7 +133,7 @@
                             </li>
                             <li><a><i class="fa fa-desktop"></i> 社团中心 <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="my_group.html">加入的社团</a></li>
+                                    <li><a href="my_group.jsp">加入的社团</a></li>
                                     <li><a href="messageBoard.jsp">收到的消息</a></li>
                                     <li><a href="calendar.jsp">活动日历</a></li>
                                 </ul>
@@ -313,7 +313,7 @@
         <!-- footer content -->
         <footer>
           <div class="pull-right">
-            Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+            Create by Uclub Team.
           </div>
           <div class="clearfix"></div>
         </footer>

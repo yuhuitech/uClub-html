@@ -404,7 +404,7 @@
                 <!-- footer content -->
                 <footer>
                     <div class="pull-right">
-                        Copyright © UClub All Rights Reserved
+                        Create by Uclub Team.
                     </div>
                     <div class="clearfix">
                     </div>
