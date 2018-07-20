@@ -12,6 +12,8 @@
 <%@ page import="java.util.Map" %>
 <%@ page import="static operations.ClubOperations.getActiveDetail" %>
 <%@ page import="operations.*" %>
+<%@ page import="java.text.DateFormat" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8"%>
 
 <% //试着把整个servlet搬过来
@@ -103,7 +105,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>U社团! | </title>
+    <title>U社团</title>
 
     <!-- Bootstrap -->
     <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -240,7 +242,12 @@
                                         <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
                                         <span>
                           <span>Teacher</span>
-                          <span class="time"><%out.println(message.getTime());%></span>
+                          <span class="time"> <%
+                              String formatDate = null;
+                              //格式 24小时制：2016-07-06 09:39:58
+                              DateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); //HH表示24小时制；
+                              formatDate = dFormat.format(message.getTime());
+                          %><%out.println(formatDate);%></span>
                         </span>
                                         <span class="message">
                           <%out.println(message.getMessageInfo());%>
@@ -252,7 +259,7 @@
                                 <li>
                                     <div class="text-center">
                                         <a href="Messagebox.jsp">
-                                            <strong>See All Alerts</strong>
+                                            <strong>查看全部消息</strong>
                                             <i class="fa fa-angle-right"></i>
                                         </a>
                                     </div>

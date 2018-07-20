@@ -1,19 +1,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="Test.Test" %>
-<%@ page import="operations.ClubOperations" %>
-<%@ page import="operations.DAO" %>
 <%@ page import="org.apache.ibatis.session.SqlSessionFactory" %>
 <%@ page import="org.apache.ibatis.session.SqlSessionFactoryBuilder" %>
 <%@ page import="java.io.InputStream" %>
 <%@ page import="java.util.List" %>
 <%@ page import="servlet.ClubDetail" %>
-<%@ page import="operations.ClubDetailOperation" %>
-<%@ page import="operations.commentOperation" %>
 <%@ page import="java.text.DateFormat" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="model.*" %>
 <%@ page import="static operations.ArticleOperations.getArticleByClubNo" %>
 <%@ page import="static operations.ManageApplyOperations.getStuName" %>
+<%@ page import="operations.*" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8"%>
 <html lang="en">
     
@@ -24,7 +21,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>
-            Gentelella Alela! |
+           社团主页
         </title>
         <style>
             .hiddenCol{
@@ -161,6 +158,9 @@
 
             session.setAttribute("articles",clubArticle);
             request.setAttribute("articles",clubArticle);
+
+            List<Message> messages = MessageOperations.getMyMessage(sqlSessionFactory,(Integer) request.getSession().getAttribute("UserNo"));
+            session.setAttribute("messages",messages);
         %>
 
 
@@ -236,44 +236,20 @@
                 </div>
                 <!-- top navigation -->
                 <div class="top_nav">
-                    <div class="nav_menu" id="pageSize">
+                    <div class="nav_menu">
                         <nav>
                             <div class="nav toggle">
-                                <a id="menu_toggle">
-                                    <i class="fa fa-bars">
-                                    </i>
-                                </a>
+                                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
                             </div>
+
                             <ul class="nav navbar-nav navbar-right">
-                                <li class="" id="miniMenu">
-                                    <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
-                                    aria-expanded="false">
-                                        <img class="originalPhoto" src="images/<%=StuNo%>.jpg?<%=Math.random()%>" onerror="javascript:this.src='images/user.png'" alt="">
-                                        <%=student.getStuName()%>
-                                        <span class=" fa fa-angle-down">
-                                        </span>
+                                <li class="">
+                                    <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                        <img src="images/<%=StuNo%>.jpg" onerror="javascript:this.src='images/user.png'" alt="">
+                                        <%out.println(DAO.getStudentName(sqlSessionFactory,StuNo));%>
+                                        <span class=" fa fa-angle-down"></span>
                                     </a>
                                     <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                        <li>
-                                            <a href="javascript:;">
-                                                Profile
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                <span class="badge bg-red pull-right">
-                                                    50%
-                                                </span>
-                                                <span>
-                                                    Settings
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                Help
-                                            </a>
-                                        </li>
                                         <li>
                                             <a href="../login.jsp">
                                                 <i class="fa fa-sign-out pull-right">
@@ -283,97 +259,38 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li role="presentation" class="dropdown" id="messageDropDown">
-                                    <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown"
-                                       aria-expanded="false">
-                                        <i class="fa fa-envelope-o" style=" line-height: 32px;">
-                                        </i>
+
+                                <li role="presentation" class="dropdown">
+                                    <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                        <i class="fa fa-envelope-o" style=" line-height: 32px;"></i>
+                                        <span class="badge bg-green"><%out.println(messages.size());%></span>
                                     </a>
                                     <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                                        <%for(Message Message:messages){%>
                                         <li>
                                             <a>
-                                                <span class="image">
-                                                    <img src="images/img.jpg" alt="Profile Image" />
-                                                </span>
+                                                <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
                                                 <span>
-                                                    <span>
-                                                        John Smith
-                                                    </span>
-                                                    <span class="time">
-                                                        3 mins ago
-                                                    </span>
-                                                </span>
+                          <span>Teacher</span>
+                       <span class="time"> <%
+                           String formatDate = null;
+                           //格式 24小时制：2016-07-06 09:39:58
+                           DateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); //HH表示24小时制；
+                           formatDate = dFormat.format(Message.getTime());
+                       %><%out.println(formatDate);%></span>
+                        </span>
                                                 <span class="message">
-                                                    Film festivals used to be do-or-die moments for movie makers. They were
-                                                    where...
-                                                </span>
+                          <%out.println(Message.getMessageInfo());%>
+                        </span>
                                             </a>
                                         </li>
-                                        <li>
-                                            <a>
-                                                <span class="image">
-                                                    <img src="images/img.jpg" alt="Profile Image" />
-                                                </span>
-                                                <span>
-                                                    <span>
-                                                        John Smith
-                                                    </span>
-                                                    <span class="time">
-                                                        3 mins ago
-                                                    </span>
-                                                </span>
-                                                <span class="message">
-                                                    Film festivals used to be do-or-die moments for movie makers. They were
-                                                    where...
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a>
-                                                <span class="image">
-                                                    <img src="images/img.jpg" alt="Profile Image" />
-                                                </span>
-                                                <span>
-                                                    <span>
-                                                        John Smith
-                                                    </span>
-                                                    <span class="time">
-                                                        3 mins ago
-                                                    </span>
-                                                </span>
-                                                <span class="message">
-                                                    Film festivals used to be do-or-die moments for movie makers. They were
-                                                    where...
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a>
-                                                <span class="image">
-                                                    <img src="images/img.jpg" alt="Profile Image" />
-                                                </span>
-                                                <span>
-                                                    <span>
-                                                        John Smith
-                                                    </span>
-                                                    <span class="time">
-                                                        3 mins ago
-                                                    </span>
-                                                </span>
-                                                <span class="message">
-                                                    Film festivals used to be do-or-die moments for movie makers. They were
-                                                    where...
-                                                </span>
-                                            </a>
-                                        </li>
+                                        <%}%>
+
                                         <li>
                                             <div class="text-center">
-                                                <a>
-                                                    <strong>
-                                                        See All Alerts
-                                                    </strong>
-                                                    <i class="fa fa-angle-right">
-                                                    </i>
+                                                <a href="Messagebox.jsp">
+                                                    <strong>查看全部消息</strong>
+                                                    <i class="fa fa-angle-right"></i>
                                                 </a>
                                             </div>
                                         </li>

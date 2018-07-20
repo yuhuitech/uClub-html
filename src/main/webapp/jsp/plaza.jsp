@@ -43,7 +43,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
-        plaza
+       广场
     </title>
     <!-- Bootstrap -->
     <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -203,9 +203,12 @@
                                                     <span>
                                                          teacher
                                                     </span>
-                                                    <span class="time">
-                                                        <%out.println(message.getTime());%>
-                                                    </span>
+                                                   <span class="time"> <%
+                                                       String formatDate = null;
+                                                       //格式 24小时制：2016-07-06 09:39:58
+                                                       DateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); //HH表示24小时制；
+                                                       formatDate = dFormat.format(message.getTime());
+                                                   %><%out.println(formatDate);%></span>
                                                 </span>
                                         <span class="message">
                                                     <%out.println(message.getMessageInfo());%>
@@ -216,9 +219,7 @@
                                 <li>
                                     <div class="text-center">
                                         <a>
-                                            <strong>
-                                                See All Alerts
-                                            </strong>
+                                            <strong>查看全部消息</strong>
                                             <i class="fa fa-angle-right">
                                             </i>
                                         </a>
