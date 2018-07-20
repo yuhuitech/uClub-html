@@ -60,7 +60,7 @@
                             window.location.href = "jsp/Recommend.jsp";
                         }
                         else if(status=="admin"){
-                            window.location.href = "jsp/TuserHome.jsp";
+                            window.location.href = "jsp/apply_center.jsp";
                         }
                     }
                     else {
@@ -117,10 +117,10 @@
                 <form style="  background: rgba(255,255,255,0.7);  padding: 40px;  box-shadow: 1px 1px 5px #888888;  border-radius: 10px;">
                     <h1  style="color: #659099; text-shadow: none;">管理员登录</h1>
                     <div>
-                        <input type="text" class="form-control" id="Ano" placeholder="Username" required="" />
+                        <input type="text" class="form-control" id="Ano" placeholder="帐号" required="" />
                     </div>
                     <div>
-                        <input type="password" class="form-control" id="Apasswd" placeholder="Password" required="" />
+                        <input type="password" class="form-control" id="Apasswd" placeholder="密码" required="" />
                     </div>
                     <div>
                         <span id="reminder2"></span>
