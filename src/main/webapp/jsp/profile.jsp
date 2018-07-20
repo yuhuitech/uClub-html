@@ -20,7 +20,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Gentelella Alela! | </title>
+    <title>我的简历</title>
     <style>
         .newStyle { margin: 0 0 0 0px; border-left: 0px solid #e8e8e8; overflow:
                 visible; padding: 10px 3px; } .timeline h2.title:before { position: absolute;
@@ -252,7 +252,12 @@
                                         <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
                                         <span>
                           <span>Teacher</span>
-                          <span class="time"><%out.println(message.getTime());%></span>
+                      <span class="time"> <%
+                          String formatDate1 = null;
+                          //格式 24小时制：2016-07-06 09:39:58
+                          DateFormat dFormat1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); //HH表示24小时制；
+                          formatDate1 = dFormat1.format(message.getTime());
+                      %><%out.println(formatDate1);%></span>
                         </span>
                                         <span class="message">
                           <%out.println(message.getMessageInfo());%>
@@ -263,7 +268,7 @@
                                 <li>
                                     <div class="text-center">
                                         <a href="Messagebox.jsp">
-                                            <strong>See All Alerts</strong>
+                                            <strong>查看全部消息</strong>
                                             <i class="fa fa-angle-right"></i>
                                         </a>
                                     </div>

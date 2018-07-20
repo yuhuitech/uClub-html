@@ -8,6 +8,8 @@
 <%@ page import="java.io.InputStream" %>
 <%@ page import="java.util.List" %>
 <%@ page import="model.Message" %>
+<%@ page import="java.text.DateFormat" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8"%><%--
 Created by IntelliJ IDEA.
 User: Administrator
@@ -51,7 +53,7 @@ To change this template use File | Settings | File Templates.
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>U社团 | </title>
+    <title>活动日历</title>
 
     <!-- Bootstrap -->
     <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -235,7 +237,12 @@ td.fc-list-item-time.fc-widget-content {
                                                 <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
                                                 <span>
                           <span>Teacher</span>
-                          <span class="time"><%out.println(message.getTime());%></span>
+                            <span class="time"> <%
+                                String formatDate = null;
+                                //格式 24小时制：2016-07-06 09:39:58
+                                DateFormat dFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); //HH表示24小时制；
+                                formatDate = dFormat.format(message.getTime());
+                            %><%out.println(formatDate);%></span>
                         </span>
                                                 <span class="message">
                           <%out.println(message.getMessageInfo());%>
@@ -247,9 +254,7 @@ td.fc-list-item-time.fc-widget-content {
                                         <li>
                                             <div class="text-center">
                                                 <a>
-                                                    <strong>
-                                                        See All Alerts
-                                                    </strong>
+                                                    <strong>查看全部消息</strong>
                                                     <i class="fa fa-angle-right">
                                                     </i>
                                                 </a>
