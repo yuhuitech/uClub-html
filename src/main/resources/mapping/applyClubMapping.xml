@@ -307,6 +307,7 @@
     <!--获取参加的所有活动-->
     <select id="getJoinActivity" resultMap="activity">
         select * from Activity
-        where ActiveNo in ( select ActiveNo from join_activity where StuNo=#{StuNo});
+        where ActiveNo in ( select ActiveNo from join_activity where StuNo=#{StuNo})
+        and ClubNo in (select ClubNo from Member where StuNo=#{StuNo} and leave_time is null);
     </select>
 </mapper>
