@@ -99,7 +99,7 @@
                 SELECT ClubNo FROM Member
                 WHERE StuNo=#{StuNo} and leave_time is null
         )
-        and status=1;
+        and status='1'
     </select>
 
     <select id="getClubCounts" resultType="int">
