@@ -522,7 +522,7 @@
                                                 }
                                             %>
                                             <br />
-                                            <a class="btn btn-round btn-success">
+                                            <a class="btn btn-round btn-success" href="contact.jsp?ClubNo=<%=ClubNo%>">
                                                 <i class="fa fa-users m-right-xs">
                                                 </i>
                                                 社团通讯录
