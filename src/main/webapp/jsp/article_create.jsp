@@ -609,7 +609,7 @@
         var clubName = $('#adminClubName').val();
         var title = $('#articleTitle').val();
         var content = testEditor.getMarkdown();
-        alert(content);
+      //  alert(content);
         $.ajax({
             type:'POST',
             url:"/ArticleCreate",
