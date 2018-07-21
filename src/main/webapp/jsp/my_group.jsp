@@ -60,7 +60,7 @@
     }
   </style>
 
-  <title>我的社团</title>
+    <title>  U社团  </title>
 
   <!-- Bootstrap -->
   <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -244,16 +244,16 @@
                     <div class="thumbnail">
                       <div class="image view view-first">
                         <img class="adjustPhoto" style="display: block;position: relative;width: 100%;bottom: 60%;" src="images/${keyword.clubNo}.jpg?<%=Math.random()%>" onerror="javascript:this.src='images/logo.png'" alt="image" />
-                        <div class="mask">
-                              <span>
-                              <p>查看详情</p>
-                              <div class="tools tools-bottom">
-                                <a href="#"><i class="fa fa-link"></i></a>
-                                <a href="#"><i class="fa fa-pencil"></i></a>
-                                <a href="#"><i class="fa fa-times"></i></a>
-                              </div>
-                              </span>
-                        </div>
+                        <%--<div class="mask">--%>
+                              <%--<span>--%>
+                              <%--<p>查看详情</p>--%>
+                              <%--<div class="tools tools-bottom">--%>
+                                <%--<a href="#"><i class="fa fa-link"></i></a>--%>
+                                <%--<a href="#"><i class="fa fa-pencil"></i></a>--%>
+                                <%--<a href="#"><i class="fa fa-times"></i></a>--%>
+                              <%--</div>--%>
+                              <%--</span>--%>
+                        <%--</div>--%>
                       </div>
                       <div  class="groupNameCSS">
                           ${keyword.clubName}
@@ -483,6 +483,10 @@
             {
                 showNodes.push(allNodes[i]);
             }
+        }
+        if(showNodes.length==0)
+        {
+            alert('抱歉，未查找到结果')
         }
         allNodes=showNodes;
         allNum=allNodes.length;

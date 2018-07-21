@@ -20,9 +20,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>
-           社团主页
-        </title>
+        <title>  U社团  </title>
         <style>
             .hiddenCol{
                 display: none;
@@ -607,7 +605,7 @@
                                                                     <ul class="pagination" id="choosePage">
                                                                         <li class="paginate_button previous" id="datatable_previous" onclick="articlePageDivider.goToPageOption(articlePageDivider.currentPage-1);">
                                                                             <a  aria-controls="datatable" data-dt-idx="0" tabindex="0" style="padding: 4px 5px !important;">
-                                                                                <-
+                                                                                ◀
                                                                             </a>
                                                                         </li>
                                                                         <li id="outerPage1" class="paginate_button " onclick="articlePageDivider.goToPageOption(articlePageDivider.pageRange[0])" >
@@ -637,7 +635,7 @@
                                                                         </li>
                                                                         <li class="paginate_button next" id="datatable_next" onclick="articlePageDivider.goToPageOption(articlePageDivider.currentPage+1);">
                                                                             <a  aria-controls="datatable" data-dt-idx="7" tabindex="0" style="padding: 4px 5px !important;">
-                                                                                ->
+                                                                                ▶
                                                                             </a>
                                                                         </li>
                                                                     </ul>
@@ -719,7 +717,7 @@
                                 <ul class="pagination" >
                                     <li class="paginate_button previous"  onclick="messageDivider.goToPageOption(messageDivider.currentPage-1);">
                                         <a  aria-controls="datatable" data-dt-idx="0" tabindex="0" style="padding: 4px 5px !important;">
-                                            <-
+                                            ◀
                                         </a>
                                     </li>
                                     <li id="outerMessagePage1" class="paginate_button " onclick="messageDivider.goToPageOption(messageDivider.pageRange[0])" style="display: none;">
@@ -749,7 +747,7 @@
                                     </li>
                                     <li class="paginate_button next" onclick="messageDivider.goToPageOption(messageDivider.currentPage+1);">
                                         <a  aria-controls="datatable" data-dt-idx="7" tabindex="0" style="padding: 4px 5px !important;">
-                                            ->
+                                            ▶
                                         </a>
                                     </li>
                                 </ul>

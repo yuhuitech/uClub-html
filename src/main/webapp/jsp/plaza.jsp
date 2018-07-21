@@ -42,9 +42,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>
-       广场
-    </title>
+    <title>  U社团  </title>
     <!-- Bootstrap -->
     <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
@@ -272,7 +270,7 @@
                     <div class="x_content">
                         <ul class="list-unstyled timeline" id="allGroups">
                             <% for (int i=0;i<articles.size();i++){%>
-                            <li class="groupList">
+                            <li class="groupList" style="display: none;">
                                 <div class="block">
                                     <div class="tags">
                                         <%
@@ -315,7 +313,7 @@
                                                 out.print("<a href=\"articleDetail.jsp?url="+i+"\">");
                                             %>
 
-                                            Read&nbsp;More
+                                            查看全文
                                             </a>
                                         </p>
                                     </div>
@@ -341,46 +339,47 @@
                         <!--Showing 1 to 10 of 57 entries-->
                     </div>
                 </div>
-                <div class="col-sm-7">
-                    <div class="dataTables_paginate paging_simple_numbers" id="datatable_paginate">
-                        <ul class="pagination" id="choosePage">
-                            <li class="paginate_button previous" id="datatable_previous" onclick="goToPageOption(currentPage-1);">
-                                <a aria-controls="datatable" data-dt-idx="0" tabindex="0">
-                                    Previous
-                                </a>
-                            </li>
-                            <li id="outerPage1" class="paginate_button " onclick="goToPageOption(pageRange[0])">
-                                <a id="Page1" aria-controls="datatable" data-dt-idx="1" tabindex="0">
-                                    1
-                                </a>
-                            </li>
-                            <li id="outerPage2" class="paginate_button " onclick="goToPageOption(pageRange[1])">
-                                <a id="Page2" aria-controls="datatable" data-dt-idx="2" tabindex="0">
-                                    2
-                                </a>
-                            </li>
-                            <li id="outerPage3" class="paginate_button " onclick="goToPageOption(pageRange[2])">
-                                <a id="Page3" aria-controls="datatable" data-dt-idx="3" tabindex="0">
-                                    3
-                                </a>
-                            </li>
-                            <li id="outerPage4" class="paginate_button " onclick="goToPageOption(pageRange[3])">
-                                <a id="Page4" aria-controls="datatable" data-dt-idx="4" tabindex="0">
-                                    4
-                                </a>
-                            </li>
-                            <li id="outerPage5" class="paginate_button " onclick="goToPageOption(pageRange[4])">
-                                <a id="Page5" aria-controls="datatable" data-dt-idx="5" tabindex="0">
-                                    5
-                                </a>
-                            </li>
-                            <li class="paginate_button next" id="datatable_next" onclick="goToPageOption(currentPage+1);">
-                                <a aria-controls="datatable" data-dt-idx="7" tabindex="0">
-                                    Next
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+
+                </div>
+            <div class="col-sm-12 col-sm-12  col-xs-12">
+                <div class="dataTables_paginate paging_simple_numbers" id="datatable_paginate">
+                    <ul class="pagination" id="choosePage">
+                        <li class="paginate_button previous" id="datatable_previous" onclick="goToPageOption(currentPage-1);">
+                            <a aria-controls="datatable" data-dt-idx="0" tabindex="0" style="padding: 4px 5px !important;">
+                                ◀
+                            </a>
+                        </li>
+                        <li id="outerPage1" class="paginate_button " onclick="goToPageOption(pageRange[0])">
+                            <a id="Page1" aria-controls="datatable" data-dt-idx="1" tabindex="0" style="padding: 4px 5px !important;">
+                                1
+                            </a>
+                        </li>
+                        <li id="outerPage2" class="paginate_button " onclick="goToPageOption(pageRange[1])">
+                            <a id="Page2" aria-controls="datatable" data-dt-idx="2" tabindex="0" style="padding: 4px 5px !important;">
+                                2
+                            </a>
+                        </li>
+                        <li id="outerPage3" class="paginate_button " onclick="goToPageOption(pageRange[2])">
+                            <a id="Page3" aria-controls="datatable" data-dt-idx="3" tabindex="0" style="padding: 4px 5px !important;">
+                                3
+                            </a>
+                        </li>
+                        <li id="outerPage4" class="paginate_button " onclick="goToPageOption(pageRange[3])">
+                            <a id="Page4" aria-controls="datatable" data-dt-idx="4" tabindex="0" style="padding: 4px 5px !important;">
+                                4
+                            </a>
+                        </li>
+                        <li id="outerPage5" class="paginate_button " onclick="goToPageOption(pageRange[4])">
+                            <a id="Page5" aria-controls="datatable" data-dt-idx="5" tabindex="0" style="padding: 4px 5px !important;">
+                                5
+                            </a>
+                        </li>
+                        <li class="paginate_button next" id="datatable_next" onclick="goToPageOption(currentPage+1);">
+                            <a aria-controls="datatable" data-dt-idx="7" tabindex="0" style="padding: 4px 5px !important;">
+                                ▶
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <div class="clearfix">
@@ -551,6 +550,10 @@
             if (articles[i].indexOf(searchInfo) !== -1) {
                 showNodes.push(allNodes[i]);
             }
+        }
+        if(showNodes.length==0)
+        {
+            alert('抱歉，未查找到结果')
         }
         allNodes = showNodes;
         allNum = allNodes.length;

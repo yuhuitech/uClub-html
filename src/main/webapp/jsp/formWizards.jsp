@@ -80,7 +80,7 @@
 
 
 
-    <title>社团申请</title>
+    <title>  U社团  </title>
     <style>
         .hiddenCol{
             display: none;

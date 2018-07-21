@@ -76,9 +76,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>
-       文章详情
-    </title>
+    <title>  U社团  </title>
     <!--&lt;!&ndash; Bootstrap &ndash;&gt;-->
     <!--<link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">-->
     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
@@ -465,7 +463,7 @@
                                         <ul class="pagination" id="choosePage">
                                             <li class="paginate_button previous" id="datatable_previous" onclick="goToPageOption(currentPage-1);">
                                                 <a  aria-controls="datatable" data-dt-idx="0" tabindex="0" style="padding: 4px 5px !important;">
-                                                    <-
+                                                    ◀
                                                 </a>
                                             </li>
                                             <li id="outerPage1" class="paginate_button " onclick="goToPageOption(pageRange[0])" >
@@ -495,7 +493,7 @@
                                             </li>
                                             <li class="paginate_button next" id="datatable_next" onclick="goToPageOption(currentPage+1);">
                                                 <a  aria-controls="datatable" data-dt-idx="7" tabindex="0" style="padding: 4px 5px !important;">
-                                                    ->
+                                                    ▶
                                                 </a>
                                             </li>
                                         </ul>

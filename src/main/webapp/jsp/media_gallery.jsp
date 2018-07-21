@@ -58,7 +58,7 @@
         }
 	</style>
 
-    <title>所有社团</title>
+      <title>  U社团  </title>
 
     <!-- Bootstrap -->
     <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -334,7 +334,7 @@
                     			<ul class="pagination" id="choosePage">
                     				<li class="paginate_button previous" id="datatable_previous" onclick="goToPageOption(currentPage-1);">
                     					<a  aria-controls="datatable" data-dt-idx="0" tabindex="0" style="padding: 4px 5px !important;">
-                    						<-
+                                          ◀
                     					</a>
                     				</li>
                     				<li id="outerPage1" class="paginate_button " onclick="goToPageOption(pageRange[0])" >
@@ -364,7 +364,7 @@
                                     </li>
                                     <li class="paginate_button next" id="datatable_next" onclick="goToPageOption(currentPage+1);">
                                         <a  aria-controls="datatable" data-dt-idx="7" tabindex="0" style="padding: 4px 5px !important;">
-                                            ->
+                                          ▶
                                         </a>
                                     </li>
                     			</ul>
@@ -542,6 +542,10 @@
             {
                 showNodes.push(allNodes[i]);
             }
+        }
+        if(showNodes.length==0)
+        {
+            alert('抱歉，未查找到结果')
         }
         allNodes=showNodes;
         allNum=allNodes.length;

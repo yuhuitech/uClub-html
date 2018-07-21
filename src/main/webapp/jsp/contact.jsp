@@ -22,9 +22,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>
-            通讯录
-        </title>
+        <title>  U社团  </title>
         <!-- Bootstrap -->
         <link href="vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
         <!-- Font Awesome -->
@@ -205,17 +203,17 @@
                             </div>
                         </div>
                         <div class="title_right">
-                            <%--<div class="col-md-4 col-sm-4 col-xs-12 form-group pull-right top_search">--%>
-                                <%--<div class="input-group">--%>
-                                    <%--<input type="text" id="searchInfo" class="form-control" placeholder="zhao">--%>
-                                    <%--<span class="input-group-btn">--%>
-                                        <%--<button class="btn btn-default" onclick="searchSentence=$('#searchInfo').val();goToPageOption(1);"--%>
-                                        <%--type="button">--%>
-                                            <%--Go!--%>
-                                        <%--</button>--%>
-                                    <%--</span>--%>
-                                <%--</div>--%>
-                            <%--</div>--%>
+                            <div class="col-md-4 col-sm-4 col-xs-12 form-group pull-right top_search">
+                                <div class="input-group">
+                                    <input type="text" id="searchInfo" class="form-control" placeholder="找成员">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" onclick="searchSentence=$('#searchInfo').val();goToPageOption(1);"
+                                        type="button">
+                                            Go!
+                                        </button>
+                                    </span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-12 col-sm-12 col-xs-12">
@@ -227,25 +225,26 @@
                                 <div class="clearfix">
                                 </div>
                             </div>
-                            <div class="x_content">
+                           <div >
+                            <div class="x_content" id="allGroups">
                                 <%
                                     for(HashMap map:members){
                                 %>
-                  				<div class="col-md-4 col-sm-4 col-xs-12 profile_details">
+                  				<div class="col-md-4 col-sm-4 col-xs-12 profile_details" style="display: none;">
                         <div class="well profile_view">
                           <div class="col-sm-12">
                             <h4 class="brief"><i><%=DAO.getClubById(sqlSessionFactory,ClubNo).getClubName()%></i></h4>
                             <div class="left col-xs-7">
-                              <h2><%=map.get("StuName")%></h2>
+                              <h2 class="studentName"><%=map.get("StuName")%></h2>
                                 <%
                                     String Department="";
                                     if(map.get("Department")!=null)Department= (String) map.get("Department");
 
                                 %>
-                              <p><strong></strong> <%=Department+" "+map.get("Job")%> </p>
+                              <p class="departmentName"><%=Department+" "+map.get("Job")%> </p>
                               <ul class="list-unstyled">
-                                <li><i class="fa fa-building"></i> Email: <%=map.get("Email")%></li>
-                                <li><i class="fa fa-phone"></i> Phone: <%=map.get("Tel")%></li>
+                                <li><i class="fa fa-building"></i> Email:<p class="email"><%=map.get("Email")%></p></li>
+                                <li><i class="fa fa-phone"></i> Phone: <p class="tel"><%=map.get("Tel")%></p></li>
                               </ul>
                             </div>
                             <div class="right col-xs-5 text-center">
@@ -259,6 +258,7 @@
                                 %>
           
                             </div>
+                           </div>
                             <div class="row" id="pageDivide">
                                 <div class="col-sm-5">
                                     <div class="dataTables_info" id="datatable_info" role="status" aria-live="polite">
@@ -275,42 +275,42 @@
                                 <!--Showing 1 to 10 of 57 entries-->
                             </div>
                         </div>
-                        <div class="col-sm-7">
+                        <div class="col-sm-12 col-sm-12  col-xs-12">
                             <div class="dataTables_paginate paging_simple_numbers" id="datatable_paginate">
                                 <ul class="pagination" id="choosePage">
                                     <li class="paginate_button previous" id="datatable_previous" onclick="goToPageOption(currentPage-1);">
-                                        <a aria-controls="datatable" data-dt-idx="0" tabindex="0">
-                                            Previous
+                                        <a aria-controls="datatable" data-dt-idx="0" tabindex="0" style="padding: 4px 5px !important;">
+                                            ◀
                                         </a>
                                     </li>
                                     <li id="outerPage1" class="paginate_button " onclick="goToPageOption(pageRange[0])">
-                                        <a id="Page1" aria-controls="datatable" data-dt-idx="1" tabindex="0">
+                                        <a id="Page1" aria-controls="datatable" data-dt-idx="1" tabindex="0" style="padding: 4px 5px !important;">
                                             1
                                         </a>
                                     </li>
                                     <li id="outerPage2" class="paginate_button " onclick="goToPageOption(pageRange[1])">
-                                        <a id="Page2" aria-controls="datatable" data-dt-idx="2" tabindex="0">
+                                        <a id="Page2" aria-controls="datatable" data-dt-idx="2" tabindex="0" style="padding: 4px 5px !important;">
                                             2
                                         </a>
                                     </li>
                                     <li id="outerPage3" class="paginate_button " onclick="goToPageOption(pageRange[2])">
-                                        <a id="Page3" aria-controls="datatable" data-dt-idx="3" tabindex="0">
+                                        <a id="Page3" aria-controls="datatable" data-dt-idx="3" tabindex="0" style="padding: 4px 5px !important;">
                                             3
                                         </a>
                                     </li>
                                     <li id="outerPage4" class="paginate_button " onclick="goToPageOption(pageRange[3])">
-                                        <a id="Page4" aria-controls="datatable" data-dt-idx="4" tabindex="0">
+                                        <a id="Page4" aria-controls="datatable" data-dt-idx="4" tabindex="0" style="padding: 4px 5px !important;">
                                             4
                                         </a>
                                     </li>
                                     <li id="outerPage5" class="paginate_button " onclick="goToPageOption(pageRange[4])">
-                                        <a id="Page5" aria-controls="datatable" data-dt-idx="5" tabindex="0">
+                                        <a id="Page5" aria-controls="datatable" data-dt-idx="5" tabindex="0" style="padding: 4px 5px !important;">
                                             5
                                         </a>
                                     </li>
                                     <li class="paginate_button next" id="datatable_next" onclick="goToPageOption(currentPage+1);">
-                                        <a aria-controls="datatable" data-dt-idx="7" tabindex="0">
-                                            Next
+                                        <a aria-controls="datatable" data-dt-idx="7" tabindex="0" style="padding: 4px 5px !important;">
+                                            ▶
                                         </a>
                                     </li>
                                 </ul>
@@ -377,27 +377,21 @@
     var searchSentence;
 
     var getContactsInfo = function() {
-        var clubs = document.getElementsByClassName('clubName');
-        var titles = document.getElementsByClassName('articleTitle');
-        var authors = document.getElementsByClassName('author');
-        var contents = document.getElementsByClassName('articleContent');
-        var times = document.getElementsByClassName('publishTime');
-        allNum = clubs.length;
+        var studentNames = document.getElementsByClassName('studentName');
+        var departmentName = document.getElementsByClassName('departmentName');
+        var email = document.getElementsByClassName('email');
+        var tel = document.getElementsByClassName('tel');
+        allNum = studentNames.length;
         for (var i = 0; i < allNum; i++) {
-            var article = clubs[i].innerHTML + " " + titles[i].innerHTML + " " + authors[i].innerHTML + " " + contents[i].innerHTML + " " + times[i].innerHTML;
+            var article = studentNames[i].innerHTML + " " + departmentName[i].innerHTML + " " + email[i].innerHTML + " " + tel[i].innerHTML;
             articles.push(article);
-            if (contents[i].innerHTML.trim().length > 200) {
-                contents[i].innerHTML = contents[i].innerHTML.trim().substring(0, 200) + "....";
-            } else {
-                contents[i].innerHTML = contents[i].innerHTML.trim();
-            }
         }
     }
 
     var initFunctionTemp = function() {
-        getArticle();
+        getContactsInfo();
         var temp = document.getElementById('allGroups');
-        allNodes = temp.getElementsByClassName("groupList");
+        allNodes = temp.getElementsByClassName("col-md-4 col-sm-4 col-xs-12 profile_details");
         allNum = allNodes.length;
         // allNodes = deepCopy(allNodes);
         allPages = Math.ceil(allNum * 1.0 / nowNum);
@@ -425,7 +419,6 @@
         } else {
             goToPage(pageNum, allNodes, allNum);
         }
-
     }
 
     var goToPage = function(pageNum, originNodes, allNumber) {
@@ -481,6 +474,10 @@
             if (articles[i].indexOf(searchInfo) !== -1) {
                 showNodes.push(allNodes[i]);
             }
+        }
+        if(showNodes.length==0)
+        {
+            alert('抱歉，未查找到结果')
         }
         allNodes = showNodes;
         allNum = allNodes.length;

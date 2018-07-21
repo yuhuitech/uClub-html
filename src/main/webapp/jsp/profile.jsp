@@ -20,7 +20,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>我的简历</title>
+    <title>  U社团  </title>
     <style>
         .newStyle { margin: 0 0 0 0px; border-left: 0px solid #e8e8e8; overflow:
                 visible; padding: 10px 3px; } .timeline h2.title:before { position: absolute;
