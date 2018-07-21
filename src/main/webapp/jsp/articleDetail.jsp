@@ -60,7 +60,7 @@
 
 
     //获取所有评论
-    List<Comment> Comments = getAllComments(sqlSessionFactory,articleNum);
+    List<Comment> Comments = getAllComments(sqlSessionFactory, String.valueOf(article.getArticleNo()));
 
     String path = (String) session.getAttribute("Path");
     Integer stuNo = (Integer)request.getSession().getAttribute("UserNo");

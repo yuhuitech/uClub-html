@@ -22,7 +22,10 @@ public class ArticleCreate extends HttpServlet
         String author = request.getParameter("author");
         String title = request.getParameter("title");
         String temp = request.getParameter("clubNo");
-        int clubNo = Integer.parseInt(request.getParameter("clubNo"));
+        int clubNo=0;
+        if (request.getParameter("clubNo")!="") {
+            clubNo = Integer.parseInt(request.getParameter("clubNo"));
+        }
         Article article = new Article();
         article.CreateArticle(StuNo,clubNo,title,path,passage);
         String a = article.getText(path);

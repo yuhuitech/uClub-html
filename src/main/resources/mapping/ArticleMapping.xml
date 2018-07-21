@@ -18,9 +18,18 @@
         SELECT * FROM Article ORDER BY date DESC
     </select>
 
+
     <insert id ="addArticle">
+        <choose>
+      <when test="ClubNo>0">
             insert into Article(StuNo, ClubNo,Title ,res_url, date)
         values(#{StuNo}, #{ClubNo},#{Title}, #{res_url}, #{date, jdbcType=TIMESTAMP})
+      </when>
+            <otherwise>
+            insert into Article(StuNo, ClubNo,Title ,res_url, date)
+            values(#{StuNo},null,#{Title},#{res_url},#{date, jdbcType=TIMESTAMP})
+            </otherwise>
+        </choose>
     </insert>
 
 

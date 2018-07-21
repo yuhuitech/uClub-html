@@ -288,7 +288,7 @@
                 <div id="markdownOuterArea">
 
                     <div class="col-md-3 col-sm-6 col-xs-12">
-                        <select id="heard" class="form-control" required>
+                        <select id="adminClubName" class="form-control" required>
                             <option value="">请选择一个社团</option>
                             <%
                                 for(Club club:adminClubs){

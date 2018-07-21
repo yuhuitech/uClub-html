@@ -278,7 +278,16 @@
                                             out.print("    <a href=\"articleDetail.jsp?url="+i+"\" class=\"tag\">");
                                         %>
                                         <span style="text-align: center;" class="clubName">
-                                                        <%=getClubName(sqlSessionFactory,articles.get(i).getClubNo())%>
+                                            <%
+                                                String clubName="";
+                                                int getNum = articles.get(i).getClubNo();
+
+                                            if (getNum!=0){
+                                                clubName = getClubName(sqlSessionFactory,articles.get(i).getClubNo());
+                                            }else{
+                                                clubName="广场文章";
+                                            }%>
+                                                        <%=clubName%>
                                                     </span>
                                         </a>
                                     </div>
