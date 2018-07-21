@@ -42,6 +42,7 @@ public class AddComment extends HttpServlet {
         String comment=request.getParameter("content");
 
         String articleNo = String.valueOf(article.getArticleNo());
+
         String commentID=request.getParameter("commentID");
 
 
