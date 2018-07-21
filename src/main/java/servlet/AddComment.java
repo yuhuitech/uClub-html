@@ -1,5 +1,6 @@
 package servlet;
 
+import model.Article;
 import model.Comment;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
@@ -35,9 +36,12 @@ public class AddComment extends HttpServlet {
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
 
         int status= Integer.parseInt(request.getParameter("status"));
-        String articleNo=request.getParameter("articleNo");
+        String articleNum=request.getParameter("articleNo");
+        List<Article> articles = ( List<Article>)session.getAttribute("articles");
+        Article article = articles.get(Integer.parseInt(articleNum));
         String comment=request.getParameter("content");
 
+        String articleNo = String.valueOf(article.getArticleNo());
         String commentID=request.getParameter("commentID");
 
 
