@@ -170,7 +170,7 @@
                 <!-- sidebar menu -->
                 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                     <div class="menu_section">
-                        <h3>通用</h3>
+                        <h3></h3>
                         <ul class="nav side-menu">
                             <li><a><i class="fa fa-home"></i> 主页 <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
@@ -249,9 +249,9 @@
                                 <%for(Message message:messages){%>
                                 <li>
                                     <a>
-                                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                                        <span class="image"><img src="images/admin.jpg" alt="Profile Image" /></span>
                                         <span>
-                          <span>Teacher</span>
+                          <span>管理员</span>
                       <span class="time"> <%
                           String formatDate1 = null;
                           //格式 24小时制：2016-07-06 09:39:58
@@ -292,16 +292,16 @@
                     <h3>我的简历</h3>
                 </div>
 
-                <div class="title_right">
-                    <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search for...">
-                            <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
-                    </span>
-                        </div>
-                    </div>
-                </div>
+                <%--<div class="title_right">--%>
+                    <%--<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">--%>
+                        <%--<div class="input-group">--%>
+                            <%--<input type="text" class="form-control" placeholder="Search for...">--%>
+                            <%--<span class="input-group-btn">--%>
+                      <%--<button class="btn btn-default" type="button">Go!</button>--%>
+                    <%--</span>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
 
                 <div class="clearfix"></div>
 

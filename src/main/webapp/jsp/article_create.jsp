@@ -137,7 +137,7 @@
                 <!-- sidebar menu -->
                 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                     <div class="menu_section">
-                        <h3>通用</h3>
+                        <h3></h3>
                         <ul class="nav side-menu">
                             <li><a><i class="fa fa-home"></i> 主页 <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
@@ -188,7 +188,7 @@
                     <li class="" id="miniMenu">
                         <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
                            aria-expanded="false">
-                            <img src="images/img.jpg" alt="">
+                            <img src="images/admin.jpg" alt="">
                             <%out.println(getStuName(sqlSessionFactory,(Integer)session.getAttribute("UserNo")));%>
                             <span class=" fa fa-angle-down">
                                         </span>
@@ -196,10 +196,10 @@
                         <ul class="dropdown-menu dropdown-usermenu pull-right">
 
                             <li>
-                                <a href="login.html">
+                                <a href="../login.jsp">
                                     <i class="fa fa-sign-out pull-right">
                                     </i>
-                                    Log Out
+                                    返回登录
                                 </a>
                             </li>
                         </ul>
@@ -218,7 +218,7 @@
                             <li>
                                 <a>
                                                 <span class="image">
-                                                    <img src="images/img.jpg" alt="Profile Image" />
+                                                    <img src="images/admin.jpg" alt="Profile Image" />
                                                 </span>
                                     <span>
                                                     <span>
@@ -289,16 +289,17 @@
                 <!--<div class="col-md-12 col-sm-12 col-xs-12">-->
                 <div id="markdownOuterArea">
 
-                        <label class="col-md-3 col-sm-6 col-xs-12 control-label">社团名称</label>
-                        <div class="col-sm-9">
-                            <select class="select2_multiple form-control" multiple="multiple" name="adminClubName" id="adminClubName" >
-                                <%
-                                    for(Club club:adminClubs){
-                                %>   <option value="<%=club.getClubNo()%>" ><%=club.getClubName()%></option><%
-                                }
-                            %>
-                            </select>
-                        </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <select id="heard" class="form-control" required>
+                            <option value="">请选择一个社团</option>
+                            <%
+                                for(Club club:adminClubs){
+                            %>   <option value="<%=club.getClubNo()%>" ><%=club.getClubName()%></option><%
+                            }
+                        %>
+                        </select>
+                    </div>
+
                     <div class="col-sm-9 col-sm-9 col-xs-12">
                         <div class="input-group">
                             <input type="text" class="form-control" id="articleTitle" placeholder="请输入文章标题~">

@@ -100,7 +100,7 @@
                     <!-- sidebar menu -->
                     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                         <div class="menu_section">
-                            <h3>通用</h3>
+                            <h3></h3>
                             <ul class="nav side-menu">
                                 <li><a><i class="fa fa-home"></i> 主页 <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
@@ -136,20 +136,20 @@
                     <!-- /sidebar menu -->
 
                     <!-- /menu footer buttons -->
-                    <div class="sidebar-footer hidden-small">
-                        <a data-toggle="tooltip" data-placement="top" title="Settings">
-                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                        </a>
-                        <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                            <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-                        </a>
-                        <a data-toggle="tooltip" data-placement="top" title="Lock">
-                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-                        </a>
-                        <a data-toggle="tooltip" data-placement="top" title="Logout" href="../login.jsp">
-                            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-                        </a>
-                    </div>
+                    <%--<div class="sidebar-footer hidden-small">--%>
+                        <%--<a data-toggle="tooltip" data-placement="top" title="Settings">--%>
+                            <%--<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>--%>
+                        <%--</a>--%>
+                        <%--<a data-toggle="tooltip" data-placement="top" title="FullScreen">--%>
+                            <%--<span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>--%>
+                        <%--</a>--%>
+                        <%--<a data-toggle="tooltip" data-placement="top" title="Lock">--%>
+                            <%--<span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>--%>
+                        <%--</a>--%>
+                        <%--<a data-toggle="tooltip" data-placement="top" title="Logout" href="../login.jsp">--%>
+                            <%--<span class="glyphicon glyphicon-off" aria-hidden="true"></span>--%>
+                        <%--</a>--%>
+                    <%--</div>--%>
                     <!-- /menu footer buttons -->
                 </div>
 
@@ -169,17 +169,17 @@
                         <li class="" id="miniMenu">
                             <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
                                aria-expanded="false">
-                                <img src="images/img.jpg" alt="">
+                                <img src="images/<%= request.getSession().getAttribute("UserNo")%>.jpg" onerror="javascript:this.src='images/user.png'" alt="">
                                 <%out.println(name);%>
                                 <span class=" fa fa-angle-down">
                                         </span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">
                                 <li>
-                                    <a href="login.html">
+                                    <a href="../login.jsp">
                                         <i class="fa fa-sign-out pull-right">
                                         </i>
-                                        Log Out
+                                        返回登录
                                     </a>
                                 </li>
                             </ul>
@@ -197,7 +197,7 @@
                                 <li>
                                     <a>
                                                 <span class="image">
-                                                    <img src="images/img.jpg" alt="Profile Image" />
+                                                    <img src="images/admin.jpg" alt="Profile Image" />
                                                 </span>
                                         <span>
                                                     <span>

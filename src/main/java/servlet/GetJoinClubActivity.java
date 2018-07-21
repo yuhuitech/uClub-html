@@ -25,10 +25,14 @@ public class GetJoinClubActivity extends HttpServlet {
         Integer StuNo= (Integer) session.getAttribute("UserNo");
         String resource = "mybatis.xml";
 
+        String Status= (String) session.getAttribute("Status");
         InputStream is = Test.class.getClassLoader().getResourceAsStream(resource);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
+        List<Activity> list=null;
+        if(Status.equals("student")) list=DAO.selectAllActivity(sqlSessionFactory,StuNo);
+        else list=DAO.getActivities(sqlSessionFactory);
 
-         List<Activity> list=DAO.selectAllActivity(sqlSessionFactory,StuNo);
+
          String events="[";
         for (Activity act: list){
             events+="{\"id\":\""+act.getActiveNo()+"\",\"title\":\""+act.getActive_name()+"\",\"info\":\""+act.getActive_info()+

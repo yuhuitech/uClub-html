@@ -104,7 +104,7 @@
                 <!-- menu profile quick info -->
                 <div class="profile clearfix">
                     <div class="profile_pic">
-                        <img id="userImg" src="images/user.jpg" onerror="javascript:this.src='images/user.png'" alt="..." class="img-circle profile_img">
+                        <img id="userImg" src="images/admin.jpg" alt="..." class="img-circle profile_img">
                     </div>
                     <div class="profile_info">
                         <span>欢迎,</span>
@@ -118,29 +118,12 @@
                 <!-- sidebar menu -->
                 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                     <div class="menu_section">
-                        <h3>通用</h3>
                         <ul class="nav side-menu">
                             <li><a><i class="fa fa-home"></i> 主页 <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
-                                    <li><a href="Recommend.jsp">趋势</a></li>
+                                    <li><a href="apply_center.jsp">申请中心</a></li>
                                     <li><a href="media_gallery.jsp">所有社团</a></li>
-                                </ul>
-                            </li>
-                            <li><a><i class="fa fa-edit"></i> 申请 <span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="formWizards.jsp">申请创建社团</a></li>
-                                </ul>
-                            </li>
-                            <li><a><i class="fa fa-desktop"></i> 社团中心 <span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="my_group.jsp">加入的社团</a></li>
-                                    <li><a href="messageBoard.jsp">收到的消息</a></li>
                                     <li><a href="calendar.jsp">活动日历</a></li>
-                                </ul>
-                            </li>
-                            <li><a><i class="fa fa-user"></i> 我 <span class="fa fa-chevron-down"></span></a>
-                                <ul class="nav child_menu">
-                                    <li><a href="profile.jsp">我的简历</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -149,20 +132,6 @@
                 <!-- /sidebar menu -->
 
                 <!-- /menu footer buttons -->
-                <div class="sidebar-footer hidden-small">
-                    <a data-toggle="tooltip" data-placement="top" title="Settings">
-                        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                        <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="Lock">
-                        <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
-                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-                    </a>
-                </div>
                 <!-- /menu footer buttons -->
             </div>
         </div>
@@ -175,39 +144,24 @@
                 <a id="menu_toggle"><i class="fa fa-bars"></i></a>
               </div>
 
-              <ul class="nav navbar-nav navbar-right">
-                <li class="">
-                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="images/img.jpg" alt=""><%out.println(session.getAttribute("name"));%>
-                    <span class=" fa fa-angle-down"></span>
-                  </a>
-                  <ul class="dropdown-menu dropdown-usermenu pull-right">
-                  </ul>
-                </li>
-
-                <li role="presentation" class="dropdown">
-                  <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
-                      <i class="fa fa-envelope-o" style=" line-height: 32px;"></i>
-                    <span class="badge bg-green"><%out.println(messages.size());%></span>
-                  </a>
-                  <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                      <%for(Message message:messages){%>
-                    <li>
-                      <a>
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>Teacher</span>
-                          <span class="time"><%out.println(message.getTime());%></span>
-                        </span>
-                        <span class="message">
-                         <%out.println(message.getMessageInfo());%>
-                        </span>
-                      </a>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="">
+                        <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                            <img src="images/admin.jpg"  alt="">
+                            管理员
+                            <span class=" fa fa-angle-down"></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-usermenu pull-right">
+                            <li>
+                                <a href="../login.jsp">
+                                    <i class="fa fa-sign-out pull-right">
+                                    </i>
+                                    返回登录
+                                </a>
+                            </li>
+                        </ul>
                     </li>
-                      <%}%>
-                  </ul>
-                </li>
-              </ul>
+                </ul>
             </nav>
           </div>
         </div>
@@ -224,10 +178,6 @@
             <div class="title_right">
                 <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
                   <div class="input-group">
-                    <input type="text" class="form-control" placeholder="搜索社团">
-                    <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
-                    </span>
                   </div>
                 </div>
               </div>

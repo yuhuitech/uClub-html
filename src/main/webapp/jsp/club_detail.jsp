@@ -194,7 +194,7 @@
                         <!-- sidebar menu -->
                         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                             <div class="menu_section">
-                                <h3>通用</h3>
+                                <h3></h3>
                                 <ul class="nav side-menu">
                                     <li><a><i class="fa fa-home"></i> 主页 <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
@@ -254,7 +254,7 @@
                                             <a href="../login.jsp">
                                                 <i class="fa fa-sign-out pull-right">
                                                 </i>
-                                                Log Out
+                                                返回登录
                                             </a>
                                         </li>
                                     </ul>
@@ -269,9 +269,9 @@
                                         <%for(Message Message:messages){%>
                                         <li>
                                             <a>
-                                                <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                                                <span class="image"><img src="images/admin.jpg" alt="Profile Image" /></span>
                                                 <span>
-                          <span>Teacher</span>
+                          <span>管理员</span>
                        <span class="time"> <%
                            String formatDate = null;
                            //格式 24小时制：2016-07-06 09:39:58
@@ -311,18 +311,18 @@
                                 </h3>
                             </div>
                         </div>
-                        <div class="title_right">
-                            <div class="col-md-4 col-sm-4 col-xs-12 form-group pull-right top_search">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="搜社团">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-default" type="button">
-                                            Go!
-                                        </button>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
+                        <%--<div class="title_right">--%>
+                            <%--<div class="col-md-4 col-sm-4 col-xs-12 form-group pull-right top_search">--%>
+                                <%--<div class="input-group">--%>
+                                    <%--<input type="text" class="form-control" placeholder="搜社团">--%>
+                                    <%--<span class="input-group-btn">--%>
+                                        <%--<button class="btn btn-default" type="button">--%>
+                                            <%--Go!--%>
+                                        <%--</button>--%>
+                                    <%--</span>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
                         <div class="clearfix">
                         </div>
                         <div class="row">
@@ -505,25 +505,25 @@
                                                     </i>
                                                 </a>
                                             </li>
-                                            <li class="dropdown">
-                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                                aria-expanded="false">
-                                                    <i class="fa fa-wrench">
-                                                    </i>
-                                                </a>
-                                                <ul class="dropdown-menu" role="menu">
-                                                    <li>
-                                                        <a href="#" onclick="">
-                                                            修改社团简介
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">
-                                                            管理留言
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
+                                            <%--<li class="dropdown">--%>
+                                                <%--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"--%>
+                                                <%--aria-expanded="false">--%>
+                                                    <%--&lt;%&ndash;<i class="fa fa-wrench">&ndash;%&gt;--%>
+                                                    <%--&lt;%&ndash;</i>&ndash;%&gt;--%>
+                                                <%--</a>--%>
+                                                <%--<ul class="dropdown-menu" role="menu">--%>
+                                                    <%--<li>--%>
+                                                        <%--<a href="#" onclick="">--%>
+                                                            <%--修改社团简介--%>
+                                                        <%--</a>--%>
+                                                    <%--</li>--%>
+                                                    <%--<li>--%>
+                                                        <%--<a href="#">--%>
+                                                            <%--管理留言--%>
+                                                        <%--</a>--%>
+                                                    <%--</li>--%>
+                                                <%--</ul>--%>
+                                            <%--</li>--%>
                                         </ul>
                                         <div class="clearfix">
                                         </div>
@@ -659,12 +659,12 @@
                   <ul class="nav navbar-right panel_toolbox">
                     <li><a class="reply"><i class="fa fa-edit"></i></a>
                     </li>
-                    <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                      <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">删除</a></li>
-                      </ul>
-                    </li>
+                    <%--<li class="dropdown">--%>
+                      <%--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>--%>
+                      <%--<ul class="dropdown-menu" role="menu">--%>
+                        <%--<li><a href="#">删除</a></li>--%>
+                      <%--</ul>--%>
+                    <%--</li>--%>
                   </ul>
                   <div class="clearfix"></div>
                 </div>

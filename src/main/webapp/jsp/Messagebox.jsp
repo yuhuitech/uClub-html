@@ -92,7 +92,7 @@
             <!-- sidebar menu -->
                 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                     <div class="menu_section">
-                        <h3>通用</h3>
+                        <h3></h3>
                         <ul class="nav side-menu">
                             <li><a><i class="fa fa-home"></i> 主页 <span class="fa fa-chevron-down"></span></a>
                                 <ul class="nav child_menu">
@@ -128,20 +128,20 @@
                 <!-- /sidebar menu -->
 
                 <!-- /menu footer buttons -->
-                <div class="sidebar-footer hidden-small">
-                    <a data-toggle="tooltip" data-placement="top" title="Settings">
-                        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                        <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="Lock">
-                        <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-                    </a>
-                    <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
-                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-                    </a>
-                </div>
+                <%--<div class="sidebar-footer hidden-small">--%>
+                    <%--<a data-toggle="tooltip" data-placement="top" title="Settings">--%>
+                        <%--<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>--%>
+                    <%--</a>--%>
+                    <%--<a data-toggle="tooltip" data-placement="top" title="FullScreen">--%>
+                        <%--<span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>--%>
+                    <%--</a>--%>
+                    <%--<a data-toggle="tooltip" data-placement="top" title="Lock">--%>
+                        <%--<span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>--%>
+                    <%--</a>--%>
+                    <%--<a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">--%>
+                        <%--<span class="glyphicon glyphicon-off" aria-hidden="true"></span>--%>
+                    <%--</a>--%>
+                <%--</div>--%>
                 <!-- /menu footer buttons -->
             </div>
         </div>
@@ -165,7 +165,7 @@
                                     <a href="../login.jsp">
                                         <i class="fa fa-sign-out pull-right">
                                         </i>
-                                        Log Out
+                                        返回登录
                                     </a>
                                 </li>
                             </ul>
@@ -180,9 +180,9 @@
                                 <%for(Message message:messages){%>
                                 <li>
                                     <a>
-                                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                                        <span class="image"><img src="images/admin.jpg" alt="Profile Image" /></span>
                                         <span>
-                          <span>Teacher</span>
+                          <span>管理员</span>
                           <span class="time"> <%
                               String formatDate = null;
                               //格式 24小时制：2016-07-06 09:39:58
@@ -222,16 +222,16 @@
 
 
             </div>
-            <div class="title_right">
-                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="搜索收信...">
-                        <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
-                    </span>
-                    </div>
-                </div>
-            </div>
+            <%--<div class="title_right">--%>
+                <%--<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">--%>
+                    <%--<div class="input-group">--%>
+                        <%--<input type="text" class="form-control" placeholder="搜索收信...">--%>
+                        <%--<span class="input-group-btn">--%>
+                      <%--<button class="btn btn-default" type="button">Go!</button>--%>
+                    <%--</span>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+            <%--</div>--%>
 
             <div class="clearfix"></div>
 
@@ -243,17 +243,17 @@
                             <ul class="nav navbar-right panel_toolbox">
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                 </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                    <%--<ul class="dropdown-menu" role="menu">--%>
-                                        <%--<li><a href="#">Settings 1</a>--%>
-                                        <%--</li>--%>
-                                        <%--<li><a href="#">Settings 2</a>--%>
-                                        <%--</li>--%>
-                                    <%--</ul>--%>
-                                </li>
-                                <li><a class="close-link"><i class="fa fa-close"></i></a>
-                                </li>
+                                <%--<li class="dropdown">--%>
+                                    <%--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>--%>
+                                    <%--&lt;%&ndash;<ul class="dropdown-menu" role="menu">&ndash;%&gt;--%>
+                                        <%--&lt;%&ndash;<li><a href="#">Settings 1</a>&ndash;%&gt;--%>
+                                        <%--&lt;%&ndash;</li>&ndash;%&gt;--%>
+                                        <%--&lt;%&ndash;<li><a href="#">Settings 2</a>&ndash;%&gt;--%>
+                                        <%--&lt;%&ndash;</li>&ndash;%&gt;--%>
+                                    <%--&lt;%&ndash;</ul>&ndash;%&gt;--%>
+                                <%--</li>--%>
+                                <%--<li><a class="close-link"><i class="fa fa-close"></i></a>--%>
+                                <%--</li>--%>
                             </ul>
                             <div class="clearfix"></div>
                         </div>
@@ -268,10 +268,10 @@
                                     <input type="hidden" class="messages" id="messages" value="<%=a%>"/>
                                     <a>
                                         <span class="image">
-                                            <img src="images/user.png" alt="img">
+                                            <img src="images/admin.jpg" alt="img">
                                         </span>
                                         <span>
-                                            <span>Teacher</span>
+                                            <span>管理员</span>
                                             <span class="time"><%
                                                 String formatDate1 = null;
                                                 //格式 24小时制：2016-07-06 09:39:58
@@ -298,10 +298,10 @@
                                     <input type="hidden" class="messages" id="createReply" value="<%=b%>"/>
                                     <a>
                                         <span class="image">
-                                            <img src="images/user.png" alt="img">
+                                            <img src="images/admin.jpg" alt="img">
                                         </span>
                                         <span>
-                                            <span>Teacher</span>
+                                            <span>管理员</span>
 
                                         </span>
                                         <span class="message">
@@ -323,10 +323,10 @@
                                     <input type="hidden" class="messages" id="dissolveReply" value="<%=c%>"/>
                                     <a>
                                         <span class="image">
-                                            <img src="images/user.png" alt="img">
+                                            <img src="images/admin.jpg" alt="img">
                                         </span>
                                         <span>
-                                            <span>Teacher</span>
+                                            <span>管理员</span>
 
                                         </span>
                                         <span class="message">
@@ -348,10 +348,10 @@
                                     <input type="hidden" class="messages" id="joinReply" value="<%=d%>"/>
                                     <a>
                                         <span class="image">
-                                            <img src="images/user.png" alt="img">
+                                            <img src="images/admin.jpg" alt="img">
                                         </span>
                                         <span>
-                                            <span>Teacher</span>
+                                            <span>管理员</span>
 
                                         </span>
                                         <span class="message">
@@ -372,10 +372,10 @@
                                     <input type="hidden" class="messages" id="leaveReply" value="<%=e%>"/>
                                     <a>
                                         <span class="image">
-                                            <img src="images/user.png" alt="img">
+                                            <img src="images/admin.jpg" alt="img">
                                         </span>
                                         <span>
-                                            <span>Teacher</span>
+                                            <span>管理员</span>
 
                                         </span>
                                         <span class="message">
@@ -396,10 +396,10 @@
                                     <input type="hidden" class="messages" id="priceReply" value="<%=f%>"/>
                                     <a>
                                         <span class="image">
-                                            <img src="images/user.png" alt="img">
+                                            <img src="images/admin.jpg" alt="img">
                                         </span>
                                         <span>
-                                            <span>Teacher</span>
+                                            <span>管理员</span>
 
                                         </span>
                                         <span class="message">
@@ -435,15 +435,15 @@
                                 <!--<li>-->
                                 <!--                      	<a class="collapse-link"><i class="fa fa-chevron-up"></i></a>-->
                                 <!--</li>-->
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li><a href="#">删除此收信</a>
-                                        </li>
-                                        <li><a href="#">回复</a>
-                                        </li>
-                                    </ul>
-                                </li>
+                                <%--<li class="dropdown">--%>
+                                    <%--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>--%>
+                                    <%--<ul class="dropdown-menu" role="menu">--%>
+                                        <%--<li><a href="#">删除此收信</a>--%>
+                                        <%--</li>--%>
+                                        <%--&lt;%&ndash;<li><a href="#">回复</a>&ndash;%&gt;--%>
+                                        <%--</li>--%>
+                                    <%--</ul>--%>
+                                <%--</li>--%>
                                 <!--<li><a class="close-link"><i class="fa fa-close"></i></a>
                                 </li>-->
                             </ul>
@@ -459,11 +459,11 @@
                                 <div class="col-sm-12 mail_view">
                                     <div class="inbox-body">
                                         <div class="mail_heading row">
-                                            <div class="col-md-8 col-sm-4 col-xs-4">
-                                                <div class="btn-group">
-                                                    <button id="compose" class="btn btn-sm btn-success btn-block" type="button">回复</button>
-                                                </div>
-                                            </div>
+                                            <%--<div class="col-md-8 col-sm-4 col-xs-4">--%>
+                                                <%--<div class="btn-group">--%>
+                                                    <%--&lt;%&ndash;<button id="compose" class="btn btn-sm btn-success btn-block" type="button">回复</button>&ndash;%&gt;--%>
+                                                <%--</div>--%>
+                                            <%--</div>--%>
                                             <%--<div class="col-md-4 col-sm-8 col-xs-8 text-right">--%>
                                                 <%--<p class="date"> 收信日期 8:02 PM 12 FEB 2014</p>--%>
                                             <%--</div>--%>

@@ -339,4 +339,9 @@
         AND Club.ClubNo in (select ClubNo from Member where StuNo=#{StuNo});
     </select>
 
+
+    <select id="getActivities" resultMap="activity">
+        select * from Activity
+        where ClubNo in (select ClubNo from Club where status='1');
+    </select>
 </mapper>

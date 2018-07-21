@@ -155,5 +155,7 @@ public interface DaoInterface {
      List<HashMap> getJoinReply(@Param("StuNo") int StuNo);
      List<HashMap> getLeaveReply(@Param("StuNo") int StuNo);
      List<HashMap> getPriceReply(@Param("StuNo") int StuNo);
+
+     List<Activity> getActivities();
 }
 

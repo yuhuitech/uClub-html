@@ -39,16 +39,6 @@ public class Login extends HttpServlet {
             HttpSession session = req.getSession();
             List<Activity> list=DAO.selectAllActivity(sqlSessionFactory,userID);
             String path = getServletContext().getRealPath("/");
-           /* String events="[";
-            for (Activity act: list){
-                events+="{\"id\":\""+act.getActiveNo()+"\",\"title\":\""+act.getActive_name()+"\",\"info\":\""+act.getActive_info()+
-                        "\",\"start\":\""+act.getBegin_time()+"\",\"end\":\""+act.getEnd_time()+"\",\"status\":\""+act.getStatus()+
-                        "\",\"color\":\"#008080\",\"clubNo\":\""+act.getClubNo()+"\",\"isJoin\":\""+Dao.isJoin(sqlSessionFactory,userID,act.getActiveNo())+"\"},";
-            }
-            events = events.substring(0,events.length() - 1);
-            events+="]";
-            System.out.println(events);
-            session.setAttribute("events",events);*/
             session.setAttribute("UserNo", userID);
             session.setAttribute("Status",status);
             session.setAttribute("Path",path);

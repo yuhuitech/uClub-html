@@ -710,7 +710,23 @@ public class DAO {
         return i;
     }
 
+    public static List<Activity> getActivities(SqlSessionFactory sqlSessionFactory)
+    {
+        List<Activity> i=null;
+        try {
+            // 获取Session连接
+            SqlSession session = sqlSessionFactory.openSession();
+            // 获取Mapper
+            DaoInterface selectInterface = session.getMapper(DaoInterface.class);
+            i=selectInterface.getActivities();
+            session.commit();
+            session.close();
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return i;
+    }
 
 
     /**************************回复相关********************************/

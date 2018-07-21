@@ -27,6 +27,7 @@ To change this template use File | Settings | File Templates.
           <%
         //  String basePath =request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+"/";
           Integer StuNo=(Integer) session.getAttribute("UserNo");
+          String Status=(String) session.getAttribute("Status");
           String event= (String) session.getAttribute("events");
           String resource = "mybatis.xml";
           InputStream is = Test.class.getClassLoader().getResourceAsStream(resource);
@@ -140,12 +141,33 @@ td.fc-list-item-time.fc-widget-content {
 
             <!-- menu profile quick info -->
             <div class="profile clearfix">
-              <div class="profile_pic">
-                  <img id="userImg" src="images/<%=StuNo%>.jpg" onerror="javascript:this.src='images/user.png'" alt="..." class="img-circle profile_img">
-              </div>
+                <div class="profile_pic">
+                    <%
+                        if(Status.equals("student")){
+                    %>
+                    <img id="userImg" src="images/<%=StuNo%>.jpg" onerror="javascript:this.src='images/user.png'" alt="..." class="img-circle profile_img">
+                    <%
+                    }
+                    else {
+                    %>
+                    <img id="userImg" src="images/admin.jpg" alt="..." class="img-circle profile_img">
+                    <%
+                        }
+                    %>
+                </div>
               <div class="profile_info">
                 <span>欢迎,</span>
-                <h2><%=StuName%> 同学</h2>
+                  <%
+                      if(Status.equals("student")){
+                  %>
+                  <h2><%=StuName%> 同学</h2>
+                  <%
+                  }else {
+                  %>
+                  <h2>管理员</h2>
+                  <%
+                      }
+                  %>
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -155,10 +177,14 @@ td.fc-list-item-time.fc-widget-content {
             <!-- sidebar menu -->
               <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                   <div class="menu_section">
-                      <h3>通用</h3>
+                      <h3></h3>
                       <ul class="nav side-menu">
                           <li><a><i class="fa fa-home"></i> 主页 <span class="fa fa-chevron-down"></span></a>
                               <ul class="nav child_menu">
+                                  <%
+
+                                      if(Status.equals("student")){
+                                  %>
                                   <li><a href="Recommend.jsp">推荐</a></li>
                                   <li><a href="media_gallery.jsp">所有社团</a></li>
                               </ul>
@@ -185,6 +211,17 @@ td.fc-list-item-time.fc-widget-content {
                                   <li><a href="profile.jsp">我的简历</a></li>
                               </ul>
                           </li>
+                          <%
+                          }
+                          else {
+                          %>
+                          <li><a href="apply_center.jsp">申请中心</a></li>
+                          <li><a href="media_gallery.jsp">所有社团</a></li>
+                          <li><a href="calendar.jsp">活动日历</a></li>
+                          <%
+                              }
+                          %>
+
                       </ul>
                   </div>
               </div>
@@ -209,21 +246,33 @@ td.fc-list-item-time.fc-widget-content {
                                 <li class="" id="miniMenu">
                                     <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
                                     aria-expanded="false">
-                                        <img src="images/<%=StuNo%>.jpg" onerror="javascript:this.src='images/user.png'" alt="">
-                                        <%=StuName%>
-                                        <span class=" fa fa-angle-down">
-                                        </span>
+                                        <%
+                                            if(Status.equals("student")){
+                                        %>
+                                        <img id="userImg2" src="images/<%=StuNo%>.jpg?<%=Math.random()%>" onerror="javascript:this.src='images/user.png'" alt=""><%=StuName%>
+                                        <%
+                                        }else {
+                                        %>
+                                        <img src="images/admin.jpg" alt="">管理员
+                                        <%
+                                            }
+                                        %>
                                     </a>
                                     <ul class="dropdown-menu dropdown-usermenu pull-right">
                                         <li>
                                             <a href="../login.jsp">
                                                 <i class="fa fa-sign-out pull-right">
                                                 </i>
-                                                Log Out
+                                                返回登录
                                             </a>
                                         </li>
                                     </ul>
                                 </li>
+
+
+                                <%
+                                    if(Status.equals("student")){
+                                %>
                                 <li role="presentation" class="dropdown" id="messageDropDown">
                                     <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown"
                                     aria-expanded="false">
@@ -234,9 +283,9 @@ td.fc-list-item-time.fc-widget-content {
                                         <%for(Message message:messages){%>
                                         <li>
                                             <a>
-                                                <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                                                <span class="image"><img src="images/admin.jpg" alt="Profile Image" /></span>
                                                 <span>
-                          <span>Teacher</span>
+                          <span>管理员</span>
                             <span class="time"> <%
                                 String formatDate = null;
                                 //格式 24小时制：2016-07-06 09:39:58
@@ -262,6 +311,11 @@ td.fc-list-item-time.fc-widget-content {
                                         </li>
                                     </ul>
                                 </li>
+
+                                <%
+                                    }
+                                %>
+
                             </ul>
                         </nav>
                     </div>
@@ -280,19 +334,19 @@ td.fc-list-item-time.fc-widget-content {
                             </div>
                         </div>
 
-                        <div class="title_right">
-                            <div class="col-md-4 col-sm-4 col-xs-12 form-group pull-right top_search">
-                                <div class="input-group">
-                                    <input type="text" id="searchInfo" class="form-control" placeholder="找找活动">
-                                    <span class="input-group-btn">
-                                        <button id="searchbutton" class="btn btn-default" onclick="searchSentence=$('#searchInfo').val();goToPageOption(1);"
-                                        type="button">
-                                            Go!
-                                        </button>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
+                        <%--<div class="title_right">--%>
+                            <%--<div class="col-md-4 col-sm-4 col-xs-12 form-group pull-right top_search">--%>
+                                <%--<div class="input-group">--%>
+                                    <%--<input type="text" id="searchInfo" class="form-control" placeholder="找找活动">--%>
+                                    <%--<span class="input-group-btn">--%>
+                                        <%--<button id="searchbutton" class="btn btn-default" onclick="searchSentence=$('#searchInfo').val();goToPageOption(1);"--%>
+                                        <%--type="button">--%>
+                                            <%--Go!--%>
+                                        <%--</button>--%>
+                                    <%--</span>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
                     </div>
 
             <div class="clearfix"></div>
@@ -305,17 +359,17 @@ td.fc-list-item-time.fc-widget-content {
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <ul class="dropdown-menu" role="menu">
-                          <li><a href="#">Settings 1</a>
-                          </li>
-                          <li><a href="#">Settings 2</a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
+                      <%--<li class="dropdown">--%>
+                        <%--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>--%>
+                        <%--<ul class="dropdown-menu" role="menu">--%>
+                          <%--<li><a href="#">Settings 1</a>--%>
+                          <%--</li>--%>
+                          <%--<li><a href="#">Settings 2</a>--%>
+                          <%--</li>--%>
+                        <%--</ul>--%>
+                      <%--</li>--%>
+                      <%--<li><a class="close-link"><i class="fa fa-close"></i></a>--%>
+                      <%--</li>--%>
                     </ul>
                     <div class="clearfix"></div>
                   </div>

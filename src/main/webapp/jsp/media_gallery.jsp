@@ -33,7 +33,7 @@
 
   request.setAttribute("Clubs",clubs);
   List<Message> messages = (List<Message>)session.getAttribute("messages");
-
+  String Status= (String) session.getAttribute("Status");
 
 %>
   <head>
@@ -86,11 +86,32 @@
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
+                <%
+                    if(Status.equals("student")){
+                %>
                 <img id="userImg" src="images/<%=userNo%>.jpg" onerror="javascript:this.src='images/user.png'" alt="..." class="img-circle profile_img">
+                <%
+                  }
+                  else {
+                %>
+                <img id="userImg" src="images/admin.jpg" alt="..." class="img-circle profile_img">
+                <%
+                  }
+                %>
               </div>
               <div class="profile_info">
                 <span>欢迎,</span>
+                <%
+                  if(Status.equals("student")){
+                %>
                 <h2><%=userName%> 同学</h2>
+                <%
+                  }else {
+                %>
+                <h2>管理员</h2>
+                <%
+                  }
+                %>
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -100,10 +121,14 @@
             <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
-                <h3>通用</h3>
+                <h3></h3>
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-home"></i> 主页 <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
+                      <%
+
+                        if(Status.equals("student")){
+                      %>
                       <li><a href="Recommend.jsp">推荐</a></li>
                       <li><a href="media_gallery.jsp">所有社团</a></li>
                     </ul>
@@ -130,6 +155,17 @@
                       <li><a href="profile.jsp">我的简历</a></li>
                     </ul>
                   </li>
+                      <%
+                        }
+                        else {
+                      %>
+                      <li><a href="apply_center.jsp">申请中心</a></li>
+                      <li><a href="media_gallery.jsp">所有社团</a></li>
+                      <li><a href="calendar.jsp">活动日历</a></li>
+                      <%
+                        }
+                      %>
+
                 </ul>
               </div>
             </div>
@@ -150,29 +186,41 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-
+                    <%
+                      if(Status.equals("student")){
+                    %>
                     <img id="userImg2" src="images/<%=userNo%>.jpg?<%=Math.random()%>" onerror="javascript:this.src='images/user.png'" alt=""><%=userName%>
-
+                    <%
+                      }else {
+                    %>
+                    <img src="images/admin.jpg" alt="">管理员
+                    <%
+                      }
+                    %>
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="../login.jsp"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                    <li><a href="../login.jsp"><i class="fa fa-sign-out pull-right"></i> 返回登录</a></li>
                   </ul>
                 </li>
-
+                <%
+                  if(Status.equals("student")){
+                %>
                 <li role="presentation" class="dropdown">
                   <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                     <i class="fa fa-envelope-o" style=" line-height: 32px;"></i>
                     <span class="badge bg-green"><%out.println(messages.size());%></span>
 
                   </a>
+
+
                   <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
                     <%for(Message message:messages){%>
                     <li>
                       <a>
-                        <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
+                        <span class="image"><img src="images/admin.jpg" alt="Profile Image" /></span>
                         <span>
-                          <span>Teacher</span>
+                          <span>管理员</span>
                          <span class="time"> <%
                            String formatDate = null;
                            //格式 24小时制：2016-07-06 09:39:58
@@ -195,6 +243,10 @@
                       </div>
                     </li>
                   </ul>
+
+                  <%
+                    }
+                  %>
                 </li>
               </ul>
             </nav>
@@ -207,7 +259,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3> 大本营 <small> 有想要拔草的咩~</small> </h3>
+                <h3> 大本营  </h3>
               </div>
 
 
@@ -234,20 +286,32 @@
 
                   <div id="allGroups">
                     <c:forEach items="${requestScope.Clubs}" var="keyword">
+                      <%
+                        String Statue= (String) session.getAttribute("Status");
+                        if(Status.equals("student")){
+                      %>
                       <div class="col-md-3 col-sm-3 col-xs-12" onclick="window.location.href='club_detail.jsp?ClubNo=${keyword.clubNo}'">
+
+                        <%
+                          }else {
+                        %>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                        <%
+                          }
+                        %>
                         <div class="thumbnail">
                           <div class="image view view-first">
                             <img class="adjustPhoto" style="display: block;position: relative;width: 100%;bottom: 60%;" src="images/${keyword.clubNo}.jpg?<%=Math.random()%>" onerror="javascript:this.src='images/logo.png'" alt="image" />
-                            <div class="mask">
-                              <span>
-                              <p>查看详情</p>
-                              <div class="tools tools-bottom">
-                                <a href="#"><i class="fa fa-link"></i></a>
-                                <a href="#"><i class="fa fa-pencil"></i></a>
-                                <a href="#"><i class="fa fa-times"></i></a>
-                              </div>
-                              </span>
-                            </div>
+                            <%--<div class="mask">--%>
+                              <%--<span>--%>
+                              <%--<p>查看详情</p>--%>
+                              <%--<div class="tools tools-bottom">--%>
+                                <%--&lt;%&ndash;<a href="#"><i class="fa fa-link"></i></a>&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<a href="#"><i class="fa fa-pencil"></i></a>&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<a href="#"><i class="fa fa-times"></i></a>&ndash;%&gt;--%>
+                              <%--</div>--%>
+                              <%--</span>--%>
+                            <%--</div>--%>
                           </div>
                           <div  class="groupNameCSS">
                             ${keyword.clubName}
