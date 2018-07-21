@@ -205,17 +205,17 @@
                             </div>
                         </div>
                         <div class="title_right">
-                            <div class="col-md-4 col-sm-4 col-xs-12 form-group pull-right top_search">
-                                <div class="input-group">
-                                    <input type="text" id="searchInfo" class="form-control" placeholder="zhao">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-default" onclick="searchSentence=$('#searchInfo').val();goToPageOption(1);"
-                                        type="button">
-                                            Go!
-                                        </button>
-                                    </span>
-                                </div>
-                            </div>
+                            <%--<div class="col-md-4 col-sm-4 col-xs-12 form-group pull-right top_search">--%>
+                                <%--<div class="input-group">--%>
+                                    <%--<input type="text" id="searchInfo" class="form-control" placeholder="zhao">--%>
+                                    <%--<span class="input-group-btn">--%>
+                                        <%--<button class="btn btn-default" onclick="searchSentence=$('#searchInfo').val();goToPageOption(1);"--%>
+                                        <%--type="button">--%>
+                                            <%--Go!--%>
+                                        <%--</button>--%>
+                                    <%--</span>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
                         </div>
                     </div>
                     <div class="col-md-12 col-sm-12 col-xs-12">
